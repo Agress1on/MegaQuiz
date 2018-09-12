@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">MegaQuiz</string>
+    <string name="for_random_btn">Случайный опрос</string>
+    <string name="for_category_btn">Выбрать категорию опроса</string>
+</resources>

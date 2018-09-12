@@ -1,0 +1,27 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".firstActivity.FirstActivityView">
+
+    <Button
+        android:id="@+id/btn_randomQuiz"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/for_random_btn"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+    <Button
+        android:id="@+id/btn_category"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="@string/for_category_btn"
+        app:layout_constraintTop_toBottomOf="@id/btn_randomQuiz"
+        app:layout_constraintStart_toStartOf="@id/btn_randomQuiz"
+        app:layout_constraintEnd_toEndOf="@id/btn_randomQuiz"/>
+
+</android.support.constraint.ConstraintLayout>
