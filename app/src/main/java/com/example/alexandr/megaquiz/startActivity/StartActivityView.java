@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.alexandr.megaquiz.R;
-import com.example.alexandr.megaquiz.categoryStorageActivity.CategoryStorageActivityView;
+import com.example.alexandr.megaquiz.quizStorageActivity.QuizStorageActivityView;
 
 public class FirstActivityView extends AppCompatActivity implements FirstContract.View {
 
@@ -35,7 +35,7 @@ public class FirstActivityView extends AppCompatActivity implements FirstContrac
 
     @Override
     public void goToCategoryActivity() {
-        Intent intent = new Intent(FirstActivityView.this, CategoryStorageActivityView.class);
+        Intent intent = new Intent(FirstActivityView.this, QuizStorageActivityView.class);
         startActivity(intent);
     }
 }
