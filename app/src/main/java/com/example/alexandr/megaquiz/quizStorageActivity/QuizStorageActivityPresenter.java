@@ -1,16 +1,16 @@
-package com.example.alexandr.megaquiz.categoryStorageActivity;
+package com.example.alexandr.megaquiz.quizStorageActivity;
 
 /**
  * Created by Alexandr Mikhalev on 11.09.2018.
  *
  * @author Alexandr Mikhalev
  */
-public class CategoryStorageActivityPresenter implements CategoryStorageContract.Presenter {
-    private CategoryStorageActivityView mView;
-    private CategoryStorageActivityModel mModel;
+public class QuizStorageActivityPresenter implements QuizStorageContract.Presenter {
+    private QuizStorageActivityView mView;
+    private QuizStorageActivityModel mModel;
 
-    public CategoryStorageActivityPresenter(CategoryStorageActivityView view) {
+    public QuizStorageActivityPresenter(QuizStorageActivityView view) {
         this.mView = view;
-        this.mModel = new CategoryStorageActivityModel();
+        this.mModel = new QuizStorageActivityModel();
     }
 }

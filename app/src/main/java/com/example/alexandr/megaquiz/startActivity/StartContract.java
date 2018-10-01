@@ -1,11 +1,11 @@
-package com.example.alexandr.megaquiz.firstActivity;
+package com.example.alexandr.megaquiz.startActivity;
 
 /**
  * Created by Alexandr Mikhalev on 11.09.2018.
  *
  * @author Alexandr Mikhalev
  */
-public interface FirstContract {
+public interface StartContract {
     interface View {
         void goToCategoryActivity();
     }

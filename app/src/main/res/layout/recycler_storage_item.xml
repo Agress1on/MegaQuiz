@@ -1,6 +1,42 @@
 <?xml version="1.0" encoding="utf-8"?>
-<android.support.constraint.ConstraintLayout
-    xmlns:android="http://schemas.android.com/apk/res/android" android:layout_width="match_parent"
-    android:layout_height="match_parent">
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
+    <TextView
+        android:id="@+id/position_item_recycler"
+        android:text="1"
+        android:textSize="28dp"
+        android:paddingTop="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+    <TextView
+        android:id="@+id/name_item_recycler"
+        android:text="EXAMPLE"
+        android:textSize="20dp"
+        app:layout_constraintStart_toEndOf="@id/position_item_recycler"
+        app:layout_constraintBottom_toBottomOf="@id/position_item_recycler"
+        android:layout_marginLeft="10dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <TextView
+        android:id="@+id/quantity_item_recycler"
+        android:text="Кол-во вопросов"
+        android:textSize="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintBottom_toBottomOf="@id/number_quantity_item_recycler"
+        app:layout_constraintEnd_toStartOf="@id/number_quantity_item_recycler"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"/>
+    <TextView
+        android:id="@+id/number_quantity_item_recycler"
+        android:text="5"
+        android:textSize="20dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="@id/name_item_recycler"
+        android:layout_marginRight="10dp"/>
 </android.support.constraint.ConstraintLayout>

@@ -9,7 +9,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".firstActivity.FirstActivityView">
+        <activity android:name=".startActivity.StartActivityView">
 
         </activity>
         <activity
@@ -21,7 +21,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".categoryStorageActivity.CategoryStorageActivityView">
+        <activity android:name=".quizStorageActivity.QuizStorageActivityView">
+
+        </activity>
+        <activity android:name=".quizActivity.QuizActivityView">
 
         </activity>
     </application>

@@ -1,17 +1,17 @@
-package com.example.alexandr.megaquiz.firstActivity;
+package com.example.alexandr.megaquiz.startActivity;
 
 /**
  * Created by Alexandr Mikhalev on 11.09.2018.
  *
  * @author Alexandr Mikhalev
  */
-public class FirstActivityPresenter implements FirstContract.Presenter {
-    private FirstContract.View mView;
-    private FirstContract.Model mModel;
+public class StartActivityPresenter implements StartContract.Presenter {
+    private StartContract.View mView;
+    private StartContract.Model mModel;
 
-    public FirstActivityPresenter(FirstContract.View view) {
+    public StartActivityPresenter(StartContract.View view) {
         this.mView = view;
-        this.mModel = new FirstActivityModel();
+        this.mModel = new StartActivityModel();
     }
 
     @Override
