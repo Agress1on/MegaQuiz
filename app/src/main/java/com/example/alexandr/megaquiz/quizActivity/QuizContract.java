@@ -39,5 +39,6 @@ public interface QuizContract {
         boolean pressCheck();
         boolean isQuizFinish();
         String quizResult();
+        void startQuizAgain();
     }
 }

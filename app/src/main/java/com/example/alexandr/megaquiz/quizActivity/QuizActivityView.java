@@ -1,5 +1,9 @@
 package com.example.alexandr.megaquiz.quizActivity;
 
+import android.app.AlertDialog;
+import android.app.Dialog;
+import android.content.DialogInterface;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -10,6 +14,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.alexandr.megaquiz.R;
+import com.example.alexandr.megaquiz.quizStorageActivity.QuizStorageActivityView;
 
 /**
  * Created by Alexandr Mikhalev on 13.09.2018.
@@ -24,6 +29,7 @@ public class QuizActivityView extends AppCompatActivity implements QuizContract.
     private Button mFalseButton;
     private Button mNextButton;
     private Button mPrevButton;
+    private AlertDialog.Builder ad;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -72,6 +78,25 @@ public class QuizActivityView extends AppCompatActivity implements QuizContract.
                 quizResult();
             }
         });
+
+        ad = new AlertDialog.Builder(QuizActivityView.this);
+        ad.setTitle("Что делать дальше?");
+        ad.setMessage(mPresenter.quizResult() + " Пройти тест заново или вернуться в главное меню?");
+        ad.setPositiveButton("Пройти заново", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+               // mPresenter.startQuizAgain();
+            }
+        });
+        ad.setNegativeButton("вернуться к списку", new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                Intent intent = new Intent(QuizActivityView.this, QuizStorageActivityView.class);
+                startActivity(intent);
+                finish();
+            }
+        });
+
     }
 
     @Override
@@ -99,9 +124,19 @@ public class QuizActivityView extends AppCompatActivity implements QuizContract.
     @Override
     public void quizResult() {
         if (mPresenter.isQuizFinish()) {
+            /*
             Toast toast = Toast.makeText(getApplicationContext(), mPresenter.quizResult(), Toast.LENGTH_LONG);
             toast.setGravity(Gravity.CENTER, 0, 0);
             toast.show();
+            */
+
+
+            mQuestionTV.setText(mPresenter.getFirstQuestion().getQuestion());
+            buttonSwitcher(true);
+            ad.show();
+
+
         }
     }
+
 }

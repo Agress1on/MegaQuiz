@@ -2,6 +2,7 @@ package com.example.alexandr.megaquiz.quizActivity;
 
 import com.example.alexandr.megaquiz.bankQuestion.Question;
 
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -90,5 +91,10 @@ public class QuizActivityPresenter implements QuizContract.Presenter {
         return "Всего вопросов: " + mModel.getQuestionList().size() + ", а правильных ответов: " + mModel.getTrueQuestionsCount();
     }
 
+    @Override
+    public void startQuizAgain() {
+        Map<Integer, Boolean> map = new HashMap<>();
+        mModel.setResultQuiz(map);
+    }
 
 }
