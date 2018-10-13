@@ -14,7 +14,7 @@ public class Question {
         this.trueAnswer = trueAnswer;
     }
 
-    public String getQuestion() {
+    public String getTextQuestion() {
         return question;
     }
 

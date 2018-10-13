@@ -33,7 +33,7 @@ public class QuizStorageActivityView extends AppCompatActivity implements QuizSt
 
         mPresenter = new QuizStorageActivityPresenter(this);
 
-        List<String> mCat = getCategoriesNames();
+        List<String> mCat = mPresenter.getCategoriesNames();
         mRecyclerView = (RecyclerView) findViewById(R.id.my_recycler);
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(this); // XMMMMM
@@ -41,15 +41,6 @@ public class QuizStorageActivityView extends AppCompatActivity implements QuizSt
         mAdapter = new RecyclerAdapter(mCat);
         mRecyclerView.setAdapter(mAdapter);
 
-
     }
 
-    private List<String> getCategoriesNames() {
-        List<String> mCat = new ArrayList<>();
-        Map<String, List<Question>> map = new BankQuestion().getBankQuestion();
-        for (Map.Entry<String, List<Question>> entry : map.entrySet()) {
-            mCat.add(entry.getKey());
-        }
-        return mCat;
-    }
 }

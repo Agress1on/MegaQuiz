@@ -65,8 +65,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     public void onBindViewHolder(@NonNull RecyclerAdapter.ViewHolder holder, int position) {
             holder.mTVName.setText(mCategoriesNames.get(position));
             holder.mTVPosition.setText(String.valueOf(position + 1));
-            // написать хуйню для размера каждой категории и в текст вью размер
-            Map<String, List<Question>> map = new BankQuestion().getBankQuestion();
+            Map<String, List<Question>> map = new BankQuestion().getBankQuestion(); // это прям не нравится
             for (Map.Entry<String, List<Question>> entry : map.entrySet()) {
                 if (mCategoriesNames.get(position).equals(entry.getKey())) {
                     holder.mTVQuantityNumber.setText(String.valueOf(entry.getValue().size()));

@@ -1,100 +1,91 @@
 package com.example.alexandr.megaquiz.quizActivity;
 
-import com.example.alexandr.megaquiz.bankQuestion.Question;
-
-import java.util.HashMap;
-import java.util.Map;
+import com.example.alexandr.megaquiz.bankQuestion.BankQuestion;
 
 /**
  * Created by Alexandr Mikhalev on 13.09.2018.
  *
  * @author Alexandr Mikhalev
  */
-public class QuizActivityPresenter implements QuizContract.Presenter {
-    private QuizContract.View mView;
-    private QuizContract.Model mModel;
+public class QuizActivityPresenter implements QuizActivityContract.Presenter {
+    private QuizActivityContract.View mView;
+    private QuizActivityContract.Model mModel;
+    private BankQuestion bankQuestion;
 
-    public QuizActivityPresenter(QuizContract.View view) {
+    public QuizActivityPresenter(QuizActivityContract.View view) {
         this.mView = view;
-        this.mModel = new QuizActivityModel();
+        this.bankQuestion = new BankQuestion();
+        this.mModel = new QuizActivityModel(bankQuestion);
     }
 
     @Override
-    public Question getFirstQuestion() {
-        return mModel.getQuestionList().get(0);
+    public void viewIsReady() {
+        mView.setQuestionTVText(mModel.getQuestion(mModel.getCurrentIndex()).getTextQuestion());
+        mView.setQuestionCounter("Всего вопросов: " + mModel.getQuizSize());
+        mView.setTrueQuestionCounter("Правильных ответов: " + mModel.getTrueQuestionsCount());
     }
 
     @Override
-    public Question getNextQuestion() {
-        int currentIndex = (mModel.getCurrentIndex() + 1) % mModel.getQuestionList().size();
+    public void onNextButton() {
+        int currentIndex = (mModel.getCurrentIndex() + 1) % mModel.getQuizSize();
         mModel.setCurrentIndex(currentIndex);
-        return mModel.getQuestionList().get(currentIndex);
+        mView.setQuestionTVText(mModel.getQuestion(mModel.getCurrentIndex()).getTextQuestion());
+        checkAnswerQuestion();
     }
 
     @Override
-    public Question getPrevQuestion() {
-        int currentIndex = (mModel.getCurrentIndex() - 1) % mModel.getQuestionList().size();
+    public void onPrevButton() {
+        int currentIndex = (mModel.getCurrentIndex() - 1) % mModel.getQuizSize();
         if (currentIndex < 0) currentIndex = 0;
         mModel.setCurrentIndex(currentIndex);
-        return mModel.getQuestionList().get(currentIndex);
+        mView.setQuestionTVText(mModel.getQuestion(mModel.getCurrentIndex()).getTextQuestion());
+        checkAnswerQuestion();
     }
 
     @Override
-    public void pressTrueButton() {
-        Map<Integer, Boolean> resultQuiz = mModel.getResultQuiz();
-        resultQuiz.put(mModel.getCurrentIndex(), true);
-        mModel.setResultQuiz(resultQuiz);
+    public void onTrueButton() {
+        boolean answer = true;
+        boolean realAnswer = mModel.getQuestion(mModel.getCurrentIndex()).isTrueAnswer();
+        mModel.putAnswerInStorage(mModel.getCurrentIndex(), answer);
+        checkCorrectAnswer(answer, realAnswer);
+        checkAnswerQuestion();
+        checkFinalOfQuiz();
     }
 
     @Override
-    public void pressFalseButton() {
-        Map<Integer, Boolean> resultQuiz = mModel.getResultQuiz();
-        resultQuiz.put(mModel.getCurrentIndex(), false);
-        mModel.setResultQuiz(resultQuiz);
+    public void onFalseButton() {
+        boolean answer = false;
+        boolean realAnswer = mModel.getQuestion(mModel.getCurrentIndex()).isTrueAnswer();
+        mModel.putAnswerInStorage(mModel.getCurrentIndex(), answer);
+        checkCorrectAnswer(answer, realAnswer);
+        checkAnswerQuestion();
+        checkFinalOfQuiz();
     }
 
-    @Override
-    public boolean resultQuestion() {
-        boolean result = false;
-        for (Map.Entry<Integer, Boolean> entry : mModel.getResultQuiz().entrySet()) {
-            if (entry.getKey() == mModel.getCurrentIndex()) {
-                if (entry.getValue() == mModel.getQuestionList().get(mModel.getCurrentIndex()).isTrueAnswer()) {
-                    result = true;
-                }
-            }
+    private void checkCorrectAnswer(boolean answer, boolean realAnswer) {
+        if (answer == realAnswer) {
+            showResultAnswerQuestion(true);
+            mModel.setTrueQuestionsCount(mModel.getTrueQuestionsCount() + 1);
+            mView.setTrueQuestionCounter("Правильных ответов: " + mModel.getTrueQuestionsCount());
+        } else {
+            showResultAnswerQuestion(false);
         }
-        return result;
     }
 
-    @Override
-    public boolean pressCheck() {
-        boolean check = false;
-        for (Map.Entry<Integer, Boolean> entry : mModel.getResultQuiz().entrySet()) {
-            if (entry.getKey() == mModel.getCurrentIndex()) check = true;
+    private void showResultAnswerQuestion(boolean answer) {
+        if (answer) {
+            mView.showToast("Верно!");
+        } else {
+            mView.showToast("Неверно!");
         }
-        return check;
     }
 
-    @Override
-    public boolean isQuizFinish() {
-        return mModel.getResultQuiz().size() == mModel.getQuestionList().size();
+    private void checkAnswerQuestion() {
+        mView.buttonSwitcher(!mModel.isAnsweredThisQuestion(mModel.getCurrentIndex()));
     }
 
-    @Override
-    public String quizResult() {
-        int count = mModel.getTrueQuestionsCount();
-        for (Map.Entry<Integer, Boolean> entry : mModel.getResultQuiz().entrySet()) {
-            if (mModel.getQuestionList().get(entry.getKey()).isTrueAnswer() == entry.getValue()) count++;
-        }
-        mModel.setTrueQuestionsCount(count);
-
-        return "Всего вопросов: " + mModel.getQuestionList().size() + ", а правильных ответов: " + mModel.getTrueQuestionsCount();
+    private void checkFinalOfQuiz() {
+        if (mModel.getQuizSize() == mModel.getStorageOfResponseSize())
+            mView.showToast("Опрос закончен. Всего вопросов: " + mModel.getQuizSize() + ". Правильных ответов: " + mModel.getTrueQuestionsCount());
     }
-
-    @Override
-    public void startQuizAgain() {
-        Map<Integer, Boolean> map = new HashMap<>();
-        mModel.setResultQuiz(map);
-    }
-
 }

@@ -1,5 +1,7 @@
 package com.example.alexandr.megaquiz.quizStorageActivity;
 
+import java.util.List;
+
 /**
  * Created by Alexandr Mikhalev on 11.09.2018.
  *
@@ -12,5 +14,10 @@ public class QuizStorageActivityPresenter implements QuizStorageContract.Present
     public QuizStorageActivityPresenter(QuizStorageActivityView view) {
         this.mView = view;
         this.mModel = new QuizStorageActivityModel();
+    }
+
+    @Override
+    public List<String> getCategoriesNames() {
+        return mModel.getCategoriesNames();
     }
 }

@@ -13,27 +13,32 @@ import java.util.Map;
  *
  * @author Alexandr Mikhalev
  */
-public class QuizActivityModel implements QuizContract.Model {
-    private Map<String, List<Question>> bankQuestion = new BankQuestion().getBankQuestion();
-    private List<Question> mQuestionList = initSelectedQuestionsList(Constants.GENERAL_QUESTIONS); // временная инициализация общими вопросами
+public class QuizActivityModel implements QuizActivityContract.Model {
+    //  private Map<String, List<Question>> bankQuestions = new BankQuestion().getBankQuestion();
+    private Map<String, List<Question>> bankQuestions;
+    private List<Question> mQuestionList;
     private int mCurrentIndex = 0;
-    private Map<Integer, Boolean> resultQuiz = new HashMap<>();
+    private Map<Integer, Boolean> storageOfResponse = new HashMap<>();
     private int mTrueQuestionsCount = 0;
 
-    public int getCurrentIndex() {
-        return mCurrentIndex;
+    public QuizActivityModel(BankQuestion bankQuestion) {
+        this.bankQuestions = bankQuestion.getBankQuestion();
+        this.mQuestionList = initSelectedQuestionsList(Constants.GENERAL_QUESTIONS); // временная инициализация общими вопросами
     }
 
-    public void setCurrentIndex(int currentIndex) {
-        mCurrentIndex = currentIndex;
+    @Override
+    public Question getQuestion(int index) {
+        return mQuestionList.get(index);
     }
 
-    public List<Question> getQuestionList() {
-        return mQuestionList;
+    @Override
+    public int getQuizSize() {
+        return mQuestionList.size();
     }
 
+    @Override
     public List<Question> initSelectedQuestionsList(String name) {
-        for (Map.Entry<String, List<Question>> entry : bankQuestion.entrySet()) {
+        for (Map.Entry<String, List<Question>> entry : bankQuestions.entrySet()) {
             if (entry.getKey().equals(name)) {
                 mQuestionList = entry.getValue();
             }
@@ -41,18 +46,37 @@ public class QuizActivityModel implements QuizContract.Model {
         return mQuestionList;
     }
 
-    public Map<Integer, Boolean> getResultQuiz() {
-        return resultQuiz;
+    @Override
+    public int getCurrentIndex() {
+        return mCurrentIndex;
     }
 
-    public void setResultQuiz(Map<Integer, Boolean> resultQuiz) {
-        this.resultQuiz = resultQuiz;
+    @Override
+    public void setCurrentIndex(int currentIndex) {
+        mCurrentIndex = currentIndex;
     }
 
+    @Override
+    public void putAnswerInStorage(int index, boolean answer) {
+        storageOfResponse.put(index, answer);
+    }
+
+    @Override
+    public boolean isAnsweredThisQuestion(int index) {
+        return storageOfResponse.containsKey(index);
+    }
+
+    @Override
+    public int getStorageOfResponseSize() {
+        return storageOfResponse.size();
+    }
+
+    @Override
     public int getTrueQuestionsCount() {
         return mTrueQuestionsCount;
     }
 
+    @Override
     public void setTrueQuestionsCount(int trueQuestionsCount) {
         mTrueQuestionsCount = trueQuestionsCount;
     }

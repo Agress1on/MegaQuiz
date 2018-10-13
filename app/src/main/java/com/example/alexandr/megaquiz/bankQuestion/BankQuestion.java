@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
+import java.util.TreeMap;
 
 /**
  * Created by Alexandr Mikhalev on 25.09.2018.
@@ -18,8 +19,26 @@ public class BankQuestion {
     private List<Question> geographyQuestions = new ArrayList<>();
     private List<Question> natureQuestions = new ArrayList<>();
 
-    private Map<String, List<Question>> bankQuestion = new HashMap<>();
+    private Map<String, List<Question>> bankQuestion = new TreeMap<>();
 
+    public BankQuestion() {
+        generalQuestions.add(new Question("Андроид - лучшая платформа", true));
+        generalQuestions.add(new Question("Manchester is blue", false));
+        generalQuestions.add(new Question("Спартак Москва - лучший клуб", true));
+        generalQuestions.add(new Question("Земля имеет форму конуса", false));
+        generalQuestions.add(new Question("На Марсе есть жизнь", true));
+        generalQuestions.add(new Question("Алкоголь безвредный", false));
+
+        bankQuestion.put(Constants.GENERAL_QUESTIONS, generalQuestions);
+        bankQuestion.put(Constants.HISTORY_QUESTIONS, historyQuestions);
+        bankQuestion.put(Constants.GEOGRAPHY_QUESTIONS, geographyQuestions);
+        bankQuestion.put(Constants.NATURE_QUESTIONS, natureQuestions);
+        for (int i = 0; i < 10; i++) {
+            bankQuestion.put(i + "category", new ArrayList<Question>());
+        }
+    }
+
+    /*
     {
         generalQuestions.add(new Question("Андроид - лучшая платформа", true));
         generalQuestions.add(new Question("Manchester is blue", false));
@@ -34,7 +53,11 @@ public class BankQuestion {
         bankQuestion.put(Constants.HISTORY_QUESTIONS, historyQuestions);
         bankQuestion.put(Constants.GEOGRAPHY_QUESTIONS, geographyQuestions);
         bankQuestion.put(Constants.NATURE_QUESTIONS, natureQuestions);
+        for (int i = 0; i < 10; i++) {
+            bankQuestion.put(i + "category", new ArrayList<Question>());
+        }
     }
+    */
 
     public Map<String, List<Question>> getBankQuestion() {
         return bankQuestion;
