@@ -23,7 +23,7 @@ public class QuizActivityModel implements QuizActivityContract.Model {
 
     public QuizActivityModel(BankQuestion bankQuestion) {
         this.bankQuestions = bankQuestion.getBankQuestion();
-        this.mQuestionList = initSelectedQuestionsList(Constants.GENERAL_QUESTIONS); // временная инициализация общими вопросами
+        initSelectedQuestionsList(Constants.GENERAL_QUESTIONS); // временная инициализация общими вопросами
     }
 
     @Override
@@ -37,13 +37,12 @@ public class QuizActivityModel implements QuizActivityContract.Model {
     }
 
     @Override
-    public List<Question> initSelectedQuestionsList(String name) {
+    public void initSelectedQuestionsList(String name) {
         for (Map.Entry<String, List<Question>> entry : bankQuestions.entrySet()) {
             if (entry.getKey().equals(name)) {
                 mQuestionList = entry.getValue();
             }
         }
-        return mQuestionList;
     }
 
     @Override

@@ -23,13 +23,14 @@ import java.util.Map;
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> {
 
     private List<String> mCategoriesNames;
+    private Map<String, List<Question>> map;
 
     public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
         public TextView mTVName;
         public TextView mTVPosition;
         public TextView mTVQuantity;
-        public TextView mTVQuantityNumber;
+        public TextView mTVQuantityQuestionOfQuiz;
         public String mCatName;
 
 
@@ -38,7 +39,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
             mTVName = (TextView) v.findViewById(R.id.name_item_recycler);
             mTVPosition = (TextView) v.findViewById(R.id.position_item_recycler);
             mTVQuantity = (TextView) v.findViewById(R.id.quantity_item_recycler);
-            mTVQuantityNumber = (TextView) v.findViewById(R.id.number_quantity_item_recycler);
+            mTVQuantityQuestionOfQuiz = (TextView) v.findViewById(R.id.number_quantity_item_recycler);
             itemView.setOnClickListener(this);
         }
 
@@ -50,6 +51,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
     public RecyclerAdapter(List<String> categoriesNames) {
         mCategoriesNames = categoriesNames;
+        BankQuestion bankQuestion = new BankQuestion();
+        map = new QuizStorageActivityModel(bankQuestion).getBankQuestion();
     }
 
     @NonNull
@@ -65,10 +68,9 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     public void onBindViewHolder(@NonNull RecyclerAdapter.ViewHolder holder, int position) {
             holder.mTVName.setText(mCategoriesNames.get(position));
             holder.mTVPosition.setText(String.valueOf(position + 1));
-            Map<String, List<Question>> map = new BankQuestion().getBankQuestion(); // это прям не нравится
             for (Map.Entry<String, List<Question>> entry : map.entrySet()) {
                 if (mCategoriesNames.get(position).equals(entry.getKey())) {
-                    holder.mTVQuantityNumber.setText(String.valueOf(entry.getValue().size()));
+                    holder.mTVQuantityQuestionOfQuiz.setText(String.valueOf(entry.getValue().size()));
                     holder.mCatName = entry.getKey();
                 }
             }

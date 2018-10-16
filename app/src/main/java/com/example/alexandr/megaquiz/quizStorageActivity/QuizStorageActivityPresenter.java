@@ -1,5 +1,7 @@
 package com.example.alexandr.megaquiz.quizStorageActivity;
 
+import com.example.alexandr.megaquiz.bankQuestion.BankQuestion;
+
 import java.util.List;
 
 /**
@@ -13,11 +15,13 @@ public class QuizStorageActivityPresenter implements QuizStorageContract.Present
 
     public QuizStorageActivityPresenter(QuizStorageActivityView view) {
         this.mView = view;
-        this.mModel = new QuizStorageActivityModel();
+        BankQuestion bankQuestion = new BankQuestion();
+        this.mModel = new QuizStorageActivityModel(bankQuestion);
     }
 
+
     @Override
-    public List<String> getCategoriesNames() {
+    public List<String> initCategoriesNames() {
         return mModel.getCategoriesNames();
     }
 }

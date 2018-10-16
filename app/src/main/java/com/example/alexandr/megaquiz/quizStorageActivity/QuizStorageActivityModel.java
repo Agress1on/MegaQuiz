@@ -13,20 +13,29 @@ import java.util.Map;
  * @author Alexandr Mikhalev
  */
 public class QuizStorageActivityModel implements QuizStorageContract.Model {
-    private Map<String, List<Question>> bankQuestion = new BankQuestion().getBankQuestion();
-    private List<String> mCategoriesNames;
+    private Map<String, List<Question>> bankQuestions;
+    private List<String> categoriesNames;
+
+    public QuizStorageActivityModel(BankQuestion bankQuestion) {
+        this.bankQuestions = bankQuestion.getBankQuestion();
+        this.categoriesNames = new ArrayList<>();
+        initCategoriesNames();
+    }
 
     @Override
     public Map<String, List<Question>> getBankQuestion() {
-        return bankQuestion;
+        return bankQuestions;
+    }
+
+    private void initCategoriesNames() {
+        List<String> mCat = new ArrayList<>();
+        for (Map.Entry<String, List<Question>> entry : bankQuestions.entrySet()) {
+            categoriesNames.add(entry.getKey());
+        }
     }
 
     @Override
     public List<String> getCategoriesNames() {
-        List<String> mCat = new ArrayList<>();
-        for (Map.Entry<String, List<Question>> entry : bankQuestion.entrySet()) {
-            mCat.add(entry.getKey());
-        }
-        return mCat;
+        return categoriesNames;
     }
 }

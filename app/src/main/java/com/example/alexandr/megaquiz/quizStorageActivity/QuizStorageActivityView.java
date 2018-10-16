@@ -33,7 +33,7 @@ public class QuizStorageActivityView extends AppCompatActivity implements QuizSt
 
         mPresenter = new QuizStorageActivityPresenter(this);
 
-        List<String> mCat = mPresenter.getCategoriesNames();
+        List<String> mCat = mPresenter.initCategoriesNames();
         mRecyclerView = (RecyclerView) findViewById(R.id.my_recycler);
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(this); // XMMMMM

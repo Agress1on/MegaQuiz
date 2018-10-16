@@ -14,7 +14,7 @@ public interface QuizActivityContract {
     interface Model {
         int getQuizSize();
         Question getQuestion(int index);
-        List<Question> initSelectedQuestionsList(String name);
+        void initSelectedQuestionsList(String name);
         int getCurrentIndex();
         void setCurrentIndex(int currentIndex);
         void putAnswerInStorage(int index, boolean answer);
