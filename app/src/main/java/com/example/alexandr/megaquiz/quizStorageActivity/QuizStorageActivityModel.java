@@ -28,7 +28,6 @@ public class QuizStorageActivityModel implements QuizStorageContract.Model {
     }
 
     private void initCategoriesNames() {
-        List<String> mCat = new ArrayList<>();
         for (Map.Entry<String, List<Question>> entry : bankQuestions.entrySet()) {
             categoriesNames.add(entry.getKey());
         }

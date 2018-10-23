@@ -30,6 +30,7 @@ public interface QuizActivityContract {
         void buttonSwitcher(boolean result);
         void setQuestionCounter(String text);
         void setTrueQuestionCounter(String text);
+        void setNumberQuestionCounter(String text);
     }
 
     interface Presenter {

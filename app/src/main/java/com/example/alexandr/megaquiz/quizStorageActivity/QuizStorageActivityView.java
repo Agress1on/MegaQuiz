@@ -1,5 +1,7 @@
 package com.example.alexandr.megaquiz.quizStorageActivity;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -9,6 +11,8 @@ import android.support.v7.widget.RecyclerView;
 import com.example.alexandr.megaquiz.R;
 import com.example.alexandr.megaquiz.bankQuestion.BankQuestion;
 import com.example.alexandr.megaquiz.bankQuestion.Question;
+import com.example.alexandr.megaquiz.quizActivity.QuizActivityView;
+import com.example.alexandr.megaquiz.startActivity.StartActivityView;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -41,6 +45,11 @@ public class QuizStorageActivityView extends AppCompatActivity implements QuizSt
         mAdapter = new RecyclerAdapter(mCat);
         mRecyclerView.setAdapter(mAdapter);
 
+
     }
 
+    public Intent getIntent(Context context) {
+        Intent intent = new Intent(context, QuizStorageActivityView.class);
+        return intent;
+    }
 }

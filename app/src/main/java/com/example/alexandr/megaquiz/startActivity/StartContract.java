@@ -7,11 +7,11 @@ package com.example.alexandr.megaquiz.startActivity;
  */
 public interface StartContract {
     interface View {
-        void goToCategoryActivity();
+
     }
 
     interface Presenter {
-        void startCategoryActivity();
+
     }
 
     interface Model {

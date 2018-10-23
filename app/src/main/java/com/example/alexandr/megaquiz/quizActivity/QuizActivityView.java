@@ -1,5 +1,7 @@
 package com.example.alexandr.megaquiz.quizActivity;
 
+import android.content.Context;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
@@ -9,6 +11,13 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.alexandr.megaquiz.R;
+import com.example.alexandr.megaquiz.app.App;
+import com.example.alexandr.megaquiz.bankQuestion.BankQuestion;
+
+import javax.inject.Inject;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * Created by Alexandr Mikhalev on 13.09.2018.
@@ -17,29 +26,52 @@ import com.example.alexandr.megaquiz.R;
  */
 public class QuizActivityView extends AppCompatActivity implements QuizActivityContract.View {
     private QuizActivityContract.Presenter mPresenter;
+    @Inject
+    BankQuestion bankQuestion;
+    @Inject
+    QuizActivityModel mModel;
+   // private QuizActivityModel mQuizActivityModel;
 
-    private TextView mQuestionTV;
-    private Button mTrueButton;
-    private Button mFalseButton;
-    private Button mNextButton;
-    private Button mPrevButton;
-    private TextView mQuestionCounter;
-    private TextView mTrueQuestionCounter;
+    @BindView(R.id.question)
+    TextView mQuestionTV;
+    @BindView(R.id.btnTrue)
+    Button mTrueButton;
+    @BindView(R.id.btnFalse)
+    Button mFalseButton;
+    @BindView(R.id.btnNext)
+    Button mNextButton;
+    @BindView(R.id.btnPrev)
+    Button mPrevButton;
+    @BindView(R.id.question_counter)
+    TextView mQuestionCounter;
+    @BindView(R.id.true_question_counter)
+    TextView mTrueQuestionCounter;
+    @BindView(R.id.number_question_counter)
+    TextView mNumberQuestionCounter;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
-
-        mPresenter = new QuizActivityPresenter(this);
+        ButterKnife.bind(this);
+       // bankQuestion = App.getComponent().getBankQuestion();
+      //  mQuizActivityModel = App.getComponent().getQuizActivityModel();
+        App.getComponent().injectsMainActivity(this);
+        mPresenter = new QuizActivityPresenter(this, bankQuestion, mModel);
+        /*
         mQuestionTV = (TextView) findViewById(R.id.question);
         mQuestionCounter = (TextView) findViewById(R.id.question_counter);
         mTrueQuestionCounter = (TextView) findViewById(R.id.true_question_counter);
+        mNumberQuestionCounter = (TextView) findViewById(R.id.number_question_counter);
+        */
+
         mPresenter.viewIsReady();
+        /*
         mTrueButton = (Button) findViewById(R.id.btnTrue);
         mFalseButton = (Button) findViewById(R.id.btnFalse);
         mNextButton = (Button) findViewById(R.id.btnNext);
         mPrevButton = (Button) findViewById(R.id.btnPrev);
+        */
 
         mNextButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -91,5 +123,15 @@ public class QuizActivityView extends AppCompatActivity implements QuizActivityC
     @Override
     public void setTrueQuestionCounter(String text) {
         mTrueQuestionCounter.setText(text);
+    }
+
+    @Override
+    public void setNumberQuestionCounter(String text) {
+        mNumberQuestionCounter.setText(text);
+    }
+
+    public Intent getIntent(Context context) {
+        Intent intent = new Intent(context, QuizActivityView.class);
+        return intent;
     }
 }

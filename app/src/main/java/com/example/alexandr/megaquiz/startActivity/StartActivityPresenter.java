@@ -14,8 +14,4 @@ public class StartActivityPresenter implements StartContract.Presenter {
         this.mModel = new StartActivityModel();
     }
 
-    @Override
-    public void startCategoryActivity() {
-        mView.goToCategoryActivity();
-    }
 }

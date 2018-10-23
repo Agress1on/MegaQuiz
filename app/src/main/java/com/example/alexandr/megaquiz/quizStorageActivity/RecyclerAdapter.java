@@ -11,9 +11,13 @@ import android.widget.Toast;
 import com.example.alexandr.megaquiz.R;
 import com.example.alexandr.megaquiz.bankQuestion.BankQuestion;
 import com.example.alexandr.megaquiz.bankQuestion.Question;
+import com.example.alexandr.megaquiz.quizActivity.QuizActivityView;
 
 import java.util.List;
 import java.util.Map;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
 
 /**
  * Created by Alexandr Mikhalev on 25.09.2018.
@@ -27,19 +31,27 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
     public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
 
-        public TextView mTVName;
-        public TextView mTVPosition;
-        public TextView mTVQuantity;
-        public TextView mTVQuantityQuestionOfQuiz;
+     //   @BindView(R.id.name_item_recycler)
+        TextView mTVName;
+    //    @BindView(R.id.position_item_recycler)
+        TextView mTVPosition;
+     //   @BindView(R.id.quantity_item_recycler)
+        TextView mTVQuantity;
+     //   @BindView(R.id.number_quantity_item_recycler)
+        TextView mTVQuantityQuestionOfQuiz;
         public String mCatName;
 
 
         public ViewHolder(View v) {
             super(v);
+
             mTVName = (TextView) v.findViewById(R.id.name_item_recycler);
             mTVPosition = (TextView) v.findViewById(R.id.position_item_recycler);
             mTVQuantity = (TextView) v.findViewById(R.id.quantity_item_recycler);
             mTVQuantityQuestionOfQuiz = (TextView) v.findViewById(R.id.number_quantity_item_recycler);
+
+      //      ButterKnife.bind(v);
+
             itemView.setOnClickListener(this);
         }
 

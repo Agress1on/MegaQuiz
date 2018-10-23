@@ -1,5 +1,6 @@
 package com.example.alexandr.megaquiz.quizActivity;
 
+import com.example.alexandr.megaquiz.app.App;
 import com.example.alexandr.megaquiz.bankQuestion.BankQuestion;
 
 /**
@@ -10,12 +11,10 @@ import com.example.alexandr.megaquiz.bankQuestion.BankQuestion;
 public class QuizActivityPresenter implements QuizActivityContract.Presenter {
     private QuizActivityContract.View mView;
     private QuizActivityContract.Model mModel;
-    private BankQuestion bankQuestion;
 
-    public QuizActivityPresenter(QuizActivityContract.View view) {
+    public QuizActivityPresenter(QuizActivityContract.View view, BankQuestion bankQuestion, QuizActivityContract.Model model) {
         this.mView = view;
-        this.bankQuestion = new BankQuestion();
-        this.mModel = new QuizActivityModel(bankQuestion);
+        this.mModel = model;
     }
 
     @Override
@@ -23,6 +22,7 @@ public class QuizActivityPresenter implements QuizActivityContract.Presenter {
         mView.setQuestionTVText(mModel.getQuestion(mModel.getCurrentIndex()).getTextQuestion());
         mView.setQuestionCounter("Всего вопросов: " + mModel.getQuizSize());
         mView.setTrueQuestionCounter("Правильных ответов: " + mModel.getTrueQuestionsCount());
+        questionNumberCounter();
     }
 
     @Override
@@ -30,6 +30,7 @@ public class QuizActivityPresenter implements QuizActivityContract.Presenter {
         int currentIndex = (mModel.getCurrentIndex() + 1) % mModel.getQuizSize();
         mModel.setCurrentIndex(currentIndex);
         mView.setQuestionTVText(mModel.getQuestion(mModel.getCurrentIndex()).getTextQuestion());
+        questionNumberCounter();
         checkAnswerQuestion();
     }
 
@@ -39,6 +40,7 @@ public class QuizActivityPresenter implements QuizActivityContract.Presenter {
         if (currentIndex < 0) currentIndex = 0;
         mModel.setCurrentIndex(currentIndex);
         mView.setQuestionTVText(mModel.getQuestion(mModel.getCurrentIndex()).getTextQuestion());
+        questionNumberCounter();
         checkAnswerQuestion();
     }
 
@@ -87,5 +89,9 @@ public class QuizActivityPresenter implements QuizActivityContract.Presenter {
     private void checkFinalOfQuiz() {
         if (mModel.getQuizSize() == mModel.getStorageOfResponseSize())
             mView.showToast("Опрос закончен. Всего вопросов: " + mModel.getQuizSize() + ". Правильных ответов: " + mModel.getTrueQuestionsCount());
+    }
+
+    private void questionNumberCounter() {
+        mView.setNumberQuestionCounter("Номер вопроса: " + (mModel.getCurrentIndex() + 1));
     }
 }

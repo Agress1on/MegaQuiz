@@ -8,6 +8,9 @@ import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
 
+import dagger.Module;
+import dagger.Provides;
+
 /**
  * Created by Alexandr Mikhalev on 25.09.2018.
  *

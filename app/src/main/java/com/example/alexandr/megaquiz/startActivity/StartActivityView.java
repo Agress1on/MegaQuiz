@@ -10,43 +10,50 @@ import com.example.alexandr.megaquiz.R;
 import com.example.alexandr.megaquiz.quizActivity.QuizActivityView;
 import com.example.alexandr.megaquiz.quizStorageActivity.QuizStorageActivityView;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 public class StartActivityView extends AppCompatActivity implements StartContract.View {
 
     private StartActivityPresenter mPresenter;
 
-    private Button mRandomBtn;
-    private Button mCategoryBtn;
-    private Button mTestGeneral;
+    @BindView(R.id.btn_randomQuiz)
+    Button mRandomBtn;
+    @BindView(R.id.btn_category)
+    Button mCategoryBtn;
+    @BindView(R.id.btn_test_general_questions)
+    Button mTestGeneral;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
-
+        ButterKnife.bind(this);
         mPresenter = new StartActivityPresenter(this);
 
+        /*
         mRandomBtn = (Button)findViewById(R.id.btn_randomQuiz);
         mCategoryBtn = (Button) findViewById(R.id.btn_category);
+        mTestGeneral = (Button) findViewById(R.id.btn_test_general_questions);
+        */
+
         mCategoryBtn.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                mPresenter.startCategoryActivity();
+               // mPresenter.startCategoryActivity();
+                Intent intent = new QuizStorageActivityView().getIntent(StartActivityView.this);
+                startActivity(intent);
             }
         });
 
-        mTestGeneral = (Button) findViewById(R.id.btn_test_general_questions);
+
         mTestGeneral.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new Intent(StartActivityView.this, QuizActivityView.class);
+                Intent intent = new QuizActivityView().getIntent(StartActivityView.this);
                 startActivity(intent);
             }
         });
     }
 
-    @Override
-    public void goToCategoryActivity() {
-        Intent intent = new Intent(StartActivityView.this, QuizStorageActivityView.class);
-        startActivity(intent);
-    }
 }
