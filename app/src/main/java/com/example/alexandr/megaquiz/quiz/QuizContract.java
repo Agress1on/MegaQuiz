@@ -1,4 +1,4 @@
-package com.example.alexandr.megaquiz.quizActivity;
+package com.example.alexandr.megaquiz.quiz;
 
 import com.example.alexandr.megaquiz.bankQuestion.Question;
 
@@ -10,18 +10,10 @@ import java.util.Map;
  *
  * @author Alexandr Mikhalev
  */
-public interface QuizActivityContract {
-    interface Model {
-        int getQuizSize();
-        Question getQuestion(int index);
-        void initSelectedQuestionsList(String name);
-        int getCurrentIndex();
-        void setCurrentIndex(int currentIndex);
-        void putAnswerInStorage(int index, boolean answer);
-        boolean isAnsweredThisQuestion(int index);
-        int getStorageOfResponseSize();
-        int getTrueQuestionsCount();
-        void setTrueQuestionsCount(int trueQuestionsCount);
+public interface QuizContract {
+    interface Interactor {
+        List<Question> getQuestions();
+        int checkQuestions(Map<Integer, Boolean> answers);
     }
 
     interface View {

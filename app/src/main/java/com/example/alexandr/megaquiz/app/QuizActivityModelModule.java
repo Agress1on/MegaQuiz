@@ -1,7 +1,7 @@
 package com.example.alexandr.megaquiz.app;
 
 import com.example.alexandr.megaquiz.bankQuestion.BankQuestion;
-import com.example.alexandr.megaquiz.quizActivity.QuizActivityModel;
+import com.example.alexandr.megaquiz.quiz.QuizInteractor;
 
 import dagger.Module;
 import dagger.Provides;
@@ -14,7 +14,7 @@ import dagger.Provides;
 @Module
 public class QuizActivityModelModule {
     @Provides
-    QuizActivityModel provideQuizActivityModel(BankQuestion bankQuestion) {
-        return new QuizActivityModel(bankQuestion);
+    QuizInteractor provideQuizActivityModel(BankQuestion bankQuestion) {
+        return new QuizInteractor(bankQuestion);
     }
 }

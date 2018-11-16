@@ -11,13 +11,9 @@ import android.widget.Toast;
 import com.example.alexandr.megaquiz.R;
 import com.example.alexandr.megaquiz.bankQuestion.BankQuestion;
 import com.example.alexandr.megaquiz.bankQuestion.Question;
-import com.example.alexandr.megaquiz.quizActivity.QuizActivityView;
 
 import java.util.List;
 import java.util.Map;
-
-import butterknife.BindView;
-import butterknife.ButterKnife;
 
 /**
  * Created by Alexandr Mikhalev on 25.09.2018.

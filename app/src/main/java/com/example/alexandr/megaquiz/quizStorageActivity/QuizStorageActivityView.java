@@ -9,14 +9,8 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.example.alexandr.megaquiz.R;
-import com.example.alexandr.megaquiz.bankQuestion.BankQuestion;
-import com.example.alexandr.megaquiz.bankQuestion.Question;
-import com.example.alexandr.megaquiz.quizActivity.QuizActivityView;
-import com.example.alexandr.megaquiz.startActivity.StartActivityView;
 
-import java.util.ArrayList;
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by Alexandr Mikhalev on 11.09.2018.

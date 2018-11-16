@@ -1,4 +1,4 @@
-package com.example.alexandr.megaquiz.quizActivity;
+package com.example.alexandr.megaquiz.quiz;
 
 import android.content.Context;
 import android.content.Intent;
@@ -24,13 +24,17 @@ import butterknife.ButterKnife;
  *
  * @author Alexandr Mikhalev
  */
-public class QuizActivityView extends AppCompatActivity implements QuizActivityContract.View {
-    private QuizActivityContract.Presenter mPresenter;
+public class QuizActivityView extends AppCompatActivity implements QuizContract.View {
+    private QuizContract.Presenter mPresenter;
+
+    /*
     @Inject
     BankQuestion bankQuestion;
     @Inject
-    QuizActivityModel mModel;
-   // private QuizActivityModel mQuizActivityModel;
+    QuizInteractor mModel;
+
+    */
+   // private QuizInteractor mQuizActivityModel;
 
     @BindView(R.id.question)
     TextView mQuestionTV;
@@ -56,8 +60,10 @@ public class QuizActivityView extends AppCompatActivity implements QuizActivityC
         ButterKnife.bind(this);
        // bankQuestion = App.getComponent().getBankQuestion();
       //  mQuizActivityModel = App.getComponent().getQuizActivityModel();
-        App.getComponent().injectsMainActivity(this);
-        mPresenter = new QuizActivityPresenter(this, bankQuestion, mModel);
+     //   App.getComponent().injectsMainActivity(this); // to camoe
+
+
+        mPresenter = new QuizPresenter(this, new QuizInteractor(new BankQuestion()));
         /*
         mQuestionTV = (TextView) findViewById(R.id.question);
         mQuestionCounter = (TextView) findViewById(R.id.question_counter);
@@ -73,30 +79,10 @@ public class QuizActivityView extends AppCompatActivity implements QuizActivityC
         mPrevButton = (Button) findViewById(R.id.btnPrev);
         */
 
-        mNextButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mPresenter.onNextButton();
-            }
-        });
-        mPrevButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mPresenter.onPrevButton();
-            }
-        });
-        mTrueButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mPresenter.onTrueButton();
-            }
-        });
-        mFalseButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                mPresenter.onFalseButton();
-            }
-        });
+        mNextButton.setOnClickListener(view -> mPresenter.onNextButton());
+        mPrevButton.setOnClickListener(view -> mPresenter.onPrevButton());
+        mTrueButton.setOnClickListener(view -> mPresenter.onTrueButton());
+        mFalseButton.setOnClickListener(view -> mPresenter.onFalseButton());
     }
 
     @Override
@@ -130,7 +116,7 @@ public class QuizActivityView extends AppCompatActivity implements QuizActivityC
         mNumberQuestionCounter.setText(text);
     }
 
-    public Intent getIntent(Context context) {
+    public static Intent getIntent(Context context) {
         Intent intent = new Intent(context, QuizActivityView.class);
         return intent;
     }

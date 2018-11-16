@@ -2,8 +2,8 @@ package com.example.alexandr.megaquiz.app;
 
 import android.app.Application;
 
-import com.example.alexandr.megaquiz.quizActivity.DaggerQuizActivityComponent;
-import com.example.alexandr.megaquiz.quizActivity.QuizActivityComponent;
+import com.example.alexandr.megaquiz.quiz.DaggerQuizComponent;
+import com.example.alexandr.megaquiz.quiz.QuizComponent;
 
 /**
  * Created by Alexandr Mikhalev on 20.10.2018.
@@ -11,14 +11,15 @@ import com.example.alexandr.megaquiz.quizActivity.QuizActivityComponent;
  * @author Alexandr Mikhalev
  */
 public class App extends Application {
-    private static QuizActivityComponent sComponent;
+    private static QuizComponent sComponent;
+
     @Override
     public void onCreate() {
         super.onCreate();
-        sComponent = DaggerQuizActivityComponent.create();
+        sComponent = DaggerQuizComponent.create();
     }
 
-    public static QuizActivityComponent getComponent() {
+    public static QuizComponent getComponent() {
         return sComponent;
     }
 }

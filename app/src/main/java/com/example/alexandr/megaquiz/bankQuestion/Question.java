@@ -7,18 +7,12 @@ package com.example.alexandr.megaquiz.bankQuestion;
  */
 public class Question {
     private String question;
-    private boolean trueAnswer;
 
-    public Question(String question, boolean trueAnswer) {
+    public Question(String question) {
         this.question = question;
-        this.trueAnswer = trueAnswer;
     }
 
     public String getTextQuestion() {
         return question;
-    }
-
-    public boolean isTrueAnswer() {
-        return trueAnswer;
     }
 }

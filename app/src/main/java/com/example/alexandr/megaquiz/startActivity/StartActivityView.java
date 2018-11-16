@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.alexandr.megaquiz.R;
-import com.example.alexandr.megaquiz.quizActivity.QuizActivityView;
+import com.example.alexandr.megaquiz.quiz.QuizActivityView;
 import com.example.alexandr.megaquiz.quizStorageActivity.QuizStorageActivityView;
 
 import butterknife.BindView;
