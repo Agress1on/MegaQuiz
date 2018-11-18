@@ -13,23 +13,31 @@ import java.util.Map;
 public interface QuizContract {
     interface Interactor {
         List<Question> getQuestions();
+
         int checkQuestions(Map<Integer, Boolean> answers);
     }
 
     interface View {
         void setQuestionTVText(String text);
+
         void showToast(String text);
-        void buttonSwitcher(boolean result);
+
+        void switchButton(boolean result);
+
         void setQuestionCounter(String text);
-        void setTrueQuestionCounter(String text);
+
         void setNumberQuestionCounter(String text);
     }
 
     interface Presenter {
         void viewIsReady();
+
         void onNextButton();
+
         void onPrevButton();
+
         void onTrueButton();
+
         void onFalseButton();
     }
 }

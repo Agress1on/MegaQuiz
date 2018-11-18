@@ -91,7 +91,7 @@ public class QuizPresenter implements QuizContract.Presenter {
 
     private void checkAnswerQuestion() {
         boolean isAnswered = mAnswers.containsKey(getCurrentIndex());
-        mView.buttonSwitcher(!isAnswered);
+        mView.switchButton(!isAnswered);
     }
 
     /*
@@ -114,7 +114,7 @@ public class QuizPresenter implements QuizContract.Presenter {
     }
 
     private void checkAnswerQuestion() {
-        mView.buttonSwitcher(!mInteractor.isAnsweredThisQuestion(mInteractor.getCurrentIndex()));
+        mView.switchButton(!mInteractor.isAnsweredThisQuestion(mInteractor.getCurrentIndex()));
     }
 
     private void checkFinalOfQuiz() {

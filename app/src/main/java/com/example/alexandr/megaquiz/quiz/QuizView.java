@@ -68,7 +68,7 @@ public class QuizView extends AppCompatActivity implements QuizContract.View {
                 .injectsQuizActivity(this);
 
 
-     //  Quiz.getComponent().injectsQuizActivity(this);
+        //  Quiz.getComponent().injectsQuizActivity(this);
         //mPresenter = new QuizPresenter(this, new QuizInteractor(new BankQuestion())); //рабочая штука
         /*
         mQuestionTV = (TextView) findViewById(R.id.question);
@@ -102,7 +102,7 @@ public class QuizView extends AppCompatActivity implements QuizContract.View {
     }
 
     @Override
-    public void buttonSwitcher(boolean result) {
+    public void switchButton(boolean result) {
         mTrueButton.setEnabled(result);
         mFalseButton.setEnabled(result);
     }
@@ -110,11 +110,6 @@ public class QuizView extends AppCompatActivity implements QuizContract.View {
     @Override
     public void setQuestionCounter(String text) {
         mQuestionCounter.setText(text);
-    }
-
-    @Override
-    public void setTrueQuestionCounter(String text) {
-        mTrueQuestionCounter.setText(text);
     }
 
     @Override

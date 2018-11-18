@@ -9,7 +9,7 @@ import dagger.Component;
  *
  * @author Alexandr Mikhalev
  */
- @Component(modules = {QuizPresenterModule2.class})
+@Component(modules = {QuizPresenterModule2.class})
 //@Component(modules = {QuizModule.class})
 public interface QuizComponent {
     /*

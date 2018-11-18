@@ -33,7 +33,7 @@ public class QuizInteractor implements QuizContract.Interactor {
     @Override
     public int checkQuestions(Map<Integer, Boolean> answers) {
         for (Map.Entry<Integer, Boolean> entry : answers.entrySet()) {
-                if (generalTrueAnswers.get(entry.getKey()) == entry.getValue()) rightAnswers++;
+            if (generalTrueAnswers.get(entry.getKey()) == entry.getValue()) rightAnswers++;
         }
         return rightAnswers;
     }
