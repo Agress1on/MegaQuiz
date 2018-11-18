@@ -1,6 +1,6 @@
 package com.example.alexandr.megaquiz.quiz;
 
-import com.example.alexandr.megaquiz.app.QuizPresenterModule2;
+import com.example.alexandr.megaquiz.app.QuizPresenterModule;
 
 import dagger.Component;
 
@@ -9,7 +9,7 @@ import dagger.Component;
  *
  * @author Alexandr Mikhalev
  */
-@Component(modules = {QuizPresenterModule2.class})
+@Component(modules = {QuizPresenterModule.class})
 //@Component(modules = {QuizModule.class})
 public interface QuizComponent {
     /*

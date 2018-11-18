@@ -20,7 +20,7 @@ public class Quiz extends Application {
     public void onCreate() {
         super.onCreate();
 
-        sComponent = DaggerQuizComponent.builder().quizPresenterModule2(new QuizPresenterModule2(new QuizView())).build();
+        sComponent = DaggerQuizComponent.builder().quizPresenterModule(new QuizPresenterModule(new QuizView())).build();
     }
 
     public static QuizComponent getComponent() {

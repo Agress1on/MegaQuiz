@@ -10,7 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.alexandr.megaquiz.R;
-import com.example.alexandr.megaquiz.app.QuizPresenterModule2;
+import com.example.alexandr.megaquiz.app.QuizPresenterModule;
 
 import javax.inject.Inject;
 
@@ -63,7 +63,7 @@ public class QuizView extends AppCompatActivity implements QuizContract.View {
 
 
         DaggerQuizComponent.builder()
-                .quizPresenterModule2(new QuizPresenterModule2(this))
+                .quizPresenterModule(new QuizPresenterModule(this))
                 .build()
                 .injectsQuizActivity(this);
 

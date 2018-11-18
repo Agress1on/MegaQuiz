@@ -14,10 +14,10 @@ import dagger.Provides;
  * @author Alexandr Mikhalev
  */
 @Module
-public class QuizPresenterModule2 {
+public class QuizPresenterModule {
     private QuizView mQuizView;
 
-    public QuizPresenterModule2(QuizView quizView) {
+    public QuizPresenterModule(QuizView quizView) {
         mQuizView = quizView;
     }
 
