@@ -1,4 +1,4 @@
-package com.example.alexandr.megaquiz.quizStorageActivity;
+package com.example.alexandr.megaquiz.quizStorage;
 
 import com.example.alexandr.megaquiz.bankQuestion.BankQuestion;
 import com.example.alexandr.megaquiz.bankQuestion.Question;
@@ -12,11 +12,11 @@ import java.util.Map;
  *
  * @author Alexandr Mikhalev
  */
-public class QuizStorageActivityModel implements QuizStorageContract.Model {
+public class QuizStorageInteractor implements QuizStorageContract.Model {
     private Map<String, List<Question>> bankQuestions;
     private List<String> categoriesNames;
 
-    public QuizStorageActivityModel(BankQuestion bankQuestion) {
+    public QuizStorageInteractor(BankQuestion bankQuestion) {
         this.bankQuestions = bankQuestion.getBankQuestion();
         this.categoriesNames = new ArrayList<>();
         initCategoriesNames();

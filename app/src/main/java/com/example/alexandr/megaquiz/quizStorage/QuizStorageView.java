@@ -1,4 +1,4 @@
-package com.example.alexandr.megaquiz.quizStorageActivity;
+package com.example.alexandr.megaquiz.quizStorage;
 
 import android.content.Context;
 import android.content.Intent;
@@ -17,7 +17,7 @@ import java.util.List;
  *
  * @author Alexandr Mikhalev
  */
-public class QuizStorageActivityView extends AppCompatActivity implements QuizStorageContract.View {
+public class QuizStorageView extends AppCompatActivity implements QuizStorageContract.View {
     private QuizStorageContract.Presenter mPresenter;
 
     private RecyclerView mRecyclerView;
@@ -29,7 +29,7 @@ public class QuizStorageActivityView extends AppCompatActivity implements QuizSt
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz_storage);
 
-        mPresenter = new QuizStorageActivityPresenter(this);
+        mPresenter = new QuizStoragePresenter(this);
 
         List<String> mCat = mPresenter.initCategoriesNames();
         mRecyclerView = (RecyclerView) findViewById(R.id.my_recycler);
@@ -43,7 +43,7 @@ public class QuizStorageActivityView extends AppCompatActivity implements QuizSt
     }
 
     public Intent getIntent(Context context) {
-        Intent intent = new Intent(context, QuizStorageActivityView.class);
+        Intent intent = new Intent(context, QuizStorageView.class);
         return intent;
     }
 }

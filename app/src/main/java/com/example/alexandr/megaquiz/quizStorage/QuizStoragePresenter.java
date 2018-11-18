@@ -1,4 +1,4 @@
-package com.example.alexandr.megaquiz.quizStorageActivity;
+package com.example.alexandr.megaquiz.quizStorage;
 
 import com.example.alexandr.megaquiz.bankQuestion.BankQuestion;
 
@@ -9,14 +9,14 @@ import java.util.List;
  *
  * @author Alexandr Mikhalev
  */
-public class QuizStorageActivityPresenter implements QuizStorageContract.Presenter {
-    private QuizStorageActivityView mView;
-    private QuizStorageActivityModel mModel;
+public class QuizStoragePresenter implements QuizStorageContract.Presenter {
+    private QuizStorageView mView;
+    private QuizStorageInteractor mModel;
 
-    public QuizStorageActivityPresenter(QuizStorageActivityView view) {
+    public QuizStoragePresenter(QuizStorageView view) {
         this.mView = view;
         BankQuestion bankQuestion = new BankQuestion();
-        this.mModel = new QuizStorageActivityModel(bankQuestion);
+        this.mModel = new QuizStorageInteractor(bankQuestion);
     }
 
 

@@ -1,4 +1,4 @@
-package com.example.alexandr.megaquiz.startActivity;
+package com.example.alexandr.megaquiz.start;
 
 /**
  * Created by Alexandr Mikhalev on 11.09.2018.

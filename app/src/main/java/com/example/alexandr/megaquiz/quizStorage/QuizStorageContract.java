@@ -1,4 +1,4 @@
-package com.example.alexandr.megaquiz.quizStorageActivity;
+package com.example.alexandr.megaquiz.quizStorage;
 
 import com.example.alexandr.megaquiz.bankQuestion.Question;
 

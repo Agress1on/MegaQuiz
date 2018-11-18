@@ -1,4 +1,4 @@
-package com.example.alexandr.megaquiz.startActivity;
+package com.example.alexandr.megaquiz.start;
 
 import android.content.Intent;
 import android.support.v7.app.AppCompatActivity;
@@ -8,14 +8,14 @@ import android.widget.Button;
 
 import com.example.alexandr.megaquiz.R;
 import com.example.alexandr.megaquiz.quiz.QuizView;
-import com.example.alexandr.megaquiz.quizStorageActivity.QuizStorageActivityView;
+import com.example.alexandr.megaquiz.quizStorage.QuizStorageView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class StartActivityView extends AppCompatActivity implements StartContract.View {
+public class StartView extends AppCompatActivity implements StartContract.View {
 
-    private StartActivityPresenter mPresenter;
+    private StartPresenter mPresenter;
 
     @BindView(R.id.btn_randomQuiz)
     Button mRandomBtn;
@@ -29,7 +29,7 @@ public class StartActivityView extends AppCompatActivity implements StartContrac
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_start);
         ButterKnife.bind(this);
-        mPresenter = new StartActivityPresenter(this);
+        mPresenter = new StartPresenter(this);
 
         /*
         mRandomBtn = (Button)findViewById(R.id.btn_randomQuiz);
@@ -41,7 +41,7 @@ public class StartActivityView extends AppCompatActivity implements StartContrac
             @Override
             public void onClick(View view) {
                // mPresenter.startCategoryActivity();
-                Intent intent = new QuizStorageActivityView().getIntent(StartActivityView.this);
+                Intent intent = new QuizStorageView().getIntent(StartView.this);
                 startActivity(intent);
             }
         });
@@ -50,7 +50,7 @@ public class StartActivityView extends AppCompatActivity implements StartContrac
         mTestGeneral.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new QuizView().getIntent(StartActivityView.this);
+                Intent intent = new QuizView().getIntent(StartView.this);
                 startActivity(intent);
             }
         });

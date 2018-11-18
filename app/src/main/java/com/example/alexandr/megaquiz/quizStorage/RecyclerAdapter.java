@@ -1,4 +1,4 @@
-package com.example.alexandr.megaquiz.quizStorageActivity;
+package com.example.alexandr.megaquiz.quizStorage;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -60,7 +60,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     public RecyclerAdapter(List<String> categoriesNames) {
         mCategoriesNames = categoriesNames;
         BankQuestion bankQuestion = new BankQuestion();
-        map = new QuizStorageActivityModel(bankQuestion).getBankQuestion();
+        map = new QuizStorageInteractor(bankQuestion).getBankQuestion();
     }
 
     @NonNull
