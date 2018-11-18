@@ -25,7 +25,7 @@
         <activity android:name=".quizStorageActivity.QuizStorageActivityView">
 
         </activity>
-        <activity android:name=".quiz.QuizActivityView">
+        <activity android:name=".quiz.QuizView">
 
         </activity>
     </application>

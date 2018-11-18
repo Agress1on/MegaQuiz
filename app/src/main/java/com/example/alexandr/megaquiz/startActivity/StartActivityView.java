@@ -7,7 +7,7 @@ import android.view.View;
 import android.widget.Button;
 
 import com.example.alexandr.megaquiz.R;
-import com.example.alexandr.megaquiz.quiz.QuizActivityView;
+import com.example.alexandr.megaquiz.quiz.QuizView;
 import com.example.alexandr.megaquiz.quizStorageActivity.QuizStorageActivityView;
 
 import butterknife.BindView;
@@ -50,7 +50,7 @@ public class StartActivityView extends AppCompatActivity implements StartContrac
         mTestGeneral.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new QuizActivityView().getIntent(StartActivityView.this);
+                Intent intent = new QuizView().getIntent(StartActivityView.this);
                 startActivity(intent);
             }
         });

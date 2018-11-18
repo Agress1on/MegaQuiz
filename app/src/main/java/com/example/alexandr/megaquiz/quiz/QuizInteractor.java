@@ -18,14 +18,11 @@ public class QuizInteractor implements QuizContract.Interactor {
     private List<Boolean> generalTrueAnswers;
     private int rightAnswers;
 
-    {
-        rightAnswers = 0;
-    }
-
     public QuizInteractor(BankQuestion bankQuestion) {
         this.bankQuestions = bankQuestion.getBankQuestion();
         this.listQuestions = bankQuestions.get(Constants.GENERAL_QUESTIONS);
         this.generalTrueAnswers = bankQuestion.getGeneralTrueAnswers();
+        this.rightAnswers = 0;
     }
 
     @Override

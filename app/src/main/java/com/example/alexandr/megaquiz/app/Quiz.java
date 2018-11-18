@@ -3,7 +3,7 @@ package com.example.alexandr.megaquiz.app;
 import android.app.Application;
 
 import com.example.alexandr.megaquiz.quiz.DaggerQuizComponent;
-import com.example.alexandr.megaquiz.quiz.QuizActivityView;
+import com.example.alexandr.megaquiz.quiz.QuizView;
 import com.example.alexandr.megaquiz.quiz.QuizComponent;
 
 
@@ -20,7 +20,7 @@ public class Quiz extends Application {
     public void onCreate() {
         super.onCreate();
 
-        sComponent = DaggerQuizComponent.builder().quizPresenterModule2(new QuizPresenterModule2(new QuizActivityView())).build();
+        sComponent = DaggerQuizComponent.builder().quizPresenterModule2(new QuizPresenterModule2(new QuizView())).build();
     }
 
     public static QuizComponent getComponent() {

@@ -18,15 +18,12 @@ public class QuizPresenter implements QuizContract.Presenter {
     private int mCurrentIndex;
     private Map<Integer, Boolean> mAnswers;
 
-    {
-        mAnswers = new HashMap<>();
-        mCurrentIndex = 0;
-    }
-
     public QuizPresenter(QuizContract.View view, QuizContract.Interactor interactor) {
         this.mView = view;
         this.mInteractor = interactor;
         this.mQuestions = interactor.getQuestions();
+        this.mAnswers = new HashMap<>();
+        this.mCurrentIndex = 0;
     }
 
     public int getCurrentIndex() {

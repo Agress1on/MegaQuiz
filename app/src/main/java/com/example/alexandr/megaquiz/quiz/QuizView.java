@@ -22,7 +22,7 @@ import butterknife.ButterKnife;
  *
  * @author Alexandr Mikhalev
  */
-public class QuizActivityView extends AppCompatActivity implements QuizContract.View {
+public class QuizView extends AppCompatActivity implements QuizContract.View {
     @Inject
     QuizPresenter mPresenter;
 
@@ -123,7 +123,7 @@ public class QuizActivityView extends AppCompatActivity implements QuizContract.
     }
 
     public static Intent getIntent(Context context) {
-        Intent intent = new Intent(context, QuizActivityView.class);
+        Intent intent = new Intent(context, QuizView.class);
         return intent;
     }
 }

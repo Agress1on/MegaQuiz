@@ -16,5 +16,5 @@ public interface QuizComponent {
     BankQuestion getBankQuestion();
     QuizInteractor getQuizActivityModel();
     */
-    void injectsQuizActivity(QuizActivityView quizActivityView);
+    void injectsQuizActivity(QuizView quizView);
 }

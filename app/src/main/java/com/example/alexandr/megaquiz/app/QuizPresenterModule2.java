@@ -1,11 +1,9 @@
 package com.example.alexandr.megaquiz.app;
 
 import com.example.alexandr.megaquiz.bankQuestion.BankQuestion;
-import com.example.alexandr.megaquiz.quiz.QuizActivityView;
+import com.example.alexandr.megaquiz.quiz.QuizView;
 import com.example.alexandr.megaquiz.quiz.QuizInteractor;
 import com.example.alexandr.megaquiz.quiz.QuizPresenter;
-
-import javax.inject.Inject;
 
 import dagger.Module;
 import dagger.Provides;
@@ -17,15 +15,15 @@ import dagger.Provides;
  */
 @Module
 public class QuizPresenterModule2 {
-    private QuizActivityView mQuizActivityView;
+    private QuizView mQuizView;
 
-    public QuizPresenterModule2(QuizActivityView quizActivityView) {
-        mQuizActivityView = quizActivityView;
+    public QuizPresenterModule2(QuizView quizView) {
+        mQuizView = quizView;
     }
 
     @Provides
     QuizPresenter providePresenter(QuizInteractor interactor) {
-        return new QuizPresenter(mQuizActivityView, interactor);
+        return new QuizPresenter(mQuizView, interactor);
     }
 
     @Provides
