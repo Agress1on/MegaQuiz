@@ -1,10 +1,6 @@
 package com.example.alexandr.megaquiz.quiz;
 
-import com.example.alexandr.megaquiz.app.QuizInteractorModule;
-import com.example.alexandr.megaquiz.app.QuizModule;
-import com.example.alexandr.megaquiz.app.QuizPresenterModule;
 import com.example.alexandr.megaquiz.app.QuizPresenterModule2;
-import com.example.alexandr.megaquiz.app.QuizViewModule;
 
 import dagger.Component;
 

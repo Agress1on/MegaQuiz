@@ -10,10 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.alexandr.megaquiz.R;
-import com.example.alexandr.megaquiz.app.Quiz;
-import com.example.alexandr.megaquiz.app.QuizModule;
 import com.example.alexandr.megaquiz.app.QuizPresenterModule2;
-import com.example.alexandr.megaquiz.bankQuestion.BankQuestion;
 
 import javax.inject.Inject;
 
