@@ -3,20 +3,24 @@ package com.example.alexandr.megaquiz.app;
 import android.app.Application;
 
 import com.example.alexandr.megaquiz.quiz.DaggerQuizComponent;
+import com.example.alexandr.megaquiz.quiz.QuizActivityView;
 import com.example.alexandr.megaquiz.quiz.QuizComponent;
+
 
 /**
  * Created by Alexandr Mikhalev on 20.10.2018.
  *
  * @author Alexandr Mikhalev
  */
-public class App extends Application {
+public class Quiz extends Application {
+
     private static QuizComponent sComponent;
 
     @Override
     public void onCreate() {
         super.onCreate();
-        sComponent = DaggerQuizComponent.create();
+
+        sComponent = DaggerQuizComponent.builder().quizPresenterModule2(new QuizPresenterModule2(new QuizActivityView())).build();
     }
 
     public static QuizComponent getComponent() {

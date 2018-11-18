@@ -5,13 +5,14 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
-import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.alexandr.megaquiz.R;
-import com.example.alexandr.megaquiz.app.App;
+import com.example.alexandr.megaquiz.app.Quiz;
+import com.example.alexandr.megaquiz.app.QuizModule;
+import com.example.alexandr.megaquiz.app.QuizPresenterModule2;
 import com.example.alexandr.megaquiz.bankQuestion.BankQuestion;
 
 import javax.inject.Inject;
@@ -25,7 +26,8 @@ import butterknife.ButterKnife;
  * @author Alexandr Mikhalev
  */
 public class QuizActivityView extends AppCompatActivity implements QuizContract.View {
-    private QuizContract.Presenter mPresenter;
+    @Inject
+    QuizPresenter mPresenter;
 
     /*
     @Inject
@@ -34,7 +36,7 @@ public class QuizActivityView extends AppCompatActivity implements QuizContract.
     QuizInteractor mModel;
 
     */
-   // private QuizInteractor mQuizActivityModel;
+    // private QuizInteractor mQuizActivityModel;
 
     @BindView(R.id.question)
     TextView mQuestionTV;
@@ -58,12 +60,19 @@ public class QuizActivityView extends AppCompatActivity implements QuizContract.
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
         ButterKnife.bind(this);
-       // bankQuestion = App.getComponent().getBankQuestion();
-      //  mQuizActivityModel = App.getComponent().getQuizActivityModel();
-     //   App.getComponent().injectsMainActivity(this); // to camoe
+        // bankQuestion = Quiz.getComponent().getBankQuestion();
+        //  mQuizActivityModel = Quiz.getComponent().getQuizActivityModel();
+        //   Quiz.getComponent().injectsQuizActivity(this); // to camoe
 
 
-        mPresenter = new QuizPresenter(this, new QuizInteractor(new BankQuestion()));
+        DaggerQuizComponent.builder()
+                .quizPresenterModule2(new QuizPresenterModule2(this))
+                .build()
+                .injectsQuizActivity(this);
+
+
+     //  Quiz.getComponent().injectsQuizActivity(this);
+        //mPresenter = new QuizPresenter(this, new QuizInteractor(new BankQuestion())); //рабочая штука
         /*
         mQuestionTV = (TextView) findViewById(R.id.question);
         mQuestionCounter = (TextView) findViewById(R.id.question_counter);

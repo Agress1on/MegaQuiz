@@ -1,7 +1,10 @@
 package com.example.alexandr.megaquiz.quiz;
 
-import com.example.alexandr.megaquiz.app.BankQuestionModule;
-import com.example.alexandr.megaquiz.app.QuizActivityModelModule;
+import com.example.alexandr.megaquiz.app.QuizInteractorModule;
+import com.example.alexandr.megaquiz.app.QuizModule;
+import com.example.alexandr.megaquiz.app.QuizPresenterModule;
+import com.example.alexandr.megaquiz.app.QuizPresenterModule2;
+import com.example.alexandr.megaquiz.app.QuizViewModule;
 
 import dagger.Component;
 
@@ -10,11 +13,12 @@ import dagger.Component;
  *
  * @author Alexandr Mikhalev
  */
-@Component(modules = {QuizActivityModelModule.class, BankQuestionModule.class})
+ @Component(modules = {QuizPresenterModule2.class})
+//@Component(modules = {QuizModule.class})
 public interface QuizComponent {
     /*
     BankQuestion getBankQuestion();
     QuizInteractor getQuizActivityModel();
     */
-    void injectsMainActivity(QuizActivityView quizActivityView);
+    void injectsQuizActivity(QuizActivityView quizActivityView);
 }
