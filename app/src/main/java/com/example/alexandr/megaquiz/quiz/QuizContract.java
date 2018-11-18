@@ -30,7 +30,7 @@ public interface QuizContract {
     }
 
     interface Presenter {
-        void viewIsReady();
+        void prepareViewForFirstQuestion();
 
         void onNextButton();
 

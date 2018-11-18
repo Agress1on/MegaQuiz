@@ -79,7 +79,7 @@ public class QuizView extends AppCompatActivity implements QuizContract.View {
         mNumberQuestionCounter = (TextView) findViewById(R.id.number_question_counter);
         */
 
-        mPresenter.viewIsReady();
+        mPresenter.prepareViewForFirstQuestion();
         /*
         mTrueButton = (Button) findViewById(R.id.btnTrue);
         mFalseButton = (Button) findViewById(R.id.btnFalse);

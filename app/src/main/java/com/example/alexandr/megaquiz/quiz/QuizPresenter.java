@@ -35,7 +35,7 @@ public class QuizPresenter implements QuizContract.Presenter {
     }
 
     @Override
-    public void viewIsReady() {
+    public void prepareViewForFirstQuestion() {
         mView.setQuestionTVText(mQuestions.get(mCurrentIndex).getTextQuestion());
         mView.setQuestionCounter("Всего вопросов: " + mQuestions.size());
         questionNumberCounter();
