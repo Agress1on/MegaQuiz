@@ -9,6 +9,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.example.alexandr.megaquiz.R;
+import com.example.alexandr.megaquiz.quiz.QuizView;
 
 import java.util.List;
 
@@ -36,14 +37,17 @@ public class QuizStorageView extends AppCompatActivity implements QuizStorageCon
         mRecyclerView.setHasFixedSize(true);
         mLayoutManager = new LinearLayoutManager(this); // XMMMMM
         mRecyclerView.setLayoutManager(mLayoutManager);
-        mAdapter = new RecyclerAdapter(mCat);
+        mAdapter = new RecyclerAdapter(mCat, key -> mPresenter.onClick(key));
         mRecyclerView.setAdapter(mAdapter);
-
-
     }
 
-    public Intent getIntent(Context context) {
+    public static Intent getIntent(Context context) {
         Intent intent = new Intent(context, QuizStorageView.class);
         return intent;
+    }
+
+    public void startActivityQuizView(String key) {
+        Intent intent = QuizView.getIntent(QuizStorageView.this, key);
+        startActivity(intent);
     }
 }

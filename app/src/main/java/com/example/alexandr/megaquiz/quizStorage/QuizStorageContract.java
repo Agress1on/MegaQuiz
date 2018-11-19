@@ -17,6 +17,7 @@ public interface QuizStorageContract {
     }
     interface Presenter {
         List<String> initCategoriesNames();
+        void onClick(String key);
     }
     interface View {
 

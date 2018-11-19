@@ -19,9 +19,19 @@ public class QuizStoragePresenter implements QuizStorageContract.Presenter {
         this.mModel = new QuizStorageInteractor(bankQuestion);
     }
 
-
     @Override
     public List<String> initCategoriesNames() {
         return mModel.getCategoriesNames();
+    }
+
+    /*
+    public void onClick(String key) {
+        mView.startActivityQuizView(key);
+    }
+    */
+
+    @Override
+    public void onClick(String key) {
+        mView.startActivityQuizView(key);
     }
 }

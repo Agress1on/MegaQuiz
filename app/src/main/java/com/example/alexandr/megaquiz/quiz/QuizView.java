@@ -10,6 +10,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.example.alexandr.megaquiz.Constants;
 import com.example.alexandr.megaquiz.R;
 import com.example.alexandr.megaquiz.app.QuizPresenterModule;
 
@@ -121,11 +122,6 @@ public class QuizView extends AppCompatActivity implements QuizContract.View {
         mNumberQuestionCounter.setText(text);
     }
 
-    public static Intent getIntent(Context context) {
-        Intent intent = new Intent(context, QuizView.class);
-        return intent;
-    }
-
     @OnClick({R.id.btnTrue, R.id.btnFalse, R.id.btnNext, R.id.btnPrev})
     void onClick(View view) {
         switch (view.getId()) {
@@ -142,5 +138,16 @@ public class QuizView extends AppCompatActivity implements QuizContract.View {
                 mPresenter.onPrevButton();
                 break;
         }
+    }
+
+    public static Intent getIntent(Context context) {
+        Intent intent = new Intent(context, QuizView.class);
+        return intent;
+    }
+
+    public static Intent getIntent(Context context, String key) {
+        Intent intent = new Intent(context, QuizView.class);
+        intent.putExtra(Constants.FOR_INTENT_QUIZ_VIEW, key);
+        return intent;
     }
 }

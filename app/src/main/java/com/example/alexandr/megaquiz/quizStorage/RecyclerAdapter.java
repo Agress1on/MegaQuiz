@@ -24,43 +24,13 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
     private List<String> mCategoriesNames;
     private Map<String, List<Question>> map;
+    OnItemClickListener mOnItemClickListener;
 
-    public static class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener{
-
-     //   @BindView(R.id.name_item_recycler)
-        TextView mTVName;
-    //    @BindView(R.id.position_item_recycler)
-        TextView mTVPosition;
-     //   @BindView(R.id.quantity_item_recycler)
-        TextView mTVQuantity;
-     //   @BindView(R.id.number_quantity_item_recycler)
-        TextView mTVQuantityQuestionOfQuiz;
-        public String mCatName;
-
-
-        public ViewHolder(View v) {
-            super(v);
-
-            mTVName = (TextView) v.findViewById(R.id.name_item_recycler);
-            mTVPosition = (TextView) v.findViewById(R.id.position_item_recycler);
-            mTVQuantity = (TextView) v.findViewById(R.id.quantity_item_recycler);
-            mTVQuantityQuestionOfQuiz = (TextView) v.findViewById(R.id.number_quantity_item_recycler);
-
-      //      ButterKnife.bind(v);
-
-            itemView.setOnClickListener(this);
-        }
-
-        @Override
-        public void onClick(View view) {
-            Toast.makeText(view.getContext(),  mCatName + " Clicked", Toast.LENGTH_SHORT).show();
-        }
-    }
-
-    public RecyclerAdapter(List<String> categoriesNames) {
+    public RecyclerAdapter(List<String> categoriesNames, OnItemClickListener onItemClickListener) {
         mCategoriesNames = categoriesNames;
         BankQuestion bankQuestion = new BankQuestion();
         map = new QuizStorageInteractor(bankQuestion).getBankQuestion();
+        mOnItemClickListener = onItemClickListener;
     }
 
     @NonNull
@@ -74,18 +44,56 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerAdapter.ViewHolder holder, int position) {
-            holder.mTVName.setText(mCategoriesNames.get(position));
-            holder.mTVPosition.setText(String.valueOf(position + 1));
-            for (Map.Entry<String, List<Question>> entry : map.entrySet()) {
-                if (mCategoriesNames.get(position).equals(entry.getKey())) {
-                    holder.mTVQuantityQuestionOfQuiz.setText(String.valueOf(entry.getValue().size()));
-                    holder.mCatName = entry.getKey();
-                }
+        holder.mTVName.setText(mCategoriesNames.get(position));
+        holder.mTVPosition.setText(String.valueOf(position + 1));
+        for (Map.Entry<String, List<Question>> entry : map.entrySet()) {
+            if (mCategoriesNames.get(position).equals(entry.getKey())) {
+                holder.mTVQuantityQuestionOfQuiz.setText(String.valueOf(entry.getValue().size()));
+                holder.mCatName = entry.getKey();
             }
+        }
     }
 
     @Override
     public int getItemCount() {
         return mCategoriesNames.size();
+    }
+    public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
+
+        //   @BindView(R.id.name_item_recycler)
+        TextView mTVName;
+        //    @BindView(R.id.position_item_recycler)
+        TextView mTVPosition;
+        //   @BindView(R.id.quantity_item_recycler)
+        TextView mTVQuantity;
+
+        //   @BindView(R.id.number_quantity_item_recycler)
+
+        TextView mTVQuantityQuestionOfQuiz;
+
+        public String mCatName;
+
+        public ViewHolder(View v) {
+            super(v);
+
+            mTVName = (TextView) v.findViewById(R.id.name_item_recycler);
+            mTVPosition = (TextView) v.findViewById(R.id.position_item_recycler);
+            mTVQuantity = (TextView) v.findViewById(R.id.quantity_item_recycler);
+            mTVQuantityQuestionOfQuiz = (TextView) v.findViewById(R.id.number_quantity_item_recycler);
+            //      ButterKnife.bind(v);
+
+            itemView.setOnClickListener(this);
+        }
+
+        @Override
+        public void onClick(View view) {
+            Toast.makeText(view.getContext(), mCatName + " Clicked", Toast.LENGTH_SHORT).show();
+            mOnItemClickListener.onClick(mCatName);
+        }
+
+    }
+
+    interface OnItemClickListener {
+        void onClick(String key);
     }
 }
