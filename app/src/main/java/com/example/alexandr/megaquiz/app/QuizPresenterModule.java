@@ -1,6 +1,7 @@
 package com.example.alexandr.megaquiz.app;
 
 import com.example.alexandr.megaquiz.bankQuestion.BankQuestion;
+import com.example.alexandr.megaquiz.quiz.QuizContract;
 import com.example.alexandr.megaquiz.quiz.QuizView;
 import com.example.alexandr.megaquiz.quiz.QuizInteractor;
 import com.example.alexandr.megaquiz.quiz.QuizPresenter;
