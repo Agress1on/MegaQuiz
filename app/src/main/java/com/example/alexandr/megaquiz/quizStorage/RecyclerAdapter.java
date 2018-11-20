@@ -58,6 +58,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     public int getItemCount() {
         return mCategoriesNames.size();
     }
+
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
         //   @BindView(R.id.name_item_recycler)

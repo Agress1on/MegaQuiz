@@ -13,12 +13,16 @@ import java.util.Map;
 public interface QuizStorageContract {
     interface Model {
         Map<String, List<Question>> getBankQuestion();
+
         List<String> getCategoriesNames();
     }
+
     interface Presenter {
         List<String> initCategoriesNames();
+
         void onClick(String key);
     }
+
     interface View {
 
     }

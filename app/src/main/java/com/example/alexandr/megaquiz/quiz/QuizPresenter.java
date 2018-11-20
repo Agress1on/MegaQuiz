@@ -1,7 +1,5 @@
 package com.example.alexandr.megaquiz.quiz;
 
-import com.example.alexandr.megaquiz.bankQuestion.Question;
-
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
