@@ -13,37 +13,37 @@ import java.util.TreeMap;
  * @author Alexandr Mikhalev
  */
 public class BankQuestion {
-    private List<Question> generalQuestions = new ArrayList<>();
-    private List<Question> historyQuestions = new ArrayList<>();
-    private List<Question> geographyQuestions = new ArrayList<>();
-    private List<Question> natureQuestions = new ArrayList<>();
+    private List<Question> mGeneralQuestions = new ArrayList<>();
+    private List<Question> mHistoryQuestions = new ArrayList<>();
+    private List<Question> mGeographyQuestions = new ArrayList<>();
+    private List<Question> mNatureQuestions = new ArrayList<>();
 
-    private Map<String, List<Question>> bankQuestion = new TreeMap();
+    private Map<String, List<Question>> mBankQuestion = new TreeMap();
 
     public BankQuestion() {
-        generalQuestions.add(new Question("Андроид - лучшая платформа", true));
-        generalQuestions.add(new Question("Manchester is blue", false));
-        generalQuestions.add(new Question("Спартак Москва - лучший клуб", true));
-        generalQuestions.add(new Question("Земля имеет форму конуса", false));
-        generalQuestions.add(new Question("На Марсе есть жизнь", true));
-        generalQuestions.add(new Question("Алкоголь безвредный", false));
+        mGeneralQuestions.add(new Question("Андроид - лучшая платформа", true));
+        mGeneralQuestions.add(new Question("Manchester is blue", false));
+        mGeneralQuestions.add(new Question("Спартак Москва - лучший клуб", true));
+        mGeneralQuestions.add(new Question("Земля имеет форму конуса", false));
+        mGeneralQuestions.add(new Question("На Марсе есть жизнь", true));
+        mGeneralQuestions.add(new Question("Алкоголь безвредный", false));
 
-        historyQuestions.add(new Question("Москва основана в 1147 году", true));
-        historyQuestions.add(new Question("Наполеон напал на Россию в 1815 году", false));
+        mHistoryQuestions.add(new Question("Москва основана в 1147 году", true));
+        mHistoryQuestions.add(new Question("Наполеон напал на Россию в 1815 году", false));
 
-        bankQuestion.put(Constants.GENERAL_QUESTIONS, generalQuestions);
-        bankQuestion.put(Constants.HISTORY_QUESTIONS, historyQuestions);
-        bankQuestion.put(Constants.GEOGRAPHY_QUESTIONS, geographyQuestions);
-        bankQuestion.put(Constants.NATURE_QUESTIONS, natureQuestions);
+        mBankQuestion.put(Constants.GENERAL_QUESTIONS, mGeneralQuestions);
+        mBankQuestion.put(Constants.HISTORY_QUESTIONS, mHistoryQuestions);
+        mBankQuestion.put(Constants.GEOGRAPHY_QUESTIONS, mGeographyQuestions);
+        mBankQuestion.put(Constants.NATURE_QUESTIONS, mNatureQuestions);
 
         /*
         for (int i = 0; i < 10; i++) {
-            bankQuestion.put(i + "category", new ArrayList<Question>());
+            mBankQuestion.put(i + "category", new ArrayList<Question>());
         }
         */
     }
 
     public Map<String, List<Question>> getBankQuestion() {
-        return bankQuestion;
+        return mBankQuestion;
     }
 }

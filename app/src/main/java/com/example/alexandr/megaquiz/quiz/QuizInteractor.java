@@ -13,41 +13,41 @@ import java.util.Map;
  * @author Alexandr Mikhalev
  */
 public class QuizInteractor implements QuizContract.Interactor {
-    private Map<String, List<Question>> bankQuestions;
-    private List<Question> listQuestions;
+    private Map<String, List<Question>> mBankQuestions;
+    private List<Question> mListQuestions;
 
-    private List<String> stringQuestion;
-    private List<Boolean> trueAnswers;
-    private int rightAnswers;
+    private List<String> mStringQuestion;
+    private List<Boolean> mTrueAnswers;
+    private int mRightAnswersCounter;
 
     public QuizInteractor(BankQuestion bankQuestion) {
-        this.bankQuestions = bankQuestion.getBankQuestion();
-        this.listQuestions = new ArrayList<>();
-        this.stringQuestion = new ArrayList<>();
-        this.trueAnswers = new ArrayList<>();
-        this.rightAnswers = 0;
+        this.mBankQuestions = bankQuestion.getBankQuestion();
+        this.mListQuestions = new ArrayList<>();
+        this.mStringQuestion = new ArrayList<>();
+        this.mTrueAnswers = new ArrayList<>();
+        this.mRightAnswersCounter = 0;
     }
 
     private void initStringListAndTrueAnswers(String key) {
-        listQuestions = bankQuestions.get(key);
-        for (Question question : listQuestions) {
-            stringQuestion.add(question.getTextQuestion());
-            trueAnswers.add(question.isTrueAnswer());
+        mListQuestions = mBankQuestions.get(key);
+        for (Question question : mListQuestions) {
+            mStringQuestion.add(question.getTextQuestion());
+            mTrueAnswers.add(question.isTrueAnswer());
         }
     }
 
     @Override
     public List<String> getQuestions(String key) {
         initStringListAndTrueAnswers(key);
-        return stringQuestion;
+        return mStringQuestion;
     }
 
     @Override
     public int checkQuestions(Map<Integer, Boolean> answers) {
         for (Map.Entry<Integer, Boolean> entry : answers.entrySet()) {
-            if (trueAnswers.get(entry.getKey()) == entry.getValue()) rightAnswers++;
+            if (mTrueAnswers.get(entry.getKey()) == entry.getValue()) mRightAnswersCounter++;
         }
-        return rightAnswers;
+        return mRightAnswersCounter;
     }
 
 }

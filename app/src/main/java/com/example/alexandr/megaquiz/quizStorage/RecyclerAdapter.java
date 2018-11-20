@@ -23,13 +23,13 @@ import java.util.Map;
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> {
 
     private List<String> mCategoriesNames;
-    private Map<String, List<Question>> map;
+    private Map<String, List<Question>> mMap;
     OnItemClickListener mOnItemClickListener;
 
     public RecyclerAdapter(List<String> categoriesNames, OnItemClickListener onItemClickListener) {
         mCategoriesNames = categoriesNames;
         BankQuestion bankQuestion = new BankQuestion();
-        map = new QuizStorageInteractor(bankQuestion).getBankQuestion();
+        mMap = new QuizStorageInteractor(bankQuestion).getBankQuestion();
         mOnItemClickListener = onItemClickListener;
     }
 
@@ -46,7 +46,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     public void onBindViewHolder(@NonNull RecyclerAdapter.ViewHolder holder, int position) {
         holder.mTVName.setText(mCategoriesNames.get(position));
         holder.mTVPosition.setText(String.valueOf(position + 1));
-        for (Map.Entry<String, List<Question>> entry : map.entrySet()) {
+        for (Map.Entry<String, List<Question>> entry : mMap.entrySet()) {
             if (mCategoriesNames.get(position).equals(entry.getKey())) {
                 holder.mTVQuantityQuestionOfQuiz.setText(String.valueOf(entry.getValue().size()));
                 holder.mCatName = entry.getKey();
