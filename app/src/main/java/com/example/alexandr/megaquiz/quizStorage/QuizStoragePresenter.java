@@ -1,7 +1,5 @@
 package com.example.alexandr.megaquiz.quizStorage;
 
-import com.example.alexandr.megaquiz.bankQuestion.BankQuestion;
-
 import java.util.List;
 
 /**
@@ -10,18 +8,17 @@ import java.util.List;
  * @author Alexandr Mikhalev
  */
 public class QuizStoragePresenter implements QuizStorageContract.Presenter {
-    private QuizStorageView mView;
-    private QuizStorageInteractor mModel;
+    private QuizStorageContract.View mView;
+    private QuizStorageContract.Interactor mInteractor;
 
-    public QuizStoragePresenter(QuizStorageView view) {
+    public QuizStoragePresenter(QuizStorageContract.View view, QuizStorageContract.Interactor interactor) {
         this.mView = view;
-        BankQuestion bankQuestion = new BankQuestion();
-        this.mModel = new QuizStorageInteractor(bankQuestion);
+        this.mInteractor = interactor;
     }
 
     @Override
     public List<String> initCategoriesNames() {
-        return mModel.getCategoriesNames();
+        return mInteractor.getCategoriesNames();
     }
 
     @Override

@@ -12,14 +12,13 @@ import java.util.Map;
  *
  * @author Alexandr Mikhalev
  */
-public class QuizStorageInteractor implements QuizStorageContract.Model {
+public class QuizStorageInteractor implements QuizStorageContract.Interactor {
     private Map<String, List<Question>> mBankQuestions;
     private List<String> mCategoriesNames;
 
     public QuizStorageInteractor(BankQuestion bankQuestion) {
         this.mBankQuestions = bankQuestion.getBankQuestion();
-        this.mCategoriesNames = new ArrayList<>();
-        initCategoriesNames();
+        this.mCategoriesNames = initCategoriesNames();
     }
 
     @Override
@@ -27,10 +26,12 @@ public class QuizStorageInteractor implements QuizStorageContract.Model {
         return mBankQuestions;
     }
 
-    private void initCategoriesNames() {
+    private List<String> initCategoriesNames() {
+        List<String> list = new ArrayList<>();
         for (Map.Entry<String, List<Question>> entry : mBankQuestions.entrySet()) {
-            mCategoriesNames.add(entry.getKey());
+            list.add(entry.getKey());
         }
+        return list;
     }
 
     @Override

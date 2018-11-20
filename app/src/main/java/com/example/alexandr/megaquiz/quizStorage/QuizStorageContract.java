@@ -11,7 +11,7 @@ import java.util.Map;
  * @author Alexandr Mikhalev
  */
 public interface QuizStorageContract {
-    interface Model {
+    interface Interactor {
         Map<String, List<Question>> getBankQuestion();
 
         List<String> getCategoriesNames();
@@ -24,6 +24,6 @@ public interface QuizStorageContract {
     }
 
     interface View {
-
+        void startActivityQuizView(String key);
     }
 }

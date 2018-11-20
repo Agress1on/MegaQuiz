@@ -9,6 +9,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 
 import com.example.alexandr.megaquiz.R;
+import com.example.alexandr.megaquiz.bankQuestion.BankQuestion;
 import com.example.alexandr.megaquiz.quiz.QuizView;
 
 import java.util.List;
@@ -30,7 +31,7 @@ public class QuizStorageView extends AppCompatActivity implements QuizStorageCon
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz_storage);
 
-        mPresenter = new QuizStoragePresenter(this);
+        mPresenter = new QuizStoragePresenter(this, new QuizStorageInteractor(new BankQuestion()));
 
         List<String> mCat = mPresenter.initCategoriesNames();
         mRecyclerView = (RecyclerView) findViewById(R.id.my_recycler);
@@ -46,6 +47,7 @@ public class QuizStorageView extends AppCompatActivity implements QuizStorageCon
         return intent;
     }
 
+    @Override
     public void startActivityQuizView(String key) {
         Intent intent = QuizView.getIntent(QuizStorageView.this, key);
         startActivity(intent);
