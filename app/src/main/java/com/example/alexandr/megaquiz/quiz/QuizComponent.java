@@ -10,11 +10,6 @@ import dagger.Component;
  * @author Alexandr Mikhalev
  */
 @Component(modules = {QuizPresenterModule.class})
-//@Component(modules = {QuizModule.class})
 public interface QuizComponent {
-    /*
-    BankQuestion getBankQuestion();
-    QuizInteractor getQuizActivityModel();
-    */
     void injectsQuizActivity(QuizView quizView);
 }

@@ -15,7 +15,6 @@ import java.util.Map;
 public class QuizInteractor implements QuizContract.Interactor {
     private Map<String, List<Question>> mBankQuestions;
     private List<Question> mListQuestions;
-
     private List<String> mStringQuestion;
     private List<Boolean> mTrueAnswers;
     private int mRightAnswersCounter;
@@ -49,5 +48,4 @@ public class QuizInteractor implements QuizContract.Interactor {
         }
         return mRightAnswersCounter;
     }
-
 }

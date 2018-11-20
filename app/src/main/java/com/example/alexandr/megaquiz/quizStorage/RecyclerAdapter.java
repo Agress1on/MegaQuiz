@@ -21,7 +21,6 @@ import java.util.Map;
  * @author Alexandr Mikhalev
  */
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> {
-
     private List<String> mCategoriesNames;
     private Map<String, List<Question>> mMap;
     OnItemClickListener mOnItemClickListener;

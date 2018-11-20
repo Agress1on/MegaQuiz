@@ -17,7 +17,6 @@ public class BankQuestion {
     private List<Question> mHistoryQuestions = new ArrayList<>();
     private List<Question> mGeographyQuestions = new ArrayList<>();
     private List<Question> mNatureQuestions = new ArrayList<>();
-
     private Map<String, List<Question>> mBankQuestion = new TreeMap();
 
     public BankQuestion() {
@@ -35,12 +34,6 @@ public class BankQuestion {
         mBankQuestion.put(Constants.HISTORY_QUESTIONS, mHistoryQuestions);
         mBankQuestion.put(Constants.GEOGRAPHY_QUESTIONS, mGeographyQuestions);
         mBankQuestion.put(Constants.NATURE_QUESTIONS, mNatureQuestions);
-
-        /*
-        for (int i = 0; i < 10; i++) {
-            mBankQuestion.put(i + "category", new ArrayList<Question>());
-        }
-        */
     }
 
     public Map<String, List<Question>> getBankQuestion() {

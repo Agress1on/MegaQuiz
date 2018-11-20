@@ -13,7 +13,6 @@ import com.example.alexandr.megaquiz.quiz.QuizView;
  * @author Alexandr Mikhalev
  */
 public class Quiz extends Application {
-
     private static QuizComponent sComponent;
 
     @Override

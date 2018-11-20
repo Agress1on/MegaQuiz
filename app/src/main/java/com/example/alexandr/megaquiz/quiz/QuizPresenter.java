@@ -91,38 +91,4 @@ public class QuizPresenter implements QuizContract.Presenter {
         boolean isAnswered = mAnswers.containsKey(getCurrentIndex());
         mView.switchButton(!isAnswered);
     }
-
-    /*
-    private void checkCorrectAnswer(boolean answer, boolean realAnswer) {
-        if (answer == realAnswer) {
-            showResultAnswerQuestion(true);
-            mInteractor.setTrueQuestionsCount(mInteractor.getTrueQuestionsCount() + 1);
-            mView.setTrueQuestionCounter("Правильных ответов: " + mInteractor.getTrueQuestionsCount());
-        } else {
-            showResultAnswerQuestion(false);
-        }
-    }
-
-    private void showResultAnswerQuestion(boolean answer) {
-        if (answer) {
-            mView.showToast("Верно!");
-        } else {
-            mView.showToast("Неверно!");
-        }
-    }
-
-    private void checkAnswerQuestion() {
-        mView.switchButton(!mInteractor.isAnsweredThisQuestion(mInteractor.getCurrentIndex()));
-    }
-
-    private void checkFinalOfQuiz() {
-        if (mInteractor.getQuizSize() == mInteractor.getStorageOfResponseSize())
-            mView.showToast("Опрос закончен. Всего вопросов: " + mInteractor.getQuizSize() + ". Правильных ответов: " + mInteractor.getTrueQuestionsCount());
-    }
-
-    private void questionNumberCounter() {
-        mView.setNumberQuestionCounter("Номер вопроса: " + (mInteractor.getCurrentIndex() + 1));
-    }
-    */
-
 }

@@ -24,12 +24,6 @@ public class QuizStoragePresenter implements QuizStorageContract.Presenter {
         return mModel.getCategoriesNames();
     }
 
-    /*
-    public void onClick(String key) {
-        mView.startActivityQuizView(key);
-    }
-    */
-
     @Override
     public void onClick(String key) {
         mView.startActivityQuizView(key);

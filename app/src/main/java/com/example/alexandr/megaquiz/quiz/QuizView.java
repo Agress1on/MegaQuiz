@@ -29,15 +29,6 @@ public class QuizView extends AppCompatActivity implements QuizContract.View {
     @Inject
     QuizPresenter mPresenter;
 
-    /*
-    @Inject
-    BankQuestion bankQuestion;
-    @Inject
-    QuizInteractor mModel;
-
-    */
-    // private QuizInteractor mQuizActivityModel;
-
     @BindView(R.id.question)
     TextView mQuestionTV;
     @BindView(R.id.btnTrue)
@@ -62,9 +53,6 @@ public class QuizView extends AppCompatActivity implements QuizContract.View {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz);
         ButterKnife.bind(this);
-        // bankQuestion = Quiz.getComponent().getBankQuestion();
-        //  mQuizActivityModel = Quiz.getComponent().getQuizActivityModel();
-        //   Quiz.getComponent().injectsQuizActivity(this); // to camoe
 
         Intent intent = getIntent();
         mCategoryName = intent.getStringExtra(Constants.EXTRAS_FOR_INTENT_QUIZ_VIEW);
@@ -75,29 +63,7 @@ public class QuizView extends AppCompatActivity implements QuizContract.View {
                 .build()
                 .injectsQuizActivity(this);
 
-        //  Quiz.getComponent().injectsQuizActivity(this);
-        //mPresenter = new QuizPresenter(this, new QuizInteractor(new BankQuestion())); //рабочая штука
-        /*
-        mQuestionTV = (TextView) findViewById(R.id.question);
-        mQuestionCounter = (TextView) findViewById(R.id.question_counter);
-        mTrueQuestionCounter = (TextView) findViewById(R.id.true_question_counter);
-        mNumberQuestionCounter = (TextView) findViewById(R.id.number_question_counter);
-        */
-
         mPresenter.prepareViewForFirstQuestion();
-        /*
-        mTrueButton = (Button) findViewById(R.id.btnTrue);
-        mFalseButton = (Button) findViewById(R.id.btnFalse);
-        mNextButton = (Button) findViewById(R.id.btnNext);
-        mPrevButton = (Button) findViewById(R.id.btnPrev);
-        */
-        /*
-        mNextButton.setOnClickListener(view -> mPresenter.onNextButton());
-        mPrevButton.setOnClickListener(view -> mPresenter.onPrevButton());
-        mTrueButton.setOnClickListener(view -> mPresenter.onTrueButton());
-        mFalseButton.setOnClickListener(view -> mPresenter.onFalseButton());
-        */
-
     }
 
     @Override
