@@ -115,11 +115,6 @@ public class QuizView extends AppCompatActivity implements QuizContract.View {
         }
     }
 
-    public static Intent getIntent(Context context) {
-        Intent intent = new Intent(context, QuizView.class);
-        return intent;
-    }
-
     public static Intent getIntent(Context context, String key) {
         Intent intent = new Intent(context, QuizView.class);
         intent.putExtra(Constants.EXTRAS_FOR_INTENT_QUIZ_VIEW, key);
