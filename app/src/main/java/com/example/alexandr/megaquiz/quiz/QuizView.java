@@ -55,6 +55,8 @@ public class QuizView extends AppCompatActivity implements QuizContract.View {
     @BindView(R.id.number_question_counter)
     TextView mNumberQuestionCounter;
 
+    private String mCategoryName = "SENYAAAAA";
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -64,12 +66,14 @@ public class QuizView extends AppCompatActivity implements QuizContract.View {
         //  mQuizActivityModel = Quiz.getComponent().getQuizActivityModel();
         //   Quiz.getComponent().injectsQuizActivity(this); // to camoe
 
+        Intent intent = getIntent();
+        mCategoryName = intent.getStringExtra(Constants.EXTRAS_FOR_INTENT_QUIZ_VIEW);
+        mTrueQuestionCounter.setText(mCategoryName);
 
         DaggerQuizComponent.builder()
                 .quizPresenterModule(new QuizPresenterModule(this))
                 .build()
                 .injectsQuizActivity(this);
-
 
         //  Quiz.getComponent().injectsQuizActivity(this);
         //mPresenter = new QuizPresenter(this, new QuizInteractor(new BankQuestion())); //рабочая штука
@@ -94,6 +98,11 @@ public class QuizView extends AppCompatActivity implements QuizContract.View {
         mFalseButton.setOnClickListener(view -> mPresenter.onFalseButton());
         */
 
+    }
+
+    @Override
+    public String sentToPresenterChoosenCategory() {
+        return mCategoryName;
     }
 
     @Override
@@ -147,7 +156,7 @@ public class QuizView extends AppCompatActivity implements QuizContract.View {
 
     public static Intent getIntent(Context context, String key) {
         Intent intent = new Intent(context, QuizView.class);
-        intent.putExtra(Constants.FOR_INTENT_QUIZ_VIEW, key);
+        intent.putExtra(Constants.EXTRAS_FOR_INTENT_QUIZ_VIEW, key);
         return intent;
     }
 }

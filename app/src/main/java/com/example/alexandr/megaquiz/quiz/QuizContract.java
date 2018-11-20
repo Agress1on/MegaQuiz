@@ -12,7 +12,7 @@ import java.util.Map;
  */
 public interface QuizContract {
     interface Interactor {
-        List<Question> getQuestions();
+        List<String> getQuestions(String key);
 
         int checkQuestions(Map<Integer, Boolean> answers);
     }
@@ -27,6 +27,8 @@ public interface QuizContract {
         void setQuestionCounter(String text);
 
         void setNumberQuestionCounter(String text);
+
+        String sentToPresenterChoosenCategory();
     }
 
     interface Presenter {

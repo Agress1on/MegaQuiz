@@ -6,13 +6,29 @@ package com.example.alexandr.megaquiz.bankQuestion;
  * @author Alexandr Mikhalev
  */
 public class Question {
-    private String question;
+    private String mQuestion;
+    private boolean mTrueAnswer;
 
-    public Question(String question) {
-        this.question = question;
+    public Question(String question, boolean trueAnswer) {
+        mQuestion = question;
+        mTrueAnswer = trueAnswer;
     }
 
     public String getTextQuestion() {
-        return question;
+        return mQuestion;
     }
+
+    public boolean isTrueAnswer() {
+        return mTrueAnswer;
+    }
+
+    public void setQuestion(String question) {
+        mQuestion = question;
+    }
+
+    public void setTrueAnswer(boolean trueAnswer) {
+        mTrueAnswer = trueAnswer;
+    }
+
+
 }

@@ -14,14 +14,14 @@ import java.util.Map;
 public class QuizPresenter implements QuizContract.Presenter {
     private QuizContract.View mView;
     private QuizContract.Interactor mInteractor;
-    private List<Question> mQuestions;
+    private List<String> mQuestions;
     private int mCurrentIndex;
     private Map<Integer, Boolean> mAnswers;
 
     public QuizPresenter(QuizContract.View view, QuizContract.Interactor interactor) {
         this.mView = view;
         this.mInteractor = interactor;
-        this.mQuestions = interactor.getQuestions();
+        this.mQuestions = interactor.getQuestions(mView.sentToPresenterChoosenCategory());
         this.mAnswers = new HashMap<>();
         this.mCurrentIndex = 0;
     }
@@ -36,7 +36,7 @@ public class QuizPresenter implements QuizContract.Presenter {
 
     @Override
     public void prepareViewForFirstQuestion() {
-        mView.setQuestionTVText(mQuestions.get(mCurrentIndex).getTextQuestion());
+        mView.setQuestionTVText(mQuestions.get(mCurrentIndex));
         mView.setQuestionCounter("Всего вопросов: " + mQuestions.size());
         questionNumberCounter();
     }
@@ -45,7 +45,7 @@ public class QuizPresenter implements QuizContract.Presenter {
     public void onNextButton() {
         int newIndex = (getCurrentIndex() + 1) % mQuestions.size();
         setCurrentIndex(newIndex);
-        mView.setQuestionTVText(mQuestions.get(mCurrentIndex).getTextQuestion());
+        mView.setQuestionTVText(mQuestions.get(mCurrentIndex));
         questionNumberCounter();
         checkAnswerQuestion();
     }
@@ -55,7 +55,7 @@ public class QuizPresenter implements QuizContract.Presenter {
         int newIndex = (getCurrentIndex() - 1) % mQuestions.size();
         if (newIndex < 0) newIndex = 0;
         setCurrentIndex(newIndex);
-        mView.setQuestionTVText(mQuestions.get(mCurrentIndex).getTextQuestion());
+        mView.setQuestionTVText(mQuestions.get(mCurrentIndex));
         questionNumberCounter();
         checkAnswerQuestion();
     }

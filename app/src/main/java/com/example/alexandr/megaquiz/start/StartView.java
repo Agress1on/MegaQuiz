@@ -6,6 +6,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.example.alexandr.megaquiz.Constants;
 import com.example.alexandr.megaquiz.R;
 import com.example.alexandr.megaquiz.quiz.QuizView;
 import com.example.alexandr.megaquiz.quizStorage.QuizStorageView;
@@ -50,7 +51,7 @@ public class StartView extends AppCompatActivity implements StartContract.View {
         mTestGeneral.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Intent intent = new QuizView().getIntent(StartView.this);
+                Intent intent = QuizView.getIntent(StartView.this, Constants.GENERAL_QUESTIONS);
                 startActivity(intent);
             }
         });
