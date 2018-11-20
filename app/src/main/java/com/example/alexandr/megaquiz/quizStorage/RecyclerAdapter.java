@@ -10,7 +10,6 @@ import android.widget.Toast;
 
 import com.example.alexandr.megaquiz.R;
 import com.example.alexandr.megaquiz.bankQuestion.BankQuestion;
-import com.example.alexandr.megaquiz.bankQuestion.Question;
 
 import java.util.List;
 import java.util.Map;
@@ -22,13 +21,12 @@ import java.util.Map;
  */
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> {
     private List<String> mCategoriesNames;
-    private Map<String, List<Question>> mMap;
+    private Map<String, Integer> mMapOfNamesAndSize;
     OnItemClickListener mOnItemClickListener;
 
     public RecyclerAdapter(List<String> categoriesNames, OnItemClickListener onItemClickListener) {
         mCategoriesNames = categoriesNames;
-        BankQuestion bankQuestion = new BankQuestion();
-        mMap = new QuizStorageInteractor(bankQuestion).getBankQuestion();
+        mMapOfNamesAndSize = new QuizStorageInteractor(new BankQuestion()).getMapOfNamesAndSizeCategory();
         mOnItemClickListener = onItemClickListener;
     }
 
@@ -45,9 +43,9 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     public void onBindViewHolder(@NonNull RecyclerAdapter.ViewHolder holder, int position) {
         holder.mTVName.setText(mCategoriesNames.get(position));
         holder.mTVPosition.setText(String.valueOf(position + 1));
-        for (Map.Entry<String, List<Question>> entry : mMap.entrySet()) {
+        for (Map.Entry<String, Integer> entry : mMapOfNamesAndSize.entrySet()) {
             if (mCategoriesNames.get(position).equals(entry.getKey())) {
-                holder.mTVQuantityQuestionOfQuiz.setText(String.valueOf(entry.getValue().size()));
+                holder.mTVQuantityQuestionOfQuiz.setText(String.valueOf(entry.getValue()));
                 holder.mCatName = entry.getKey();
             }
         }
@@ -87,10 +85,21 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
         @Override
         public void onClick(View view) {
-            Toast.makeText(view.getContext(), mCatName + " Clicked", Toast.LENGTH_SHORT).show();
-            mOnItemClickListener.onClick(mCatName);
+            String toastMessage = "КАТЕГОРИЯ ПУСТАЯ! СКОРО БУДЕТ ДОСТУПНА!";
+            if (checkEmptyCategory(mCatName)) {
+                toastMessage = mCatName + " Clicked!";
+                mOnItemClickListener.onClick(mCatName);
+            }
+            Toast.makeText(view.getContext(), toastMessage, Toast.LENGTH_SHORT).show();
         }
 
+        private boolean checkEmptyCategory(String categoryName) {
+            int categorySize = 0;
+            for (Map.Entry<String, Integer> entry : mMapOfNamesAndSize.entrySet()) {
+                if (entry.getKey().equals(categoryName)) categorySize = entry.getValue();
+            }
+            return categorySize > 0;
+        }
     }
 
     interface OnItemClickListener {

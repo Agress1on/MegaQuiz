@@ -1,7 +1,5 @@
 package com.example.alexandr.megaquiz.quizStorage;
 
-import com.example.alexandr.megaquiz.bankQuestion.Question;
-
 import java.util.List;
 import java.util.Map;
 
@@ -12,13 +10,13 @@ import java.util.Map;
  */
 public interface QuizStorageContract {
     interface Interactor {
-        Map<String, List<Question>> getBankQuestion();
-
         List<String> getCategoriesNames();
+
+        Map<String, Integer> getMapOfNamesAndSizeCategory();
     }
 
     interface Presenter {
-        List<String> initCategoriesNames();
+        List<String> getCategoriesNamesForView();
 
         void onClick(String key);
     }

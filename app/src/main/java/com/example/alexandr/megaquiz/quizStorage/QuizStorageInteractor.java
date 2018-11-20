@@ -4,6 +4,7 @@ import com.example.alexandr.megaquiz.bankQuestion.BankQuestion;
 import com.example.alexandr.megaquiz.bankQuestion.Question;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -21,11 +22,6 @@ public class QuizStorageInteractor implements QuizStorageContract.Interactor {
         this.mCategoriesNames = initCategoriesNames();
     }
 
-    @Override
-    public Map<String, List<Question>> getBankQuestion() {
-        return mBankQuestions;
-    }
-
     private List<String> initCategoriesNames() {
         List<String> list = new ArrayList<>();
         for (Map.Entry<String, List<Question>> entry : mBankQuestions.entrySet()) {
@@ -37,5 +33,16 @@ public class QuizStorageInteractor implements QuizStorageContract.Interactor {
     @Override
     public List<String> getCategoriesNames() {
         return mCategoriesNames;
+    }
+
+    @Override
+    public Map<String, Integer> getMapOfNamesAndSizeCategory() {
+        Map<String, Integer> map = new HashMap<>();
+        for (Map.Entry<String, List<Question>> entry : mBankQuestions.entrySet()) {
+            String nameCategory = entry.getKey();
+            int size = entry.getValue().size();
+            map.put(nameCategory, size);
+        }
+        return map;
     }
 }

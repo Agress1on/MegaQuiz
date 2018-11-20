@@ -17,7 +17,7 @@ public class QuizStoragePresenter implements QuizStorageContract.Presenter {
     }
 
     @Override
-    public List<String> initCategoriesNames() {
+    public List<String> getCategoriesNamesForView() {
         return mInteractor.getCategoriesNames();
     }
 
