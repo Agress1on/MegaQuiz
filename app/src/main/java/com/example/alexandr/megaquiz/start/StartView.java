@@ -1,8 +1,9 @@
 package com.example.alexandr.megaquiz.start;
 
+import android.content.Context;
 import android.content.Intent;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 
@@ -13,6 +14,7 @@ import com.example.alexandr.megaquiz.quizStorage.QuizStorageView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnClick;
 
 public class StartView extends AppCompatActivity implements StartContract.View {
 
@@ -31,30 +33,26 @@ public class StartView extends AppCompatActivity implements StartContract.View {
         setContentView(R.layout.activity_start);
         ButterKnife.bind(this);
         mPresenter = new StartPresenter(this);
-
-        /*
-        mRandomBtn = (Button)findViewById(R.id.btn_randomQuiz);
-        mCategoryBtn = (Button) findViewById(R.id.btn_category);
-        mTestGeneral = (Button) findViewById(R.id.btn_test_general_questions);
-        */
-
-        mCategoryBtn.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-               // mPresenter.startCategoryActivity();
-                Intent intent = new QuizStorageView().getIntent(StartView.this);
-                startActivity(intent);
-            }
-        });
-
-
-        mTestGeneral.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Intent intent = QuizView.getIntent(StartView.this, Constants.GENERAL_QUESTIONS);
-                startActivity(intent);
-            }
-        });
     }
 
+    public static Intent getIntent(Context context) {
+        Intent intent = new Intent(context, StartView.class);
+        return intent;
+    }
+
+    @OnClick({R.id.btn_randomQuiz, R.id.btn_category, R.id.btn_test_general_questions})
+    void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.btn_randomQuiz:
+                break;
+            case R.id.btn_category:
+                Intent intent1 = new QuizStorageView().getIntent(StartView.this);
+                startActivity(intent1);
+                break;
+            case R.id.btn_test_general_questions:
+                Intent intent2 = QuizView.getIntent(StartView.this, Constants.GENERAL_QUESTIONS);
+                startActivity(intent2);
+                break;
+        }
+    }
 }
