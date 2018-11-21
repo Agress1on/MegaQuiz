@@ -39,24 +39,44 @@ public class QuizView extends AppCompatActivity implements QuizContract.View {
     Button mNextButton;
     @BindView(R.id.btnPrev)
     Button mPrevButton;
+
+    @BindView(R.id.category_name)
+    TextView mCategoryNameTextView;
+    @BindView(R.id.quiz_size)
+    TextView mQuizSizeTextView;
+    @BindView(R.id.number_of_question)
+    TextView mNumberOfQuestionTextView;
+
+    //static
+    @BindView(R.id.static_category_name)
+    TextView mStaticCategoryNameTextView;
+    @BindView(R.id.static_quiz_size)
+    TextView mStaticQuizSizeTextView;
+    @BindView(R.id.static_number_of_question)
+    TextView mStaticNumberOfQuestion;
+
+
+
+    /*
     @BindView(R.id.question_counter)
     TextView mQuestionCounter;
     @BindView(R.id.true_question_counter)
     TextView mTrueQuestionCounter;
     @BindView(R.id.number_question_counter)
     TextView mNumberQuestionCounter;
+    */
 
     private String mCategoryName = "SENYAAAAA";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_quiz);
+        setContentView(R.layout.activity_quiz2);
         ButterKnife.bind(this);
 
         Intent intent = getIntent();
         mCategoryName = intent.getStringExtra(Constants.EXTRAS_FOR_INTENT_QUIZ_VIEW);
-        mTrueQuestionCounter.setText(mCategoryName);
+        mStaticCategoryNameTextView.setText(mCategoryName);
 
         DaggerQuizComponent.builder()
                 .quizPresenterModule(new QuizPresenterModule(this))
@@ -72,7 +92,7 @@ public class QuizView extends AppCompatActivity implements QuizContract.View {
     }
 
     @Override
-    public void setQuestionTVText(String text) {
+    public void setQuestionTextView(String text) {
         mQuestionTV.setText(text);
     }
 
@@ -88,13 +108,13 @@ public class QuizView extends AppCompatActivity implements QuizContract.View {
     }
 
     @Override
-    public void setQuestionCounter(String text) {
-        mQuestionCounter.setText(text);
+    public void setStaticQuizSizeTextView(String text) {
+        mStaticQuizSizeTextView.setText(text);
     }
 
     @Override
-    public void setNumberQuestionCounter(String text) {
-        mNumberQuestionCounter.setText(text);
+    public void setStaticNumberOfQuestion(String text) {
+        mStaticNumberOfQuestion.setText(text);
     }
 
     @OnClick({R.id.btnTrue, R.id.btnFalse, R.id.btnNext, R.id.btnPrev})

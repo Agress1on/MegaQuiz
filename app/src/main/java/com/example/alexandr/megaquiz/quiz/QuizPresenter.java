@@ -34,8 +34,8 @@ public class QuizPresenter implements QuizContract.Presenter {
 
     @Override
     public void prepareViewForFirstQuestion() {
-        mView.setQuestionTVText(mQuestions.get(mCurrentIndex));
-        mView.setQuestionCounter("Всего вопросов: " + mQuestions.size());
+        mView.setQuestionTextView(mQuestions.get(mCurrentIndex));
+        mView.setStaticQuizSizeTextView(String.valueOf(mQuestions.size())); // всего вопросов
         questionNumberCounter();
     }
 
@@ -43,7 +43,7 @@ public class QuizPresenter implements QuizContract.Presenter {
     public void onNextButton() {
         int newIndex = (getCurrentIndex() + 1) % mQuestions.size();
         setCurrentIndex(newIndex);
-        mView.setQuestionTVText(mQuestions.get(mCurrentIndex));
+        mView.setQuestionTextView(mQuestions.get(mCurrentIndex));
         questionNumberCounter();
         checkAnswerQuestion();
     }
@@ -53,7 +53,7 @@ public class QuizPresenter implements QuizContract.Presenter {
         int newIndex = (getCurrentIndex() - 1) % mQuestions.size();
         if (newIndex < 0) newIndex = 0;
         setCurrentIndex(newIndex);
-        mView.setQuestionTVText(mQuestions.get(mCurrentIndex));
+        mView.setQuestionTextView(mQuestions.get(mCurrentIndex));
         questionNumberCounter();
         checkAnswerQuestion();
     }
@@ -75,7 +75,7 @@ public class QuizPresenter implements QuizContract.Presenter {
     }
 
     private void questionNumberCounter() {
-        mView.setNumberQuestionCounter("Номер вопроса: " + (getCurrentIndex() + 1));
+        mView.setStaticNumberOfQuestion(String.valueOf(getCurrentIndex() + 1)); // номер вопроса
     }
 
     private void checkFinalOfQuiz() {

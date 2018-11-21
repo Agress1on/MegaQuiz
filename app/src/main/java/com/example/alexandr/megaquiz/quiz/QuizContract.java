@@ -16,15 +16,15 @@ public interface QuizContract {
     }
 
     interface View {
-        void setQuestionTVText(String text);
+        void setQuestionTextView(String text);
 
         void showToast(String text);
 
         void switchButton(boolean result);
 
-        void setQuestionCounter(String text);
+        void setStaticQuizSizeTextView(String text);
 
-        void setNumberQuestionCounter(String text);
+        void setStaticNumberOfQuestion(String text);
 
         String sentToPresenterChoosenCategory();
     }
