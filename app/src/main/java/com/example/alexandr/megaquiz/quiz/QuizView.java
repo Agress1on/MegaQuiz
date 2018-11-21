@@ -47,7 +47,6 @@ public class QuizView extends AppCompatActivity implements QuizContract.View {
     @BindView(R.id.number_of_question)
     TextView mNumberOfQuestionTextView;
 
-    //static
     @BindView(R.id.static_category_name)
     TextView mStaticCategoryNameTextView;
     @BindView(R.id.static_quiz_size)
@@ -55,23 +54,12 @@ public class QuizView extends AppCompatActivity implements QuizContract.View {
     @BindView(R.id.static_number_of_question)
     TextView mStaticNumberOfQuestion;
 
-
-
-    /*
-    @BindView(R.id.question_counter)
-    TextView mQuestionCounter;
-    @BindView(R.id.true_question_counter)
-    TextView mTrueQuestionCounter;
-    @BindView(R.id.number_question_counter)
-    TextView mNumberQuestionCounter;
-    */
-
     private String mCategoryName = "SENYAAAAA";
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_quiz2);
+        setContentView(R.layout.activity_quiz);
         ButterKnife.bind(this);
 
         Intent intent = getIntent();

@@ -35,7 +35,7 @@ public class QuizPresenter implements QuizContract.Presenter {
     @Override
     public void prepareViewForFirstQuestion() {
         mView.setQuestionTextView(mQuestions.get(mCurrentIndex));
-        mView.setStaticQuizSizeTextView(String.valueOf(mQuestions.size())); // всего вопросов
+        mView.setStaticQuizSizeTextView(String.valueOf(mQuestions.size()));
         questionNumberCounter();
     }
 
@@ -75,7 +75,7 @@ public class QuizPresenter implements QuizContract.Presenter {
     }
 
     private void questionNumberCounter() {
-        mView.setStaticNumberOfQuestion(String.valueOf(getCurrentIndex() + 1)); // номер вопроса
+        mView.setStaticNumberOfQuestion(String.valueOf(getCurrentIndex() + 1));
     }
 
     private void checkFinalOfQuiz() {
