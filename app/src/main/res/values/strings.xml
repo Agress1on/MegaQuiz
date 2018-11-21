@@ -2,4 +2,11 @@
     <string name="app_name">MegaQuiz</string>
     <string name="for_random_btn">Случайный опрос</string>
     <string name="for_category_btn">Выбрать категорию опроса</string>
+    <string name="true_button">TRUE</string>
+    <string name="false_button">FALSE</string>
+    <string name="next_button">NEXT</string>
+    <string name="prev_button">PREV</string>
+    <string name="for_category_name">Название категории:</string>
+    <string name="for_quiz_size">Всего вопросов:</string>
+    <string name="for_number_of_question">Номер вопроса:</string>
 </resources>
