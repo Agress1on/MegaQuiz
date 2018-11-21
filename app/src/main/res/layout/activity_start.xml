@@ -8,28 +8,32 @@
 
     <Button
         android:id="@+id/btn_randomQuiz"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/for_random_btn"
-        app:layout_constraintTop_toTopOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        android:layout_marginBottom="20dp"
+        app:layout_constraintBottom_toTopOf="@id/btn_category"
+        app:layout_constraintEnd_toEndOf="@id/btn_category"
+        app:layout_constraintStart_toStartOf="@id/btn_category" />
+
     <Button
         android:id="@+id/btn_category"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/for_category_btn"
-        app:layout_constraintTop_toBottomOf="@id/btn_randomQuiz"
-        app:layout_constraintStart_toStartOf="@id/btn_randomQuiz"
-        app:layout_constraintEnd_toEndOf="@id/btn_randomQuiz"/>
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
     <Button
         android:id="@+id/btn_test_general_questions"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
-        app:layout_constraintTop_toBottomOf="@id/btn_category"
-        app:layout_constraintStart_toStartOf="@id/btn_category"
+        android:text="Тест общих вопросов"
+        android:layout_marginTop="20dp"
         app:layout_constraintEnd_toEndOf="@id/btn_category"
-        android:text="Тест общих вопросов"/>
+        app:layout_constraintStart_toStartOf="@id/btn_category"
+        app:layout_constraintTop_toBottomOf="@id/btn_category" />
 
 </android.support.constraint.ConstraintLayout>
