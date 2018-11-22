@@ -15,7 +15,17 @@ public class StartPresenter implements StartContract.Presenter {
     }
 
     @Override
-    public String getStringForRandom() {
-        return mInteractor.getStringCategoryForRandomStart();
+    public void onRandomButton() {
+        mView.startQuizViewWithRandom(mInteractor.getStringCategoryForRandomStart());
+    }
+
+    @Override
+    public void onButtonCategory() {
+        mView.startQuizStorage();
+    }
+
+    @Override
+    public void onButtonGeneralQuestionsTest() {
+        mView.startTestGeneralQuestions();
     }
 }

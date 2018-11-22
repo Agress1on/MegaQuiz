@@ -7,11 +7,19 @@ package com.example.alexandr.megaquiz.start;
  */
 public interface StartContract {
     interface View {
+        void startQuizViewWithRandom(String randomCategory);
 
+        void startQuizStorage();
+
+        void startTestGeneralQuestions();
     }
 
     interface Presenter {
-        String getStringForRandom();
+        void onRandomButton();
+
+        void onButtonCategory();
+
+        void onButtonGeneralQuestionsTest();
     }
 
     interface Interactor {

@@ -44,17 +44,32 @@ public class StartView extends AppCompatActivity implements StartContract.View {
     void onClick(android.view.View view) {
         switch (view.getId()) {
             case R.id.btn_randomQuiz:
-                Intent intent = QuizView.getIntent(StartView.this, mPresenter.getStringForRandom());
-                startActivity(intent);
+                mPresenter.onRandomButton();
                 break;
             case R.id.btn_category:
-                Intent intent1 = QuizStorageView.getIntent(StartView.this);
-                startActivity(intent1);
+                mPresenter.onButtonCategory();
                 break;
             case R.id.btn_test_general_questions:
-                Intent intent2 = QuizView.getIntent(StartView.this, Constants.GENERAL_QUESTIONS);
-                startActivity(intent2);
+                mPresenter.onButtonGeneralQuestionsTest();
                 break;
         }
+    }
+
+    @Override
+    public void startQuizViewWithRandom(String randomCategory) {
+        Intent intent = QuizView.getIntent(StartView.this, randomCategory);
+        startActivity(intent);
+    }
+
+    @Override
+    public void startQuizStorage() {
+        Intent intent = QuizStorageView.getIntent(StartView.this);
+        startActivity(intent);
+    }
+
+    @Override
+    public void startTestGeneralQuestions() {
+        Intent intent = QuizView.getIntent(StartView.this, Constants.GENERAL_QUESTIONS);
+        startActivity(intent);
     }
 }
