@@ -34,6 +34,10 @@ public class BankQuestion {
         mBankQuestion.put(Constants.HISTORY_QUESTIONS, mHistoryQuestions);
         mBankQuestion.put(Constants.GEOGRAPHY_QUESTIONS, mGeographyQuestions);
         mBankQuestion.put(Constants.NATURE_QUESTIONS, mNatureQuestions);
+
+        for (int i = 0; i < 11; i++) {
+            mBankQuestion.put(i + " category", new ArrayList<>());
+        }
     }
 
     public Map<String, List<Question>> getBankQuestion() {

@@ -23,6 +23,9 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     private List<String> mCategoriesNames;
     private Map<String, Integer> mMapOfNamesAndSize;
     OnItemClickListener mOnItemClickListener;
+    private final static int VIEW_ITEM_FIRST = 0;
+    private final static int VIEW_ITEM_SECOND = 1;
+
 
     public RecyclerAdapter(List<String> categoriesNames, OnItemClickListener onItemClickListener) {
         mCategoriesNames = categoriesNames;
@@ -30,11 +33,22 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         mOnItemClickListener = onItemClickListener;
     }
 
+    @Override
+    public int getItemViewType(int position) {
+        return position % 2 == 0 ? VIEW_ITEM_FIRST : VIEW_ITEM_SECOND;
+    }
+
     @NonNull
     @Override
     public RecyclerAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.recycler_storage_item, parent, false);
+        View v;
+        if (viewType == VIEW_ITEM_FIRST) {
+            v = LayoutInflater.from(parent.getContext())
+                    .inflate(R.layout.recycler_storage_item_first, parent, false);
+        } else {
+            v = LayoutInflater.from(parent.getContext())
+                    .inflate(R.layout.recycler_storage_item_second, parent, false);
+        }
         ViewHolder viewHolder = new ViewHolder(v);
         return viewHolder;
     }
