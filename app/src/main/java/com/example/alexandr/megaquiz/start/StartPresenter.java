@@ -7,11 +7,15 @@ package com.example.alexandr.megaquiz.start;
  */
 public class StartPresenter implements StartContract.Presenter {
     private StartContract.View mView;
-    private StartContract.Model mModel;
+    private StartContract.Interactor mInteractor;
 
-    public StartPresenter(StartContract.View view) {
+    public StartPresenter(StartContract.View view, StartContract.Interactor interactor) {
         this.mView = view;
-        this.mModel = new StartInteractor();
+        this.mInteractor = interactor;
     }
 
+    @Override
+    public String getStringForRandom() {
+        return mInteractor.getStringCategoryForRandomStart();
+    }
 }

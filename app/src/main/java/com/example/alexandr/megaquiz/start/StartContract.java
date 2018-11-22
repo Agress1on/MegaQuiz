@@ -11,10 +11,10 @@ public interface StartContract {
     }
 
     interface Presenter {
-
+        String getStringForRandom();
     }
 
-    interface Model {
-
+    interface Interactor {
+        String getStringCategoryForRandomStart();
     }
 }
