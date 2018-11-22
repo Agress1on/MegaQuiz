@@ -1,7 +1,6 @@
 package com.example.alexandr.megaquiz.quizStorage;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by Alexandr Mikhalev on 11.09.2018.
@@ -10,15 +9,16 @@ import java.util.Map;
  */
 public interface QuizStorageContract {
     interface Interactor {
-        List<String> getCategoriesNames();
-
-        Map<String, Integer> getMapOfNamesAndSizeCategory();
+        List<QuizStorageItem> getListOfStorageItem();
+        List<QuizStorageItem> getListOfStorageItemWithoutEmpty();
     }
 
     interface Presenter {
-        List<String> getCategoriesNamesForView();
+        List<QuizStorageItem> getCategoriesNamesForView();
+        List<QuizStorageItem> getCategoriesNamesForViewWithoutEmpty();
 
         void onClick(String key);
+
     }
 
     interface View {

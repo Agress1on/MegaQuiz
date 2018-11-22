@@ -1,6 +1,7 @@
 package com.example.alexandr.megaquiz.quizStorage;
 
 import android.support.annotation.NonNull;
+import android.support.v7.util.DiffUtil;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -20,16 +21,14 @@ import java.util.Map;
  * @author Alexandr Mikhalev
  */
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> {
-    private List<String> mCategoriesNames;
-    private Map<String, Integer> mMapOfNamesAndSize;
+    private List<QuizStorageItem> mCategoriesNames;
     OnItemClickListener mOnItemClickListener;
     private final static int VIEW_ITEM_FIRST = 0;
     private final static int VIEW_ITEM_SECOND = 1;
 
 
-    public RecyclerAdapter(List<String> categoriesNames, OnItemClickListener onItemClickListener) {
+    public RecyclerAdapter(List<QuizStorageItem> categoriesNames, OnItemClickListener onItemClickListener) {
         mCategoriesNames = categoriesNames;
-        mMapOfNamesAndSize = new QuizStorageInteractor(new BankQuestion()).getMapOfNamesAndSizeCategory();
         mOnItemClickListener = onItemClickListener;
     }
 
@@ -55,14 +54,20 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerAdapter.ViewHolder holder, int position) {
-        holder.mTVName.setText(mCategoriesNames.get(position));
+        holder.mTVName.setText(mCategoriesNames.get(position).getNameOfItem());
         holder.mTVPosition.setText(String.valueOf(position + 1));
+        holder.mTVQuantityQuestionOfQuiz.setText(String.valueOf(mCategoriesNames.get(position).getCategorySize()));
+        holder.mCatName = mCategoriesNames.get(position).getNameOfItem();
+
+        /*
         for (Map.Entry<String, Integer> entry : mMapOfNamesAndSize.entrySet()) {
             if (mCategoriesNames.get(position).equals(entry.getKey())) {
                 holder.mTVQuantityQuestionOfQuiz.setText(String.valueOf(entry.getValue()));
                 holder.mCatName = entry.getKey();
             }
         }
+        */
+
     }
 
     @Override
@@ -109,9 +114,17 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
         private boolean checkEmptyCategory(String categoryName) {
             int categorySize = 0;
+
+            for (QuizStorageItem quizStorageItem : mCategoriesNames) {
+                if (quizStorageItem.getNameOfItem().equals(categoryName)) categorySize = quizStorageItem.getCategorySize();
+            }
+
+            /*
             for (Map.Entry<String, Integer> entry : mMapOfNamesAndSize.entrySet()) {
                 if (entry.getKey().equals(categoryName)) categorySize = entry.getValue();
             }
+            */
+
             return categorySize > 0;
         }
     }
