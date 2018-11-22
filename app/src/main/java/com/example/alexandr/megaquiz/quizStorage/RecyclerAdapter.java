@@ -32,6 +32,14 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         mOnItemClickListener = onItemClickListener;
     }
 
+    public List<QuizStorageItem> getData() {
+        return mCategoriesNames;
+    }
+
+    public void setData(List<QuizStorageItem> categoriesNames) {
+        mCategoriesNames = categoriesNames;
+    }
+
     @Override
     public int getItemViewType(int position) {
         return position % 2 == 0 ? VIEW_ITEM_FIRST : VIEW_ITEM_SECOND;

@@ -31,8 +31,10 @@ public class QuizStorageView extends AppCompatActivity implements QuizStorageCon
     private TextView mQuantityTV;
 
     private RecyclerView mRecyclerView;
-    private RecyclerView.Adapter mAdapter;
+   // private RecyclerView.Adapter mAdapter;
+    private RecyclerAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -57,11 +59,22 @@ public class QuizStorageView extends AppCompatActivity implements QuizStorageCon
             @Override
             public void onClick(View view) {
                 //Toast.makeText(getApplicationContext(), "CLAC", Toast.LENGTH_SHORT).show();
+                    if (mCheckBox.isChecked()) {
+                        RecyclerAdapterDiffUtilCallback recyclerAdapterDiffUtilCallback =
+                                new RecyclerAdapterDiffUtilCallback(mAdapter.getData(), mPresenter.getCategoriesNamesForViewWithoutEmpty());
+                        DiffUtil.DiffResult recyclerDiffResult = DiffUtil.calculateDiff(recyclerAdapterDiffUtilCallback);
 
-                    RecyclerAdapterDiffUtilCallback recyclerAdapterDiffUtilCallback = new RecyclerAdapterDiffUtilCallback(mPresenter.getCategoriesNamesForView(), mPresenter.getCategoriesNamesForViewWithoutEmpty());
-                    DiffUtil.DiffResult recyclerDiffResult = DiffUtil.calculateDiff(recyclerAdapterDiffUtilCallback);
+                        mAdapter.setData(mPresenter.getCategoriesNamesForViewWithoutEmpty());
+                        recyclerDiffResult.dispatchUpdatesTo(mAdapter);
+                    } else {
+                        RecyclerAdapterDiffUtilCallback recyclerAdapterDiffUtilCallback =
+                                new RecyclerAdapterDiffUtilCallback(mAdapter.getData(), mPresenter.getCategoriesNamesForView());
+                        DiffUtil.DiffResult recyclerDiffResult = DiffUtil.calculateDiff(recyclerAdapterDiffUtilCallback);
 
-                    recyclerDiffResult.dispatchUpdatesTo(mAdapter);
+                        mAdapter.setData(mPresenter.getCategoriesNamesForView());
+                        recyclerDiffResult.dispatchUpdatesTo(mAdapter);
+                    }
+
 
             }
         });

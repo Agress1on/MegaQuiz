@@ -1,5 +1,6 @@
 package com.example.alexandr.megaquiz.quizStorage;
 
+import android.support.annotation.Nullable;
 import android.support.v7.util.DiffUtil;
 
 import java.util.List;
@@ -30,15 +31,22 @@ public class RecyclerAdapterDiffUtilCallback extends DiffUtil.Callback {
 
     @Override
     public boolean areItemsTheSame(int oldItemPosition, int newItemPosition) {
+
+        /*
         QuizStorageItem oldStorage = oldList.get(oldItemPosition);
         QuizStorageItem newStorage = newList.get(newItemPosition);
         return oldStorage.getCategorySize() == newStorage.getCategorySize();
+        */
+
+
         /*
         QuizStorageItem oldStorage = oldList.get(oldItemPosition);
         QuizStorageItem newStorage = newList.get(newItemPosition);
         return oldStorage.getNameOfItem().equals(newStorage.getNameOfItem());
         */
-
+        QuizStorageItem oldStorage = oldList.get(oldItemPosition);
+        QuizStorageItem newStorage = newList.get(newItemPosition);
+        return oldStorage == newStorage;
     }
 
     @Override
@@ -51,6 +59,7 @@ public class RecyclerAdapterDiffUtilCallback extends DiffUtil.Callback {
         */
         QuizStorageItem oldStorage = oldList.get(oldItemPosition);
         QuizStorageItem newStorage = newList.get(newItemPosition);
-        return oldStorage.getNameOfItem().equals(newStorage.getNameOfItem());
+        return oldStorage.getNameOfItem().equals(newStorage.getNameOfItem())
+                && oldStorage.getCategorySize() == newStorage.getCategorySize();
     }
 }
