@@ -13,6 +13,8 @@
         android:layout_marginStart="10dp"
         android:text="1"
         android:textSize="28dp"
+        android:textStyle="bold"
+        android:textColor="@color/colorDarkRed"
         app:layout_constraintStart_toStartOf="parent" />
 
     <TextView
@@ -22,6 +24,8 @@
         android:layout_marginLeft="10dp"
         android:text="EXAMPLE"
         android:textSize="20dp"
+        android:textStyle="bold"
+        android:textColor="@color/colorDarkRed"
         app:layout_constraintBottom_toBottomOf="@id/position_item_recycler"
         app:layout_constraintStart_toEndOf="@id/position_item_recycler" />
 
@@ -33,6 +37,7 @@
         android:layout_marginRight="20dp"
         android:text="Кол-во вопросов"
         android:textSize="20dp"
+        android:textColor="@color/colorDarkRed"
         app:layout_constraintBottom_toBottomOf="@id/number_quantity_item_recycler"
         app:layout_constraintEnd_toStartOf="@id/number_quantity_item_recycler" />
 
@@ -43,6 +48,8 @@
         android:layout_marginRight="10dp"
         android:text="5"
         android:textSize="20dp"
+        android:textStyle="bold"
+        android:textColor="@color/colorDarkRed"
         app:layout_constraintBottom_toBottomOf="@id/name_item_recycler"
         app:layout_constraintEnd_toEndOf="parent" />
 </android.support.constraint.ConstraintLayout>
