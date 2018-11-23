@@ -97,18 +97,18 @@
         android:layout_width="1dp"
         android:layout_height="0dp"
         android:background="@color/DarkOliveGreen"
-        app:layout_constraintStart_toEndOf="@id/guideline1"
-        app:layout_constraintTop_toTopOf="@id/separator_horizontal_1"
         app:layout_constraintBottom_toTopOf="@id/separator_horizontal_2"
-        />
+        app:layout_constraintStart_toEndOf="@id/guideline1"
+        app:layout_constraintTop_toTopOf="@id/separator_horizontal_1" />
+
     <View
         android:id="@+id/separator_vertical_2"
         android:layout_width="1dp"
         android:layout_height="0dp"
         android:background="@color/DarkOliveGreen"
+        app:layout_constraintBottom_toTopOf="@id/separator_horizontal_2"
         app:layout_constraintStart_toEndOf="@id/guideline2"
-        app:layout_constraintTop_toTopOf="@id/separator_horizontal_1"
-        app:layout_constraintBottom_toTopOf="@id/separator_horizontal_2"/>
+        app:layout_constraintTop_toTopOf="@id/separator_horizontal_1" />
 
 
     <android.support.v7.widget.RecyclerView
