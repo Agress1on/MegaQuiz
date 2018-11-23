@@ -27,6 +27,7 @@
         android:textColor="@color/LemonChiffon"
         android:textSize="20dp"
         android:textStyle="bold"
+        app:layout_constraintTop_toTopOf="@id/position_item_recycler"
         app:layout_constraintBottom_toBottomOf="@id/position_item_recycler"
         app:layout_constraintStart_toEndOf="@id/position_item_recycler" />
 
