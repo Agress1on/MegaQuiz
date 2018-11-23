@@ -4,25 +4,27 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent">
 
-    <CheckBox
-        android:id="@+id/checkbox"
+    <Switch
+        android:id="@+id/list_switch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:checked="false"
-        app:layout_constraintBottom_toBottomOf="@id/text_for_checkbox"
-        app:layout_constraintEnd_toStartOf="@id/text_for_checkbox"
-        app:layout_constraintTop_toTopOf="@id/text_for_checkbox" />
+        android:layout_marginTop="10dp"
+        android:layout_marginEnd="10dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        />
 
     <TextView
-        android:id="@+id/text_for_checkbox"
+        android:id="@+id/text_for_switch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
         android:text="Показать пустые категории"
-        android:textSize="20sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        android:textSize="15sp"
+        android:layout_marginEnd="10dp"
+        app:layout_constraintEnd_toStartOf="@id/list_switch"
+        app:layout_constraintTop_toTopOf="@id/list_switch"
+        app:layout_constraintBottom_toBottomOf="@id/list_switch"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/my_recycler"
@@ -33,7 +35,7 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/checkbox">
+        app:layout_constraintTop_toBottomOf="@id/list_switch">
     </android.support.v7.widget.RecyclerView>
 
 </android.support.constraint.ConstraintLayout>

@@ -8,8 +8,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.util.DiffUtil;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.widget.CheckBox;
-import android.widget.CompoundButton;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import com.example.alexandr.megaquiz.R;
@@ -30,9 +29,9 @@ import butterknife.OnCheckedChanged;
 public class QuizStorageView extends AppCompatActivity implements QuizStorageContract.View {
     private QuizStorageContract.Presenter mPresenter;
 
-    @BindView(R.id.checkbox)
-    CheckBox mCheckBox;
-    @BindView(R.id.text_for_checkbox)
+    @BindView(R.id.list_switch)
+    Switch mSwitch;
+    @BindView(R.id.text_for_switch)
     TextView mTextView;
 
     private RecyclerView mRecyclerView;
@@ -76,8 +75,8 @@ public class QuizStorageView extends AppCompatActivity implements QuizStorageCon
         mTextView.setText(text);
     }
 
-    @OnCheckedChanged({R.id.checkbox})
-    void onSelected(CompoundButton button, boolean checked) {
+    @OnCheckedChanged({R.id.list_switch})
+    void onSelected(Switch button, boolean checked) {
         mPresenter.onCheckBoxClick(checked);
     }
 }
