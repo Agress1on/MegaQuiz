@@ -21,12 +21,4 @@ public class Question {
     public boolean isTrueAnswer() {
         return mTrueAnswer;
     }
-
-    public void setQuestion(String question) {
-        mQuestion = question;
-    }
-
-    public void setTrueAnswer(boolean trueAnswer) {
-        mTrueAnswer = trueAnswer;
-    }
 }

@@ -40,21 +40,6 @@ public class StartView extends AppCompatActivity implements StartContract.View {
         return intent;
     }
 
-    @OnClick({R.id.btn_randomQuiz, R.id.btn_category, R.id.btn_test_general_questions})
-    void onClick(android.view.View view) {
-        switch (view.getId()) {
-            case R.id.btn_randomQuiz:
-                mPresenter.onRandomButton();
-                break;
-            case R.id.btn_category:
-                mPresenter.onButtonCategory();
-                break;
-            case R.id.btn_test_general_questions:
-                mPresenter.onButtonGeneralQuestionsTest();
-                break;
-        }
-    }
-
     @Override
     public void startQuizViewWithRandom(String randomCategory) {
         Intent intent = QuizView.getIntent(StartView.this, randomCategory);
@@ -71,5 +56,20 @@ public class StartView extends AppCompatActivity implements StartContract.View {
     public void startTestGeneralQuestions() {
         Intent intent = QuizView.getIntent(StartView.this, Constants.GENERAL_QUESTIONS);
         startActivity(intent);
+    }
+
+    @OnClick({R.id.btn_randomQuiz, R.id.btn_category, R.id.btn_test_general_questions})
+    void onClick(android.view.View view) {
+        switch (view.getId()) {
+            case R.id.btn_randomQuiz:
+                mPresenter.onRandomButton();
+                break;
+            case R.id.btn_category:
+                mPresenter.onButtonCategory();
+                break;
+            case R.id.btn_test_general_questions:
+                mPresenter.onButtonGeneralQuestionsTest();
+                break;
+        }
     }
 }

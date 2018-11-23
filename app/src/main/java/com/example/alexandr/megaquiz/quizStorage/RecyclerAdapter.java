@@ -63,16 +63,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         holder.mTVPosition.setText(String.valueOf(mCategoriesNames.get(position).getPosition()));
         holder.mTVQuantityQuestionOfQuiz.setText(String.valueOf(mCategoriesNames.get(position).getCategorySize()));
         holder.mCatName = mCategoriesNames.get(position).getNameOfItem();
-
-        /*
-        for (Map.Entry<String, Integer> entry : mMapOfNamesAndSize.entrySet()) {
-            if (mCategoriesNames.get(position).equals(entry.getKey())) {
-                holder.mTVQuantityQuestionOfQuiz.setText(String.valueOf(entry.getValue()));
-                holder.mCatName = entry.getKey();
-            }
-        }
-        */
-
     }
 
     @Override
@@ -88,9 +78,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
         TextView mTVPosition;
         //   @BindView(R.id.quantity_item_recycler)
         TextView mTVQuantity;
-
         //   @BindView(R.id.number_quantity_item_recycler)
-
         TextView mTVQuantityQuestionOfQuiz;
 
         public String mCatName;
@@ -124,13 +112,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
                 if (quizStorageItem.getNameOfItem().equals(categoryName))
                     categorySize = quizStorageItem.getCategorySize();
             }
-
-            /*
-            for (Map.Entry<String, Integer> entry : mMapOfNamesAndSize.entrySet()) {
-                if (entry.getKey().equals(categoryName)) categorySize = entry.getValue();
-            }
-            */
-
             return categorySize > 0;
         }
     }

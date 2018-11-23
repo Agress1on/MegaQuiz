@@ -30,19 +30,6 @@ public class RecyclerAdapterDiffUtilCallback extends DiffUtil.Callback {
 
     @Override
     public boolean areItemsTheSame(int oldItemPosition, int newItemPosition) {
-
-        /*
-        QuizStorageItem oldStorage = oldList.get(oldItemPosition);
-        QuizStorageItem newStorage = newList.get(newItemPosition);
-        return oldStorage.getCategorySize() == newStorage.getCategorySize();
-        */
-
-
-        /*
-        QuizStorageItem oldStorage = oldList.get(oldItemPosition);
-        QuizStorageItem newStorage = newList.get(newItemPosition);
-        return oldStorage.getNameOfItem().equals(newStorage.getNameOfItem());
-        */
         QuizStorageItem oldStorage = oldList.get(oldItemPosition);
         QuizStorageItem newStorage = newList.get(newItemPosition);
         return oldStorage.getPosition() == newStorage.getPosition();
@@ -50,12 +37,6 @@ public class RecyclerAdapterDiffUtilCallback extends DiffUtil.Callback {
 
     @Override
     public boolean areContentsTheSame(int oldItemPosition, int newItemPosition) {
-
-        /*
-        QuizStorageItem oldStorage = oldList.get(oldItemPosition);
-        QuizStorageItem newStorage = newList.get(newItemPosition);
-        return oldStorage.getCategorySize() == newStorage.getCategorySize();
-        */
         QuizStorageItem oldStorage = oldList.get(oldItemPosition);
         QuizStorageItem newStorage = newList.get(newItemPosition);
         return oldStorage.getNameOfItem().equals(newStorage.getNameOfItem())

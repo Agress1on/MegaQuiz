@@ -18,7 +18,6 @@ public class Quiz extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-
         sComponent = DaggerQuizComponent.builder().quizPresenterModule(new QuizPresenterModule(new QuizView())).build();
     }
 

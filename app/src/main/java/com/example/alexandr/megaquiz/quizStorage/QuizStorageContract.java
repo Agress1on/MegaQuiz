@@ -10,19 +10,21 @@ import java.util.List;
 public interface QuizStorageContract {
     interface Interactor {
         List<QuizStorageItem> getListOfStorageItem();
+
         List<QuizStorageItem> getListOfStorageItemWithoutEmpty();
     }
 
     interface Presenter {
-        List<QuizStorageItem> getCategoriesNamesForView();
         List<QuizStorageItem> getCategoriesNamesForViewWithoutEmpty();
 
         void onCheckBoxClick(boolean isChecked);
+
         void onClick(String key);
     }
 
     interface View {
         void startActivityQuizView(String key);
+
         void updateUI(List<QuizStorageItem> list, String text);
     }
 }
