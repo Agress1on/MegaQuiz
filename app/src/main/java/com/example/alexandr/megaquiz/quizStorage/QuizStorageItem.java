@@ -6,12 +6,14 @@ package com.example.alexandr.megaquiz.quizStorage;
  * @author Alexandr Mikhalev
  */
 public class QuizStorageItem {
+    private int mPosition;
     private String mNameOfItem;
     private int mCategorySize;
 
-    public QuizStorageItem(String nameOfItem, int categorySize) {
-        mNameOfItem = nameOfItem;
-        mCategorySize = categorySize;
+    public QuizStorageItem(int position, String nameOfItem, int categorySize) {
+        this.mPosition = position;
+        this.mNameOfItem = nameOfItem;
+        this.mCategorySize = categorySize;
     }
 
     public String getNameOfItem() {
@@ -20,5 +22,9 @@ public class QuizStorageItem {
 
     public int getCategorySize() {
         return mCategorySize;
+    }
+
+    public int getPosition() {
+        return mPosition;
     }
 }

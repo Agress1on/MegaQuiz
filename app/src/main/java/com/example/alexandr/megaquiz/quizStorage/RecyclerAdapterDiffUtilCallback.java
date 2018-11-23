@@ -45,7 +45,7 @@ public class RecyclerAdapterDiffUtilCallback extends DiffUtil.Callback {
         */
         QuizStorageItem oldStorage = oldList.get(oldItemPosition);
         QuizStorageItem newStorage = newList.get(newItemPosition);
-        return oldStorage == newStorage;
+        return oldStorage.getPosition() == newStorage.getPosition();
     }
 
     @Override
@@ -59,6 +59,6 @@ public class RecyclerAdapterDiffUtilCallback extends DiffUtil.Callback {
         QuizStorageItem oldStorage = oldList.get(oldItemPosition);
         QuizStorageItem newStorage = newList.get(newItemPosition);
         return oldStorage.getNameOfItem().equals(newStorage.getNameOfItem())
-                && oldStorage.getCategorySize() == newStorage.getCategorySize();
+                && oldStorage.getCategorySize() == newStorage.getCategorySize() && oldStorage.getPosition() == newStorage.getPosition();
     }
 }

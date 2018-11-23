@@ -23,8 +23,10 @@ public class QuizStorageInteractor implements QuizStorageContract.Interactor {
 
     private List<QuizStorageItem> initCategoriesNames() {
         List<QuizStorageItem> list = new ArrayList<>();
+        int position = 0;
         for (Map.Entry<String, List<Question>> entry : mBankQuestions.entrySet()) {
-            QuizStorageItem item = new QuizStorageItem(entry.getKey(), entry.getValue().size());
+            position++;
+            QuizStorageItem item = new QuizStorageItem(position,entry.getKey(), entry.getValue().size());
             list.add(item);
         }
         return list;

@@ -15,7 +15,7 @@ import java.util.TreeMap;
 public class BankQuestion {
     private List<Question> mGeneralQuestions = new ArrayList<>();
     private List<Question> mHistoryQuestions = new ArrayList<>();
-    private List<Question> mGeographyQuestions = new ArrayList<>();
+    private List<Question> mEconomicQuestions = new ArrayList<>();
     private List<Question> mNatureQuestions = new ArrayList<>();
     private Map<String, List<Question>> mBankQuestion = new TreeMap();
 
@@ -32,11 +32,11 @@ public class BankQuestion {
 
         mBankQuestion.put(Constants.GENERAL_QUESTIONS, mGeneralQuestions);
         mBankQuestion.put(Constants.HISTORY_QUESTIONS, mHistoryQuestions);
-        mBankQuestion.put(Constants.GEOGRAPHY_QUESTIONS, mGeographyQuestions);
+        mBankQuestion.put(Constants.ECONOMIC_QUESTIONS, mEconomicQuestions);
         mBankQuestion.put(Constants.NATURE_QUESTIONS, mNatureQuestions);
 
         for (int i = 0; i < 11; i++) {
-            mBankQuestion.put(i + " category", new ArrayList<>());
+            mBankQuestion.put("Пустая " + i, new ArrayList<>());
         }
     }
 

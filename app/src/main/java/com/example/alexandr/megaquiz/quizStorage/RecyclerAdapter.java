@@ -60,7 +60,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     @Override
     public void onBindViewHolder(@NonNull RecyclerAdapter.ViewHolder holder, int position) {
         holder.mTVName.setText(mCategoriesNames.get(position).getNameOfItem());
-        holder.mTVPosition.setText(String.valueOf(position + 1));
+        holder.mTVPosition.setText(String.valueOf(mCategoriesNames.get(position).getPosition()));
         holder.mTVQuantityQuestionOfQuiz.setText(String.valueOf(mCategoriesNames.get(position).getCategorySize()));
         holder.mCatName = mCategoriesNames.get(position).getNameOfItem();
 
