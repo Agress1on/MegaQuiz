@@ -17,11 +17,12 @@ public interface QuizStorageContract {
         List<QuizStorageItem> getCategoriesNamesForView();
         List<QuizStorageItem> getCategoriesNamesForViewWithoutEmpty();
 
+        void onCheckBoxClick(boolean isChecked);
         void onClick(String key);
-
     }
 
     interface View {
         void startActivityQuizView(String key);
+        void updateUI(List<QuizStorageItem> list, String text);
     }
 }

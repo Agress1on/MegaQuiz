@@ -27,6 +27,20 @@ public class QuizStoragePresenter implements QuizStorageContract.Presenter {
     }
 
     @Override
+    public void onCheckBoxClick(boolean isChecked) {
+        List<QuizStorageItem> list;
+        String text;
+        if (isChecked) {
+            list = mInteractor.getListOfStorageItemWithoutEmpty();
+            text = "Показать пустые категории";
+        } else {
+            list = mInteractor.getListOfStorageItem();
+            text = "Скрыть пустые категории";
+        }
+        mView.updateUI(list, text);
+    }
+
+    @Override
     public void onClick(String key) {
         mView.startActivityQuizView(key);
     }

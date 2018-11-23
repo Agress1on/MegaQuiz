@@ -20,15 +20,6 @@
         app:layout_constraintStart_toEndOf="@id/checkbox"
         app:layout_constraintTop_toTopOf="@id/checkbox"
         app:layout_constraintBottom_toBottomOf="@id/checkbox"/>
-    <TextView
-        android:id="@+id/quantity_empty"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:textSize="20sp"
-        android:text="0"
-        android:layout_marginEnd="10dp"
-        app:layout_constraintBottom_toBottomOf="@id/text_for_checkbox"
-        app:layout_constraintEnd_toEndOf="parent"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/my_recycler"

@@ -1,7 +1,6 @@
 package com.example.alexandr.megaquiz.quizStorage;
 
 import android.support.annotation.NonNull;
-import android.support.v7.util.DiffUtil;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -10,10 +9,8 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.alexandr.megaquiz.R;
-import com.example.alexandr.megaquiz.bankQuestion.BankQuestion;
 
 import java.util.List;
-import java.util.Map;
 
 /**
  * Created by Alexandr Mikhalev on 25.09.2018.
@@ -124,7 +121,8 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
             int categorySize = 0;
 
             for (QuizStorageItem quizStorageItem : mCategoriesNames) {
-                if (quizStorageItem.getNameOfItem().equals(categoryName)) categorySize = quizStorageItem.getCategorySize();
+                if (quizStorageItem.getNameOfItem().equals(categoryName))
+                    categorySize = quizStorageItem.getCategorySize();
             }
 
             /*

@@ -8,8 +8,8 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.util.DiffUtil;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.view.View;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.TextView;
 
 import com.example.alexandr.megaquiz.R;
@@ -17,6 +17,10 @@ import com.example.alexandr.megaquiz.bankQuestion.BankQuestion;
 import com.example.alexandr.megaquiz.quiz.QuizView;
 
 import java.util.List;
+
+import butterknife.BindView;
+import butterknife.ButterKnife;
+import butterknife.OnCheckedChanged;
 
 /**
  * Created by Alexandr Mikhalev on 11.09.2018.
@@ -26,58 +30,29 @@ import java.util.List;
 public class QuizStorageView extends AppCompatActivity implements QuizStorageContract.View {
     private QuizStorageContract.Presenter mPresenter;
 
-    private CheckBox mCheckBox;
-    private TextView mTextView;
-    private TextView mQuantityTV;
+    @BindView(R.id.checkbox)
+    CheckBox mCheckBox;
+    @BindView(R.id.text_for_checkbox)
+    TextView mTextView;
 
     private RecyclerView mRecyclerView;
-   // private RecyclerView.Adapter mAdapter;
+    // private RecyclerView.Adapter mAdapter;
     private RecyclerAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
-
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz_storage);
-
-        mCheckBox = (CheckBox) findViewById(R.id.checkbox);
-        mTextView = (TextView) findViewById(R.id.text_for_checkbox);
-        mQuantityTV = (TextView) findViewById(R.id.quantity_empty);
-
+        ButterKnife.bind(this);
 
         mPresenter = new QuizStoragePresenter(this, new QuizStorageInteractor(new BankQuestion()));
-        mQuantityTV.setText(String.valueOf(mPresenter.getCategoriesNamesForViewWithoutEmpty().size()));
         List<QuizStorageItem> mCat = mPresenter.getCategoriesNamesForView();
         mRecyclerView = (RecyclerView) findViewById(R.id.my_recycler);
         mLayoutManager = new LinearLayoutManager(this); // XMMMMM
         mRecyclerView.setLayoutManager(mLayoutManager);
         mAdapter = new RecyclerAdapter(mCat, key -> mPresenter.onClick(key));
         mRecyclerView.setAdapter(mAdapter);
-
-        mCheckBox.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                //Toast.makeText(getApplicationContext(), "CLAC", Toast.LENGTH_SHORT).show();
-                    if (mCheckBox.isChecked()) {
-                        RecyclerAdapterDiffUtilCallback recyclerAdapterDiffUtilCallback =
-                                new RecyclerAdapterDiffUtilCallback(mAdapter.getData(), mPresenter.getCategoriesNamesForViewWithoutEmpty());
-                        DiffUtil.DiffResult recyclerDiffResult = DiffUtil.calculateDiff(recyclerAdapterDiffUtilCallback);
-
-                        mAdapter.setData(mPresenter.getCategoriesNamesForViewWithoutEmpty());
-                        recyclerDiffResult.dispatchUpdatesTo(mAdapter);
-                    } else {
-                        RecyclerAdapterDiffUtilCallback recyclerAdapterDiffUtilCallback =
-                                new RecyclerAdapterDiffUtilCallback(mAdapter.getData(), mPresenter.getCategoriesNamesForView());
-                        DiffUtil.DiffResult recyclerDiffResult = DiffUtil.calculateDiff(recyclerAdapterDiffUtilCallback);
-
-                        mAdapter.setData(mPresenter.getCategoriesNamesForView());
-                        recyclerDiffResult.dispatchUpdatesTo(mAdapter);
-                    }
-
-
-            }
-        });
     }
 
     public static Intent getIntent(Context context) {
@@ -89,5 +64,20 @@ public class QuizStorageView extends AppCompatActivity implements QuizStorageCon
     public void startActivityQuizView(String key) {
         Intent intent = QuizView.getIntent(QuizStorageView.this, key);
         startActivity(intent);
+    }
+
+    @Override
+    public void updateUI(List<QuizStorageItem> list, String text) {
+        RecyclerAdapterDiffUtilCallback recyclerAdapterDiffUtilCallback =
+                new RecyclerAdapterDiffUtilCallback(mAdapter.getData(), list);
+        DiffUtil.DiffResult recyclerDiffResult = DiffUtil.calculateDiff(recyclerAdapterDiffUtilCallback);
+        mAdapter.setData(list);
+        recyclerDiffResult.dispatchUpdatesTo(mAdapter);
+        mTextView.setText(text);
+    }
+
+    @OnCheckedChanged({R.id.checkbox})
+    void onSelected(CompoundButton button, boolean checked) {
+        mPresenter.onCheckBoxClick(checked);
     }
 }
