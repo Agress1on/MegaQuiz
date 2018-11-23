@@ -41,5 +41,4 @@ public class QuizStoragePresenter implements QuizStorageContract.Presenter {
     public void onClick(String key) {
         mView.startActivityQuizView(key);
     }
-
 }
