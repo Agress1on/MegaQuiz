@@ -3,55 +3,71 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
-    android:background="@color/colorDarkRed"
-    android:paddingTop="10dp"
-    android:paddingBottom="10dp">
+    android:background="@color/LemonChiffon">
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.2" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.7" />
+
+    <View
+        android:id="@+id/separator_vertical_12"
+        android:layout_width="1dp"
+        android:layout_height="0dp"
+        android:background="@color/DarkOliveGreen"
+        app:layout_constraintStart_toStartOf="@id/guideline1"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+    <View
+        android:layout_width="1dp"
+        android:layout_height="0dp"
+        android:background="@color/DarkOliveGreen"
+        app:layout_constraintStart_toStartOf="@id/guideline2"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
     <TextView
         android:id="@+id/position_item_recycler"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="10dp"
         android:text="1"
-        android:textColor="@color/LemonChiffon"
-        android:textSize="28dp"
+        android:textColor="@color/colorBlack"
+        android:textSize="28sp"
         android:textStyle="bold"
-        app:layout_constraintStart_toStartOf="parent" />
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/guideline1"/>
 
     <TextView
         android:id="@+id/name_item_recycler"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="10dp"
         android:text="EXAMPLE"
-        android:textColor="@color/LemonChiffon"
-        android:textSize="20dp"
+        android:textColor="@color/colorBlack"
+        android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintTop_toTopOf="@id/position_item_recycler"
         app:layout_constraintBottom_toBottomOf="@id/position_item_recycler"
-        app:layout_constraintStart_toEndOf="@id/position_item_recycler" />
-
-    <TextView
-        android:id="@+id/quantity_item_recycler"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:text="Кол-во вопросов"
-        android:textColor="@color/LemonChiffon"
-        android:textSize="20dp"
-        app:layout_constraintBottom_toBottomOf="@id/number_quantity_item_recycler"
-        app:layout_constraintEnd_toStartOf="@id/number_quantity_item_recycler" />
+        app:layout_constraintStart_toStartOf="@id/guideline1"
+        app:layout_constraintEnd_toEndOf="@id/guideline2"/>
 
     <TextView
         android:id="@+id/number_quantity_item_recycler"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginRight="10dp"
         android:text="5"
-        android:textColor="@color/LemonChiffon"
-        android:textSize="20dp"
+        android:textColor="@color/colorBlack"
+        android:textSize="20sp"
         android:textStyle="bold"
         app:layout_constraintBottom_toBottomOf="@id/name_item_recycler"
-        app:layout_constraintEnd_toEndOf="parent" />
+        app:layout_constraintStart_toStartOf="@id/guideline2"
+        app:layout_constraintEnd_toEndOf="parent"/>
 </android.support.constraint.ConstraintLayout>

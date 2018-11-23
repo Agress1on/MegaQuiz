@@ -88,7 +88,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
             mTVName = (TextView) v.findViewById(R.id.name_item_recycler);
             mTVPosition = (TextView) v.findViewById(R.id.position_item_recycler);
-            mTVQuantity = (TextView) v.findViewById(R.id.quantity_item_recycler);
             mTVQuantityQuestionOfQuiz = (TextView) v.findViewById(R.id.number_quantity_item_recycler);
             //      ButterKnife.bind(v);
 
