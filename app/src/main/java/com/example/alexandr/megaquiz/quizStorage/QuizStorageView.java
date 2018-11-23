@@ -47,7 +47,7 @@ public class QuizStorageView extends AppCompatActivity implements QuizStorageCon
         ButterKnife.bind(this);
 
         mPresenter = new QuizStoragePresenter(this, new QuizStorageInteractor(new BankQuestion()));
-        List<QuizStorageItem> mCat = mPresenter.getCategoriesNamesForView();
+        List<QuizStorageItem> mCat = mPresenter.getCategoriesNamesForViewWithoutEmpty();
         mRecyclerView = (RecyclerView) findViewById(R.id.my_recycler);
         mLayoutManager = new LinearLayoutManager(this); // XMMMMM
         mRecyclerView.setLayoutManager(mLayoutManager);

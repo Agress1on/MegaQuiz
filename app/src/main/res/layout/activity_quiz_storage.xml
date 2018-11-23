@@ -8,6 +8,7 @@
         android:id="@+id/checkbox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:checked="false"
         android:layout_marginTop="10dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -15,7 +16,7 @@
         android:id="@+id/text_for_checkbox"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:text="Скрыть пустые категории"
+        android:text="Показать пустые категории"
         android:textSize="20sp"
         app:layout_constraintStart_toEndOf="@id/checkbox"
         app:layout_constraintTop_toTopOf="@id/checkbox"
