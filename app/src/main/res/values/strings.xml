@@ -9,7 +9,10 @@
     <string name="for_category_name">Название категории:</string>
     <string name="for_quiz_size">Всего вопросов:</string>
     <string name="for_number_of_question">Номер вопроса:</string>
-    <string name="number_header">№ "\n" опроса</string>
-    <string name="name_category_header">Название "\n" категории</string>
-    <string name="quiz_size_header">Количество "\n" вопросов</string>
+    <string name="number_header">№"\n"опроса</string>
+    <string name="name_category_header">Название"\n"категории</string>
+    <string name="quiz_size_header">Количество"\n"вопросов</string>
+    <string name="for_restart_button">Пройти"\n"заново</string>
+    <string name="for_go_to_QS_button">Вернуться"\n"к списку</string>
+    <string name="for_go_to_start_button">На главный"\n"экран</string>
 </resources>

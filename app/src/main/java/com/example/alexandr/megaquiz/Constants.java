@@ -11,5 +11,6 @@ public class Constants {
     public static final String ECONOMIC_QUESTIONS = "Экономика";
     public static final String NATURE_QUESTIONS = "Природа";
 
-    public static final String EXTRAS_FOR_INTENT_QUIZ_VIEW = "FOR_KEY_FROM_QUIZ_VIEW";
+    public static final String EXTRAS_FOR_INTENT_QUIZ_VIEW = "KEY_FOR_QUIZ_VIEW";
+    public static final String EXTRAS_FOR_INTENT_QUIZ_RESULT = "KEY_FOR_QUIZ_RESULT";
 }
