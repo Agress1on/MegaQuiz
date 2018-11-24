@@ -51,7 +51,7 @@ public class QuizPresenter implements QuizContract.Presenter {
     @Override
     public void onPrevButton() {
         int newIndex = (getCurrentIndex() - 1) % mQuestions.size();
-        if (newIndex < 0) newIndex = 0;
+        if (newIndex < 0) newIndex = mQuestions.size() - 1;
         setCurrentIndex(newIndex);
         mView.setQuestionTextView(mQuestions.get(mCurrentIndex));
         questionNumberCounter();
