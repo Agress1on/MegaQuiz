@@ -102,17 +102,16 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
         @Override
         public void onClick(View view) {
-            String toastMessage = "КАТЕГОРИЯ ПУСТАЯ! СКОРО БУДЕТ ДОСТУПНА!";
             if (checkEmptyCategory(mCatName)) {
-                toastMessage = mCatName + " Clicked!";
                 mOnItemClickListener.onClick(mCatName);
+            } else {
+                String toastMessage = "КАТЕГОРИЯ ПУСТАЯ! СКОРО БУДЕТ ДОСТУПНА!";
+                Toast.makeText(view.getContext(), toastMessage, Toast.LENGTH_SHORT).show();
             }
-            Toast.makeText(view.getContext(), toastMessage, Toast.LENGTH_SHORT).show();
         }
 
         private boolean checkEmptyCategory(String categoryName) {
             int categorySize = 0;
-
             for (QuizStorageItem quizStorageItem : mCategoriesNames) {
                 if (quizStorageItem.getNameOfItem().equals(categoryName))
                     categorySize = quizStorageItem.getCategorySize();

@@ -9,6 +9,7 @@ public interface QuizResultContract {
     interface Interactor {
 
     }
+
     interface View {
         void setResultTextView(String text);
     }

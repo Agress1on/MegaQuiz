@@ -82,7 +82,6 @@ public class QuizPresenter implements QuizContract.Presenter {
         int rightAnswers = 0;
         if (mQuestions.size() == mAnswers.size()) {
             rightAnswers = mInteractor.checkQuestions(mAnswers);
-         //   mView.showToast("Опрос закончен. Всего вопросов: " + mQuestions.size() + ". Правильных ответов: " + rightAnswers);
             mView.startQuizResulActivity(mQuestions.size(), rightAnswers);
         }
 

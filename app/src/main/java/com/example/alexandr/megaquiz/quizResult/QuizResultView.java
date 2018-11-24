@@ -46,7 +46,6 @@ public class QuizResultView extends AppCompatActivity implements QuizResultContr
         mNameCategory = intent.getStringExtra(Constants.EXTRAS_FOR_INTENT_QUIZ_RESULT_NAME_CATEGORY);
 
 
-
         mPresenter = new QuizResultPresenter(this, new QuizResultInteractor());
 
         setResultTextView(mPresenter.forResultTextView(mQuizSize, mCorrectAnswers, mNameCategory));

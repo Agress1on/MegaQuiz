@@ -16,7 +16,7 @@ public class QuizResultPresenter implements QuizResultContract.Presenter {
 
     public String forResultTextView(int size, int correctAnswers, String categoryName) {
         String level = "";
-        float percent = (float) ((correctAnswers * 100)/size);
+        float percent = (float) ((correctAnswers * 100) / size);
         if (percent <= 50) {
             level = "плохо";
         } else if (percent > 75 && percent <= 89) {

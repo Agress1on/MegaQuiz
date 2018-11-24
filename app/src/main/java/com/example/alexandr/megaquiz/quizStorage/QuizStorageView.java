@@ -63,6 +63,7 @@ public class QuizStorageView extends AppCompatActivity implements QuizStorageCon
     public void startActivityQuizView(String key) {
         Intent intent = QuizView.getIntent(QuizStorageView.this, key);
         startActivity(intent);
+        finish();
     }
 
     @Override
