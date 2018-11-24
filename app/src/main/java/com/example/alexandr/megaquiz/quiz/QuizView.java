@@ -13,6 +13,7 @@ import android.widget.Toast;
 import com.example.alexandr.megaquiz.Constants;
 import com.example.alexandr.megaquiz.R;
 import com.example.alexandr.megaquiz.app.QuizPresenterModule;
+import com.example.alexandr.megaquiz.quizResult.QuizResultView;
 
 import javax.inject.Inject;
 
@@ -121,6 +122,13 @@ public class QuizView extends AppCompatActivity implements QuizContract.View {
                 mPresenter.onPrevButton();
                 break;
         }
+    }
+
+    @Override
+    public void startQuizResulActivity(int quizSize, int correctAnswers) {
+        Intent intent = QuizResultView.getIntent(this, quizSize, correctAnswers, mCategoryName);
+        startActivity(intent);
+        finish();
     }
 
     public static Intent getIntent(Context context, String key) {

@@ -10,10 +10,10 @@ public interface QuizResultContract {
 
     }
     interface View {
-
+        void setResultTextView(String text);
     }
 
     interface Presenter {
-
+        String forResultTextView(int size, int correctAnswers, String categoryName);
     }
 }

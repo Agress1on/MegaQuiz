@@ -12,5 +12,7 @@ public class Constants {
     public static final String NATURE_QUESTIONS = "Природа";
 
     public static final String EXTRAS_FOR_INTENT_QUIZ_VIEW = "KEY_FOR_QUIZ_VIEW";
-    public static final String EXTRAS_FOR_INTENT_QUIZ_RESULT = "KEY_FOR_QUIZ_RESULT";
+    public static final String EXTRAS_FOR_INTENT_QUIZ_RESULT_QUIZ_SIZE = "KEY_FOR_QUIZ_RESULT_QUIZ_SIZE";
+    public static final String EXTRAS_FOR_INTENT_QUIZ_RESULT_CORRECT_ANSWERS = "KEY_FOR_QUIZ_RESULT_CORRECT_ANSWERS";
+    public static final String EXTRAS_FOR_INTENT_QUIZ_RESULT_NAME_CATEGORY = "KEY_FOR_QUIZ_RESULT_NAME_CATEGORY";
 }

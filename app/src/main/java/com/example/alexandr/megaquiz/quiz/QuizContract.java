@@ -27,6 +27,8 @@ public interface QuizContract {
         void setStaticNumberOfQuestion(String text);
 
         String sentToPresenterChoosenCategory();
+
+        void startQuizResulActivity(int quizSize, int correctAnswers);
     }
 
     interface Presenter {

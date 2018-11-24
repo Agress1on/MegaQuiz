@@ -10,6 +10,9 @@ import android.widget.TextView;
 
 import com.example.alexandr.megaquiz.Constants;
 import com.example.alexandr.megaquiz.R;
+import com.example.alexandr.megaquiz.quiz.QuizView;
+import com.example.alexandr.megaquiz.quizStorage.QuizStorageView;
+import com.example.alexandr.megaquiz.start.StartView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -27,31 +30,56 @@ public class QuizResultView extends AppCompatActivity implements QuizResultContr
     @BindView(R.id.go_to_start_button)
     Button mGoToStartButton;
 
+    private int mQuizSize;
+    private int mCorrectAnswers;
+    private String mNameCategory;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_quiz_result);
         ButterKnife.bind(this);
 
+        Intent intent = getIntent();
+        mQuizSize = intent.getIntExtra(Constants.EXTRAS_FOR_INTENT_QUIZ_RESULT_QUIZ_SIZE, 0);
+        mCorrectAnswers = intent.getIntExtra(Constants.EXTRAS_FOR_INTENT_QUIZ_RESULT_CORRECT_ANSWERS, 0);
+        mNameCategory = intent.getStringExtra(Constants.EXTRAS_FOR_INTENT_QUIZ_RESULT_NAME_CATEGORY);
+
+
+
         mPresenter = new QuizResultPresenter(this, new QuizResultInteractor());
+
+        setResultTextView(mPresenter.forResultTextView(mQuizSize, mCorrectAnswers, mNameCategory));
     }
 
-    public static Intent getIntent(Context context, int quizSize, int correctAnswers) {
+    @Override
+    public void setResultTextView(String text) {
+        mResultTextView.setText(text);
+    }
+
+    public static Intent getIntent(Context context, int quizSize, int correctAnswers, String nameCategory) {
         Intent intent = new Intent(context, QuizResultView.class);
-        intent.putExtra(Constants.EXTRAS_FOR_INTENT_QUIZ_RESULT, quizSize);
-        intent.putExtra(Constants.EXTRAS_FOR_INTENT_QUIZ_RESULT, correctAnswers);
+        intent.putExtra(Constants.EXTRAS_FOR_INTENT_QUIZ_RESULT_QUIZ_SIZE, quizSize);
+        intent.putExtra(Constants.EXTRAS_FOR_INTENT_QUIZ_RESULT_CORRECT_ANSWERS, correctAnswers);
+        intent.putExtra(Constants.EXTRAS_FOR_INTENT_QUIZ_RESULT_NAME_CATEGORY, nameCategory);
         return intent;
     }
 
     @OnClick({R.id.restart_button, R.id.go_to_QS_button, R.id.go_to_start_button})
     void onClick(View view) {
+        Intent intent = null;
         switch (view.getId()) {
             case R.id.restart_button:
+                intent = QuizView.getIntent(this, mNameCategory);
                 break;
             case R.id.go_to_QS_button:
+                intent = QuizStorageView.getIntent(this);
                 break;
             case R.id.go_to_start_button:
+                intent = StartView.getIntent(this);
                 break;
         }
+        startActivity(intent);
+        finish();
     }
 }

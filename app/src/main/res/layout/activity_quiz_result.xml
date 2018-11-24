@@ -21,13 +21,13 @@
 
     <TextView
         android:id="@+id/result_text"
-        android:layout_width="wrap_content"
+        android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:textSize="20sp"
         android:textStyle="italic"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="@id/result_header"
+        app:layout_constraintStart_toStartOf="@id/result_header"
         app:layout_constraintTop_toBottomOf="@id/result_header"
         tools:text="sjdkfsdljfjsldjlsdjgls" />
 
@@ -35,7 +35,7 @@
         android:id="@+id/restart_button"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="30dp"
         android:text="@string/for_restart_button"
         android:textSize="15sp"
         app:layout_constraintEnd_toEndOf="parent"
