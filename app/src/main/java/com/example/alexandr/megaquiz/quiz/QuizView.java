@@ -92,8 +92,21 @@ public class QuizView extends AppCompatActivity implements QuizContract.View {
 
     @Override
     public void switchButton(boolean result) {
+        /*
         mTrueButton.setEnabled(result);
         mFalseButton.setEnabled(result);
+        */
+        if (result) {
+            mTrueButton.setEnabled(true);
+            mFalseButton.setEnabled(true);
+            mTrueButton.setBackground(getResources().getDrawable(R.drawable.shape_for_true_button));
+            mFalseButton.setBackground(getResources().getDrawable(R.drawable.shape_for_false_button));
+        } else {
+            mTrueButton.setEnabled(false);
+            mFalseButton.setEnabled(false);
+            mTrueButton.setBackground(getResources().getDrawable(R.drawable.shape_for_true_button_answered));
+            mFalseButton.setBackground(getResources().getDrawable(R.drawable.shape_for_false_button_answered));
+        }
     }
 
     @Override
@@ -104,6 +117,13 @@ public class QuizView extends AppCompatActivity implements QuizContract.View {
     @Override
     public void setStaticNumberOfQuestion(String text) {
         mStaticNumberOfQuestion.setText(text);
+    }
+
+    @Override
+    public void startQuizResulActivity(int quizSize, int correctAnswers) {
+        Intent intent = QuizResultView.getIntent(this, quizSize, correctAnswers, mCategoryName);
+        startActivity(intent);
+        finish();
     }
 
     @OnClick({R.id.btnTrue, R.id.btnFalse, R.id.btnNext, R.id.btnPrev})
@@ -122,13 +142,6 @@ public class QuizView extends AppCompatActivity implements QuizContract.View {
                 mPresenter.onPrevButton();
                 break;
         }
-    }
-
-    @Override
-    public void startQuizResulActivity(int quizSize, int correctAnswers) {
-        Intent intent = QuizResultView.getIntent(this, quizSize, correctAnswers, mCategoryName);
-        startActivity(intent);
-        finish();
     }
 
     public static Intent getIntent(Context context, String key) {

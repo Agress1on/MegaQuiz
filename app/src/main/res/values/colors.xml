@@ -12,4 +12,9 @@
     <color name="Thistle">#D8BFD8</color>
     <color name="DarkGreen">#006400</color>
     <color name="colorKhaki">#F0E68C</color>
+
+    <color name="colorLawnGreen">#7CFC00</color>
+    <color name="colorCrimson">#DC143C</color>
+    <color name="colorPaleGreen">#98FB98</color>
+    <color name="colorLightSalmon">#FFA07A</color>
 </resources>
