@@ -46,7 +46,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     @Override
     public RecyclerAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v;
-
         if (viewType == VIEW_ITEM_FIRST) {
             v = LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.recycler_storage_item_first, parent, false);
@@ -54,8 +53,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
             v = LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.recycler_storage_item_second, parent, false);
         }
-
-
         /*
         v = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.recycler_storage_item_cardview, parent, false);
@@ -66,10 +63,12 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerAdapter.ViewHolder holder, int position) {
+
         holder.mTVName.setText(mCategoriesNames.get(position).getNameOfItem());
         holder.mTVPosition.setText(String.valueOf(mCategoriesNames.get(position).getPosition()));
         holder.mTVQuantityQuestionOfQuiz.setText(String.valueOf(mCategoriesNames.get(position).getCategorySize()));
         holder.mCatName = mCategoriesNames.get(position).getNameOfItem();
+
     }
 
     @Override
