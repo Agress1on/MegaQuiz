@@ -53,6 +53,7 @@
         android:layout_marginEnd="5dp"
         android:layout_marginBottom="5dp"
         android:text="@string/true_button"
+        android:background="@drawable/shape_for_true_button"
         app:layout_constraintBottom_toBottomOf="@id/guideline2"
         app:layout_constraintEnd_toEndOf="@id/guideline1"
         app:layout_constraintStart_toStartOf="@id/guideline3" />
@@ -63,6 +64,7 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
         android:text="@string/false_button"
+        android:background="@drawable/shape_for_false_button"
         app:layout_constraintBottom_toBottomOf="@id/btnTrue"
         app:layout_constraintEnd_toEndOf="@id/guideline4"
         app:layout_constraintStart_toStartOf="@id/guideline1" />
@@ -72,6 +74,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:text="@string/prev_button"
+        android:background="@drawable/shape_for_prev_button"
         app:layout_constraintBottom_toBottomOf="@id/btnNext"
         app:layout_constraintEnd_toEndOf="@id/btnTrue"
         app:layout_constraintStart_toStartOf="@id/btnTrue"
@@ -83,6 +86,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:text="@string/next_button"
+        android:background="@drawable/shape_for_next_button"
         app:layout_constraintEnd_toEndOf="@id/btnFalse"
         app:layout_constraintStart_toStartOf="@id/btnFalse"
         app:layout_constraintTop_toTopOf="@id/guideline2" />
@@ -93,6 +97,7 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="40dp"
         android:text="QUESTION"
+        android:textColor="@color/colorBlack"
         android:textAlignment="center"
         android:textSize="20sp"
         android:textStyle="bold"
