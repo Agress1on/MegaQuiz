@@ -86,29 +86,26 @@ public class QuizView extends AppCompatActivity implements QuizContract.View {
 
     @Override
     public void switchButton(boolean result) {
-
         mTrueButton.setEnabled(result);
         mFalseButton.setEnabled(result);
+    }
 
-        if (result) {
-            /*
-            mTrueButton.setEnabled(result);
-            mFalseButton.setEnabled(result);
-            */
-
-            mTrueButton.setBackground(getResources().getDrawable(R.drawable.shape_for_true_button));
-            mFalseButton.setBackground(getResources().getDrawable(R.drawable.shape_for_false_button));
-        } else {
-            /*
-            mTrueButton.setEnabled(result);
-            mFalseButton.setEnabled(result);
-            */
-
-            mTrueButton.setBackground(getResources().getDrawable(R.drawable.shape_for_true_button_answered));
-            mFalseButton.setBackground(getResources().getDrawable(R.drawable.shape_for_false_button_answered));
+    @Override
+    public void setNeedButtonStyle(int key) {
+        switch (key) {
+            case Constants.NOT_PUSH_TRUE_AND_FALSE_BUTTONS :
+                mTrueButton.setBackground(getResources().getDrawable(R.drawable.shape_for_true_button));
+                mFalseButton.setBackground(getResources().getDrawable(R.drawable.shape_for_false_button));
+                break;
+            case Constants.PUSH_TRUE_BUTTON :
+                mTrueButton.setBackground(getResources().getDrawable(R.drawable.shape_for_true_button_answered));
+                mFalseButton.setBackground(getResources().getDrawable(R.drawable.shape_for_false_button_not_answered));
+                break;
+            case Constants.PUSH_FALSE_BUTTON :
+                mTrueButton.setBackground(getResources().getDrawable(R.drawable.shape_for_true_button_not_answered));
+                mFalseButton.setBackground(getResources().getDrawable(R.drawable.shape_for_false_button_answered));
+                break;
         }
-
-
     }
 
     @Override

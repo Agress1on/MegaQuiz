@@ -27,6 +27,8 @@ public interface QuizContract {
         String sentToPresenterSelectedCategory();
 
         void startQuizResultActivity(int quizSize, int correctAnswers);
+
+        void setNeedButtonStyle(int key);
     }
 
     interface Presenter {

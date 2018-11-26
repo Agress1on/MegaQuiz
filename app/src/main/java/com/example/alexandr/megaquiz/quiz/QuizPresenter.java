@@ -1,5 +1,7 @@
 package com.example.alexandr.megaquiz.quiz;
 
+import com.example.alexandr.megaquiz.Constants;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -78,17 +80,29 @@ public class QuizPresenter implements QuizContract.Presenter {
         mView.setStaticNumberOfQuestion(String.valueOf(getCurrentIndex() + 1));
     }
 
+    private void checkAnswerQuestion() {
+        boolean isAnswered = mAnswers.containsKey(getCurrentIndex());
+        mView.switchButton(!isAnswered);
+        if (isAnswered) {
+            boolean answer = false;
+            for (Map.Entry<Integer, Boolean> entry : mAnswers.entrySet()) {
+                if (entry.getKey() == getCurrentIndex()) answer = entry.getValue();
+            }
+            if (answer) {
+                mView.setNeedButtonStyle(Constants.PUSH_TRUE_BUTTON);
+            } else {
+                mView.setNeedButtonStyle(Constants.PUSH_FALSE_BUTTON);
+            }
+        } else {
+            mView.setNeedButtonStyle(Constants.NOT_PUSH_TRUE_AND_FALSE_BUTTONS);
+        }
+    }
+
     private void checkFinalOfQuiz() {
         int rightAnswers = 0;
         if (mQuestions.size() == mAnswers.size()) {
             rightAnswers = mInteractor.checkQuestions(mAnswers);
             mView.startQuizResultActivity(mQuestions.size(), rightAnswers);
         }
-
-    }
-
-    private void checkAnswerQuestion() {
-        boolean isAnswered = mAnswers.containsKey(getCurrentIndex());
-        mView.switchButton(!isAnswered);
     }
 }
