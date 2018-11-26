@@ -18,17 +18,15 @@ public interface QuizContract {
     interface View {
         void setQuestionTextView(String text);
 
-        void showToast(String text);
-
         void switchButton(boolean result);
 
         void setStaticQuizSizeTextView(String text);
 
         void setStaticNumberOfQuestion(String text);
 
-        String sentToPresenterChoosenCategory();
+        String sentToPresenterSelectedCategory();
 
-        void startQuizResulActivity(int quizSize, int correctAnswers);
+        void startQuizResultActivity(int quizSize, int correctAnswers);
     }
 
     interface Presenter {

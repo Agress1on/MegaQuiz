@@ -4,10 +4,11 @@
     <stroke
         android:width="2dp"
         android:color="@color/colorYellowGreen">
+
     </stroke>
 
-    <solid
-        android:color="@color/DarkGreen">
+    <solid android:color="@color/DarkGreen">
+
     </solid>
 
     <padding
@@ -15,10 +16,12 @@
         android:left="10dp"
         android:right="10dp"
         android:top="10dp">
+
     </padding>
 
     <corners
-        android:topLeftRadius="20dp"
-        android:bottomRightRadius="20dp">
+        android:bottomRightRadius="20dp"
+        android:topLeftRadius="20dp">
+
     </corners>
 </shape>

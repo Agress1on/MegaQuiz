@@ -4,17 +4,17 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".start.StartView"
-    android:background="@color/colorPaleGreen">
+    android:background="@color/colorPaleGreen"
+    tools:context=".start.StartView">
 
     <Button
         android:id="@+id/btn_randomQuiz"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginBottom="20dp"
+        android:background="@drawable/shape_for_start_buttons"
         android:text="@string/for_random_btn"
         android:textColor="@color/colorWhite"
-        android:background="@drawable/shape_for_start_buttons"
         app:layout_constraintBottom_toTopOf="@id/btn_category"
         app:layout_constraintEnd_toEndOf="@id/btn_category"
         app:layout_constraintStart_toStartOf="@id/btn_category" />
@@ -23,9 +23,9 @@
         android:id="@+id/btn_category"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:background="@drawable/shape_for_start_buttons"
         android:text="@string/for_category_btn"
         android:textColor="@color/colorWhite"
-        android:background="@drawable/shape_for_start_buttons"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -36,9 +36,9 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
+        android:background="@drawable/shape_for_start_buttons"
         android:text="Тест общих вопросов"
         android:textColor="@color/colorWhite"
-        android:background="@drawable/shape_for_start_buttons"
         app:layout_constraintEnd_toEndOf="@id/btn_category"
         app:layout_constraintStart_toStartOf="@id/btn_category"
         app:layout_constraintTop_toBottomOf="@id/btn_category" />

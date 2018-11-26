@@ -19,7 +19,7 @@ public class QuizPresenter implements QuizContract.Presenter {
     public QuizPresenter(QuizContract.View view, QuizContract.Interactor interactor) {
         this.mView = view;
         this.mInteractor = interactor;
-        this.mQuestions = interactor.getQuestions(mView.sentToPresenterChoosenCategory());
+        this.mQuestions = interactor.getQuestions(mView.sentToPresenterSelectedCategory());
         this.mAnswers = new HashMap<>();
         this.mCurrentIndex = 0;
     }
@@ -82,7 +82,7 @@ public class QuizPresenter implements QuizContract.Presenter {
         int rightAnswers = 0;
         if (mQuestions.size() == mAnswers.size()) {
             rightAnswers = mInteractor.checkQuestions(mAnswers);
-            mView.startQuizResulActivity(mQuestions.size(), rightAnswers);
+            mView.startQuizResultActivity(mQuestions.size(), rightAnswers);
         }
 
     }

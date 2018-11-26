@@ -8,7 +8,6 @@ import android.support.v7.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.alexandr.megaquiz.Constants;
 import com.example.alexandr.megaquiz.R;
@@ -76,18 +75,13 @@ public class QuizView extends AppCompatActivity implements QuizContract.View {
     }
 
     @Override
-    public String sentToPresenterChoosenCategory() {
+    public String sentToPresenterSelectedCategory() {
         return mCategoryName;
     }
 
     @Override
     public void setQuestionTextView(String text) {
         mQuestionTV.setText(text);
-    }
-
-    @Override
-    public void showToast(String text) {
-        Toast.makeText(getApplicationContext(), text, Toast.LENGTH_SHORT).show();
     }
 
     @Override
@@ -120,7 +114,7 @@ public class QuizView extends AppCompatActivity implements QuizContract.View {
     }
 
     @Override
-    public void startQuizResulActivity(int quizSize, int correctAnswers) {
+    public void startQuizResultActivity(int quizSize, int correctAnswers) {
         Intent intent = QuizResultView.getIntent(this, quizSize, correctAnswers, mCategoryName);
         startActivity(intent);
         finish();
