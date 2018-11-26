@@ -2,9 +2,17 @@ package com.example.alexandr.megaquiz.start;
 
 import android.content.Context;
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
+import android.transition.Slide;
+import android.transition.TransitionInflater;
+import android.transition.TransitionManager;
+import android.view.Gravity;
+import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ImageView;
 
 import com.example.alexandr.megaquiz.Constants;
 import com.example.alexandr.megaquiz.R;
@@ -26,6 +34,10 @@ public class StartView extends AppCompatActivity implements StartContract.View {
     Button mCategoryBtn;
     @BindView(R.id.btn_test_general_questions)
     Button mTestGeneral;
+    @BindView(R.id.doubt_image_view)
+    ImageView mImageView;
+
+    boolean visible = true;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -59,7 +71,7 @@ public class StartView extends AppCompatActivity implements StartContract.View {
     }
 
     @OnClick({R.id.btn_randomQuiz, R.id.btn_category, R.id.btn_test_general_questions})
-    void onClick(android.view.View view) {
+    void onClick(View view) {
         switch (view.getId()) {
             case R.id.btn_randomQuiz:
                 mPresenter.onRandomButton();
@@ -68,8 +80,17 @@ public class StartView extends AppCompatActivity implements StartContract.View {
                 mPresenter.onButtonCategory();
                 break;
             case R.id.btn_test_general_questions:
-                mPresenter.onButtonGeneralQuestionsTest();
-                break;
+              //  mPresenter.onButtonGeneralQuestionsTest();
+                animation();
         }
+    }
+
+    private void animation() {
+        ViewGroup viewGroup = (ViewGroup) findViewById(R.id.start_constraint);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            TransitionManager.beginDelayedTransition(viewGroup, new Slide(Gravity.RIGHT));
+        }
+        visible = !visible;
+        mImageView.setVisibility(visible ? View.VISIBLE : View.GONE);
     }
 }

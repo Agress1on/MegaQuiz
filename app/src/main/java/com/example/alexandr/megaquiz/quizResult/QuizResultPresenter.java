@@ -24,7 +24,7 @@ public class QuizResultPresenter implements QuizResultContract.Presenter {
         } else if (percent >= 90) {
             level = "отлично";
         }
-        String text = "Вы прошли опрос категории " + categoryName + ". Вы " + level + " владеете знаниями данной в области и дали " + percent + "% верных ответов. Что делать дальше?";
+        String text = "Вы прошли опрос категории " + categoryName + ". Вы " + level + " владеете знаниями данной в области и дали " + percent + "% верных ответов.\nЧто делать дальше?";
         return text;
     }
 }

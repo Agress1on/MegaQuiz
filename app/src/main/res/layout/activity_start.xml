@@ -2,6 +2,7 @@
 <android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/start_constraint"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="@color/colorPaleGreen"
@@ -53,10 +54,11 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="20dp"
         android:background="@drawable/shape_for_start_buttons"
-        android:text="Тест общих вопросов"
+        android:text="Тестовая кнопка"
         android:textColor="@color/colorWhite"
         app:layout_constraintEnd_toEndOf="@id/btn_category"
         app:layout_constraintStart_toStartOf="@id/btn_category"
         app:layout_constraintTop_toBottomOf="@id/btn_category" />
+
 
 </android.support.constraint.ConstraintLayout>
