@@ -16,4 +16,8 @@ public class Constants {
     public static final String EXTRAS_FOR_INTENT_QUIZ_RESULT_QUIZ_SIZE = "KEY_FOR_QUIZ_RESULT_QUIZ_SIZE";
     public static final String EXTRAS_FOR_INTENT_QUIZ_RESULT_CORRECT_ANSWERS = "KEY_FOR_QUIZ_RESULT_CORRECT_ANSWERS";
     public static final String EXTRAS_FOR_INTENT_QUIZ_RESULT_NAME_CATEGORY = "KEY_FOR_QUIZ_RESULT_NAME_CATEGORY";
+
+    public static final int NOT_PUSH_TRUE_AND_FALSE_BUTTONS = 0;
+    public static final int PUSH_TRUE_BUTTON = 1;
+    public static final int PUSH_FALSE_BUTTON = 2;
 }
