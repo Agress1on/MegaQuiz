@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".start.StartView"
-    android:background="@color/Thistle">
+    android:background="@color/colorPaleGreen">
 
     <Button
         android:id="@+id/btn_randomQuiz"

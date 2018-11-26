@@ -15,6 +15,9 @@
 
     <color name="colorLawnGreen">#7CFC00</color>
     <color name="colorCrimson">#DC143C</color>
-    <color name="colorPaleGreen">#98FB98</color>
+    <color name="colorPaleGreen">#acb78e</color>
     <color name="colorLightSalmon">#FFA07A</color>
+
+    <color name="colorDodgerBlue">#ADD8E6</color>
+    <color name="colorYellowGreen">#9ACD32</color>
 </resources>
