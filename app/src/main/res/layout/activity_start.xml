@@ -7,6 +7,17 @@
     android:background="@color/colorPaleGreen"
     tools:context=".start.StartView">
 
+
+    <ImageView
+        android:id="@+id/doubt_image_view"
+        android:background="@drawable/ic_doubt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toTopOf="@id/btn_randomQuiz"/>
+
+
     <Button
         android:id="@+id/btn_randomQuiz"
         android:layout_width="0dp"
@@ -14,18 +25,23 @@
         android:layout_marginBottom="20dp"
         android:background="@drawable/shape_for_start_buttons"
         android:text="@string/for_random_btn"
+        android:textAlignment="textEnd"
         android:textColor="@color/colorWhite"
+        android:drawableStart="@drawable/ic_for_random_button"
         app:layout_constraintBottom_toTopOf="@id/btn_category"
         app:layout_constraintEnd_toEndOf="@id/btn_category"
         app:layout_constraintStart_toStartOf="@id/btn_category" />
 
+
     <Button
         android:id="@+id/btn_category"
-        android:layout_width="wrap_content"
+        android:layout_width="190dp"
         android:layout_height="wrap_content"
         android:background="@drawable/shape_for_start_buttons"
         android:text="@string/for_category_btn"
         android:textColor="@color/colorWhite"
+        android:textAlignment="textEnd"
+        android:drawableStart="@drawable/ic_checklist"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
