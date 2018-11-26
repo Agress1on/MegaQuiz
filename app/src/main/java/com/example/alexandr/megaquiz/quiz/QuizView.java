@@ -86,21 +86,29 @@ public class QuizView extends AppCompatActivity implements QuizContract.View {
 
     @Override
     public void switchButton(boolean result) {
-        /*
+
         mTrueButton.setEnabled(result);
         mFalseButton.setEnabled(result);
-        */
+
         if (result) {
-            mTrueButton.setEnabled(true);
-            mFalseButton.setEnabled(true);
+            /*
+            mTrueButton.setEnabled(result);
+            mFalseButton.setEnabled(result);
+            */
+
             mTrueButton.setBackground(getResources().getDrawable(R.drawable.shape_for_true_button));
             mFalseButton.setBackground(getResources().getDrawable(R.drawable.shape_for_false_button));
         } else {
-            mTrueButton.setEnabled(false);
-            mFalseButton.setEnabled(false);
+            /*
+            mTrueButton.setEnabled(result);
+            mFalseButton.setEnabled(result);
+            */
+
             mTrueButton.setBackground(getResources().getDrawable(R.drawable.shape_for_true_button_answered));
             mFalseButton.setBackground(getResources().getDrawable(R.drawable.shape_for_false_button_answered));
         }
+
+
     }
 
     @Override
