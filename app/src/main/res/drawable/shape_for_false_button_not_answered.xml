@@ -20,7 +20,7 @@
 
         <shape android:shape="rectangle">
 
-            <solid android:color="@color/for_not_answered_button" />
+            <solid android:color="@color/forNotAnsweredButton" />
             <corners
                 android:bottomLeftRadius="15dp"
                 android:bottomRightRadius="15dp"

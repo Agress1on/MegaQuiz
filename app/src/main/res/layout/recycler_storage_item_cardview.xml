@@ -36,7 +36,7 @@
                 android:id="@+id/separator_vertical_12"
                 android:layout_width="1dp"
                 android:layout_height="30dp"
-                android:background="@color/DarkOliveGreen"
+                android:background="@color/colorDarkOliveGreen"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="@id/guideline1"
                 app:layout_constraintTop_toTopOf="parent" />
@@ -44,7 +44,7 @@
             <View
                 android:layout_width="1dp"
                 android:layout_height="30dp"
-                android:background="@color/DarkOliveGreen"
+                android:background="@color/colorDarkOliveGreen"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="@id/guideline2"
                 app:layout_constraintTop_toTopOf="parent" />

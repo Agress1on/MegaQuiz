@@ -136,7 +136,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
-        android:textColor="@color/gray"
+        android:textColor="@color/colorLightGray"
         android:textSize="20sp"
         app:layout_constraintEnd_toEndOf="@id/background_for_question"
         app:layout_constraintStart_toStartOf="@id/background_for_question"

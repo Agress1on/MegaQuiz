@@ -12,7 +12,9 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".start.StartView"></activity>
+        <activity android:name=".start.StartView">
+
+        </activity>
         <activity
             android:name=".SplashActivity"
             android:theme="@style/SplashTheme">
@@ -22,9 +24,15 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".quizStorage.QuizStorageView"></activity>
-        <activity android:name=".quiz.QuizView"></activity>
-        <activity android:name=".quizResult.QuizResultView"></activity>
+        <activity android:name=".quizStorage.QuizStorageView">
+
+        </activity>
+        <activity android:name=".quiz.QuizView">
+
+        </activity>
+        <activity android:name=".quizResult.QuizResultView">
+
+        </activity>
     </application>
 
 </manifest>

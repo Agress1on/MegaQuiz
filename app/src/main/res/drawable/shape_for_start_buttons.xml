@@ -3,11 +3,11 @@
     android:shape="rectangle">
     <stroke
         android:width="2dp"
-        android:color="@color/colorYellowGreen">
+        android:color="@color/forExternalOutlineStartButtons">
 
     </stroke>
 
-    <solid android:color="@color/DarkGreen">
+    <solid android:color="@color/colorDarkGreen">
 
     </solid>
 
