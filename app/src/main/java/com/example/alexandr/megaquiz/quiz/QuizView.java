@@ -57,7 +57,7 @@ public class QuizView extends AppCompatActivity implements QuizContract.View {
 
         Intent intent = getIntent();
         mCategoryName = intent.getStringExtra(Constants.EXTRAS_FOR_INTENT_QUIZ_VIEW);
-        mStaticCategoryNameTextView.setText(mCategoryName);
+        mStaticCategoryNameTextView.setText(mCategoryName.toUpperCase());
 
         DaggerQuizComponent.builder()
                 .quizPresenterModule(new QuizPresenterModule(this))
