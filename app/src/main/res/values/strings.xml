@@ -2,10 +2,10 @@
     <string name="app_name">MegaQuiz</string>
     <string name="for_random_btn">Случайный опрос</string>
     <string name="for_category_btn">Список опросов</string>
-    <string name="true_button">Истина</string>
-    <string name="false_button">Ложь</string>
+    <string name="for_true_button">Истина</string>
+    <string name="for_false_button">Ложь</string>
     <string name="next_button">Далее</string>
-    <string name="prev_button">Назад</string>
+    <string name="for_prev_button">Назад</string>
     <string name="for_category_name">Название категории:</string>
     <string name="for_quiz_size">Всего вопросов:</string>
     <string name="for_number_of_question">Номер вопроса:</string>
