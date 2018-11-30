@@ -29,22 +29,6 @@ public class QuizView extends AppCompatActivity implements QuizContract.View {
     @Inject
     QuizPresenter mPresenter;
 
-    /*
-    @BindView(R.id.category_name)
-    TextView mCategoryNameTextView;
-    @BindView(R.id.quiz_size)
-    TextView mQuizSizeTextView;
-    @BindView(R.id.number_of_question)
-    TextView mNumberOfQuestionTextView;
-
-
-    @BindView(R.id.static_quiz_size)
-    TextView mStaticQuizSizeTextView;
-    @BindView(R.id.static_number_of_question)
-    TextView mStaticNumberOfQuestion;
-    */
-
-    // то, что нужно - ниже
     @BindView(R.id.static_category_name)
     TextView mStaticCategoryNameTextView;
     @BindView(R.id.question)
@@ -101,7 +85,6 @@ public class QuizView extends AppCompatActivity implements QuizContract.View {
 
     @Override
     public void setNeedButtonStyle(int key) {
-        /*
         switch (key) {
             case Constants.NOT_PUSH_TRUE_AND_FALSE_BUTTONS :
                 mTrueButton.setBackground(getResources().getDrawable(R.drawable.shape_for_true_button));
@@ -116,25 +99,12 @@ public class QuizView extends AppCompatActivity implements QuizContract.View {
                 mFalseButton.setBackground(getResources().getDrawable(R.drawable.shape_for_false_button_answered));
                 break;
         }
-        */
     }
 
     @Override
     public void setQuestionCount(String text) {
         mQuestionCount.setText(text);
     }
-
-    /*
-    @Override
-    public void setStaticQuizSizeTextView(String text) {
-        mStaticQuizSizeTextView.setText(text);
-    }
-
-    @Override
-    public void setStaticNumberOfQuestion(String text) {
-        mStaticNumberOfQuestion.setText(text);
-    }
-    */
 
     @Override
     public void startQuizResultActivity(int quizSize, int correctAnswers) {
