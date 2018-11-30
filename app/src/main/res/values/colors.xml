@@ -4,7 +4,7 @@
     <color name="colorPrimaryDark">#303F9F</color>
     <color name="colorAccent">#FF4081</color>
     <color name="gray">#A9A9A9</color>
-    <color name="colorDarkRed">#8B0000</color>
+
     <color name="DarkOliveGreen">#556B2F</color>
     <color name="colorBlack">#000000</color>
     <color name="LemonChiffon">#FFFACD</color>
@@ -15,7 +15,7 @@
 
     <color name="colorLawnGreen">#7CFC00</color>
     <color name="colorCrimson">#DC143C</color>
-    <color name="colorPaleGreen">#acb78e</color>
+    <color name="colorPaleGreen">#FF7F50</color>
     <color name="colorLightSalmon">#FFA07A</color>
 
     <color name="colorDodgerBlue">#ADD8E6</color>
@@ -23,4 +23,7 @@
 
     <color name="for_answered_button">#98FB98</color>
     <color name="for_not_answered_button">#F08080</color>
+
+    <color name="colorDarkRed">#FF6347</color>
+    <color name="colorDarkMagenta">#7B68EE</color>
 </resources>

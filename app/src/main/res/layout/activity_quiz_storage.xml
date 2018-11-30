@@ -6,6 +6,34 @@
     android:layout_marginStart="3dp"
     android:layout_marginEnd="3dp">
 
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline1"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.3" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline2"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.7" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline3"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="horizontal"
+        app:layout_constraintGuide_percent="0.2" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline4"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.1"/>
+
     <Switch
         android:id="@+id/list_switch"
         android:layout_width="wrap_content"
@@ -35,9 +63,10 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:paddingBottom="10dp"
+        android:textAlignment="viewEnd"
         android:text="@string/number_header"
         app:layout_constraintEnd_toEndOf="@id/guideline1"
-        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintStart_toStartOf="@id/guideline4"
         app:layout_constraintTop_toBottomOf="@id/separator_horizontal_1" />
 
     <TextView
@@ -45,6 +74,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/name_category_header"
+        android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="@id/guideline2"
         app:layout_constraintStart_toStartOf="@id/guideline1"
         app:layout_constraintTop_toTopOf="@id/for_number_header" />
@@ -54,30 +84,11 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="@string/quiz_size_header"
+        android:textAlignment="viewStart"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="@id/guideline2"
         app:layout_constraintTop_toTopOf="@id/for_number_header" />
 
-    <android.support.constraint.Guideline
-        android:id="@+id/guideline1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.2" />
-
-    <android.support.constraint.Guideline
-        android:id="@+id/guideline2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.7" />
-
-    <android.support.constraint.Guideline
-        android:id="@+id/guideline3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.2" />
 
     <View
         android:id="@+id/separator_horizontal_1"
@@ -92,6 +103,7 @@
         android:layout_width="0dp"
         android:layout_height="1dp"
         android:background="@color/DarkOliveGreen"
+        app:layout_constraintStart_toStartOf="@id/separator_horizontal_1"
         app:layout_constraintBottom_toBottomOf="@id/for_number_header" />
 
     <View

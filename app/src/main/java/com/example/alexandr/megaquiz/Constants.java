@@ -10,7 +10,7 @@ public class Constants {
     public static final String HISTORY_QUESTIONS = "История";
     public static final String ECONOMIC_QUESTIONS = "Экономика";
     public static final String NATURE_QUESTIONS = "Природа";
-    public static final String HARD_GENERAL_QUESTIONS = "Общие сложные";
+    public static final String HARD_GENERAL_QUESTIONS = "Общие 2";
 
     public static final String EXTRAS_FOR_INTENT_QUIZ_VIEW = "KEY_FOR_QUIZ_VIEW";
     public static final String EXTRAS_FOR_INTENT_QUIZ_RESULT_QUIZ_SIZE = "KEY_FOR_QUIZ_RESULT_QUIZ_SIZE";
