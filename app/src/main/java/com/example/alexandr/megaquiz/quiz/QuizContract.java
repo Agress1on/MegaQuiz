@@ -20,9 +20,13 @@ public interface QuizContract {
 
         void switchButton(boolean result);
 
+        /*
         void setStaticQuizSizeTextView(String text);
 
         void setStaticNumberOfQuestion(String text);
+        */
+
+        void setQuestionCount(String text);
 
         String sentToPresenterSelectedCategory();
 
