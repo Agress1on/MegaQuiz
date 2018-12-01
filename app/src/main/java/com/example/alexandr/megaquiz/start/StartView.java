@@ -14,7 +14,6 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.transition.Slide;
-import android.transition.TransitionInflater;
 import android.transition.TransitionManager;
 import android.view.Gravity;
 import android.view.Menu;
@@ -53,8 +52,8 @@ public class StartView extends AppCompatActivity implements StartContract.View, 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-       // setContentView(R.layout.activity_start);
-        setContentView(R.layout.activity_main);
+       // setContentView(R.layout.nd_activity_start);
+        setContentView(R.layout.nd_activity_main_for_start_view);
         ButterKnife.bind(this);
         mPresenter = new StartPresenter(this, new StartInteractor(new BankQuestion()));
 
