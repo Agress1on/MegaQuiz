@@ -17,4 +17,8 @@
     <string name="for_go_to_start_button">На главный"\n"экран</string>
     <string name="for_result_header_text_view">Результаты опроса:</string>
     <string name="for_switch_text">Показать пустые категории</string>
+
+    <!-- For Navigation drawer-->
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
 </resources>
