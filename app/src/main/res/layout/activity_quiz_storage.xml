@@ -32,7 +32,7 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.1"/>
+        app:layout_constraintGuide_percent="0.1" />
 
     <Switch
         android:id="@+id/list_switch"
@@ -44,13 +44,12 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
-
     <TextView
         android:id="@+id/text_for_switch"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginEnd="10dp"
-        android:text="Показать пустые категории"
+        android:text="@string/for_switch_text"
         android:textSize="15sp"
         android:textStyle="italic"
         app:layout_constraintBottom_toBottomOf="@id/list_switch"
@@ -63,8 +62,8 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="5dp"
         android:paddingBottom="10dp"
-        android:textAlignment="viewEnd"
         android:text="@string/number_header"
+        android:textAlignment="viewEnd"
         app:layout_constraintEnd_toEndOf="@id/guideline1"
         app:layout_constraintStart_toStartOf="@id/guideline4"
         app:layout_constraintTop_toBottomOf="@id/separator_horizontal_1" />
@@ -89,7 +88,6 @@
         app:layout_constraintStart_toStartOf="@id/guideline2"
         app:layout_constraintTop_toTopOf="@id/for_number_header" />
 
-
     <View
         android:id="@+id/separator_horizontal_1"
         android:layout_width="0dp"
@@ -103,8 +101,8 @@
         android:layout_width="0dp"
         android:layout_height="1dp"
         android:background="@color/colorDarkOliveGreen"
-        app:layout_constraintStart_toStartOf="@id/separator_horizontal_1"
-        app:layout_constraintBottom_toBottomOf="@id/for_number_header" />
+        app:layout_constraintBottom_toBottomOf="@id/for_number_header"
+        app:layout_constraintStart_toStartOf="@id/separator_horizontal_1" />
 
     <View
         android:id="@+id/separator_vertical_1"
@@ -124,7 +122,6 @@
         app:layout_constraintStart_toEndOf="@id/guideline2"
         app:layout_constraintTop_toTopOf="@id/separator_horizontal_1" />
 
-
     <android.support.v7.widget.RecyclerView
         android:id="@+id/my_recycler"
         android:layout_width="0dp"
@@ -136,7 +133,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/for_number_header">
-
     </android.support.v7.widget.RecyclerView>
 
 </android.support.constraint.ConstraintLayout>
