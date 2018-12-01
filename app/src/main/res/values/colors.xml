@@ -12,6 +12,7 @@
     <color name="forAnsweredButton">#98FB98</color>
     <color name="forNotAnsweredButton">#F08080</color>
     <color name="forExternalOutlineStartButtons">#9ACD32</color>
+    <color name="forPressedNextPrevButtons">#808000</color>
 
     <!--Colors for RecyclerView Background Items-->
     <color name="forFirstQuizStorageItem">#DC143C</color>
