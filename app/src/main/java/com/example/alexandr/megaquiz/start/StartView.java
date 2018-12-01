@@ -68,10 +68,8 @@ public class StartView extends AppCompatActivity implements StartContract.View, 
         mPresenter = new StartPresenter(this, new StartInteractor(new BankQuestion()));
 
         // все что ниже для Navigation Drawer
-
         //Toolbar mToolbar = (Toolbar) findViewById(R.id.mToolbar);
         setSupportActionBar(mToolbar);
-
         // FloatingActionButton mFloatingActionButton = (FloatingActionButton) findViewById(R.id.mFloatingActionButton);
         mFloatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -80,16 +78,13 @@ public class StartView extends AppCompatActivity implements StartContract.View, 
                         .setAction("Action", null).show();
             }
         });
-
         //  DrawerLayout mDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, mDrawer, mToolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         mDrawer.addDrawerListener(toggle);
         toggle.syncState();
-
         // NavigationView mNavigationView = (NavigationView) findViewById(R.id.nav_view);
         mNavigationView.setNavigationItemSelectedListener(this);
-
     }
 
     public static Intent getIntent(Context context) {
@@ -144,12 +139,10 @@ public class StartView extends AppCompatActivity implements StartContract.View, 
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         // Handle navigation view item clicks here.
         int id = item.getItemId();
-
         if (id == R.id.about) {
             // Handle the camera action
             Toast.makeText(this, "Click about us", Toast.LENGTH_SHORT).show();
         }
-
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
@@ -177,12 +170,10 @@ public class StartView extends AppCompatActivity implements StartContract.View, 
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
         int id = item.getItemId();
-
         //noinspection SimplifiableIfStatement
         if (id == R.id.action_settings) {
             return true;
         }
-
         return super.onOptionsItemSelected(item);
     }
 }
