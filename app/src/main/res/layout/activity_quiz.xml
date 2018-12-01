@@ -141,7 +141,7 @@
         android:drawableEnd="@drawable/ic_for_next_button"
         android:paddingStart="20dp"
         android:paddingEnd="15dp"
-        android:text="@string/next_button"
+        android:text="@string/for_next_button"
         android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="@id/btnFalse"
         app:layout_constraintStart_toStartOf="@id/btnFalse"

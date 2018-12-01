@@ -126,7 +126,7 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@drawable/shape_for_next_button"
-        android:text="@string/next_button"
+        android:text="@string/for_next_button"
         app:layout_constraintEnd_toEndOf="@id/btnFalse"
         app:layout_constraintStart_toStartOf="@id/btnFalse"
         app:layout_constraintTop_toTopOf="@id/btnPrev" />

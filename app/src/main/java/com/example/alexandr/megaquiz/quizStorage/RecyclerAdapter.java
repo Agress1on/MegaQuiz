@@ -53,10 +53,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
             v = LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.recycler_storage_item_second, parent, false);
         }
-        /*
-        v = LayoutInflater.from(parent.getContext())
-                .inflate(R.layout.recycler_storage_item_cardview, parent, false);
-        */
         ViewHolder viewHolder = new ViewHolder(v);
         return viewHolder;
     }

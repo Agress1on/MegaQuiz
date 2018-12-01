@@ -1,16 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android">
-
     <!-- Bottom 2dp Shadow -->
     <item>
         <shape android:shape="rectangle">
-
             <solid android:color="#808080" />
-
-            <!--
-            <corners android:radius="7dp" />
-            -->
-
         </shape>
     </item>
 
@@ -19,20 +12,9 @@
         android:bottom="7px"
         android:left="5px"
         android:right="5px">
-
         <shape android:shape="rectangle">
-
             <solid android:color="@color/forSecondQuizStorageItem" />
-
-           <!--
-            <corners
-                android:bottomLeftRadius="7dp"
-                android:bottomRightRadius="7dp" />
-            -->
-
         </shape>
-
     </item>
-
 
 </layer-list>
