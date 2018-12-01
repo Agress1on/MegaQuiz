@@ -62,7 +62,7 @@ public class StartView extends AppCompatActivity implements StartContract.View, 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-       // setContentView(R.layout.nd_activity_start);
+        // setContentView(R.layout.nd_activity_start);
         setContentView(R.layout.nd_activity_main_for_start_view);
         ButterKnife.bind(this);
         mPresenter = new StartPresenter(this, new StartInteractor(new BankQuestion()));
@@ -72,7 +72,7 @@ public class StartView extends AppCompatActivity implements StartContract.View, 
         //Toolbar mToolbar = (Toolbar) findViewById(R.id.mToolbar);
         setSupportActionBar(mToolbar);
 
-       // FloatingActionButton mFloatingActionButton = (FloatingActionButton) findViewById(R.id.mFloatingActionButton);
+        // FloatingActionButton mFloatingActionButton = (FloatingActionButton) findViewById(R.id.mFloatingActionButton);
         mFloatingActionButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -81,13 +81,13 @@ public class StartView extends AppCompatActivity implements StartContract.View, 
             }
         });
 
-      //  DrawerLayout mDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
+        //  DrawerLayout mDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, mDrawer, mToolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         mDrawer.addDrawerListener(toggle);
         toggle.syncState();
 
-       // NavigationView mNavigationView = (NavigationView) findViewById(R.id.nav_view);
+        // NavigationView mNavigationView = (NavigationView) findViewById(R.id.nav_view);
         mNavigationView.setNavigationItemSelectedListener(this);
 
     }
@@ -125,7 +125,7 @@ public class StartView extends AppCompatActivity implements StartContract.View, 
                 mPresenter.onButtonCategory();
                 break;
             case R.id.btn_test_general_questions:
-              //  mPresenter.onButtonGeneralQuestionsTest();
+                //  mPresenter.onButtonGeneralQuestionsTest();
                 animation();
         }
     }
