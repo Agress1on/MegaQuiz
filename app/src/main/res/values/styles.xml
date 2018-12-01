@@ -5,7 +5,7 @@
         <!-- Customize your theme here. -->
         <item name="colorPrimary">@color/colorDarkOliveGreen</item>
         <item name="colorPrimaryDark">@color/colorDarkGreen</item>
-        <item name="colorAccent">@color/colorChartreuse</item>
+        <item name="colorAccent">@color/colorDarkSeaGreen</item>
     </style>
 
     <!-- Style for QuizView-->
@@ -25,6 +25,6 @@
         <item name="contentPaddingTop">20dp</item>
         <item name="contentPaddingLeft">16dp</item>
         <item name="contentPaddingRight">16dp</item>
-        <item name="cardBackgroundColor">@color/colorChartreuse</item>
+        <item name="cardBackgroundColor">@color/colorDarkSeaGreen</item>
     </style>
 </resources>

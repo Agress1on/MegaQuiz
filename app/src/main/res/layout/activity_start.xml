@@ -5,7 +5,7 @@
     android:id="@+id/start_constraint"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorChartreuse"
+    android:background="@color/colorDarkSeaGreen"
     tools:context=".start.StartView">
 
 
