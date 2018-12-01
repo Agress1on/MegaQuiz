@@ -27,7 +27,9 @@
         <activity android:name=".quizStorage.QuizStorageView">
 
         </activity>
-        <activity android:name=".quiz.QuizView">
+        <activity
+            android:theme="@style/QuizViewTheme"
+            android:name=".quiz.QuizView">
 
         </activity>
         <activity android:name=".quizResult.QuizResultView">
