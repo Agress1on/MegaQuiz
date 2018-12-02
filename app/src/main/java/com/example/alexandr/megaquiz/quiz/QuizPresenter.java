@@ -115,7 +115,7 @@ public class QuizPresenter implements QuizContract.Presenter {
     }
 
     private void checkFinalOfQuiz() {
-        int rightAnswers = 0;
+        int rightAnswers;
         if (mQuestions.size() == mAnswers.size()) {
             rightAnswers = mInteractor.checkQuestions(mAnswers);
             mView.startQuizResultActivity(mQuestions.size(), rightAnswers);
