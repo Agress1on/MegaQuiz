@@ -33,7 +33,7 @@ import butterknife.OnClick;
 
 public class StartView extends AppCompatActivity implements StartContract.View, NavigationView.OnNavigationItemSelectedListener {
 
-    private StartPresenter mPresenter;
+    private StartContract.Presenter mPresenter;
 
     @BindView(R.id.btn_randomQuiz)
     Button mRandomBtn;
