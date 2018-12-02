@@ -5,6 +5,6 @@
 
     <item android:id="@+id/about"
         android:title="О нас"
-        android:icon="@drawable/ic_task_complete"/>
+        android:icon="@drawable/ic_about_us"/>
 
 </menu>
