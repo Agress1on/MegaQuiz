@@ -15,16 +15,18 @@ public class QuizResultPresenter implements QuizResultContract.Presenter {
     }
 
     public String forResultTextView(int size, int correctAnswers, String categoryName) {
-        String level = "";
-        float percent = (float) ((correctAnswers * 100) / size);
-        if (percent <= 50) {
-            level = "плохо";
-        } else if (percent > 75 && percent <= 89) {
+        String level;
+        int percent = ((correctAnswers * 100) / size);
+        if (percent < 50) {
+            level = "ужасно";
+        } else if (percent < 75) {
+            level = "удовлетворительно";
+        } else if (percent <= 89) {
             level = "хорошо";
-        } else if (percent >= 90) {
+        } else {
             level = "отлично";
         }
-        String text = "Вы прошли опрос категории " + categoryName + ". Вы " + level + " владеете знаниями данной в области и дали " + percent + "% верных ответов.\nЧто делать дальше?";
+        String text = "Вы прошли опрос категории \"" + categoryName + "\". Вы " + level + " владеете знаниями данной в области и дали " + percent + "% верных ответов.\nЧто делать дальше?";
         return text;
     }
 }

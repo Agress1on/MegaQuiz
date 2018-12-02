@@ -32,7 +32,7 @@ public interface QuizContract {
 
         void startQuizResultActivity(int quizSize, int correctAnswers);
 
-        void setNeedButtonStyle(int key);
+        void setCorrectButtonStyle(int key);
     }
 
     interface Presenter {

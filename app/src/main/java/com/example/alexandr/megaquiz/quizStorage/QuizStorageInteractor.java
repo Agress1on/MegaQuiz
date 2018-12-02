@@ -18,7 +18,6 @@ public class QuizStorageInteractor implements QuizStorageContract.Interactor {
 
     public QuizStorageInteractor(BankQuestion bankQuestion) {
         this.mBankQuestions = bankQuestion.getBankQuestion();
-        this.mCategoriesNames = initCategoriesNames();
     }
 
     private List<QuizStorageItem> initCategoriesNames() {
@@ -39,6 +38,7 @@ public class QuizStorageInteractor implements QuizStorageContract.Interactor {
 
     @Override
     public List<QuizStorageItem> getListOfStorageItemWithoutEmpty() {
+        mCategoriesNames = initCategoriesNames();
         List<QuizStorageItem> list = new ArrayList<>();
         for (QuizStorageItem quizStorageItem : mCategoriesNames) {
             if (quizStorageItem.getCategorySize() > 0) {

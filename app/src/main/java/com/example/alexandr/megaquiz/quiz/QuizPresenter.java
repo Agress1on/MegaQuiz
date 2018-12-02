@@ -94,7 +94,7 @@ public class QuizPresenter implements QuizContract.Presenter {
                 flag = Constants.PUSH_TRUE_BUTTON;
             }
         }
-        mView.setNeedButtonStyle(flag);
+        mView.setCorrectButtonStyle(flag);
         /*
         boolean isAnswered = mAnswers.containsKey(getCurrentIndex());
         mView.switchButton(!isAnswered);
@@ -104,12 +104,12 @@ public class QuizPresenter implements QuizContract.Presenter {
                 if (entry.getKey() == getCurrentIndex()) answer = entry.getValue();
             }
             if (answer) {
-                mView.setNeedButtonStyle(Constants.PUSH_TRUE_BUTTON);
+                mView.setCorrectButtonStyle(Constants.PUSH_TRUE_BUTTON);
             } else {
-                mView.setNeedButtonStyle(Constants.PUSH_FALSE_BUTTON);
+                mView.setCorrectButtonStyle(Constants.PUSH_FALSE_BUTTON);
             }
         } else {
-            mView.setNeedButtonStyle(Constants.NOT_PUSH_TRUE_AND_FALSE_BUTTONS);
+            mView.setCorrectButtonStyle(Constants.NOT_PUSH_TRUE_AND_FALSE_BUTTONS);
         }
         */
     }

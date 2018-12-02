@@ -23,7 +23,6 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     private final static int VIEW_ITEM_FIRST = 0;
     private final static int VIEW_ITEM_SECOND = 1;
 
-
     public RecyclerAdapter(List<QuizStorageItem> categoriesNames, OnItemClickListener onItemClickListener) {
         mCategoriesNames = categoriesNames;
         mOnItemClickListener = onItemClickListener;
