@@ -83,6 +83,21 @@ public class QuizPresenter implements QuizContract.Presenter {
     private void checkAnswerQuestion() {
         boolean isAnswered = mAnswers.containsKey(getCurrentIndex());
         mView.switchButton(!isAnswered);
+        int flag = Constants.NOT_PUSH_TRUE_AND_FALSE_BUTTONS;
+        if (isAnswered) {
+            boolean answer = false;
+            flag = Constants.PUSH_FALSE_BUTTON;
+            for (Map.Entry<Integer, Boolean> entry : mAnswers.entrySet()) {
+                if (entry.getKey() == getCurrentIndex()) answer = entry.getValue();
+            }
+            if (answer) {
+                flag = Constants.PUSH_TRUE_BUTTON;
+            }
+        }
+        mView.setNeedButtonStyle(flag);
+        /*
+        boolean isAnswered = mAnswers.containsKey(getCurrentIndex());
+        mView.switchButton(!isAnswered);
         if (isAnswered) {
             boolean answer = false;
             for (Map.Entry<Integer, Boolean> entry : mAnswers.entrySet()) {
@@ -96,6 +111,7 @@ public class QuizPresenter implements QuizContract.Presenter {
         } else {
             mView.setNeedButtonStyle(Constants.NOT_PUSH_TRUE_AND_FALSE_BUTTONS);
         }
+        */
     }
 
     private void checkFinalOfQuiz() {
