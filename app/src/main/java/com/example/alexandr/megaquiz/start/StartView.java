@@ -5,9 +5,7 @@ import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
-import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.NavigationView;
-import android.support.design.widget.Snackbar;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -16,7 +14,6 @@ import android.support.v7.widget.Toolbar;
 import android.transition.Slide;
 import android.transition.TransitionManager;
 import android.view.Gravity;
-import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.view.ViewGroup;
@@ -52,8 +49,6 @@ public class StartView extends AppCompatActivity implements StartContract.View, 
     //Binding navigation drawable
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
-    @BindView(R.id.fab)
-    FloatingActionButton mFloatingActionButton;
     @BindView(R.id.drawer_layout)
     DrawerLayout mDrawer;
     @BindView(R.id.nav_view)
@@ -67,17 +62,14 @@ public class StartView extends AppCompatActivity implements StartContract.View, 
         ButterKnife.bind(this);
         mPresenter = new StartPresenter(this, new StartInteractor(new BankQuestion()));
 
-        // все что ниже для Navigation Drawer
+        /*
+
+        все что ниже для Navigation Drawer
+
+        */
         //Toolbar mToolbar = (Toolbar) findViewById(R.id.mToolbar);
         setSupportActionBar(mToolbar);
-        // FloatingActionButton mFloatingActionButton = (FloatingActionButton) findViewById(R.id.mFloatingActionButton);
-        mFloatingActionButton.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
+
         //  DrawerLayout mDrawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(
                 this, mDrawer, mToolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
@@ -134,7 +126,11 @@ public class StartView extends AppCompatActivity implements StartContract.View, 
         mImageView.setVisibility(visible ? View.VISIBLE : View.GONE);
     }
 
-    // все что ниже - для Navigation Drawer
+    /*
+
+        все что ниже для Navigation Drawer
+
+    */
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         // Handle navigation view item clicks here.
@@ -143,29 +139,35 @@ public class StartView extends AppCompatActivity implements StartContract.View, 
             // Handle the camera action
             Toast.makeText(this, "Click about us", Toast.LENGTH_SHORT).show();
         }
+        /*
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
+        */
+        mDrawer.closeDrawer(GravityCompat.START);
         return true;
     }
 
     @Override
     public void onBackPressed() {
+        /*
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         if (drawer.isDrawerOpen(GravityCompat.START)) {
             drawer.closeDrawer(GravityCompat.START);
         } else {
             super.onBackPressed();
         }
-    }
+        */
+        if (mDrawer.isDrawerOpen(GravityCompat.START)) {
+            mDrawer.closeDrawer(GravityCompat.START);
+        } else {
+            super.onBackPressed();
+        }
 
-    @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.main, menu);
-        return true;
     }
 
     @Override
     public boolean onOptionsItemSelected(MenuItem item) {
+        /*
         // Handle action bar item clicks here. The action bar will
         // automatically handle clicks on the Home/Up button, so long
         // as you specify a parent activity in AndroidManifest.xml.
@@ -175,5 +177,11 @@ public class StartView extends AppCompatActivity implements StartContract.View, 
             return true;
         }
         return super.onOptionsItemSelected(item);
+        */
+        switch (item.getItemId()) {
+            case R.id.action_settings : return true;
+        }
+        return super.onOptionsItemSelected(item);
+
     }
 }
