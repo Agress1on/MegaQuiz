@@ -9,14 +9,16 @@
     <color name="colorDarkSeaGreen">#8FBC8F</color>
     <color name="colorPaleGreen">#98FB98</color>
 
-    <!--Colors for Buttons-->
-    <color name="forAnsweredButton">#98FB98</color>
-    <color name="forNotAnsweredButton">#F08080</color>
-    <color name="forExternalOutlineStartButtons">#9ACD32</color>
-    <color name="forPressedNextPrevButtons">#808000</color>
+    <!--Colors for Quiz Buttons-->
+    <color name="colorLightGreen">#90EE90</color>
+    <color name="colorLightCoral">#F08080</color>
+    <color name="colorOlive">#808000</color>
+
+    <!-- Colors for Start Buttons-->
+    <color name="colorYellowGreen">#9ACD32</color>
 
     <!--Colors for RecyclerView Background Items-->
-    <color name="forFirstQuizStorageItem">#DC143C</color>
-    <color name="forSecondQuizStorageItem">#4682B4</color>
+    <color name="colorCrimson">#DC143C</color>
+    <color name="colorSteelBlue">#4682B4</color>
 
 </resources>

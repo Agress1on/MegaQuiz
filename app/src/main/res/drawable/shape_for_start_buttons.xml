@@ -4,7 +4,7 @@
 
     <stroke
         android:width="2dp"
-        android:color="@color/forExternalOutlineStartButtons">
+        android:color="@color/colorYellowGreen">
     </stroke>
     <solid android:color="@color/colorDarkGreen">
     </solid>
