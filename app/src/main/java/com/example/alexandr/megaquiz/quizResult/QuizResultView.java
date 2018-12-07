@@ -12,7 +12,7 @@ import com.example.alexandr.megaquiz.Constants;
 import com.example.alexandr.megaquiz.R;
 import com.example.alexandr.megaquiz.quiz.QuizView;
 import com.example.alexandr.megaquiz.quizStorage.QuizStorageView;
-import com.example.alexandr.megaquiz.start.StartView;
+import com.example.alexandr.megaquiz.startactivity.view.StartView;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;

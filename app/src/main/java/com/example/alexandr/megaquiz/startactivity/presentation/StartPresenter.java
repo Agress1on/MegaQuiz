@@ -1,4 +1,6 @@
-package com.example.alexandr.megaquiz.start;
+package com.example.alexandr.megaquiz.startactivity.presentation;
+
+import com.example.alexandr.megaquiz.startactivity.StartContract;
 
 /**
  * Created by Alexandr Mikhalev on 11.09.2018.
@@ -14,6 +16,7 @@ public class StartPresenter implements StartContract.Presenter {
         this.mInteractor = interactor;
     }
 
+    /*
     @Override
     public void onRandomButton() {
         mView.startQuizViewWithRandom(mInteractor.getStringCategoryForRandomStart());
@@ -28,4 +31,5 @@ public class StartPresenter implements StartContract.Presenter {
     public void onButtonGeneralQuestionsTest() {
         mView.startTestGeneralQuestions();
     }
+    */
 }

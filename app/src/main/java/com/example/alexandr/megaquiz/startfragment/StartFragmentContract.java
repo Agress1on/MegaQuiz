@@ -1,11 +1,15 @@
-package com.example.alexandr.megaquiz.start;
+package com.example.alexandr.megaquiz.startfragment;
 
 /**
- * Created by Alexandr Mikhalev on 11.09.2018.
+ * Created by Alexandr Mikhalev on 07.12.2018.
  *
  * @author Alexandr Mikhalev
  */
-public interface StartContract {
+public interface StartFragmentContract {
+    interface Interactor {
+        String getStringCategoryForRandomStart();
+    }
+
     interface View {
         void startQuizViewWithRandom(String randomCategory);
 
@@ -20,9 +24,5 @@ public interface StartContract {
         void onButtonCategory();
 
         void onButtonGeneralQuestionsTest();
-    }
-
-    interface Interactor {
-        String getStringCategoryForRandomStart();
     }
 }

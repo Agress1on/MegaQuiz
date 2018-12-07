@@ -5,7 +5,7 @@ import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v7.app.AppCompatActivity;
 
-import com.example.alexandr.megaquiz.start.StartView;
+import com.example.alexandr.megaquiz.startactivity.view.StartView;
 
 /**
  * Created by Alexandr Mikhalev on 10.09.2018.

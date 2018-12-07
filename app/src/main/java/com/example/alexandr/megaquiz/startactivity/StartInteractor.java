@@ -1,4 +1,4 @@
-package com.example.alexandr.megaquiz.start;
+package com.example.alexandr.megaquiz.startactivity;
 
 import com.example.alexandr.megaquiz.bankQuestion.BankQuestion;
 import com.example.alexandr.megaquiz.bankQuestion.Question;
@@ -13,6 +13,7 @@ import java.util.Map;
  * @author Alexandr Mikhalev
  */
 public class StartInteractor implements StartContract.Interactor {
+    /*
     private Map<String, List<Question>> mBankQuestion;
 
     public StartInteractor(BankQuestion bankQuestion) {
@@ -42,4 +43,6 @@ public class StartInteractor implements StartContract.Interactor {
         int random = first + (int) (Math.random() * second);
         return list.get(random);
     }
+    */
+
 }
