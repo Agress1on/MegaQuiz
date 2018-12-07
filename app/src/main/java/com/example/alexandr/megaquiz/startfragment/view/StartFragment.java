@@ -11,7 +11,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ImageView;
-import android.widget.Toast;
 
 import com.example.alexandr.megaquiz.Constants;
 import com.example.alexandr.megaquiz.R;
@@ -25,6 +24,7 @@ import com.example.alexandr.megaquiz.startfragment.presentation.StartFragmentPre
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import butterknife.Unbinder;
 
 /**
  * Created by Alexandr Mikhalev on 07.12.2018.
@@ -34,6 +34,8 @@ import butterknife.OnClick;
 public class StartFragment extends Fragment implements StartFragmentContract.View {
 
     private StartFragmentContract.Presenter mPresenter;
+
+    private Unbinder mUnbinder;
 
     @BindView(R.id.btn_randomQuiz)
     Button mRandomBtn;
@@ -49,17 +51,17 @@ public class StartFragment extends Fragment implements StartFragmentContract.Vie
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-       // return super.onCreateView(inflater, container, savedInstanceState);
+        // return super.onCreateView(inflater, container, savedInstanceState);
         View view = inflater.inflate(R.layout.fragment_start, null);
         mPresenter = new StartFragmentPresenter(this, new StartFragmentInteractor(new BankQuestion()));
-        ButterKnife.bind(this, view);
+        mUnbinder = ButterKnife.bind(this, view);
         return view;
     }
 
     @Override
-    public void onStart() {
-        super.onStart();
-
+    public void onDestroyView() {
+        super.onDestroyView();
+        mUnbinder.unbind();
     }
 
     @Override
