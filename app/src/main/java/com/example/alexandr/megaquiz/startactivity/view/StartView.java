@@ -39,7 +39,7 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class StartView extends FragmentActivity implements StartContract.View {
+public class StartView extends AppCompatActivity implements StartContract.View {
 
     private StartContract.Presenter mPresenter;
 
