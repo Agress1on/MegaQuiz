@@ -1,4 +1,4 @@
-package com.example.alexandr.megaquiz.quiz.view;
+package com.example.alexandr.megaquiz.quizactivity.view;
 
 import android.content.Context;
 import android.content.Intent;
@@ -11,11 +11,11 @@ import android.widget.TextView;
 
 import com.example.alexandr.megaquiz.Constants;
 import com.example.alexandr.megaquiz.R;
-import com.example.alexandr.megaquiz.quiz.inject.QuizPresenterModule;
-import com.example.alexandr.megaquiz.quiz.inject.DaggerQuizComponent;
-import com.example.alexandr.megaquiz.quiz.QuizContract;
-import com.example.alexandr.megaquiz.quiz.presentation.QuizPresenter;
-import com.example.alexandr.megaquiz.quizresult.view.QuizResultView;
+import com.example.alexandr.megaquiz.quizactivity.inject.DaggerQuizActivityComponent;
+import com.example.alexandr.megaquiz.quizactivity.inject.QuizActivityPresenterModule;
+import com.example.alexandr.megaquiz.quizactivity.QuizActivityContract;
+import com.example.alexandr.megaquiz.quizactivity.presentation.QuizActivityPresenter;
+import com.example.alexandr.megaquiz.quizresultactivity.view.QuizResultActivity;
 
 import javax.inject.Inject;
 
@@ -28,9 +28,9 @@ import butterknife.OnClick;
  *
  * @author Alexandr Mikhalev
  */
-public class QuizView extends AppCompatActivity implements QuizContract.View {
+public class QuizActivity extends AppCompatActivity implements QuizActivityContract.View {
     @Inject
-    QuizPresenter mPresenter;
+    QuizActivityPresenter mPresenter;
 
     @BindView(R.id.static_category_name)
     TextView mStaticCategoryNameTextView;
@@ -62,8 +62,8 @@ public class QuizView extends AppCompatActivity implements QuizContract.View {
         mCategoryName = intent.getStringExtra(Constants.EXTRAS_FOR_INTENT_QUIZ_VIEW);
         mStaticCategoryNameTextView.setText(mCategoryName.toUpperCase());
 
-        DaggerQuizComponent.builder()
-                .quizPresenterModule(new QuizPresenterModule(this))
+        DaggerQuizActivityComponent.builder()
+                .quizActivityPresenterModule(new QuizActivityPresenterModule(this))
                 .build()
                 .injectsQuizActivity(this);
 
@@ -115,7 +115,7 @@ public class QuizView extends AppCompatActivity implements QuizContract.View {
 
     @Override
     public void startQuizResultActivity(int quizSize, int correctAnswers) {
-        Intent intent = QuizResultView.getIntent(this, quizSize, correctAnswers, mCategoryName);
+        Intent intent = QuizResultActivity.getIntent(this, quizSize, correctAnswers, mCategoryName);
         startActivity(intent);
         finish();
     }
@@ -139,7 +139,7 @@ public class QuizView extends AppCompatActivity implements QuizContract.View {
     }
 
     public static Intent getIntent(Context context, String key) {
-        Intent intent = new Intent(context, QuizView.class);
+        Intent intent = new Intent(context, QuizActivity.class);
         intent.putExtra(Constants.EXTRAS_FOR_INTENT_QUIZ_VIEW, key);
         return intent;
     }

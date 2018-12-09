@@ -14,7 +14,7 @@ import android.widget.ImageView;
 import com.example.alexandr.megaquiz.Constants;
 import com.example.alexandr.megaquiz.R;
 import com.example.alexandr.megaquiz.bankquestion.BankQuestion;
-import com.example.alexandr.megaquiz.quiz.view.QuizView;
+import com.example.alexandr.megaquiz.quizactivity.view.QuizActivity;
 import com.example.alexandr.megaquiz.quizstoragefragment.view.QuizStorageFragment;
 import com.example.alexandr.megaquiz.startfragment.StartFragmentContract;
 import com.example.alexandr.megaquiz.startfragment.interactor.StartFragmentInteractor;
@@ -64,7 +64,7 @@ public class StartFragment extends Fragment implements StartFragmentContract.Vie
 
     @Override
     public void startQuizViewWithRandom(String randomCategory) {
-        Intent intent = QuizView.getIntent(getContext(), randomCategory);
+        Intent intent = QuizActivity.getIntent(getContext(), randomCategory);
         startActivity(intent);
     }
 
@@ -80,7 +80,7 @@ public class StartFragment extends Fragment implements StartFragmentContract.Vie
 
     @Override
     public void startTestGeneralQuestions() {
-        Intent intent = QuizView.getIntent(getContext(), Constants.GENERAL_QUESTIONS);
+        Intent intent = QuizActivity.getIntent(getContext(), Constants.GENERAL_QUESTIONS);
         startActivity(intent);
     }
 

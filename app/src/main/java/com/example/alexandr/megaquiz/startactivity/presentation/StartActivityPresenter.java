@@ -7,11 +7,11 @@ import com.example.alexandr.megaquiz.startactivity.StartContract;
  *
  * @author Alexandr Mikhalev
  */
-public class StartPresenter implements StartContract.Presenter {
+public class StartActivityPresenter implements StartContract.Presenter {
     private StartContract.View mView;
     private StartContract.Interactor mInteractor;
 
-    public StartPresenter(StartContract.View view, StartContract.Interactor interactor) {
+    public StartActivityPresenter(StartContract.View view, StartContract.Interactor interactor) {
         this.mView = view;
         this.mInteractor = interactor;
     }

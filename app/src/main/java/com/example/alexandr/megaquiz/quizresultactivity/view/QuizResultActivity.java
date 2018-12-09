@@ -1,4 +1,4 @@
-package com.example.alexandr.megaquiz.quizresult.view;
+package com.example.alexandr.megaquiz.quizresultactivity.view;
 
 import android.content.Context;
 import android.content.Intent;
@@ -10,18 +10,18 @@ import android.widget.TextView;
 
 import com.example.alexandr.megaquiz.Constants;
 import com.example.alexandr.megaquiz.R;
-import com.example.alexandr.megaquiz.quiz.view.QuizView;
-import com.example.alexandr.megaquiz.quizresult.QuizResultContract;
-import com.example.alexandr.megaquiz.quizresult.interactor.QuizResultInteractor;
-import com.example.alexandr.megaquiz.quizresult.presentation.QuizResultPresenter;
+import com.example.alexandr.megaquiz.quizactivity.view.QuizActivity;
+import com.example.alexandr.megaquiz.quizresultactivity.QuizResultActivityContract;
+import com.example.alexandr.megaquiz.quizresultactivity.interactor.QuizResultActivityInteractor;
+import com.example.alexandr.megaquiz.quizresultactivity.presentation.QuizResultActivityPresenter;
 import com.example.alexandr.megaquiz.startactivity.view.StartActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class QuizResultView extends AppCompatActivity implements QuizResultContract.View {
-    private QuizResultContract.Presenter mPresenter;
+public class QuizResultActivity extends AppCompatActivity implements QuizResultActivityContract.View {
+    private QuizResultActivityContract.Presenter mPresenter;
 
     @BindView(R.id.result_text)
     TextView mResultTextView;
@@ -48,7 +48,7 @@ public class QuizResultView extends AppCompatActivity implements QuizResultContr
         mNameCategory = intent.getStringExtra(Constants.EXTRAS_FOR_INTENT_QUIZ_RESULT_NAME_CATEGORY);
 
 
-        mPresenter = new QuizResultPresenter(this, new QuizResultInteractor());
+        mPresenter = new QuizResultActivityPresenter(this, new QuizResultActivityInteractor());
 
         setResultTextView(mPresenter.forResultTextView(mQuizSize, mCorrectAnswers, mNameCategory));
     }
@@ -59,7 +59,7 @@ public class QuizResultView extends AppCompatActivity implements QuizResultContr
     }
 
     public static Intent getIntent(Context context, int quizSize, int correctAnswers, String nameCategory) {
-        Intent intent = new Intent(context, QuizResultView.class);
+        Intent intent = new Intent(context, QuizResultActivity.class);
         intent.putExtra(Constants.EXTRAS_FOR_INTENT_QUIZ_RESULT_QUIZ_SIZE, quizSize);
         intent.putExtra(Constants.EXTRAS_FOR_INTENT_QUIZ_RESULT_CORRECT_ANSWERS, correctAnswers);
         intent.putExtra(Constants.EXTRAS_FOR_INTENT_QUIZ_RESULT_NAME_CATEGORY, nameCategory);
@@ -71,7 +71,7 @@ public class QuizResultView extends AppCompatActivity implements QuizResultContr
         Intent intent = null;
         switch (view.getId()) {
             case R.id.restart_button:
-                intent = QuizView.getIntent(this, mNameCategory);
+                intent = QuizActivity.getIntent(this, mNameCategory);
                 break;
             case R.id.go_to_QS_button:
              //   intent = QuizStorageFragment.getIntent(this);

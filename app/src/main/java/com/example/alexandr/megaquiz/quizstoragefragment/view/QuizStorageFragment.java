@@ -17,7 +17,7 @@ import android.widget.TextView;
 
 import com.example.alexandr.megaquiz.R;
 import com.example.alexandr.megaquiz.bankquestion.BankQuestion;
-import com.example.alexandr.megaquiz.quiz.view.QuizView;
+import com.example.alexandr.megaquiz.quizactivity.view.QuizActivity;
 import com.example.alexandr.megaquiz.quizstoragefragment.QuizStorageContract;
 import com.example.alexandr.megaquiz.quizstoragefragment.QuizStorageItem;
 import com.example.alexandr.megaquiz.quizstoragefragment.interactor.QuizStorageInteractor;
@@ -69,7 +69,7 @@ public class QuizStorageFragment extends Fragment implements QuizStorageContract
 
     @Override
     public void startActivityQuizView(String key) {
-        Intent intent = QuizView.getIntent(getContext(), key);
+        Intent intent = QuizActivity.getIntent(getContext(), key);
         startActivity(intent);
     }
 
@@ -131,7 +131,7 @@ public class QuizStorageFragment extends AppCompatActivity implements QuizStorag
 
     @Override
     public void startActivityQuizView(String key) {
-        Intent intent = QuizView.getIntent(QuizStorageFragment.this, key);
+        Intent intent = QuizActivity.getIntent(QuizStorageFragment.this, key);
         startActivity(intent);
         finish();
     }

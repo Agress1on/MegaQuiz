@@ -1,17 +1,17 @@
-package com.example.alexandr.megaquiz.quizresult.presentation;
+package com.example.alexandr.megaquiz.quizresultactivity.presentation;
 
-import com.example.alexandr.megaquiz.quizresult.QuizResultContract;
+import com.example.alexandr.megaquiz.quizresultactivity.QuizResultActivityContract;
 
 /**
  * Created by Alexandr Mikhalev on 24.11.2018.
  *
  * @author Alexandr Mikhalev
  */
-public class QuizResultPresenter implements QuizResultContract.Presenter {
-    private QuizResultContract.View mView;
-    private QuizResultContract.Interactor mInteractor;
+public class QuizResultActivityPresenter implements QuizResultActivityContract.Presenter {
+    private QuizResultActivityContract.View mView;
+    private QuizResultActivityContract.Interactor mInteractor;
 
-    public QuizResultPresenter(QuizResultContract.View view, QuizResultContract.Interactor interactor) {
+    public QuizResultActivityPresenter(QuizResultActivityContract.View view, QuizResultActivityContract.Interactor interactor) {
         this.mView = view;
         this.mInteractor = interactor;
     }

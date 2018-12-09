@@ -8,7 +8,7 @@
         <item name="colorAccent">@color/colorDarkSeaGreen</item>
     </style>
 
-    <!-- Style for QuizView-->
+    <!-- Style for QuizActivity-->
     <style name="QuizViewTheme" parent="Theme.AppCompat.DayNight.NoActionBar">
         <item name="colorPrimary">@color/colorDarkOliveGreen</item>
         <item name="colorPrimaryDark">@color/colorDarkGreen</item>

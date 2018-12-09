@@ -1,7 +1,7 @@
-package com.example.alexandr.megaquiz.quiz.presentation;
+package com.example.alexandr.megaquiz.quizactivity.presentation;
 
 import com.example.alexandr.megaquiz.Constants;
-import com.example.alexandr.megaquiz.quiz.QuizContract;
+import com.example.alexandr.megaquiz.quizactivity.QuizActivityContract;
 
 import java.util.HashMap;
 import java.util.List;
@@ -12,14 +12,14 @@ import java.util.Map;
  *
  * @author Alexandr Mikhalev
  */
-public class QuizPresenter implements QuizContract.Presenter {
-    private QuizContract.View mView;
-    private QuizContract.Interactor mInteractor;
+public class QuizActivityPresenter implements QuizActivityContract.Presenter {
+    private QuizActivityContract.View mView;
+    private QuizActivityContract.Interactor mInteractor;
     private List<String> mQuestions;
     private int mCurrentIndex;
     private Map<Integer, Boolean> mAnswers;
 
-    public QuizPresenter(QuizContract.View view, QuizContract.Interactor interactor) {
+    public QuizActivityPresenter(QuizActivityContract.View view, QuizActivityContract.Interactor interactor) {
         this.mView = view;
         this.mInteractor = interactor;
         this.mQuestions = interactor.getQuestions(mView.sentToPresenterSelectedCategory());

@@ -7,11 +7,11 @@ import com.example.alexandr.megaquiz.startactivity.StartContract;
  *
  * @author Alexandr Mikhalev
  */
-public class StartInteractor implements StartContract.Interactor {
+public class StartActivityInteractor implements StartContract.Interactor {
     /*
     private Map<String, List<Question>> mBankQuestion;
 
-    public StartInteractor(BankQuestion bankQuestion) {
+    public StartActivityInteractor(BankQuestion bankQuestion) {
         this.mBankQuestion = bankQuestion.getBankQuestion();
     }
 

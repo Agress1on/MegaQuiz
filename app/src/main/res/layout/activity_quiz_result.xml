@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    tools:context=".quizresult.view.QuizResultView">
+    tools:context=".quizresultactivity.view.QuizResultActivity">
 
     <ImageView
         android:id="@+id/quiz_complete_image_view"

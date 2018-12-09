@@ -1,11 +1,11 @@
-package com.example.alexandr.megaquiz.quizresult;
+package com.example.alexandr.megaquiz.quizresultactivity;
 
 /**
  * Created by Alexandr Mikhalev on 24.11.2018.
  *
  * @author Alexandr Mikhalev
  */
-public interface QuizResultContract {
+public interface QuizResultActivityContract {
     interface Interactor {
 
     }

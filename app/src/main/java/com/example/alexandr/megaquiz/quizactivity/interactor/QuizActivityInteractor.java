@@ -1,8 +1,8 @@
-package com.example.alexandr.megaquiz.quiz.interactor;
+package com.example.alexandr.megaquiz.quizactivity.interactor;
 
 import com.example.alexandr.megaquiz.bankquestion.BankQuestion;
 import com.example.alexandr.megaquiz.bankquestion.Question;
-import com.example.alexandr.megaquiz.quiz.QuizContract;
+import com.example.alexandr.megaquiz.quizactivity.QuizActivityContract;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -13,14 +13,14 @@ import java.util.Map;
  *
  * @author Alexandr Mikhalev
  */
-public class QuizInteractor implements QuizContract.Interactor {
+public class QuizActivityInteractor implements QuizActivityContract.Interactor {
     private Map<String, List<Question>> mBankQuestions;
     private List<Question> mListQuestions;
     private List<String> mStringQuestion;
     private List<Boolean> mTrueAnswers;
     private int mRightAnswersCounter;
 
-    public QuizInteractor(BankQuestion bankQuestion) {
+    public QuizActivityInteractor(BankQuestion bankQuestion) {
         this.mBankQuestions = bankQuestion.getBankQuestion();
         this.mListQuestions = new ArrayList<>();
         this.mStringQuestion = new ArrayList<>();

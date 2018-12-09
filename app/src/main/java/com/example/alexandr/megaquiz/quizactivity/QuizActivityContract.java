@@ -1,4 +1,4 @@
-package com.example.alexandr.megaquiz.quiz;
+package com.example.alexandr.megaquiz.quizactivity;
 
 import java.util.List;
 import java.util.Map;
@@ -8,7 +8,7 @@ import java.util.Map;
  *
  * @author Alexandr Mikhalev
  */
-public interface QuizContract {
+public interface QuizActivityContract {
     interface Interactor {
         List<String> getQuestions(String key);
 

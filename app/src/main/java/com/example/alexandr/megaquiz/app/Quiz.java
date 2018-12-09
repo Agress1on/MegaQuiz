@@ -2,10 +2,10 @@ package com.example.alexandr.megaquiz.app;
 
 import android.app.Application;
 
-import com.example.alexandr.megaquiz.quiz.inject.DaggerQuizComponent;
-import com.example.alexandr.megaquiz.quiz.inject.QuizComponent;
-import com.example.alexandr.megaquiz.quiz.inject.QuizPresenterModule;
-import com.example.alexandr.megaquiz.quiz.view.QuizView;
+import com.example.alexandr.megaquiz.quizactivity.inject.DaggerQuizActivityComponent;
+import com.example.alexandr.megaquiz.quizactivity.inject.QuizActivityComponent;
+import com.example.alexandr.megaquiz.quizactivity.inject.QuizActivityPresenterModule;
+import com.example.alexandr.megaquiz.quizactivity.view.QuizActivity;
 
 
 /**
@@ -14,15 +14,15 @@ import com.example.alexandr.megaquiz.quiz.view.QuizView;
  * @author Alexandr Mikhalev
  */
 public class Quiz extends Application {
-    private static QuizComponent sComponent;
+    private static QuizActivityComponent sComponent;
 
     @Override
     public void onCreate() {
         super.onCreate();
-        sComponent = DaggerQuizComponent.builder().quizPresenterModule(new QuizPresenterModule(new QuizView())).build();
+        sComponent = DaggerQuizActivityComponent.builder().quizActivityPresenterModule(new QuizActivityPresenterModule(new QuizActivity())).build();
     }
 
-    public static QuizComponent getComponent() {
+    public static QuizActivityComponent getComponent() {
         return sComponent;
     }
 }
