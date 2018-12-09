@@ -1,7 +1,8 @@
-package com.example.alexandr.megaquiz.quiz;
+package com.example.alexandr.megaquiz.quiz.interactor;
 
-import com.example.alexandr.megaquiz.bankQuestion.BankQuestion;
-import com.example.alexandr.megaquiz.bankQuestion.Question;
+import com.example.alexandr.megaquiz.bankquestion.BankQuestion;
+import com.example.alexandr.megaquiz.bankquestion.Question;
+import com.example.alexandr.megaquiz.quiz.QuizContract;
 
 import java.util.ArrayList;
 import java.util.List;

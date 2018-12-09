@@ -27,10 +27,10 @@
         </activity>
         <activity
             android:theme="@style/QuizViewTheme"
-            android:name=".quiz.QuizView">
+            android:name=".quiz.view.QuizView">
 
         </activity>
-        <activity android:name=".quizResult.QuizResultView">
+        <activity android:name=".quizresult.view.QuizResultView">
 
         </activity>
     </application>

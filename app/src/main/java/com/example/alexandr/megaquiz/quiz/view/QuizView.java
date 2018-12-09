@@ -1,4 +1,4 @@
-package com.example.alexandr.megaquiz.quiz;
+package com.example.alexandr.megaquiz.quiz.view;
 
 import android.content.Context;
 import android.content.Intent;
@@ -12,7 +12,10 @@ import android.widget.TextView;
 import com.example.alexandr.megaquiz.Constants;
 import com.example.alexandr.megaquiz.R;
 import com.example.alexandr.megaquiz.app.QuizPresenterModule;
-import com.example.alexandr.megaquiz.quizResult.QuizResultView;
+import com.example.alexandr.megaquiz.quiz.inject.DaggerQuizComponent;
+import com.example.alexandr.megaquiz.quiz.QuizContract;
+import com.example.alexandr.megaquiz.quiz.presentation.QuizPresenter;
+import com.example.alexandr.megaquiz.quizresult.view.QuizResultView;
 
 import javax.inject.Inject;
 
@@ -103,23 +106,6 @@ public class QuizView extends AppCompatActivity implements QuizContract.View {
         }
         mTrueButton.setBackground(getResources().getDrawable(forTrueButton));
         mFalseButton.setBackground(getResources().getDrawable(forFalseButton));
-
-        /*
-        switch (key) {
-            case Constants.NOT_PUSH_TRUE_AND_FALSE_BUTTONS :
-                mTrueButton.setBackground(getResources().getDrawable(R.drawable.shape_for_true_button));
-                mFalseButton.setBackground(getResources().getDrawable(R.drawable.shape_for_false_button));
-                break;
-            case Constants.PUSH_TRUE_BUTTON :
-                mTrueButton.setBackground(getResources().getDrawable(R.drawable.shape_for_true_button_answered));
-                mFalseButton.setBackground(getResources().getDrawable(R.drawable.shape_for_false_button_not_answered));
-                break;
-            case Constants.PUSH_FALSE_BUTTON :
-                mTrueButton.setBackground(getResources().getDrawable(R.drawable.shape_for_true_button_not_answered));
-                mFalseButton.setBackground(getResources().getDrawable(R.drawable.shape_for_false_button_answered));
-                break;
-        }
-        */
     }
 
     @Override

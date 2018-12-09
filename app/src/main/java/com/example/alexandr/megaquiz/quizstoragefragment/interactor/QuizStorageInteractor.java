@@ -1,7 +1,7 @@
 package com.example.alexandr.megaquiz.quizstoragefragment.interactor;
 
-import com.example.alexandr.megaquiz.bankQuestion.BankQuestion;
-import com.example.alexandr.megaquiz.bankQuestion.Question;
+import com.example.alexandr.megaquiz.bankquestion.BankQuestion;
+import com.example.alexandr.megaquiz.bankquestion.Question;
 import com.example.alexandr.megaquiz.quizstoragefragment.QuizStorageContract;
 import com.example.alexandr.megaquiz.quizstoragefragment.QuizStorageItem;
 

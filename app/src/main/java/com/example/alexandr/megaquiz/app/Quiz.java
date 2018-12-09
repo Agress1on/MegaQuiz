@@ -2,9 +2,9 @@ package com.example.alexandr.megaquiz.app;
 
 import android.app.Application;
 
-import com.example.alexandr.megaquiz.quiz.DaggerQuizComponent;
-import com.example.alexandr.megaquiz.quiz.QuizComponent;
-import com.example.alexandr.megaquiz.quiz.QuizView;
+import com.example.alexandr.megaquiz.quiz.inject.DaggerQuizComponent;
+import com.example.alexandr.megaquiz.quiz.inject.QuizComponent;
+import com.example.alexandr.megaquiz.quiz.view.QuizView;
 
 
 /**

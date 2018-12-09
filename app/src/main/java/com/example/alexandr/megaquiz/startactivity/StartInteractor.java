@@ -1,12 +1,5 @@
 package com.example.alexandr.megaquiz.startactivity;
 
-import com.example.alexandr.megaquiz.bankQuestion.BankQuestion;
-import com.example.alexandr.megaquiz.bankQuestion.Question;
-
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
-
 /**
  * Created by Alexandr Mikhalev on 11.09.2018.
  *

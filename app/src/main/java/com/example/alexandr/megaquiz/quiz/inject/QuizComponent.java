@@ -1,6 +1,7 @@
-package com.example.alexandr.megaquiz.quiz;
+package com.example.alexandr.megaquiz.quiz.inject;
 
 import com.example.alexandr.megaquiz.app.QuizPresenterModule;
+import com.example.alexandr.megaquiz.quiz.view.QuizView;
 
 import dagger.Component;
 

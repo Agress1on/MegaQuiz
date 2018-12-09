@@ -1,7 +1,7 @@
 package com.example.alexandr.megaquiz.startfragment.interactor;
 
-import com.example.alexandr.megaquiz.bankQuestion.BankQuestion;
-import com.example.alexandr.megaquiz.bankQuestion.Question;
+import com.example.alexandr.megaquiz.bankquestion.BankQuestion;
+import com.example.alexandr.megaquiz.bankquestion.Question;
 import com.example.alexandr.megaquiz.startfragment.StartFragmentContract;
 
 import java.util.ArrayList;

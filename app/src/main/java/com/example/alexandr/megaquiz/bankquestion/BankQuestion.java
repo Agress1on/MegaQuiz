@@ -1,4 +1,4 @@
-package com.example.alexandr.megaquiz.bankQuestion;
+package com.example.alexandr.megaquiz.bankquestion;
 
 import com.example.alexandr.megaquiz.Constants;
 

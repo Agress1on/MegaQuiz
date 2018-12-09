@@ -13,8 +13,8 @@ import android.widget.ImageView;
 
 import com.example.alexandr.megaquiz.Constants;
 import com.example.alexandr.megaquiz.R;
-import com.example.alexandr.megaquiz.bankQuestion.BankQuestion;
-import com.example.alexandr.megaquiz.quiz.QuizView;
+import com.example.alexandr.megaquiz.bankquestion.BankQuestion;
+import com.example.alexandr.megaquiz.quiz.view.QuizView;
 import com.example.alexandr.megaquiz.quizstoragefragment.view.QuizStorageFragment;
 import com.example.alexandr.megaquiz.startfragment.StartFragmentContract;
 import com.example.alexandr.megaquiz.startfragment.interactor.StartFragmentInteractor;

@@ -1,4 +1,4 @@
-package com.example.alexandr.megaquiz.bankQuestion;
+package com.example.alexandr.megaquiz.bankquestion;
 
 /**
  * Created by Alexandr Mikhalev on 25.09.2018.

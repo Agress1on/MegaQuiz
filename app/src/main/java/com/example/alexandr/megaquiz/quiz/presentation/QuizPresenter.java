@@ -1,6 +1,7 @@
-package com.example.alexandr.megaquiz.quiz;
+package com.example.alexandr.megaquiz.quiz.presentation;
 
 import com.example.alexandr.megaquiz.Constants;
+import com.example.alexandr.megaquiz.quiz.QuizContract;
 
 import java.util.HashMap;
 import java.util.List;

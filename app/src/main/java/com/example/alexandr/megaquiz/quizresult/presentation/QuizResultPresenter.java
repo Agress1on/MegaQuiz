@@ -1,4 +1,6 @@
-package com.example.alexandr.megaquiz.quizResult;
+package com.example.alexandr.megaquiz.quizresult.presentation;
+
+import com.example.alexandr.megaquiz.quizresult.QuizResultContract;
 
 /**
  * Created by Alexandr Mikhalev on 24.11.2018.
