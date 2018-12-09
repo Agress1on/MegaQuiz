@@ -13,6 +13,9 @@ import com.example.alexandr.megaquiz.quizstoragefragment.QuizStorageItem;
 
 import java.util.List;
 
+import butterknife.BindView;
+import butterknife.ButterKnife;
+
 /**
  * Created by Alexandr Mikhalev on 25.09.2018.
  *
@@ -59,12 +62,10 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
     @Override
     public void onBindViewHolder(@NonNull RecyclerAdapter.ViewHolder holder, int position) {
-
         holder.mTVName.setText(mCategoriesNames.get(position).getNameOfItem());
         holder.mTVPosition.setText(String.valueOf(mCategoriesNames.get(position).getPosition()));
         holder.mTVQuantityQuestionOfQuiz.setText(String.valueOf(mCategoriesNames.get(position).getCategorySize()));
         holder.mCatName = mCategoriesNames.get(position).getNameOfItem();
-
     }
 
     @Override
@@ -74,25 +75,20 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
     public class ViewHolder extends RecyclerView.ViewHolder implements View.OnClickListener {
 
-        //   @BindView(R.id.name_item_recycler)
+        @BindView(R.id.name_item_recycler)
         TextView mTVName;
-        //    @BindView(R.id.position_item_recycler)
+
+        @BindView(R.id.position_item_recycler)
         TextView mTVPosition;
-        //   @BindView(R.id.quantity_item_recycler)
-        TextView mTVQuantity;
-        //   @BindView(R.id.number_quantity_item_recycler)
+
+        @BindView(R.id.number_quantity_item_recycler)
         TextView mTVQuantityQuestionOfQuiz;
 
         public String mCatName;
 
         public ViewHolder(View v) {
             super(v);
-
-            mTVName = (TextView) v.findViewById(R.id.name_item_recycler);
-            mTVPosition = (TextView) v.findViewById(R.id.position_item_recycler);
-            mTVQuantityQuestionOfQuiz = (TextView) v.findViewById(R.id.number_quantity_item_recycler);
-            //      ButterKnife.bind(v);
-
+            ButterKnife.bind(this, v);
             itemView.setOnClickListener(this);
         }
 
