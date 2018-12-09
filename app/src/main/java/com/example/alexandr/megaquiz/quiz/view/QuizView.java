@@ -11,7 +11,7 @@ import android.widget.TextView;
 
 import com.example.alexandr.megaquiz.Constants;
 import com.example.alexandr.megaquiz.R;
-import com.example.alexandr.megaquiz.app.QuizPresenterModule;
+import com.example.alexandr.megaquiz.quiz.inject.QuizPresenterModule;
 import com.example.alexandr.megaquiz.quiz.inject.DaggerQuizComponent;
 import com.example.alexandr.megaquiz.quiz.QuizContract;
 import com.example.alexandr.megaquiz.quiz.presentation.QuizPresenter;

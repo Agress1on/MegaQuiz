@@ -1,4 +1,4 @@
-package com.example.alexandr.megaquiz.app;
+package com.example.alexandr.megaquiz.quiz.inject;
 
 import com.example.alexandr.megaquiz.bankquestion.BankQuestion;
 import com.example.alexandr.megaquiz.quiz.interactor.QuizInteractor;

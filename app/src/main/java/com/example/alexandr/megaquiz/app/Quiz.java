@@ -4,6 +4,7 @@ import android.app.Application;
 
 import com.example.alexandr.megaquiz.quiz.inject.DaggerQuizComponent;
 import com.example.alexandr.megaquiz.quiz.inject.QuizComponent;
+import com.example.alexandr.megaquiz.quiz.inject.QuizPresenterModule;
 import com.example.alexandr.megaquiz.quiz.view.QuizView;
 
 
