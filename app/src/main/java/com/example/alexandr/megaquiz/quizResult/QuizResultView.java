@@ -11,8 +11,7 @@ import android.widget.TextView;
 import com.example.alexandr.megaquiz.Constants;
 import com.example.alexandr.megaquiz.R;
 import com.example.alexandr.megaquiz.quiz.QuizView;
-import com.example.alexandr.megaquiz.quizStorage.QuizStorageView;
-import com.example.alexandr.megaquiz.startactivity.view.StartView;
+import com.example.alexandr.megaquiz.startactivity.view.StartActivity;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -72,10 +71,10 @@ public class QuizResultView extends AppCompatActivity implements QuizResultContr
                 intent = QuizView.getIntent(this, mNameCategory);
                 break;
             case R.id.go_to_QS_button:
-                intent = QuizStorageView.getIntent(this);
+             //   intent = QuizStorageFragment.getIntent(this);
                 break;
             case R.id.go_to_start_button:
-                intent = StartView.getIntent(this);
+                intent = StartActivity.getIntent(this);
                 break;
         }
         startActivity(intent);

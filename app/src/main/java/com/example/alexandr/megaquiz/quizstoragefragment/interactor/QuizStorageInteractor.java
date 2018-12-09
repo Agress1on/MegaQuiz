@@ -1,7 +1,9 @@
-package com.example.alexandr.megaquiz.quizStorage;
+package com.example.alexandr.megaquiz.quizstoragefragment.interactor;
 
 import com.example.alexandr.megaquiz.bankQuestion.BankQuestion;
 import com.example.alexandr.megaquiz.bankQuestion.Question;
+import com.example.alexandr.megaquiz.quizstoragefragment.QuizStorageContract;
+import com.example.alexandr.megaquiz.quizstoragefragment.QuizStorageItem;
 
 import java.util.ArrayList;
 import java.util.List;

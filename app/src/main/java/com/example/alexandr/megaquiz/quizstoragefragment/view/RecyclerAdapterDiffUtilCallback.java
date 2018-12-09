@@ -1,6 +1,8 @@
-package com.example.alexandr.megaquiz.quizStorage;
+package com.example.alexandr.megaquiz.quizstoragefragment.view;
 
 import android.support.v7.util.DiffUtil;
+
+import com.example.alexandr.megaquiz.quizstoragefragment.QuizStorageItem;
 
 import java.util.List;
 

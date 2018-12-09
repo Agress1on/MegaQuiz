@@ -22,7 +22,5 @@ public interface StartFragmentContract {
         void onRandomButton();
 
         void onButtonCategory();
-
-        void onButtonGeneralQuestionsTest();
     }
 }

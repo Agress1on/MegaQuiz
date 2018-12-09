@@ -12,8 +12,8 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".startactivity.view.StartView"
-            android:theme="@style/QuizViewTheme">
+        <activity android:name=".startactivity.view.StartActivity"
+            >
 
         </activity>
         <activity
@@ -24,9 +24,6 @@
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
-        </activity>
-        <activity android:name=".quizStorage.QuizStorageView">
-
         </activity>
         <activity
             android:theme="@style/QuizViewTheme"

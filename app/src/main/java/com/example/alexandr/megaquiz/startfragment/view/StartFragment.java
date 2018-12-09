@@ -1,6 +1,5 @@
 package com.example.alexandr.megaquiz.startfragment.view;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -16,9 +15,9 @@ import com.example.alexandr.megaquiz.Constants;
 import com.example.alexandr.megaquiz.R;
 import com.example.alexandr.megaquiz.bankQuestion.BankQuestion;
 import com.example.alexandr.megaquiz.quiz.QuizView;
-import com.example.alexandr.megaquiz.quizStorage.QuizStorageView;
+import com.example.alexandr.megaquiz.quizstoragefragment.view.QuizStorageFragment;
 import com.example.alexandr.megaquiz.startfragment.StartFragmentContract;
-import com.example.alexandr.megaquiz.startfragment.StartFragmentInteractor;
+import com.example.alexandr.megaquiz.startfragment.interactor.StartFragmentInteractor;
 import com.example.alexandr.megaquiz.startfragment.presentation.StartFragmentPresenter;
 
 import butterknife.BindView;
@@ -51,7 +50,6 @@ public class StartFragment extends Fragment implements StartFragmentContract.Vie
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        // return super.onCreateView(inflater, container, savedInstanceState);
         View view = inflater.inflate(R.layout.fragment_start, null);
         mPresenter = new StartFragmentPresenter(this, new StartFragmentInteractor(new BankQuestion()));
         mUnbinder = ButterKnife.bind(this, view);
@@ -72,30 +70,18 @@ public class StartFragment extends Fragment implements StartFragmentContract.Vie
 
     @Override
     public void startQuizStorage() {
-        Intent intent = QuizStorageView.getIntent(getContext());
-        startActivity(intent);
+        QuizStorageFragment fragment = QuizStorageFragment.newInstance();
+        getActivity().getSupportFragmentManager().beginTransaction()
+                .addToBackStack(null)
+                .hide(this)
+                .add(R.id.linear_for_edit, fragment)
+                .commit();
     }
 
     @Override
     public void startTestGeneralQuestions() {
         Intent intent = QuizView.getIntent(getContext(), Constants.GENERAL_QUESTIONS);
         startActivity(intent);
-    }
-
-    @OnClick({R.id.btn_randomQuiz, R.id.btn_category, R.id.btn_test_general_questions})
-    void onClick(View view) {
-        Context context = getContext();
-        switch (view.getId()) {
-            case R.id.btn_randomQuiz:
-                mPresenter.onRandomButton();
-                break;
-            case R.id.btn_category:
-                mPresenter.onButtonCategory();
-                break;
-            case R.id.btn_test_general_questions:
-                //  mPresenter.onButtonGeneralQuestionsTest();
-                animation();
-        }
     }
 
     private void animation() {
@@ -109,11 +95,24 @@ public class StartFragment extends Fragment implements StartFragmentContract.Vie
         */
     }
 
+    @OnClick({R.id.btn_randomQuiz, R.id.btn_category, R.id.btn_test_general_questions})
+    void onClick(View view) {
+        switch (view.getId()) {
+            case R.id.btn_randomQuiz:
+                mPresenter.onRandomButton();
+                break;
+            case R.id.btn_category:
+                mPresenter.onButtonCategory();
+                break;
+            case R.id.btn_test_general_questions:
+                animation();
+        }
+    }
+
     public static StartFragment newInstance() {
         Bundle args = new Bundle();
         StartFragment fragment = new StartFragment();
         fragment.setArguments(args);
         return fragment;
     }
-
 }

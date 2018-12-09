@@ -25,9 +25,4 @@ public class StartFragmentPresenter implements StartFragmentContract.Presenter {
     public void onButtonCategory() {
         mView.startQuizStorage();
     }
-
-    @Override
-    public void onButtonGeneralQuestionsTest() {
-        mView.startTestGeneralQuestions();
-    }
 }

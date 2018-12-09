@@ -1,4 +1,4 @@
-package com.example.alexandr.megaquiz.quizStorage;
+package com.example.alexandr.megaquiz.quizstoragefragment.view;
 
 import android.support.annotation.NonNull;
 import android.support.v7.widget.RecyclerView;
@@ -9,6 +9,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.example.alexandr.megaquiz.R;
+import com.example.alexandr.megaquiz.quizstoragefragment.QuizStorageItem;
 
 import java.util.List;
 

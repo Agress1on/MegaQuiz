@@ -1,4 +1,4 @@
-package com.example.alexandr.megaquiz.quizStorage;
+package com.example.alexandr.megaquiz.quizstoragefragment;
 
 /**
  * Created by Alexandr Mikhalev on 22.11.2018.
