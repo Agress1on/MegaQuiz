@@ -6,7 +6,7 @@ import android.os.Bundle;
 import android.support.v7.app.AppCompatActivity;
 
 import com.example.alexandr.megaquiz.R;
-import com.example.alexandr.megaquiz.startactivity.StartInteractor;
+import com.example.alexandr.megaquiz.startactivity.interactor.StartInteractor;
 import com.example.alexandr.megaquiz.startactivity.StartContract;
 import com.example.alexandr.megaquiz.startactivity.presentation.StartPresenter;
 import com.example.alexandr.megaquiz.startfragment.view.StartFragment;

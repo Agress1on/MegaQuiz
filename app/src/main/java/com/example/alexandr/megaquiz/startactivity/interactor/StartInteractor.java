@@ -1,4 +1,6 @@
-package com.example.alexandr.megaquiz.startactivity;
+package com.example.alexandr.megaquiz.startactivity.interactor;
+
+import com.example.alexandr.megaquiz.startactivity.StartContract;
 
 /**
  * Created by Alexandr Mikhalev on 11.09.2018.
