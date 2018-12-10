@@ -1,4 +1,4 @@
-package com.example.alexandr.megaquiz.startactivity.interactor;
+package com.example.alexandr.megaquiz.startactivity.domain;
 
 import com.example.alexandr.megaquiz.startactivity.StartContract;
 

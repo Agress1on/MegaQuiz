@@ -1,4 +1,4 @@
-package com.example.alexandr.megaquiz.startfragment.interactor;
+package com.example.alexandr.megaquiz.startfragment.domain;
 
 import com.example.alexandr.megaquiz.bankquestion.BankQuestion;
 import com.example.alexandr.megaquiz.bankquestion.Question;

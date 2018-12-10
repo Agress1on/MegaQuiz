@@ -1,27 +1,26 @@
-package com.example.alexandr.megaquiz.quizactivity.domain;
+package com.example.alexandr.megaquiz.quizfragment.domain;
 
 import com.example.alexandr.megaquiz.bankquestion.BankQuestion;
 import com.example.alexandr.megaquiz.bankquestion.Question;
-import com.example.alexandr.megaquiz.quizactivity.QuizActivityContract;
+import com.example.alexandr.megaquiz.quizfragment.QuizFragmentContract;
 
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
 /**
- * Created by Alexandr Mikhalev on 13.09.2018.
+ * Created by Alexandr Mikhalev on 10.12.2018.
  *
  * @author Alexandr Mikhalev
  */
-public class QuizActivityInteractor implements QuizActivityContract.Interactor {
-    /*
+public class QuizFragmentInteractor implements QuizFragmentContract.Interactor {
     private Map<String, List<Question>> mBankQuestions;
     private List<Question> mListQuestions;
     private List<String> mStringQuestion;
     private List<Boolean> mTrueAnswers;
     private int mRightAnswersCounter;
 
-    public QuizActivityInteractor(BankQuestion bankQuestion) {
+    public QuizFragmentInteractor(BankQuestion bankQuestion) {
         this.mBankQuestions = bankQuestion.getBankQuestion();
         this.mListQuestions = new ArrayList<>();
         this.mStringQuestion = new ArrayList<>();
@@ -50,5 +49,4 @@ public class QuizActivityInteractor implements QuizActivityContract.Interactor {
         }
         return mRightAnswersCounter;
     }
-    */
 }

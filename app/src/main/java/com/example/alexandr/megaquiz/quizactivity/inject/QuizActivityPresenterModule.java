@@ -15,6 +15,7 @@ import dagger.Provides;
  */
 @Module
 public class QuizActivityPresenterModule {
+    /*
     private QuizActivity mQuizActivity;
 
     public QuizActivityPresenterModule(QuizActivity quizActivity) {
@@ -35,4 +36,5 @@ public class QuizActivityPresenterModule {
     BankQuestion provideBankQuestion() {
         return new BankQuestion();
     }
+    */
 }

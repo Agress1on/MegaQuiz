@@ -65,7 +65,6 @@ public class QuizStorageFragment extends Fragment implements QuizStorageContract
         return view;
     }
 
-
     @Override
     public void startActivityQuizView(String key) {
         Intent intent = QuizActivity.getIntent(getContext(), key);

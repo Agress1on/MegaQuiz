@@ -14,6 +14,7 @@ import com.example.alexandr.megaquiz.quizactivity.view.QuizActivity;
  * @author Alexandr Mikhalev
  */
 public class Quiz extends Application {
+    /*
     private static QuizActivityComponent sComponent;
 
     @Override
@@ -25,4 +26,5 @@ public class Quiz extends Application {
     public static QuizActivityComponent getComponent() {
         return sComponent;
     }
+    */
 }

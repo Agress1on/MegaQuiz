@@ -1,26 +1,25 @@
-package com.example.alexandr.megaquiz.quizactivity.presentation;
+package com.example.alexandr.megaquiz.quizfragment.presentation;
 
 import com.example.alexandr.megaquiz.Constants;
-import com.example.alexandr.megaquiz.quizactivity.QuizActivityContract;
+import com.example.alexandr.megaquiz.quizfragment.QuizFragmentContract;
 
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
 /**
- * Created by Alexandr Mikhalev on 13.09.2018.
+ * Created by Alexandr Mikhalev on 10.12.2018.
  *
  * @author Alexandr Mikhalev
  */
-public class QuizActivityPresenter implements QuizActivityContract.Presenter {
-    /*
-    private QuizActivityContract.View mView;
-    private QuizActivityContract.Interactor mInteractor;
+public class QuizFragmentPresenter implements QuizFragmentContract.Presenter {
+    private QuizFragmentContract.View mView;
+    private QuizFragmentContract.Interactor mInteractor;
     private List<String> mQuestions;
     private int mCurrentIndex;
     private Map<Integer, Boolean> mAnswers;
 
-    public QuizActivityPresenter(QuizActivityContract.View view, QuizActivityContract.Interactor interactor) {
+    public QuizFragmentPresenter(QuizFragmentContract.View view, QuizFragmentContract.Interactor interactor) {
         this.mView = view;
         this.mInteractor = interactor;
         this.mQuestions = interactor.getQuestions(mView.sentToPresenterSelectedCategory());
@@ -97,23 +96,6 @@ public class QuizActivityPresenter implements QuizActivityContract.Presenter {
             }
         }
         mView.setCorrectButtonStyle(flag);
-        *//*
-        boolean isAnswered = mAnswers.containsKey(getCurrentIndex());
-        mView.switchButton(!isAnswered);
-        if (isAnswered) {
-            boolean answer = false;
-            for (Map.Entry<Integer, Boolean> entry : mAnswers.entrySet()) {
-                if (entry.getKey() == getCurrentIndex()) answer = entry.getValue();
-            }
-            if (answer) {
-                mView.setCorrectButtonStyle(Constants.PUSH_TRUE_BUTTON);
-            } else {
-                mView.setCorrectButtonStyle(Constants.PUSH_FALSE_BUTTON);
-            }
-        } else {
-            mView.setCorrectButtonStyle(Constants.NOT_PUSH_TRUE_AND_FALSE_BUTTONS);
-        }
-        *//*
     }
 
     private void checkFinalOfQuiz() {
@@ -123,6 +105,4 @@ public class QuizActivityPresenter implements QuizActivityContract.Presenter {
             mView.startQuizResultActivity(mQuestions.size(), rightAnswers);
         }
     }
-    */
-
 }

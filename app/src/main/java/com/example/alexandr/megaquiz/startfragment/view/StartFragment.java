@@ -17,7 +17,7 @@ import com.example.alexandr.megaquiz.bankquestion.BankQuestion;
 import com.example.alexandr.megaquiz.quizactivity.view.QuizActivity;
 import com.example.alexandr.megaquiz.quizstoragefragment.view.QuizStorageFragment;
 import com.example.alexandr.megaquiz.startfragment.StartFragmentContract;
-import com.example.alexandr.megaquiz.startfragment.interactor.StartFragmentInteractor;
+import com.example.alexandr.megaquiz.startfragment.domain.StartFragmentInteractor;
 import com.example.alexandr.megaquiz.startfragment.presentation.StartFragmentPresenter;
 
 import butterknife.BindView;
