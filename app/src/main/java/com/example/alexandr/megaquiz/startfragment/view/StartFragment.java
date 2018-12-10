@@ -73,8 +73,7 @@ public class StartFragment extends Fragment implements StartFragmentContract.Vie
         QuizStorageFragment fragment = QuizStorageFragment.newInstance();
         getActivity().getSupportFragmentManager().beginTransaction()
                 .addToBackStack(null)
-                .hide(this)
-                .add(R.id.linear_for_edit, fragment)
+                .replace(R.id.linear_for_edit_for_nd, fragment)
                 .commit();
     }
 

@@ -13,6 +13,7 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity android:name=".startactivity.view.StartActivity"
+            android:theme="@style/QuizViewTheme"
             >
 
         </activity>

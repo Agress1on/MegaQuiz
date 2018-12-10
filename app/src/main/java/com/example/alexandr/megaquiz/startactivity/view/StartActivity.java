@@ -5,17 +5,19 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import android.widget.Toast;
 
 import com.example.alexandr.megaquiz.R;
-import com.example.alexandr.megaquiz.startactivity.interactor.StartActivityInteractor;
+import com.example.alexandr.megaquiz.infofragment.view.InfoFragment;
+import com.example.alexandr.megaquiz.quizstoragefragment.view.QuizStorageFragment;
 import com.example.alexandr.megaquiz.startactivity.StartContract;
+import com.example.alexandr.megaquiz.startactivity.interactor.StartActivityInteractor;
 import com.example.alexandr.megaquiz.startactivity.presentation.StartActivityPresenter;
 import com.example.alexandr.megaquiz.startfragment.view.StartFragment;
 
@@ -33,6 +35,12 @@ public class StartActivity extends AppCompatActivity implements StartContract.Vi
     @BindView(R.id.nav_view)
     NavigationView mNavigationView;
 
+    StartFragment mStartFragment;
+    InfoFragment mInfoFragment;
+    QuizStorageFragment mQuizStorageFragment = new QuizStorageFragment();
+    FragmentManager mFragmentManager = getSupportFragmentManager();
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -40,23 +48,26 @@ public class StartActivity extends AppCompatActivity implements StartContract.Vi
         ButterKnife.bind(this);
         mPresenter = new StartActivityPresenter(this, new StartActivityInteractor());
 
-
-
-
         //ND
         setSupportActionBar(mToolbar);
-        ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this, mDrawer, mToolbar, R.string.navigation_drawer_open, R.string.navigation_drawer_close);
+        ActionBarDrawerToggle toggle =
+                new ActionBarDrawerToggle(this, mDrawer, mToolbar,
+                        R.string.navigation_drawer_open, R.string.navigation_drawer_close);
         mDrawer.addDrawerListener(toggle);
         toggle.syncState();
         mNavigationView.setNavigationItemSelectedListener(this);
-        //
+        //ND END
 
-        /*
-        StartFragment fragment = StartFragment.newInstance();
-        getSupportFragmentManager().beginTransaction()
-                .add(R.id.linear_for_edit_for_nd, fragment)
+        mStartFragment = StartFragment.newInstance();
+        mInfoFragment = InfoFragment.newInstance();
+        addStartFragment();
+
+    }
+
+    private void addStartFragment() {
+        mFragmentManager.beginTransaction()
+                .add(R.id.linear_for_edit_for_nd, mStartFragment)
                 .commit();
-        */
     }
 
     public static Intent getIntent(Context context) {
@@ -64,19 +75,15 @@ public class StartActivity extends AppCompatActivity implements StartContract.Vi
         return intent;
     }
 
-
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
-        // Handle navigation view item clicks here.
         int id = item.getItemId();
         if (id == R.id.about) {
-            // Handle the camera action
-            Toast.makeText(this, "Click about us", Toast.LENGTH_SHORT).show();
+            mFragmentManager.beginTransaction()
+                    .addToBackStack(null)
+                    .replace(R.id.linear_for_edit_for_nd, mInfoFragment)
+                    .commit();
         }
-        /*
-        DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
-        drawer.closeDrawer(GravityCompat.START);
-        */
         mDrawer.closeDrawer(GravityCompat.START);
         return true;
     }

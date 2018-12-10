@@ -21,7 +21,11 @@
     </android.support.design.widget.AppBarLayout>
 
 
-    <include layout="@layout/nd_activity_start" />
+    <FrameLayout
+        android:id="@+id/linear_for_edit_for_nd"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+    </FrameLayout>
 
 
 </android.support.design.widget.CoordinatorLayout>
