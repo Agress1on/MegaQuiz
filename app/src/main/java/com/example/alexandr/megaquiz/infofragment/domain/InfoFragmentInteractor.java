@@ -1,4 +1,4 @@
-package com.example.alexandr.megaquiz.infofragment.interactor;
+package com.example.alexandr.megaquiz.infofragment.domain;
 
 /**
  * Created by Alexandr Mikhalev on 10.12.2018.

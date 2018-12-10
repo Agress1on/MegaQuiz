@@ -15,21 +15,4 @@ public class StartActivityPresenter implements StartContract.Presenter {
         this.mView = view;
         this.mInteractor = interactor;
     }
-
-    /*
-    @Override
-    public void onRandomButton() {
-        mView.startQuizViewWithRandom(mInteractor.getStringCategoryForRandomStart());
-    }
-
-    @Override
-    public void onButtonCategory() {
-        mView.startQuizStorage();
-    }
-
-    @Override
-    public void onButtonGeneralQuestionsTest() {
-        mView.startTestGeneralQuestions();
-    }
-    */
 }

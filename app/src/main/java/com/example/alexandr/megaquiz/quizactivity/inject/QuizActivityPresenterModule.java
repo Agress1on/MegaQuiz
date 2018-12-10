@@ -1,7 +1,7 @@
 package com.example.alexandr.megaquiz.quizactivity.inject;
 
 import com.example.alexandr.megaquiz.bankquestion.BankQuestion;
-import com.example.alexandr.megaquiz.quizactivity.interactor.QuizActivityInteractor;
+import com.example.alexandr.megaquiz.quizactivity.domain.QuizActivityInteractor;
 import com.example.alexandr.megaquiz.quizactivity.presentation.QuizActivityPresenter;
 import com.example.alexandr.megaquiz.quizactivity.view.QuizActivity;
 

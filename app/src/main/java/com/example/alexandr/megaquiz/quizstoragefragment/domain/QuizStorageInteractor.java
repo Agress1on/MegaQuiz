@@ -1,4 +1,4 @@
-package com.example.alexandr.megaquiz.quizstoragefragment.interactor;
+package com.example.alexandr.megaquiz.quizstoragefragment.domain;
 
 import com.example.alexandr.megaquiz.bankquestion.BankQuestion;
 import com.example.alexandr.megaquiz.bankquestion.Question;

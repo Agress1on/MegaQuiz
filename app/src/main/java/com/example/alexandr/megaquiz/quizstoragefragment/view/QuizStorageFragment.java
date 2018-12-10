@@ -20,7 +20,7 @@ import com.example.alexandr.megaquiz.bankquestion.BankQuestion;
 import com.example.alexandr.megaquiz.quizactivity.view.QuizActivity;
 import com.example.alexandr.megaquiz.quizstoragefragment.QuizStorageContract;
 import com.example.alexandr.megaquiz.quizstoragefragment.QuizStorageItem;
-import com.example.alexandr.megaquiz.quizstoragefragment.interactor.QuizStorageInteractor;
+import com.example.alexandr.megaquiz.quizstoragefragment.domain.QuizStorageInteractor;
 import com.example.alexandr.megaquiz.quizstoragefragment.presentation.QuizStoragePresenter;
 
 import java.util.List;
@@ -44,14 +44,13 @@ public class QuizStorageFragment extends Fragment implements QuizStorageContract
     TextView mTextView;
 
     private RecyclerView mRecyclerView;
-    // private RecyclerView.Adapter mAdapter;
     private RecyclerAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.activity_quiz_storage, null);
+        View view = inflater.inflate(R.layout.fragment_quiz_storage, null);
         final FragmentActivity c = getActivity();
         ButterKnife.bind(this, view);
         mPresenter = new QuizStoragePresenter(this, new QuizStorageInteractor(new BankQuestion()));
@@ -95,63 +94,6 @@ public class QuizStorageFragment extends Fragment implements QuizStorageContract
         mPresenter.onCheckBoxClick(checked);
     }
 }
-/*
-public class QuizStorageFragment extends AppCompatActivity implements QuizStorageContract.View {
-    private QuizStorageContract.Presenter mPresenter;
 
-    @BindView(R.id.list_switch)
-    Switch mSwitch;
-    @BindView(R.id.text_for_switch)
-    TextView mTextView;
-
-    private RecyclerView mRecyclerView;
-    // private RecyclerView.Adapter mAdapter;
-    private RecyclerAdapter mAdapter;
-    private RecyclerView.LayoutManager mLayoutManager;
-
-    @Override
-    protected void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_quiz_storage);
-        ButterKnife.bind(this);
-
-        mPresenter = new QuizStoragePresenter(this, new QuizStorageInteractor(new BankQuestion()));
-        List<QuizStorageItem> mCat = mPresenter.getCategoriesNamesForViewWithoutEmpty();
-        mRecyclerView = (RecyclerView) findViewById(R.id.my_recycler);
-        mLayoutManager = new LinearLayoutManager(this); // XMMMMM
-        mRecyclerView.setLayoutManager(mLayoutManager);
-        mAdapter = new RecyclerAdapter(mCat, key -> mPresenter.onClick(key));
-        mRecyclerView.setAdapter(mAdapter);
-    }
-
-    public static Intent getIntent(Context context) {
-        Intent intent = new Intent(context, QuizStorageFragment.class);
-        return intent;
-    }
-
-    @Override
-    public void startActivityQuizView(String key) {
-        Intent intent = QuizActivity.getIntent(QuizStorageFragment.this, key);
-        startActivity(intent);
-        finish();
-    }
-
-    @Override
-    public void updateUI(List<QuizStorageItem> list, String text) {
-        RecyclerAdapterDiffUtilCallback recyclerAdapterDiffUtilCallback =
-                new RecyclerAdapterDiffUtilCallback(mAdapter.getData(), list);
-        DiffUtil.DiffResult recyclerDiffResult = DiffUtil.calculateDiff(recyclerAdapterDiffUtilCallback);
-        mAdapter.setData(list);
-        recyclerDiffResult.dispatchUpdatesTo(mAdapter);
-        mTextView.setText(text);
-    }
-
-    @OnCheckedChanged({R.id.list_switch})
-    void onSelected(Switch button, boolean checked) {
-        mPresenter.onCheckBoxClick(checked);
-    }
-}
-
-*/
 
 

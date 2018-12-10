@@ -46,7 +46,6 @@
         app:layout_constraintStart_toStartOf="@id/guideline2"
         app:layout_constraintTop_toTopOf="@id/name_item_recycler" />
 
-
     <TextView
         android:id="@+id/position_item_recycler"
         android:layout_width="wrap_content"

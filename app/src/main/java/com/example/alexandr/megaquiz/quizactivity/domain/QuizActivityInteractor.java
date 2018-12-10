@@ -1,4 +1,4 @@
-package com.example.alexandr.megaquiz.quizactivity.interactor;
+package com.example.alexandr.megaquiz.quizactivity.domain;
 
 import com.example.alexandr.megaquiz.bankquestion.BankQuestion;
 import com.example.alexandr.megaquiz.bankquestion.Question;

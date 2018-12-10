@@ -1,4 +1,4 @@
-package com.example.alexandr.megaquiz.quizresultactivity.interactor;
+package com.example.alexandr.megaquiz.quizresultactivity.domain;
 
 import com.example.alexandr.megaquiz.quizresultactivity.QuizResultActivityContract;
 

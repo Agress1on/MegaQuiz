@@ -23,6 +23,8 @@ import butterknife.Unbinder;
  */
 public class InfoFragment extends Fragment implements InfoFragmentContract.View {
 
+    private InfoFragmentContract.Presenter mPresenter;
+
     @BindView(R.id.info_TV)
     TextView info_TV;
 

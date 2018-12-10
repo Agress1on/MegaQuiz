@@ -12,7 +12,7 @@ import com.example.alexandr.megaquiz.Constants;
 import com.example.alexandr.megaquiz.R;
 import com.example.alexandr.megaquiz.quizactivity.view.QuizActivity;
 import com.example.alexandr.megaquiz.quizresultactivity.QuizResultActivityContract;
-import com.example.alexandr.megaquiz.quizresultactivity.interactor.QuizResultActivityInteractor;
+import com.example.alexandr.megaquiz.quizresultactivity.domain.QuizResultActivityInteractor;
 import com.example.alexandr.megaquiz.quizresultactivity.presentation.QuizResultActivityPresenter;
 import com.example.alexandr.megaquiz.startactivity.view.StartActivity;
 
