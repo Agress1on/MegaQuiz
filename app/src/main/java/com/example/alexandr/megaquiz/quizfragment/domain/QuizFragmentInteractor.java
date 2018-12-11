@@ -20,15 +20,10 @@ import io.reactivex.functions.Function;
  */
 public class QuizFragmentInteractor implements QuizFragmentContract.Interactor {
 
-    private List<Boolean> mTrueAnswers;
-    private int mRightAnswersCounter;
-
     private BankQuestion mBank;
 
     public QuizFragmentInteractor(BankQuestion bankQuestion) {
         this.mBank = bankQuestion;
-        this.mTrueAnswers = new ArrayList<>();
-        this.mRightAnswersCounter = 0;
     }
 
     @Override
@@ -46,7 +41,6 @@ public class QuizFragmentInteractor implements QuizFragmentContract.Interactor {
                         List<String> list = new ArrayList<>();
                         for (Question question : questions) {
                             list.add(question.getTextQuestion());
-                            mTrueAnswers.add(question.isTrueAnswer()); // должно убраться в итоге
                         }
                         return list;
                     }
