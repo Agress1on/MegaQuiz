@@ -13,6 +13,7 @@ import android.widget.TextView;
 import com.example.alexandr.megaquiz.Constants;
 import com.example.alexandr.megaquiz.R;
 import com.example.alexandr.megaquiz.bankquestion.BankQuestion;
+import com.example.alexandr.megaquiz.quizfragment.Answer;
 import com.example.alexandr.megaquiz.quizfragment.QuizFragmentContract;
 import com.example.alexandr.megaquiz.quizfragment.domain.QuizFragmentInteractor;
 import com.example.alexandr.megaquiz.quizfragment.presentation.QuizFragmentPresenter;
@@ -120,10 +121,10 @@ public class QuizFragment extends Fragment implements QuizFragmentContract.View 
     void onClickForAnswerButtons(View view) {
         switch (view.getId()) {
             case R.id.btnTrue:
-                mPresenter.onTrueButton();
+                mPresenter.onAnswer(Answer.TRUE);
                 break;
             case R.id.btnFalse:
-                mPresenter.onFalseButton();
+                mPresenter.onAnswer(Answer.FALSE);
                 break;
         }
     }

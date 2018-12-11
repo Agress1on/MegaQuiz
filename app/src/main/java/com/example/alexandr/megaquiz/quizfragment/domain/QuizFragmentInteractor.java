@@ -2,6 +2,7 @@ package com.example.alexandr.megaquiz.quizfragment.domain;
 
 import com.example.alexandr.megaquiz.bankquestion.BankQuestion;
 import com.example.alexandr.megaquiz.bankquestion.Question;
+import com.example.alexandr.megaquiz.quizfragment.Answer;
 import com.example.alexandr.megaquiz.quizfragment.QuizFragmentContract;
 
 import java.util.ArrayList;
@@ -43,9 +44,9 @@ public class QuizFragmentInteractor implements QuizFragmentContract.Interactor {
     }
 
     @Override
-    public int checkQuestions(Map<Integer, Boolean> answers) {
-        for (Map.Entry<Integer, Boolean> entry : answers.entrySet()) {
-            if (mTrueAnswers.get(entry.getKey()) == entry.getValue()) mRightAnswersCounter++;
+    public int checkQuestions(Map<Integer, Answer> answers) {
+        for (Map.Entry<Integer, Answer> entry : answers.entrySet()) {
+            if (mTrueAnswers.get(entry.getKey()) == entry.getValue().isResult()) mRightAnswersCounter++;
         }
         return mRightAnswersCounter;
     }

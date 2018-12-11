@@ -12,7 +12,7 @@ public interface QuizFragmentContract {
     interface Interactor {
         List<String> getQuestions(String key);
 
-        int checkQuestions(Map<Integer, Boolean> answers);
+        int checkQuestions(Map<Integer, Answer> answers);
     }
 
     interface View {
@@ -36,8 +36,12 @@ public interface QuizFragmentContract {
 
         void onPrevButton();
 
+        void onAnswer(Answer answer);
+
+        /*
         void onTrueButton();
 
         void onFalseButton();
+        */
     }
 }

@@ -3,6 +3,7 @@ package com.example.alexandr.megaquiz.quizfragment.presentation;
 import android.support.v4.util.ArrayMap;
 
 import com.example.alexandr.megaquiz.Constants;
+import com.example.alexandr.megaquiz.quizfragment.Answer;
 import com.example.alexandr.megaquiz.quizfragment.QuizFragmentContract;
 
 import java.util.List;
@@ -18,7 +19,7 @@ public class QuizFragmentPresenter implements QuizFragmentContract.Presenter {
     private QuizFragmentContract.Interactor mInteractor;
     private List<String> mQuestions;
     private int mCurrentIndex;
-    private Map<Integer, Boolean> mAnswers;
+    private Map<Integer, Answer> mAnswers;
 
     public QuizFragmentPresenter(QuizFragmentContract.View view, QuizFragmentContract.Interactor interactor) {
         this.mView = view;
@@ -41,33 +42,25 @@ public class QuizFragmentPresenter implements QuizFragmentContract.Presenter {
     @Override
     public void onNextButton() {
         int newIndex = (mCurrentIndex + 1) % mQuestions.size();
-        mCurrentIndex = newIndex;
-        mView.setQuestionTextView(mQuestions.get(mCurrentIndex));
-        countNumberOfQuestion();
-        checkAnswerQuestion();
+        onButtonByIndex(newIndex);
     }
 
     @Override
     public void onPrevButton() {
         int newIndex = (mCurrentIndex - 1) % mQuestions.size();
         if (newIndex < 0) newIndex = mQuestions.size() - 1;
-        mCurrentIndex = newIndex;
+        onButtonByIndex(newIndex);
+    }
+
+    private void onButtonByIndex(int index) {
+        mCurrentIndex = index;
         mView.setQuestionTextView(mQuestions.get(mCurrentIndex));
         countNumberOfQuestion();
         checkAnswerQuestion();
     }
 
     @Override
-    public void onTrueButton() {
-        boolean answer = true;
-        mAnswers.put(mCurrentIndex, answer);
-        checkAnswerQuestion();
-        checkFinalOfQuiz();
-    }
-
-    @Override
-    public void onFalseButton() {
-        boolean answer = false;
+    public void onAnswer(Answer answer) {
         mAnswers.put(mCurrentIndex, answer);
         checkAnswerQuestion();
         checkFinalOfQuiz();
@@ -83,7 +76,7 @@ public class QuizFragmentPresenter implements QuizFragmentContract.Presenter {
         mView.setButtonsEnabled(!isAnswered);
         int flag = Constants.NOT_PUSH_TRUE_AND_FALSE_BUTTONS;
         if (isAnswered) {
-            boolean answer = mAnswers.get(mCurrentIndex);
+            boolean answer = mAnswers.get(mCurrentIndex).isResult();
             flag = answer ? Constants.PUSH_TRUE_BUTTON : Constants.PUSH_FALSE_BUTTON;
         }
         mView.setCorrectButtonStyle(flag);
