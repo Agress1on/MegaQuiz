@@ -8,6 +8,10 @@ import com.example.alexandr.megaquiz.quizfragment.QuizFragmentContract;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.concurrent.TimeUnit;
+
+import io.reactivex.Single;
+import io.reactivex.functions.Function;
 
 /**
  * Created by Alexandr Mikhalev on 10.12.2018.
@@ -15,32 +19,38 @@ import java.util.Map;
  * @author Alexandr Mikhalev
  */
 public class QuizFragmentInteractor implements QuizFragmentContract.Interactor {
-    private Map<String, List<Question>> mBankQuestions;
-    private List<Question> mListQuestions;
-    private List<String> mStringQuestion;
+
     private List<Boolean> mTrueAnswers;
     private int mRightAnswersCounter;
 
+    private BankQuestion mBank;
+
     public QuizFragmentInteractor(BankQuestion bankQuestion) {
-        this.mBankQuestions = bankQuestion.getBankQuestion();
-        this.mListQuestions = new ArrayList<>();
-        this.mStringQuestion = new ArrayList<>();
+        this.mBank = bankQuestion;
         this.mTrueAnswers = new ArrayList<>();
         this.mRightAnswersCounter = 0;
     }
 
-    private void initStringListAndTrueAnswers(String key) {
-        mListQuestions = mBankQuestions.get(key);
-        for (Question question : mListQuestions) {
-            mStringQuestion.add(question.getTextQuestion());
-            mTrueAnswers.add(question.isTrueAnswer());
-        }
-    }
-
     @Override
-    public List<String> getQuestions(String key) {
-        initStringListAndTrueAnswers(key);
-        return mStringQuestion;
+    public Single<List<String>> getQuestions(final String key) {
+        return Single.just(mBank.getBankQuestion())
+                .map(new Function<Map<String, List<Question>>, List<Question>>() {
+                    @Override
+                    public List<Question> apply(Map<String, List<Question>> stringListMap) throws Exception {
+                        return stringListMap.get(key);
+                    }
+                })
+                .map(new Function<List<Question>, List<String>>() {
+                    @Override
+                    public List<String> apply(List<Question> questions) throws Exception {
+                        List<String> list = new ArrayList<>();
+                        for (Question question : questions) {
+                            list.add(question.getTextQuestion());
+                            mTrueAnswers.add(question.isTrueAnswer()); // должно убраться в итоге
+                        }
+                        return list;
+                    }
+                }).delay(3, TimeUnit.SECONDS);
     }
 
     @Override

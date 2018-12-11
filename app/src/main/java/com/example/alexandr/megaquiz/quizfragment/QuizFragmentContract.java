@@ -3,6 +3,8 @@ package com.example.alexandr.megaquiz.quizfragment;
 import java.util.List;
 import java.util.Map;
 
+import io.reactivex.Single;
+
 /**
  * Created by Alexandr Mikhalev on 10.12.2018.
  *
@@ -10,7 +12,7 @@ import java.util.Map;
  */
 public interface QuizFragmentContract {
     interface Interactor {
-        List<String> getQuestions(String key);
+        Single<List<String>> getQuestions(String key);
 
         int checkQuestions(Map<Integer, Answer> answers);
     }
@@ -25,6 +27,10 @@ public interface QuizFragmentContract {
         void startQuizResultFragment(int quizSize, int correctAnswers);
 
         void setCorrectButtonStyle(int key);
+
+        void turnOffProgressBar();
+
+        void turnOnProgressBar();
     }
 
     interface Presenter {
@@ -37,6 +43,8 @@ public interface QuizFragmentContract {
         void onPrevButton();
 
         void onAnswer(Answer answer);
+
+        void onDestroy();
 
         /*
         void onTrueButton();

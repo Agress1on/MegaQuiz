@@ -8,6 +8,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.alexandr.megaquiz.Constants;
@@ -19,7 +20,10 @@ import com.example.alexandr.megaquiz.quizfragment.domain.QuizFragmentInteractor;
 import com.example.alexandr.megaquiz.quizfragment.presentation.QuizFragmentPresenter;
 import com.example.alexandr.megaquiz.quizresultfragment.view.QuizResultFragment;
 
+import java.util.List;
+
 import butterknife.BindView;
+import butterknife.BindViews;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
@@ -51,6 +55,12 @@ public class QuizFragment extends Fragment implements QuizFragmentContract.View 
     @BindView(R.id.question_count)
     TextView mQuestionCount;
 
+    @BindView(R.id.progres_bar)
+    ProgressBar mProgressBar;
+
+    @BindViews({R.id.static_category_name, R.id.question, R.id.btnTrue, R.id.btnFalse, R.id.btnNext, R.id.btnPrev, R.id.question_count})
+    List<View> mViewList;
+
     QuizFragmentContract.Presenter mPresenter;
     private String mCategoryName = "SENYAAAAA";
 
@@ -58,17 +68,34 @@ public class QuizFragment extends Fragment implements QuizFragmentContract.View 
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mCategoryName = getArguments().getString(Constants.EXTRAS_FOR_INTENT_QUIZ_VIEW);
-        mPresenter = new QuizFragmentPresenter(this, new QuizFragmentInteractor(new BankQuestion()));
-        mPresenter.initQuestionList(mCategoryName);
+
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-            View view = inflater.inflate(R.layout.fragment_quiz, null);
-            ButterKnife.bind(this, view);
-            mPresenter.prepareViewForFirstQuestion();
-            return view;
+        View view = inflater.inflate(R.layout.fragment_quiz, null);
+        ButterKnife.bind(this, view);
+        mPresenter = new QuizFragmentPresenter(this, new QuizFragmentInteractor(new BankQuestion()));
+        mPresenter.initQuestionList(mCategoryName);
+      //  mPresenter.prepareViewForFirstQuestion();
+        return view;
+    }
+
+    @Override
+    public void turnOnProgressBar() {
+        // mProgressBar.setVisibility(View.VISIBLE);
+        for (View view : mViewList) {
+            view.setVisibility(View.INVISIBLE);
+        }
+    }
+
+    @Override
+    public void turnOffProgressBar() {
+        mProgressBar.setVisibility(View.INVISIBLE);
+        for (View view : mViewList) {
+            view.setVisibility(View.VISIBLE);
+        }
     }
 
     @Override
@@ -87,15 +114,15 @@ public class QuizFragment extends Fragment implements QuizFragmentContract.View 
         int forTrueButton = 0;
         int forFalseButton = 0;
         switch (key) {
-            case Constants.NOT_PUSH_TRUE_AND_FALSE_BUTTONS :
+            case Constants.NOT_PUSH_TRUE_AND_FALSE_BUTTONS:
                 forTrueButton = R.drawable.shape_for_true_button;
                 forFalseButton = R.drawable.shape_for_false_button;
                 break;
-            case Constants.PUSH_TRUE_BUTTON :
+            case Constants.PUSH_TRUE_BUTTON:
                 forTrueButton = R.drawable.shape_for_true_button_answered;
                 forFalseButton = R.drawable.shape_for_false_button_not_answered;
                 break;
-            case Constants.PUSH_FALSE_BUTTON :
+            case Constants.PUSH_FALSE_BUTTON:
                 forTrueButton = R.drawable.shape_for_true_button_not_answered;
                 forFalseButton = R.drawable.shape_for_false_button_answered;
                 break;
@@ -147,5 +174,11 @@ public class QuizFragment extends Fragment implements QuizFragmentContract.View 
         QuizFragment fragment = new QuizFragment();
         fragment.setArguments(args);
         return fragment;
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mPresenter.onDestroy();
     }
 }

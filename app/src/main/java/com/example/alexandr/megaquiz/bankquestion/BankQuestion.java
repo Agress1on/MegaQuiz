@@ -6,6 +6,10 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
+import java.util.concurrent.TimeUnit;
+
+import io.reactivex.Single;
+import io.reactivex.functions.Function;
 
 /**
  * Created by Alexandr Mikhalev on 25.09.2018.
@@ -52,4 +56,16 @@ public class BankQuestion {
     public Map<String, List<Question>> getBankQuestion() {
         return mBankQuestion;
     }
+
+
+    public Single<List<Question>> getRxBankQuestion(final String key) {
+        return Single.just(mBankQuestion)
+                .map(new Function<Map<String, List<Question>>, List<Question>>() {
+                    @Override
+                    public List<Question> apply(Map<String, List<Question>> stringListMap) throws Exception {
+                        return stringListMap.get(key);
+                    }
+                }).delay(5, TimeUnit.SECONDS);
+    }
+
 }

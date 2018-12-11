@@ -6,8 +6,15 @@ import com.example.alexandr.megaquiz.Constants;
 import com.example.alexandr.megaquiz.quizfragment.Answer;
 import com.example.alexandr.megaquiz.quizfragment.QuizFragmentContract;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
+import io.reactivex.schedulers.Schedulers;
 
 /**
  * Created by Alexandr Mikhalev on 10.12.2018.
@@ -17,9 +24,10 @@ import java.util.Map;
 public class QuizFragmentPresenter implements QuizFragmentContract.Presenter {
     private QuizFragmentContract.View mView;
     private QuizFragmentContract.Interactor mInteractor;
-    private List<String> mQuestions;
+    private List<String> mQuestions = new ArrayList<>();
     private int mCurrentIndex;
     private Map<Integer, Answer> mAnswers;
+    private CompositeDisposable mCompositeDisposable = new CompositeDisposable();
 
     public QuizFragmentPresenter(QuizFragmentContract.View view, QuizFragmentContract.Interactor interactor) {
         this.mView = view;
@@ -30,7 +38,22 @@ public class QuizFragmentPresenter implements QuizFragmentContract.Presenter {
 
     @Override
     public void initQuestionList(String keyCategory) {
-        mQuestions = mInteractor.getQuestions(keyCategory);
+        mView.turnOnProgressBar();
+        Disposable disposable = mInteractor.getQuestions(keyCategory)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<List<String>>() {
+                    @Override
+                    public void accept(List<String> strings) throws Exception {
+                        for (String string : strings) {
+                            mQuestions.add(string);
+                        }
+                        mView.turnOffProgressBar();
+                        prepareViewForFirstQuestion();
+                    }
+                });
+        mCompositeDisposable.add(disposable);
+        //mQuestions = mInteractor.getQuestions(keyCategory);
     }
 
     @Override
@@ -88,5 +111,10 @@ public class QuizFragmentPresenter implements QuizFragmentContract.Presenter {
             rightAnswers = mInteractor.checkQuestions(mAnswers);
             mView.startQuizResultFragment(mQuestions.size(), rightAnswers);
         }
+    }
+
+    @Override
+    public void onDestroy() {
+        mCompositeDisposable.clear();
     }
 }
