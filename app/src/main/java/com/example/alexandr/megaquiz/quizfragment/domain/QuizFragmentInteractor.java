@@ -54,10 +54,34 @@ public class QuizFragmentInteractor implements QuizFragmentContract.Interactor {
     }
 
     @Override
-    public int checkQuestions(Map<Integer, Answer> answers) {
+    public Single<Integer> checkQuestions(String key, Map<Integer, Answer> answers) {
+        /*
         for (Map.Entry<Integer, Answer> entry : answers.entrySet()) {
             if (mTrueAnswers.get(entry.getKey()) == entry.getValue().isResult()) mRightAnswersCounter++;
         }
         return mRightAnswersCounter;
+        */
+        return Single.just(mBank.getBankQuestion())
+                .map(new Function<Map<String, List<Question>>, List<Boolean>>() {
+                    @Override
+                    public List<Boolean> apply(Map<String, List<Question>> stringListMap) throws Exception {
+                        List<Question> list = stringListMap.get(key);
+                        List<Boolean> list2 = new ArrayList<>();
+                        for (Question question : list) {
+                            list2.add(question.isTrueAnswer());
+                        }
+                        return list2;
+                    }
+                })
+                .map(new Function<List<Boolean>, Integer>() {
+                    @Override
+                    public Integer apply(List<Boolean> booleans) throws Exception {
+                        int rightAnswers = 0;
+                       for (Map.Entry<Integer, Answer> entry : answers.entrySet()) {
+                           if (booleans.get(entry.getKey()) == entry.getValue().isResult()) rightAnswers++;
+                       }
+                       return rightAnswers;
+                    }
+                });
     }
 }

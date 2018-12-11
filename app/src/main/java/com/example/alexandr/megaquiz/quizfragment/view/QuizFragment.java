@@ -83,8 +83,13 @@ public class QuizFragment extends Fragment implements QuizFragmentContract.View 
     }
 
     @Override
+    public String sentToPresenter() {
+        return mCategoryName;
+    }
+
+    @Override
     public void turnOnProgressBar() {
-        // mProgressBar.setVisibility(View.VISIBLE);
+        mProgressBar.setVisibility(View.VISIBLE);
         for (View view : mViewList) {
             view.setVisibility(View.INVISIBLE);
         }

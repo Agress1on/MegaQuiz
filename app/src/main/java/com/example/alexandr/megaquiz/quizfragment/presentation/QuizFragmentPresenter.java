@@ -106,10 +106,20 @@ public class QuizFragmentPresenter implements QuizFragmentContract.Presenter {
     }
 
     private void checkFinalOfQuiz() {
-        int rightAnswers;
-        if (mQuestions.size() == mAnswers.size()) {
-            rightAnswers = mInteractor.checkQuestions(mAnswers);
-            mView.startQuizResultFragment(mQuestions.size(), rightAnswers);
+        final int size = mQuestions.size();
+        if (size == mAnswers.size()) {
+            mView.turnOnProgressBar();
+            Disposable disposable = mInteractor.checkQuestions(mView.sentToPresenter(), mAnswers)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(new Consumer<Integer>() {
+                        @Override
+                        public void accept(Integer integer) throws Exception {
+                            mView.turnOffProgressBar();
+                            mView.startQuizResultFragment(size, integer);
+                        }
+                    });
+            mCompositeDisposable.add(disposable);
         }
     }
 

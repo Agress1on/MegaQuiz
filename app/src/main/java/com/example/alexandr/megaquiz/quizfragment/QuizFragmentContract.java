@@ -14,10 +14,12 @@ public interface QuizFragmentContract {
     interface Interactor {
         Single<List<String>> getQuestions(String key);
 
-        int checkQuestions(Map<Integer, Answer> answers);
+        Single<Integer> checkQuestions(String key, Map<Integer, Answer> answers);
     }
 
     interface View {
+        String sentToPresenter();
+
         void setQuestionTextView(String text);
 
         void setButtonsEnabled(boolean result);
