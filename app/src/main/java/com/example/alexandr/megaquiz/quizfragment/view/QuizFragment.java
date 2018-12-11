@@ -104,7 +104,7 @@ public class QuizFragment extends Fragment implements QuizFragmentContract.View 
     }
 
     @Override
-    public void setQuestionCount(String text) {
+    public void setQuestionCounter(String text) {
         mQuestionCount.setText(text);
     }
 

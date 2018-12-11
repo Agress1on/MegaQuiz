@@ -29,7 +29,7 @@ public interface QuizActivityContract {
         void setStaticNumberOfQuestion(String text);
         *//*
 
-        void setQuestionCount(String text);
+        void setQuestionCounter(String text);
 
         String sentToPresenterSelectedCategory();
 

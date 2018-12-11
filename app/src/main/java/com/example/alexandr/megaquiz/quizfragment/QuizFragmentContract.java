@@ -20,7 +20,7 @@ public interface QuizFragmentContract {
 
         void setButtonsEnabled(boolean result);
 
-        void setQuestionCount(String text);
+        void setQuestionCounter(String text);
 
         void startQuizResultFragment(int quizSize, int correctAnswers);
 

@@ -79,7 +79,7 @@ public class QuizActivityPresenter implements QuizActivityContract.Presenter {
 
     private void questionNumberCounter() {
         String text = getCurrentIndex() + 1 + "/" + mQuestions.size();
-        mView.setQuestionCount(text);
+        mView.setQuestionCounter(text);
     }
 
     private void checkAnswerQuestion() {

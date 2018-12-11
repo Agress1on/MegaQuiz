@@ -34,7 +34,7 @@ public class QuizFragmentPresenter implements QuizFragmentContract.Presenter {
     @Override
     public void prepareViewForFirstQuestion() {
         mView.setQuestionTextView(mQuestions.get(mCurrentIndex));
-        questionNumberCounter();
+        countNumberOfQuestion();
     }
 
     @Override
@@ -42,7 +42,7 @@ public class QuizFragmentPresenter implements QuizFragmentContract.Presenter {
         int newIndex = (mCurrentIndex + 1) % mQuestions.size();
         mCurrentIndex = newIndex;
         mView.setQuestionTextView(mQuestions.get(mCurrentIndex));
-        questionNumberCounter();
+        countNumberOfQuestion();
         checkAnswerQuestion();
     }
 
@@ -52,7 +52,7 @@ public class QuizFragmentPresenter implements QuizFragmentContract.Presenter {
         if (newIndex < 0) newIndex = mQuestions.size() - 1;
         mCurrentIndex = newIndex;
         mView.setQuestionTextView(mQuestions.get(mCurrentIndex));
-        questionNumberCounter();
+        countNumberOfQuestion();
         checkAnswerQuestion();
     }
 
@@ -72,9 +72,9 @@ public class QuizFragmentPresenter implements QuizFragmentContract.Presenter {
         checkFinalOfQuiz();
     }
 
-    private void questionNumberCounter() {
+    private void countNumberOfQuestion() {
         String text = mCurrentIndex + 1 + "/" + mQuestions.size();
-        mView.setQuestionCount(text);
+        mView.setQuestionCounter(text);
     }
 
     private void checkAnswerQuestion() {
@@ -82,14 +82,8 @@ public class QuizFragmentPresenter implements QuizFragmentContract.Presenter {
         mView.setButtonsEnabled(!isAnswered);
         int flag = Constants.NOT_PUSH_TRUE_AND_FALSE_BUTTONS;
         if (isAnswered) {
-            boolean answer = false;
-            flag = Constants.PUSH_FALSE_BUTTON;
-            for (Map.Entry<Integer, Boolean> entry : mAnswers.entrySet()) {
-                if (entry.getKey() == mCurrentIndex) answer = entry.getValue();
-            }
-            if (answer) {
-                flag = Constants.PUSH_TRUE_BUTTON;
-            }
+            boolean answer = mAnswers.get(mCurrentIndex);
+            flag = answer ? Constants.PUSH_TRUE_BUTTON : Constants.PUSH_FALSE_BUTTON;
         }
         mView.setCorrectButtonStyle(flag);
     }
