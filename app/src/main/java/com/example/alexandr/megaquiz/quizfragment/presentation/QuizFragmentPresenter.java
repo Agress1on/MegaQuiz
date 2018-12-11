@@ -27,6 +27,7 @@ public class QuizFragmentPresenter implements QuizFragmentContract.Presenter {
     private List<String> mQuestions = new ArrayList<>();
     private int mCurrentIndex;
     private Map<Integer, Answer> mAnswers;
+    private String mCategoryName;
     private CompositeDisposable mCompositeDisposable = new CompositeDisposable();
 
     public QuizFragmentPresenter(QuizFragmentContract.View view, QuizFragmentContract.Interactor interactor) {
@@ -38,7 +39,8 @@ public class QuizFragmentPresenter implements QuizFragmentContract.Presenter {
 
     @Override
     public void initQuestionList(String keyCategory) {
-        mView.turnOnProgressBar();
+        mCategoryName = keyCategory;
+        mView.setProgressBar(true);
         Disposable disposable = mInteractor.getQuestions(keyCategory)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
@@ -48,12 +50,11 @@ public class QuizFragmentPresenter implements QuizFragmentContract.Presenter {
                         for (String string : strings) {
                             mQuestions.add(string);
                         }
-                        mView.turnOffProgressBar();
+                        mView.setProgressBar(false);
                         prepareViewForFirstQuestion();
                     }
                 });
         mCompositeDisposable.add(disposable);
-        //mQuestions = mInteractor.getQuestions(keyCategory);
     }
 
     @Override
@@ -108,14 +109,14 @@ public class QuizFragmentPresenter implements QuizFragmentContract.Presenter {
     private void checkFinalOfQuiz() {
         final int size = mQuestions.size();
         if (size == mAnswers.size()) {
-            mView.turnOnProgressBar();
-            Disposable disposable = mInteractor.checkQuestions(mView.sentToPresenter(), mAnswers)
+            mView.setProgressBar(true);
+            Disposable disposable = mInteractor.checkQuestions(mCategoryName, mAnswers)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(new Consumer<Integer>() {
                         @Override
                         public void accept(Integer integer) throws Exception {
-                            mView.turnOffProgressBar();
+                            mView.setProgressBar(false);
                             mView.startQuizResultFragment(size, integer);
                         }
                     });

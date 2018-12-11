@@ -55,12 +55,6 @@ public class QuizFragmentInteractor implements QuizFragmentContract.Interactor {
 
     @Override
     public Single<Integer> checkQuestions(String key, Map<Integer, Answer> answers) {
-        /*
-        for (Map.Entry<Integer, Answer> entry : answers.entrySet()) {
-            if (mTrueAnswers.get(entry.getKey()) == entry.getValue().isResult()) mRightAnswersCounter++;
-        }
-        return mRightAnswersCounter;
-        */
         return Single.just(mBank.getBankQuestion())
                 .map(new Function<Map<String, List<Question>>, List<Boolean>>() {
                     @Override
@@ -82,6 +76,6 @@ public class QuizFragmentInteractor implements QuizFragmentContract.Interactor {
                        }
                        return rightAnswers;
                     }
-                });
+                }).delay(3, TimeUnit.SECONDS);
     }
 }

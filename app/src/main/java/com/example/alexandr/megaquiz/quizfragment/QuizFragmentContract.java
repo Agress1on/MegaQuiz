@@ -18,8 +18,6 @@ public interface QuizFragmentContract {
     }
 
     interface View {
-        String sentToPresenter();
-
         void setQuestionTextView(String text);
 
         void setButtonsEnabled(boolean result);
@@ -30,9 +28,7 @@ public interface QuizFragmentContract {
 
         void setCorrectButtonStyle(int key);
 
-        void turnOffProgressBar();
-
-        void turnOnProgressBar();
+        void setProgressBar(boolean flag);
     }
 
     interface Presenter {
@@ -48,10 +44,5 @@ public interface QuizFragmentContract {
 
         void onDestroy();
 
-        /*
-        void onTrueButton();
-
-        void onFalseButton();
-        */
     }
 }

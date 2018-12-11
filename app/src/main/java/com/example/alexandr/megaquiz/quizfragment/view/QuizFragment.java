@@ -58,7 +58,8 @@ public class QuizFragment extends Fragment implements QuizFragmentContract.View 
     @BindView(R.id.progres_bar)
     ProgressBar mProgressBar;
 
-    @BindViews({R.id.static_category_name, R.id.question, R.id.btnTrue, R.id.btnFalse, R.id.btnNext, R.id.btnPrev, R.id.question_count})
+    @BindViews({R.id.static_category_name, R.id.question, R.id.btnTrue,
+            R.id.btnFalse, R.id.btnNext, R.id.btnPrev, R.id.question_count})
     List<View> mViewList;
 
     QuizFragmentContract.Presenter mPresenter;
@@ -68,7 +69,6 @@ public class QuizFragment extends Fragment implements QuizFragmentContract.View 
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mCategoryName = getArguments().getString(Constants.EXTRAS_FOR_INTENT_QUIZ_VIEW);
-
     }
 
     @Nullable
@@ -78,29 +78,17 @@ public class QuizFragment extends Fragment implements QuizFragmentContract.View 
         ButterKnife.bind(this, view);
         mPresenter = new QuizFragmentPresenter(this, new QuizFragmentInteractor(new BankQuestion()));
         mPresenter.initQuestionList(mCategoryName);
-      //  mPresenter.prepareViewForFirstQuestion();
         return view;
     }
 
     @Override
-    public String sentToPresenter() {
-        return mCategoryName;
-    }
-
-    @Override
-    public void turnOnProgressBar() {
-        mProgressBar.setVisibility(View.VISIBLE);
+    public void setProgressBar(boolean flag) {
+        int progressBarState = flag ? View.VISIBLE : View.INVISIBLE;
+        int viewState = flag ? View.INVISIBLE : View.VISIBLE;
         for (View view : mViewList) {
-            view.setVisibility(View.INVISIBLE);
+            view.setVisibility(viewState);
         }
-    }
-
-    @Override
-    public void turnOffProgressBar() {
-        mProgressBar.setVisibility(View.INVISIBLE);
-        for (View view : mViewList) {
-            view.setVisibility(View.VISIBLE);
-        }
+        mProgressBar.setVisibility(progressBarState);
     }
 
     @Override
@@ -173,17 +161,17 @@ public class QuizFragment extends Fragment implements QuizFragmentContract.View 
         }
     }
 
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mPresenter.onDestroy();
+    }
+
     public static QuizFragment newInstance(String key, String extras) {
         Bundle args = new Bundle();
         args.putString(extras, key);
         QuizFragment fragment = new QuizFragment();
         fragment.setArguments(args);
         return fragment;
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        mPresenter.onDestroy();
     }
 }
