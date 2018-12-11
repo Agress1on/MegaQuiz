@@ -1,9 +1,10 @@
 package com.example.alexandr.megaquiz.quizfragment.presentation;
 
+import android.support.v4.util.ArrayMap;
+
 import com.example.alexandr.megaquiz.Constants;
 import com.example.alexandr.megaquiz.quizfragment.QuizFragmentContract;
 
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -22,7 +23,7 @@ public class QuizFragmentPresenter implements QuizFragmentContract.Presenter {
     public QuizFragmentPresenter(QuizFragmentContract.View view, QuizFragmentContract.Interactor interactor) {
         this.mView = view;
         this.mInteractor = interactor;
-        this.mAnswers = new HashMap<>();
+        this.mAnswers = new ArrayMap<>(); // почитать подробнее потом
         this.mCurrentIndex = 0;
     }
 
