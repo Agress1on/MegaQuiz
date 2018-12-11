@@ -32,7 +32,7 @@ public class QuizFragmentInteractor implements QuizFragmentContract.Interactor {
     }
 
     @Override
-    public Single<List<String>> getQuestions(final String key) {
+    public Single<List<String>> getQuestions(String key) {
         return Single.just(mBank.getBankQuestion())
                 .map(new Function<Map<String, List<Question>>, List<Question>>() {
                     @Override
@@ -50,7 +50,7 @@ public class QuizFragmentInteractor implements QuizFragmentContract.Interactor {
                         }
                         return list;
                     }
-                }).delay(3, TimeUnit.SECONDS);
+                }).delay(2, TimeUnit.SECONDS);
     }
 
     @Override
