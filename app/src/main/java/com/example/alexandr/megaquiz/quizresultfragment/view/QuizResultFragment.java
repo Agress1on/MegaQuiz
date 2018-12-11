@@ -1,4 +1,4 @@
-package com.example.alexandr.megaquiz.quizresultactivity.view;
+package com.example.alexandr.megaquiz.quizresultfragment.view;
 
 import android.content.Intent;
 import android.os.Bundle;
@@ -14,9 +14,9 @@ import android.widget.TextView;
 import com.example.alexandr.megaquiz.Constants;
 import com.example.alexandr.megaquiz.R;
 import com.example.alexandr.megaquiz.quizactivity.view.QuizActivity;
-import com.example.alexandr.megaquiz.quizresultactivity.QuizResultActivityContract;
-import com.example.alexandr.megaquiz.quizresultactivity.domain.QuizResultActivityInteractor;
-import com.example.alexandr.megaquiz.quizresultactivity.presentation.QuizResultActivityPresenter;
+import com.example.alexandr.megaquiz.quizresultfragment.QuizResultActivityContract;
+import com.example.alexandr.megaquiz.quizresultfragment.domain.QuizResultActivityInteractor;
+import com.example.alexandr.megaquiz.quizresultfragment.presentation.QuizResultActivityPresenter;
 import com.example.alexandr.megaquiz.startactivity.view.StartActivity;
 
 import butterknife.BindView;

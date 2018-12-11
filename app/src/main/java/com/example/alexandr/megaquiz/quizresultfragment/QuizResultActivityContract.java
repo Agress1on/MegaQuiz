@@ -1,4 +1,4 @@
-package com.example.alexandr.megaquiz.quizresultactivity;
+package com.example.alexandr.megaquiz.quizresultfragment;
 
 /**
  * Created by Alexandr Mikhalev on 24.11.2018.

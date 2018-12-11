@@ -1,6 +1,6 @@
-package com.example.alexandr.megaquiz.quizresultactivity.domain;
+package com.example.alexandr.megaquiz.quizresultfragment.domain;
 
-import com.example.alexandr.megaquiz.quizresultactivity.QuizResultActivityContract;
+import com.example.alexandr.megaquiz.quizresultfragment.QuizResultActivityContract;
 
 /**
  * Created by Alexandr Mikhalev on 24.11.2018.
