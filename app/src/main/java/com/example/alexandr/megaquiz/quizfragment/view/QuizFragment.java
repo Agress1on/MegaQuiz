@@ -29,45 +29,45 @@ import butterknife.OnClick;
  */
 public class QuizFragment extends Fragment implements QuizFragmentContract.View {
 
-    QuizFragmentContract.Presenter mPresenter;
-
-
     @BindView(R.id.static_category_name)
-    TextView mStaticCategoryNameTextView;
+    TextView mCategoryNameTV;
+
     @BindView(R.id.question)
     TextView mQuestionTV;
 
     @BindView(R.id.btnTrue)
     Button mTrueButton;
+
     @BindView(R.id.btnFalse)
     Button mFalseButton;
+
     @BindView(R.id.btnNext)
     Button mNextButton;
+
     @BindView(R.id.btnPrev)
     Button mPrevButton;
 
     @BindView(R.id.question_count)
     TextView mQuestionCount;
 
-
+    QuizFragmentContract.Presenter mPresenter;
     private String mCategoryName = "SENYAAAAA";
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        mCategoryName = getArguments().getString(Constants.EXTRAS_FOR_INTENT_QUIZ_VIEW);
+        mPresenter = new QuizFragmentPresenter(this, new QuizFragmentInteractor(new BankQuestion()));
+        mPresenter.initQuestionList(mCategoryName);
+    }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
             View view = inflater.inflate(R.layout.fragment_quiz, null);
             ButterKnife.bind(this, view);
-            //достать активатор стринга с категорией
-            mCategoryName = getArguments().getString(Constants.EXTRAS_FOR_INTENT_QUIZ_VIEW);
-            mPresenter = new QuizFragmentPresenter(this, new QuizFragmentInteractor(new BankQuestion()));
             mPresenter.prepareViewForFirstQuestion();
             return view;
-    }
-
-    @Override
-    public String sentToPresenterSelectedCategory() {
-        return mCategoryName;
     }
 
     @Override
@@ -76,7 +76,7 @@ public class QuizFragment extends Fragment implements QuizFragmentContract.View 
     }
 
     @Override
-    public void switchButton(boolean result) {
+    public void setButtonsEnabled(boolean result) {
         mTrueButton.setEnabled(result);
         mFalseButton.setEnabled(result);
     }
@@ -109,19 +109,15 @@ public class QuizFragment extends Fragment implements QuizFragmentContract.View 
     }
 
     @Override
-    public void startQuizResultActivity(int quizSize, int correctAnswers) {
-        /*
-        Intent intent = QuizResultActivity.getIntent(getContext(), quizSize, correctAnswers, mCategoryName);
-        startActivity(intent);
-        */
+    public void startQuizResultFragment(int quizSize, int correctAnswers) {
         QuizResultFragment quizResultFragment = QuizResultFragment.newInstance(quizSize, correctAnswers, mCategoryName);
         getActivity().getSupportFragmentManager().beginTransaction()
                 .replace(R.id.frame_for_quiz, quizResultFragment)
                 .commit();
     }
 
-    @OnClick({R.id.btnTrue, R.id.btnFalse, R.id.btnNext, R.id.btnPrev})
-    void onClick(View view) {
+    @OnClick({R.id.btnTrue, R.id.btnFalse})
+    void onClickForAnswerButtons(View view) {
         switch (view.getId()) {
             case R.id.btnTrue:
                 mPresenter.onTrueButton();
@@ -129,6 +125,12 @@ public class QuizFragment extends Fragment implements QuizFragmentContract.View 
             case R.id.btnFalse:
                 mPresenter.onFalseButton();
                 break;
+        }
+    }
+
+    @OnClick({R.id.btnNext, R.id.btnPrev})
+    void onClickForNavigationButtons(View view) {
+        switch (view.getId()) {
             case R.id.btnNext:
                 mPresenter.onNextButton();
                 break;

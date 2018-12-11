@@ -13,7 +13,7 @@ import com.example.alexandr.megaquiz.quizactivity.view.QuizActivity;
  *
  * @author Alexandr Mikhalev
  */
-public class App extends Application {
+public class AppModule extends Application {
     /*
     private static QuizActivityComponent sComponent;
 

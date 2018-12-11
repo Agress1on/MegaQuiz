@@ -21,7 +21,7 @@ public interface QuizActivityContract {
         /*
         void setQuestionTextView(String text);
 
-        void switchButton(boolean result);
+        void setButtonsEnabled(boolean result);
 
         *//*
         void setStaticQuizSizeTextView(String text);
@@ -33,7 +33,7 @@ public interface QuizActivityContract {
 
         String sentToPresenterSelectedCategory();
 
-        void startQuizResultActivity(int quizSize, int correctAnswers);
+        void startQuizResultFragment(int quizSize, int correctAnswers);
 
         void setCorrectButtonStyle(int key);
         */

@@ -22,9 +22,13 @@ public class QuizFragmentPresenter implements QuizFragmentContract.Presenter {
     public QuizFragmentPresenter(QuizFragmentContract.View view, QuizFragmentContract.Interactor interactor) {
         this.mView = view;
         this.mInteractor = interactor;
-        this.mQuestions = interactor.getQuestions(mView.sentToPresenterSelectedCategory());
         this.mAnswers = new HashMap<>();
         this.mCurrentIndex = 0;
+    }
+
+    @Override
+    public void initQuestionList(String keyCategory) {
+        mQuestions = mInteractor.getQuestions(keyCategory);
     }
 
     public int getCurrentIndex() {
@@ -83,7 +87,7 @@ public class QuizFragmentPresenter implements QuizFragmentContract.Presenter {
 
     private void checkAnswerQuestion() {
         boolean isAnswered = mAnswers.containsKey(getCurrentIndex());
-        mView.switchButton(!isAnswered);
+        mView.setButtonsEnabled(!isAnswered);
         int flag = Constants.NOT_PUSH_TRUE_AND_FALSE_BUTTONS;
         if (isAnswered) {
             boolean answer = false;
@@ -102,7 +106,7 @@ public class QuizFragmentPresenter implements QuizFragmentContract.Presenter {
         int rightAnswers;
         if (mQuestions.size() == mAnswers.size()) {
             rightAnswers = mInteractor.checkQuestions(mAnswers);
-            mView.startQuizResultActivity(mQuestions.size(), rightAnswers);
+            mView.startQuizResultFragment(mQuestions.size(), rightAnswers);
         }
     }
 }

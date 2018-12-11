@@ -84,7 +84,7 @@ public class QuizActivityPresenter implements QuizActivityContract.Presenter {
 
     private void checkAnswerQuestion() {
         boolean isAnswered = mAnswers.containsKey(getCurrentIndex());
-        mView.switchButton(!isAnswered);
+        mView.setButtonsEnabled(!isAnswered);
         int flag = Constants.NOT_PUSH_TRUE_AND_FALSE_BUTTONS;
         if (isAnswered) {
             boolean answer = false;
@@ -99,7 +99,7 @@ public class QuizActivityPresenter implements QuizActivityContract.Presenter {
         mView.setCorrectButtonStyle(flag);
         *//*
         boolean isAnswered = mAnswers.containsKey(getCurrentIndex());
-        mView.switchButton(!isAnswered);
+        mView.setButtonsEnabled(!isAnswered);
         if (isAnswered) {
             boolean answer = false;
             for (Map.Entry<Integer, Boolean> entry : mAnswers.entrySet()) {
@@ -120,7 +120,7 @@ public class QuizActivityPresenter implements QuizActivityContract.Presenter {
         int rightAnswers;
         if (mQuestions.size() == mAnswers.size()) {
             rightAnswers = mInteractor.checkQuestions(mAnswers);
-            mView.startQuizResultActivity(mQuestions.size(), rightAnswers);
+            mView.startQuizResultFragment(mQuestions.size(), rightAnswers);
         }
     }
     */

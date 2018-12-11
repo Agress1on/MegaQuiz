@@ -9,7 +9,7 @@
     <color name="colorDarkSeaGreen">#8FBC8F</color>
     <color name="colorPaleGreen">#98FB98</color>
 
-    <!--Colors for App Buttons-->
+    <!--Colors for AppModule Buttons-->
     <color name="colorLightGreen">#90EE90</color>
     <color name="colorLightCoral">#F08080</color>
     <color name="colorOlive">#808000</color>

@@ -18,18 +18,18 @@ public interface QuizFragmentContract {
     interface View {
         void setQuestionTextView(String text);
 
-        void switchButton(boolean result);
+        void setButtonsEnabled(boolean result);
 
         void setQuestionCount(String text);
 
-        String sentToPresenterSelectedCategory();
-
-        void startQuizResultActivity(int quizSize, int correctAnswers);
+        void startQuizResultFragment(int quizSize, int correctAnswers);
 
         void setCorrectButtonStyle(int key);
     }
 
     interface Presenter {
+        void initQuestionList(String keyCategory);
+
         void prepareViewForFirstQuestion();
 
         void onNextButton();
