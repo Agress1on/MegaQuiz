@@ -1,10 +1,13 @@
 package com.example.alexandr.megaquiz.quizresultactivity.view;
 
-import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
-import android.support.v7.app.AppCompatActivity;
+import android.support.annotation.NonNull;
+import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
+import android.view.LayoutInflater;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
@@ -20,7 +23,12 @@ import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 
-public class QuizResultActivity extends AppCompatActivity implements QuizResultActivityContract.View {
+/**
+ * Created by Alexandr Mikhalev on 11.12.2018.
+ *
+ * @author Alexandr Mikhalev
+ */
+public class QuizResultFragment extends Fragment implements QuizResultActivityContract.View {
     private QuizResultActivityContract.Presenter mPresenter;
 
     @BindView(R.id.result_text)
@@ -37,20 +45,22 @@ public class QuizResultActivity extends AppCompatActivity implements QuizResultA
     private String mNameCategory;
 
     @Override
-    protected void onCreate(Bundle savedInstanceState) {
+    public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_quiz_result);
-        ButterKnife.bind(this);
-
-        Intent intent = getIntent();
-        mQuizSize = intent.getIntExtra(Constants.EXTRAS_FOR_INTENT_QUIZ_RESULT_QUIZ_SIZE, 0);
-        mCorrectAnswers = intent.getIntExtra(Constants.EXTRAS_FOR_INTENT_QUIZ_RESULT_CORRECT_ANSWERS, 0);
-        mNameCategory = intent.getStringExtra(Constants.EXTRAS_FOR_INTENT_QUIZ_RESULT_NAME_CATEGORY);
-
-
+        mQuizSize = getArguments().getInt(Constants.EXTRAS_FOR_INTENT_QUIZ_RESULT_QUIZ_SIZE, 10);
+        mCorrectAnswers = getArguments().getInt(Constants.EXTRAS_FOR_INTENT_QUIZ_RESULT_CORRECT_ANSWERS, 5);
+        mNameCategory = getArguments().getString(Constants.EXTRAS_FOR_INTENT_QUIZ_RESULT_NAME_CATEGORY, "Error");
         mPresenter = new QuizResultActivityPresenter(this, new QuizResultActivityInteractor());
 
+    }
+
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.activity_quiz_result, null);
+        ButterKnife.bind(this, view);
         setResultTextView(mPresenter.forResultTextView(mQuizSize, mCorrectAnswers, mNameCategory));
+        return view;
     }
 
     @Override
@@ -58,29 +68,30 @@ public class QuizResultActivity extends AppCompatActivity implements QuizResultA
         mResultTextView.setText(text);
     }
 
-    public static Intent getIntent(Context context, int quizSize, int correctAnswers, String nameCategory) {
-        Intent intent = new Intent(context, QuizResultActivity.class);
-        intent.putExtra(Constants.EXTRAS_FOR_INTENT_QUIZ_RESULT_QUIZ_SIZE, quizSize);
-        intent.putExtra(Constants.EXTRAS_FOR_INTENT_QUIZ_RESULT_CORRECT_ANSWERS, correctAnswers);
-        intent.putExtra(Constants.EXTRAS_FOR_INTENT_QUIZ_RESULT_NAME_CATEGORY, nameCategory);
-        return intent;
-    }
-
     @OnClick({R.id.restart_button, R.id.go_to_QS_button, R.id.go_to_start_button})
     void onClick(View view) {
         Intent intent = null;
         switch (view.getId()) {
             case R.id.restart_button:
-                intent = QuizActivity.getIntent(this, mNameCategory);
+                intent = QuizActivity.getIntent(getContext(), mNameCategory);
                 break;
             case R.id.go_to_QS_button:
-             //   intent = QuizStorageFragment.getIntent(this);
+                //   intent = QuizStorageFragment.getIntent(this);
                 break;
             case R.id.go_to_start_button:
-                intent = StartActivity.getIntent(this);
+                intent = StartActivity.getIntent(getContext());
                 break;
         }
         startActivity(intent);
-        finish();
+    }
+
+    public static QuizResultFragment newInstance(int quizSize, int correctAnswers, String nameCategory) {
+        Bundle args = new Bundle();
+        args.putInt(Constants.EXTRAS_FOR_INTENT_QUIZ_RESULT_QUIZ_SIZE, quizSize);
+        args.putInt(Constants.EXTRAS_FOR_INTENT_QUIZ_RESULT_CORRECT_ANSWERS, correctAnswers);
+        args.putString(Constants.EXTRAS_FOR_INTENT_QUIZ_RESULT_NAME_CATEGORY, nameCategory);
+        QuizResultFragment fragment = new QuizResultFragment();
+        fragment.setArguments(args);
+        return fragment;
     }
 }

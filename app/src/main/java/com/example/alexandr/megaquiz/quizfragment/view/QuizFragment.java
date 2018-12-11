@@ -1,11 +1,10 @@
 package com.example.alexandr.megaquiz.quizfragment.view;
 
-import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
+import android.support.v4.app.FragmentManager;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,13 +14,10 @@ import android.widget.TextView;
 import com.example.alexandr.megaquiz.Constants;
 import com.example.alexandr.megaquiz.R;
 import com.example.alexandr.megaquiz.bankquestion.BankQuestion;
-import com.example.alexandr.megaquiz.quizactivity.inject.DaggerQuizActivityComponent;
-import com.example.alexandr.megaquiz.quizactivity.inject.QuizActivityPresenterModule;
-import com.example.alexandr.megaquiz.quizactivity.view.QuizActivity;
 import com.example.alexandr.megaquiz.quizfragment.QuizFragmentContract;
 import com.example.alexandr.megaquiz.quizfragment.domain.QuizFragmentInteractor;
 import com.example.alexandr.megaquiz.quizfragment.presentation.QuizFragmentPresenter;
-import com.example.alexandr.megaquiz.quizresultactivity.view.QuizResultActivity;
+import com.example.alexandr.megaquiz.quizresultactivity.view.QuizResultFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -115,8 +111,14 @@ public class QuizFragment extends Fragment implements QuizFragmentContract.View 
 
     @Override
     public void startQuizResultActivity(int quizSize, int correctAnswers) {
+        /*
         Intent intent = QuizResultActivity.getIntent(getContext(), quizSize, correctAnswers, mCategoryName);
         startActivity(intent);
+        */
+        QuizResultFragment quizResultFragment = QuizResultFragment.newInstance(quizSize, correctAnswers, mCategoryName);
+        getActivity().getSupportFragmentManager().beginTransaction()
+                .replace(R.id.frame_for_quiz, quizResultFragment)
+                .commit();
     }
 
     @OnClick({R.id.btnTrue, R.id.btnFalse, R.id.btnNext, R.id.btnPrev})

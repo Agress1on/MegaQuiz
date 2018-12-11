@@ -13,8 +13,7 @@
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
         <activity android:name=".startactivity.view.StartActivity"
-            android:theme="@style/QuizViewTheme"
-            >
+            android:theme="@style/QuizViewTheme">
 
         </activity>
         <activity
@@ -29,9 +28,6 @@
         <activity
             android:theme="@style/QuizViewTheme"
             android:name=".quizactivity.view.QuizActivity">
-
-        </activity>
-        <activity android:name=".quizresultactivity.view.QuizResultActivity">
 
         </activity>
     </application>
