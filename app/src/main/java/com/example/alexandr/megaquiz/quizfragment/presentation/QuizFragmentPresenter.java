@@ -31,14 +31,6 @@ public class QuizFragmentPresenter implements QuizFragmentContract.Presenter {
         mQuestions = mInteractor.getQuestions(keyCategory);
     }
 
-    public int getCurrentIndex() {
-        return mCurrentIndex;
-    }
-
-    public void setCurrentIndex(int currentIndex) {
-        mCurrentIndex = currentIndex;
-    }
-
     @Override
     public void prepareViewForFirstQuestion() {
         mView.setQuestionTextView(mQuestions.get(mCurrentIndex));
@@ -47,8 +39,8 @@ public class QuizFragmentPresenter implements QuizFragmentContract.Presenter {
 
     @Override
     public void onNextButton() {
-        int newIndex = (getCurrentIndex() + 1) % mQuestions.size();
-        setCurrentIndex(newIndex);
+        int newIndex = (mCurrentIndex + 1) % mQuestions.size();
+        mCurrentIndex = newIndex;
         mView.setQuestionTextView(mQuestions.get(mCurrentIndex));
         questionNumberCounter();
         checkAnswerQuestion();
@@ -56,9 +48,9 @@ public class QuizFragmentPresenter implements QuizFragmentContract.Presenter {
 
     @Override
     public void onPrevButton() {
-        int newIndex = (getCurrentIndex() - 1) % mQuestions.size();
+        int newIndex = (mCurrentIndex - 1) % mQuestions.size();
         if (newIndex < 0) newIndex = mQuestions.size() - 1;
-        setCurrentIndex(newIndex);
+        mCurrentIndex = newIndex;
         mView.setQuestionTextView(mQuestions.get(mCurrentIndex));
         questionNumberCounter();
         checkAnswerQuestion();
@@ -67,7 +59,7 @@ public class QuizFragmentPresenter implements QuizFragmentContract.Presenter {
     @Override
     public void onTrueButton() {
         boolean answer = true;
-        mAnswers.put(getCurrentIndex(), answer);
+        mAnswers.put(mCurrentIndex, answer);
         checkAnswerQuestion();
         checkFinalOfQuiz();
     }
@@ -75,25 +67,25 @@ public class QuizFragmentPresenter implements QuizFragmentContract.Presenter {
     @Override
     public void onFalseButton() {
         boolean answer = false;
-        mAnswers.put(getCurrentIndex(), answer);
+        mAnswers.put(mCurrentIndex, answer);
         checkAnswerQuestion();
         checkFinalOfQuiz();
     }
 
     private void questionNumberCounter() {
-        String text = getCurrentIndex() + 1 + "/" + mQuestions.size();
+        String text = mCurrentIndex + 1 + "/" + mQuestions.size();
         mView.setQuestionCount(text);
     }
 
     private void checkAnswerQuestion() {
-        boolean isAnswered = mAnswers.containsKey(getCurrentIndex());
+        boolean isAnswered = mAnswers.containsKey(mCurrentIndex);
         mView.setButtonsEnabled(!isAnswered);
         int flag = Constants.NOT_PUSH_TRUE_AND_FALSE_BUTTONS;
         if (isAnswered) {
             boolean answer = false;
             flag = Constants.PUSH_FALSE_BUTTON;
             for (Map.Entry<Integer, Boolean> entry : mAnswers.entrySet()) {
-                if (entry.getKey() == getCurrentIndex()) answer = entry.getValue();
+                if (entry.getKey() == mCurrentIndex) answer = entry.getValue();
             }
             if (answer) {
                 flag = Constants.PUSH_TRUE_BUTTON;
