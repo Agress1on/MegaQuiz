@@ -1,5 +1,7 @@
 package com.example.alexandr.megaquiz.startfragment;
 
+import io.reactivex.Single;
+
 /**
  * Created by Alexandr Mikhalev on 07.12.2018.
  *
@@ -7,7 +9,9 @@ package com.example.alexandr.megaquiz.startfragment;
  */
 public interface StartFragmentContract {
     interface Interactor {
-        String getStringCategoryForRandomStart();
+      //  String getStringCategoryForRandomStart();
+
+        Single<String> getRxStringCategoryForRandomStart();
     }
 
     interface View {
@@ -22,5 +26,7 @@ public interface StartFragmentContract {
         void onRandomButton();
 
         void onButtonCategory();
+
+        void onDestroy();
     }
 }

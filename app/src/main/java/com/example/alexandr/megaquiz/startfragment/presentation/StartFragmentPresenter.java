@@ -2,6 +2,12 @@ package com.example.alexandr.megaquiz.startfragment.presentation;
 
 import com.example.alexandr.megaquiz.startfragment.StartFragmentContract;
 
+import io.reactivex.android.schedulers.AndroidSchedulers;
+import io.reactivex.disposables.CompositeDisposable;
+import io.reactivex.disposables.Disposable;
+import io.reactivex.functions.Consumer;
+import io.reactivex.schedulers.Schedulers;
+
 /**
  * Created by Alexandr Mikhalev on 07.12.2018.
  *
@@ -10,19 +16,40 @@ import com.example.alexandr.megaquiz.startfragment.StartFragmentContract;
 public class StartFragmentPresenter implements StartFragmentContract.Presenter {
     private StartFragmentContract.View mView;
     private StartFragmentContract.Interactor mInteractor;
+    private String mRandomCategory;
+    private CompositeDisposable mCompositeDisposable = new CompositeDisposable();
 
     public StartFragmentPresenter(StartFragmentContract.View view, StartFragmentContract.Interactor interactor) {
         mView = view;
         mInteractor = interactor;
+        initRandomCategory();
+    }
+
+    private void initRandomCategory() {
+        Disposable disposable = mInteractor.getRxStringCategoryForRandomStart()
+                .subscribeOn(Schedulers.io())
+              //  .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<String>() {
+                    @Override
+                    public void accept(String s) throws Exception {
+                        mRandomCategory = s;
+                    }
+                });
+        mCompositeDisposable.add(disposable);
     }
 
     @Override
     public void onRandomButton() {
-        mView.startQuizViewWithRandom(mInteractor.getStringCategoryForRandomStart());
+        mView.startQuizViewWithRandom(mRandomCategory);
     }
 
     @Override
     public void onButtonCategory() {
         mView.startQuizStorage();
+    }
+
+    @Override
+    public void onDestroy() {
+        mCompositeDisposable.clear();
     }
 }

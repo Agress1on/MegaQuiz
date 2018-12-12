@@ -8,6 +8,9 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 
+import io.reactivex.Single;
+import io.reactivex.functions.Function;
+
 /**
  * Created by Alexandr Mikhalev on 07.12.2018.
  *
@@ -15,11 +18,28 @@ import java.util.Map;
  */
 public class StartFragmentInteractor implements StartFragmentContract.Interactor {
     private Map<String, List<Question>> mBankQuestion;
+    private BankQuestion mBank;
 
     public StartFragmentInteractor(BankQuestion bankQuestion) {
         mBankQuestion = bankQuestion.getBankQuestionsAndAnswers();
+        mBank = bankQuestion;
     }
 
+    @Override
+    public Single<String> getRxStringCategoryForRandomStart() {
+        return mBank.getListKeysNotEmptyCategories()
+                .map(new Function<List<String>, String>() {
+                    @Override
+                    public String apply(List<String> strings) throws Exception {
+                        int first = 0;
+                        int second = strings.size();
+                        int random = first + (int) (Math.random() * second);
+                        return strings.get(random);
+                    }
+                });
+    }
+
+    /*
     @Override
     public String getStringCategoryForRandomStart() {
         boolean flag = true;
@@ -35,7 +55,9 @@ public class StartFragmentInteractor implements StartFragmentContract.Interactor
         }
         return randomCategory;
     }
+    */
 
+    /*
     private String getKeyRandomCategory() {
         List<String> list = new ArrayList<>(mBankQuestion.keySet());
         int first = 0;
@@ -43,4 +65,5 @@ public class StartFragmentInteractor implements StartFragmentContract.Interactor
         int random = first + (int) (Math.random() * second);
         return list.get(random);
     }
+    */
 }

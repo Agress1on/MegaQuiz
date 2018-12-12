@@ -114,4 +114,10 @@ public class StartFragment extends Fragment implements StartFragmentContract.Vie
         fragment.setArguments(args);
         return fragment;
     }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mPresenter.onDestroy();
+    }
 }
