@@ -17,11 +17,10 @@ import io.reactivex.functions.Function;
  * @author Alexandr Mikhalev
  */
 public class StartFragmentInteractor implements StartFragmentContract.Interactor {
-    private Map<String, List<Question>> mBankQuestion;
+
     private BankQuestion mBank;
 
     public StartFragmentInteractor(BankQuestion bankQuestion) {
-        mBankQuestion = bankQuestion.getBankQuestionsAndAnswers();
         mBank = bankQuestion;
     }
 
