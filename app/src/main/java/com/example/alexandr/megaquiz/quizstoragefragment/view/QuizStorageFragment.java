@@ -57,7 +57,7 @@ public class QuizStorageFragment extends Fragment implements QuizStorageContract
 
         FragmentActivity fragmentActivity = getActivity();
         List<QuizStorageItem> mCat = mPresenter.getCategoriesNamesForViewWithoutEmpty();
-        mRecyclerView = (RecyclerView) view.findViewById(R.id.my_recycler);
+        mRecyclerView = (RecyclerView) view.findViewById(R.id.storage_recycler);
         mLayoutManager = new LinearLayoutManager(fragmentActivity); // XMMMMM
         mRecyclerView.setLayoutManager(mLayoutManager);
         mAdapter = new RecyclerAdapter(mCat, key -> mPresenter.onClick(key));

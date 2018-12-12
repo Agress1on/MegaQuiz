@@ -1,0 +1,77 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:paddingBottom="20dp"
+    android:layout_marginBottom="5dp"
+    android:background="@drawable/first_shape_for_quiz_storage">
+
+    <TextView
+        android:id="@+id/question_tv"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="10dp"
+        android:textAlignment="center"
+        android:textSize="25sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        tools:text="Самая высокая гора" />
+
+    <android.support.constraint.Guideline
+        android:id="@+id/guideline_first"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:orientation="vertical"
+        app:layout_constraintGuide_percent="0.5" />
+
+    <View
+        android:id="@+id/separator_vertical_first"
+        android:layout_width="3dp"
+        android:layout_height="0dp"
+        android:background="@color/colorWhite"
+        app:layout_constraintStart_toStartOf="@id/guideline_first"
+        app:layout_constraintTop_toBottomOf="@id/question_tv"
+        app:layout_constraintBottom_toBottomOf="@id/static_tv_for_user_answer"/>
+
+    <TextView
+        android:id="@+id/tv_for_user_answer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginEnd="10dp"
+        android:text="Ваш ответ:"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toStartOf="@id/separator_vertical_first"
+        app:layout_constraintTop_toBottomOf="@id/question_tv" />
+
+    <TextView
+        android:id="@+id/tv_for_real_answer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="10dp"
+        android:text="Реальный ответ:"
+        android:textSize="15sp"
+        app:layout_constraintStart_toStartOf="@id/separator_vertical_first"
+        app:layout_constraintTop_toTopOf="@id/tv_for_user_answer" />
+
+    <TextView
+        android:id="@+id/static_tv_for_user_answer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="@id/tv_for_user_answer"
+        app:layout_constraintTop_toBottomOf="@id/tv_for_user_answer"
+        tools:text="true" />
+
+    <TextView
+        android:id="@+id/static_tv_for_real_answer"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="true"
+        android:textSize="15sp"
+        app:layout_constraintEnd_toEndOf="@id/tv_for_real_answer"
+        app:layout_constraintTop_toBottomOf="@id/tv_for_real_answer" />
+
+</android.support.constraint.ConstraintLayout>

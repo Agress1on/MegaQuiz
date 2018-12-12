@@ -131,7 +131,7 @@ public class QuizFragment extends Fragment implements QuizFragmentContract.View 
 
     @Override
     public void startQuizResultFragment(int quizSize, int correctAnswers) {
-        QuizResultFragment quizResultFragment = QuizResultFragment.newInstance(quizSize, correctAnswers, mCategoryName);
+        QuizResultFragment quizResultFragment = QuizResultFragment.newInstance(quizSize, correctAnswers, mCategoryName, mPresenter.getAnswers());
         getActivity().getSupportFragmentManager().beginTransaction()
                 .replace(R.id.frame_for_quiz, quizResultFragment)
                 .commit();

@@ -1,5 +1,6 @@
 package com.example.alexandr.megaquiz.quizfragment;
 
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -32,6 +33,8 @@ public interface QuizFragmentContract {
     }
 
     interface Presenter {
+        HashMap<Integer, Boolean> getAnswers();
+
         void initQuestionList(String keyCategory);
 
         void prepareViewForFirstQuestion();

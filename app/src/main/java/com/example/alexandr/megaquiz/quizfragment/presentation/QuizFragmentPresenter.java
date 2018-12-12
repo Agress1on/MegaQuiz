@@ -7,6 +7,7 @@ import com.example.alexandr.megaquiz.quizfragment.Answer;
 import com.example.alexandr.megaquiz.quizfragment.QuizFragmentContract;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -35,6 +36,15 @@ public class QuizFragmentPresenter implements QuizFragmentContract.Presenter {
         this.mInteractor = interactor;
         this.mAnswers = new ArrayMap<>(); // почитать подробнее потом
         this.mCurrentIndex = 0;
+    }
+
+    @Override
+    public HashMap<Integer, Boolean> getAnswers() {
+        HashMap<Integer, Boolean> map = new HashMap<>();
+        for (Map.Entry<Integer, Answer> entry : mAnswers.entrySet()) {
+            map.put(entry.getKey(), entry.getValue().isResult());
+        }
+        return map;
     }
 
     @Override
