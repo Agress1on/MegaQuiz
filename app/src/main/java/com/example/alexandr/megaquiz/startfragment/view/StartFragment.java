@@ -116,6 +116,12 @@ public class StartFragment extends Fragment implements StartFragmentContract.Vie
     }
 
     @Override
+    public void onPause() {
+        super.onPause();
+        mPresenter.onPause();
+    }
+
+    @Override
     public void onDestroy() {
         super.onDestroy();
         mPresenter.onDestroy();

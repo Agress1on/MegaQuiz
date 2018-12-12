@@ -49,6 +49,11 @@ public class StartFragmentPresenter implements StartFragmentContract.Presenter {
     }
 
     @Override
+    public void onPause() {
+        initRandomCategory();
+    }
+
+    @Override
     public void onDestroy() {
         mCompositeDisposable.clear();
     }

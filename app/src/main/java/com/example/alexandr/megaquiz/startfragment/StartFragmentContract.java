@@ -28,5 +28,7 @@ public interface StartFragmentContract {
         void onButtonCategory();
 
         void onDestroy();
+
+        void onPause();
     }
 }
