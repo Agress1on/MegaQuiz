@@ -59,30 +59,4 @@ public class BankQuestion {
     public Single<Map<String, List<Question>>> getBankQuestionsAndAnswers() {
         return Single.just(mBankQuestion);
     }
-
-    public Single<List<String>> getListKeysNotEmptyCategories() {
-        return Single.just(mBankQuestion)
-                .map(new Function<Map<String, List<Question>>, List<String>>() {
-                    @Override
-                    public List<String> apply(Map<String, List<Question>> stringListMap) throws Exception {
-                        List<String> list = new ArrayList<>();
-                        for (Map.Entry<String, List<Question>> entry : stringListMap.entrySet()) {
-                            if (entry.getValue().size() > 0) list.add(entry.getKey());
-                        }
-                        return list;
-                    }
-                });
-    }
-
-    /*
-    public Single<List<Question>> getRxBankQuestion(final String key) {
-        return Single.just(mBankQuestion)
-                .map(new Function<Map<String, List<Question>>, List<Question>>() {
-                    @Override
-                    public List<Question> apply(Map<String, List<Question>> stringListMap) throws Exception {
-                        return stringListMap.get(key);
-                    }
-                }).delay(5, TimeUnit.SECONDS);
-    }
-    */
 }

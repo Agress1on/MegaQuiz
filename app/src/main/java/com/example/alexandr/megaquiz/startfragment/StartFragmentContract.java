@@ -9,9 +9,7 @@ import io.reactivex.Single;
  */
 public interface StartFragmentContract {
     interface Interactor {
-      //  String getStringCategoryForRandomStart();
-
-        Single<String> getRxStringCategoryForRandomStart();
+        Single<String> getStringCategoryForRandomStart();
     }
 
     interface View {

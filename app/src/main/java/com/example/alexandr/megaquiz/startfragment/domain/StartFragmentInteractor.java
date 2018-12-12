@@ -25,8 +25,18 @@ public class StartFragmentInteractor implements StartFragmentContract.Interactor
     }
 
     @Override
-    public Single<String> getRxStringCategoryForRandomStart() {
-        return mBank.getListKeysNotEmptyCategories()
+    public Single<String> getStringCategoryForRandomStart() {
+        return mBank.getBankQuestionsAndAnswers()
+                .map(new Function<Map<String, List<Question>>, List<String>>() {
+                    @Override
+                    public List<String> apply(Map<String, List<Question>> stringListMap) throws Exception {
+                        List<String> list = new ArrayList<>();
+                        for (Map.Entry<String, List<Question>> entry : stringListMap.entrySet()) {
+                            if (entry.getValue().size() > 0) list.add(entry.getKey());
+                        }
+                        return list;
+                    }
+                })
                 .map(new Function<List<String>, String>() {
                     @Override
                     public String apply(List<String> strings) throws Exception {
@@ -37,32 +47,4 @@ public class StartFragmentInteractor implements StartFragmentContract.Interactor
                     }
                 });
     }
-
-    /*
-    @Override
-    public String getStringCategoryForRandomStart() {
-        boolean flag = true;
-        String randomCategory = null;
-        while (flag) {
-            randomCategory = getKeyRandomCategory();
-            for (Map.Entry<String, List<Question>> entry : mBankQuestion.entrySet()) {
-                if (entry.getKey().equals(randomCategory)) {
-                    if (entry.getValue().size() > 0) flag = false;
-                    break;
-                }
-            }
-        }
-        return randomCategory;
-    }
-    */
-
-    /*
-    private String getKeyRandomCategory() {
-        List<String> list = new ArrayList<>(mBankQuestion.keySet());
-        int first = 0;
-        int second = list.size();
-        int random = first + (int) (Math.random() * second);
-        return list.get(random);
-    }
-    */
 }

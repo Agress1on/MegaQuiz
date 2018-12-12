@@ -2,7 +2,6 @@ package com.example.alexandr.megaquiz.startfragment.presentation;
 
 import com.example.alexandr.megaquiz.startfragment.StartFragmentContract;
 
-import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
@@ -26,7 +25,7 @@ public class StartFragmentPresenter implements StartFragmentContract.Presenter {
     }
 
     private void initRandomCategory() {
-        Disposable disposable = mInteractor.getRxStringCategoryForRandomStart()
+        Disposable disposable = mInteractor.getStringCategoryForRandomStart()
                 .subscribeOn(Schedulers.io())
               //  .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<String>() {
