@@ -2,6 +2,8 @@ package com.example.alexandr.megaquiz.quizstoragefragment;
 
 import java.util.List;
 
+import io.reactivex.Single;
+
 /**
  * Created by Alexandr Mikhalev on 11.09.2018.
  *
@@ -9,17 +11,22 @@ import java.util.List;
  */
 public interface QuizStorageContract {
     interface Interactor {
-        List<QuizStorageItem> getListOfStorageItem();
+        Single<List<QuizStorageItem>> getListOfStorageItem();
 
-        List<QuizStorageItem> getListOfStorageItemWithoutEmpty();
+        Single<List<QuizStorageItem>> getListOfStorageItemWithoutEmpty();
     }
 
     interface Presenter {
         List<QuizStorageItem> getCategoriesNamesForViewWithoutEmpty();
 
+        void initListCategoryNamesWithoutEmpty();
+        void initListCategoryNameFull();
+
         void onCheckBoxClick(boolean isChecked);
 
         void onClick(String key);
+
+        void onDestroy();
     }
 
     interface View {

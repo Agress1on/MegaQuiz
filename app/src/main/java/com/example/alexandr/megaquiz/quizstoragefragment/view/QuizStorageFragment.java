@@ -81,16 +81,22 @@ public class QuizStorageFragment extends Fragment implements QuizStorageContract
         mTextView.setText(text);
     }
 
+    @OnCheckedChanged({R.id.list_switch})
+    void onSelected(Switch button, boolean checked) {
+        mPresenter.onCheckBoxClick(checked);
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mPresenter.onDestroy();
+    }
+
     public static QuizStorageFragment newInstance() {
         Bundle args = new Bundle();
         QuizStorageFragment fragment = new QuizStorageFragment();
         fragment.setArguments(args);
         return fragment;
-    }
-
-    @OnCheckedChanged({R.id.list_switch})
-    void onSelected(Switch button, boolean checked) {
-        mPresenter.onCheckBoxClick(checked);
     }
 }
 
