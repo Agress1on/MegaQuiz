@@ -28,7 +28,7 @@ public class QuizFragmentInteractor implements QuizFragmentContract.Interactor {
 
     @Override
     public Single<List<String>> getQuestions(String key) {
-        return Single.just(mBankQuestion.getBankQuestion())
+        return Single.just(mBankQuestion.getBankQuestionsAndAnswers())
                 .map(new Function<Map<String, List<Question>>, List<Question>>() {
                     @Override
                     public List<Question> apply(Map<String, List<Question>> stringListMap) throws Exception {
@@ -49,7 +49,7 @@ public class QuizFragmentInteractor implements QuizFragmentContract.Interactor {
 
     @Override
     public Single<Integer> checkQuestions(String key, Map<Integer, Answer> answers) {
-        return Single.just(mBankQuestion.getBankQuestion())
+        return Single.just(mBankQuestion.getBankQuestionsAndAnswers())
                 .map(new Function<Map<String, List<Question>>, List<Boolean>>() {
                     @Override
                     public List<Boolean> apply(Map<String, List<Question>> stringListMap) throws Exception {

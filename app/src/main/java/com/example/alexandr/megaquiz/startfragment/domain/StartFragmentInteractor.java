@@ -17,7 +17,7 @@ public class StartFragmentInteractor implements StartFragmentContract.Interactor
     private Map<String, List<Question>> mBankQuestion;
 
     public StartFragmentInteractor(BankQuestion bankQuestion) {
-        mBankQuestion = bankQuestion.getBankQuestion();
+        mBankQuestion = bankQuestion.getBankQuestionsAndAnswers();
     }
 
     @Override

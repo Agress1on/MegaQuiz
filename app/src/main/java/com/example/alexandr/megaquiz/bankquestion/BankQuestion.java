@@ -17,47 +17,50 @@ import io.reactivex.functions.Function;
  * @author Alexandr Mikhalev
  */
 public class BankQuestion {
-    private List<Question> mGeneralQuestions = new ArrayList<>();
-    private List<Question> mHardGeneralQuestions = new ArrayList<>();
-    private List<Question> mHistoryQuestions = new ArrayList<>();
-    private List<Question> mEconomicQuestions = new ArrayList<>();
-    private List<Question> mNatureQuestions = new ArrayList<>();
-    private Map<String, List<Question>> mBankQuestion = new TreeMap();
+    private Map<String, List<Question>> mBankQuestion;
 
     public BankQuestion() {
-        mGeneralQuestions.add(new Question("Андроид - лучшая платформа", true));
-        mGeneralQuestions.add(new Question("Manchester is blue", false));
-        mGeneralQuestions.add(new Question("Спартак Москва - лучший клуб", true));
-        mGeneralQuestions.add(new Question("Земля имеет форму конуса", false));
-        mGeneralQuestions.add(new Question("На Марсе есть жизнь", true));
-        mGeneralQuestions.add(new Question("Алкоголь безвредный", false));
+        mBankQuestion = new TreeMap();
+        List<Question> generalQuestions = new ArrayList<>();
+        List<Question> hardGeneralQuestions = new ArrayList<>();
+        List<Question> historyQuestions = new ArrayList<>();
+        List<Question> economicQuestions = new ArrayList<>();
+        List<Question> natureQuestions = new ArrayList<>();
 
-        mHardGeneralQuestions.add(new Question("Электрон больше, чем атом", false));
-        mHardGeneralQuestions.add(new Question("Килиманджаро - самая высокая гора в мире", false));
-        mHardGeneralQuestions.add(new Question("Глаз страуса больше, чем его мозг", true));
-        mHardGeneralQuestions.add(new Question("Летучие мыши слепы", false));
-        mHardGeneralQuestions.add(new Question("У белого медведя черная кожа", true));
-        mHardGeneralQuestions.add(new Question("Швейцарский флаг - единственный квадратный в мире", false));
+        generalQuestions.add(new Question("Андроид - лучшая платформа", true));
+        generalQuestions.add(new Question("Manchester is blue", false));
+        generalQuestions.add(new Question("Спартак Москва - лучший клуб", true));
+        generalQuestions.add(new Question("Земля имеет форму конуса", false));
+        generalQuestions.add(new Question("На Марсе есть жизнь", true));
+        generalQuestions.add(new Question("Алкоголь безвредный", false));
 
-        mHistoryQuestions.add(new Question("Москва основана в 1147 году", true));
-        mHistoryQuestions.add(new Question("Наполеон напал на Россию в 1815 году", false));
+        hardGeneralQuestions.add(new Question("Электрон больше, чем атом", false));
+        hardGeneralQuestions.add(new Question("Килиманджаро - самая высокая гора в мире", false));
+        hardGeneralQuestions.add(new Question("Глаз страуса больше, чем его мозг", true));
+        hardGeneralQuestions.add(new Question("Летучие мыши слепы", false));
+        hardGeneralQuestions.add(new Question("У белого медведя черная кожа", true));
+        hardGeneralQuestions.add(new Question("Швейцарский флаг - единственный квадратный в мире", false));
 
-        mBankQuestion.put(Constants.GENERAL_QUESTIONS, mGeneralQuestions);
-        mBankQuestion.put(Constants.HISTORY_QUESTIONS, mHistoryQuestions);
-        mBankQuestion.put(Constants.ECONOMIC_QUESTIONS, mEconomicQuestions);
-        mBankQuestion.put(Constants.NATURE_QUESTIONS, mNatureQuestions);
-        mBankQuestion.put(Constants.HARD_GENERAL_QUESTIONS, mHardGeneralQuestions);
+
+        historyQuestions.add(new Question("Москва основана в 1147 году", true));
+        historyQuestions.add(new Question("Наполеон напал на Россию в 1815 году", false));
+
+        mBankQuestion.put(Constants.GENERAL_QUESTIONS, generalQuestions);
+        mBankQuestion.put(Constants.HISTORY_QUESTIONS, historyQuestions);
+        mBankQuestion.put(Constants.ECONOMIC_QUESTIONS, economicQuestions);
+        mBankQuestion.put(Constants.NATURE_QUESTIONS, natureQuestions);
+        mBankQuestion.put(Constants.HARD_GENERAL_QUESTIONS, hardGeneralQuestions);
 
         for (int i = 0; i < 11; i++) {
             mBankQuestion.put("Пустая " + i, new ArrayList<>());
         }
     }
 
-    public Map<String, List<Question>> getBankQuestion() {
+    public Map<String, List<Question>> getBankQuestionsAndAnswers() {
         return mBankQuestion;
     }
 
-
+    /*
     public Single<List<Question>> getRxBankQuestion(final String key) {
         return Single.just(mBankQuestion)
                 .map(new Function<Map<String, List<Question>>, List<Question>>() {
@@ -67,5 +70,5 @@ public class BankQuestion {
                     }
                 }).delay(5, TimeUnit.SECONDS);
     }
-
+    */
 }

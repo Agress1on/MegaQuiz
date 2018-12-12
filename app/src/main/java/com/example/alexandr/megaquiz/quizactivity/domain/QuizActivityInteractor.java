@@ -22,7 +22,7 @@ public class QuizActivityInteractor implements QuizActivityContract.Interactor {
     private int mRightAnswersCounter;
 
     public QuizActivityInteractor(BankQuestion bankQuestion) {
-        this.mBankQuestions = bankQuestion.getBankQuestion();
+        this.mBankQuestions = bankQuestion.getBankQuestionsAndAnswers();
         this.mListQuestions = new ArrayList<>();
         this.mStringQuestion = new ArrayList<>();
         this.mTrueAnswers = new ArrayList<>();
