@@ -27,7 +27,7 @@ public class QuizStorageInteractor implements QuizStorageContract.Interactor {
 
     @Override
     public Single<List<QuizStorageItem>> getListOfStorageItem() {
-        return Single.just(mBankQuestion.getBankQuestionsAndAnswers())
+        return mBankQuestion.getBankQuestionsAndAnswers()
                 .map(new Function<Map<String, List<Question>>, List<QuizStorageItem>>() {
                     @Override
                     public List<QuizStorageItem> apply(Map<String, List<Question>> stringListMap) throws Exception {
@@ -45,7 +45,7 @@ public class QuizStorageInteractor implements QuizStorageContract.Interactor {
 
     @Override
     public Single<List<QuizStorageItem>> getListOfStorageItemWithoutEmpty() {
-        return Single.just(mBankQuestion.getBankQuestionsAndAnswers())
+        return mBankQuestion.getBankQuestionsAndAnswers()
                 .map(new Function<Map<String, List<Question>>, List<QuizStorageItem>>() {
                     @Override
                     public List<QuizStorageItem> apply(Map<String, List<Question>> stringListMap) throws Exception {

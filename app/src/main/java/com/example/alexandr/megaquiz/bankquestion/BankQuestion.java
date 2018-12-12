@@ -56,8 +56,8 @@ public class BankQuestion {
         }
     }
 
-    public Map<String, List<Question>> getBankQuestionsAndAnswers() {
-        return mBankQuestion;
+    public Single<Map<String, List<Question>>> getBankQuestionsAndAnswers() {
+        return Single.just(mBankQuestion);
     }
 
     public Single<List<String>> getListKeysNotEmptyCategories() {
