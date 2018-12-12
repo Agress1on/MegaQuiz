@@ -20,15 +20,15 @@ import io.reactivex.functions.Function;
  */
 public class QuizFragmentInteractor implements QuizFragmentContract.Interactor {
 
-    private BankQuestion mBank;
+    private BankQuestion mBankQuestion;
 
     public QuizFragmentInteractor(BankQuestion bankQuestion) {
-        this.mBank = bankQuestion;
+        this.mBankQuestion = bankQuestion;
     }
 
     @Override
     public Single<List<String>> getQuestions(String key) {
-        return Single.just(mBank.getBankQuestion())
+        return Single.just(mBankQuestion.getBankQuestion())
                 .map(new Function<Map<String, List<Question>>, List<Question>>() {
                     @Override
                     public List<Question> apply(Map<String, List<Question>> stringListMap) throws Exception {
@@ -49,7 +49,7 @@ public class QuizFragmentInteractor implements QuizFragmentContract.Interactor {
 
     @Override
     public Single<Integer> checkQuestions(String key, Map<Integer, Answer> answers) {
-        return Single.just(mBank.getBankQuestion())
+        return Single.just(mBankQuestion.getBankQuestion())
                 .map(new Function<Map<String, List<Question>>, List<Boolean>>() {
                     @Override
                     public List<Boolean> apply(Map<String, List<Question>> stringListMap) throws Exception {
@@ -65,10 +65,11 @@ public class QuizFragmentInteractor implements QuizFragmentContract.Interactor {
                     @Override
                     public Integer apply(List<Boolean> booleans) throws Exception {
                         int rightAnswers = 0;
-                       for (Map.Entry<Integer, Answer> entry : answers.entrySet()) {
-                           if (booleans.get(entry.getKey()) == entry.getValue().isResult()) rightAnswers++;
-                       }
-                       return rightAnswers;
+                        for (Map.Entry<Integer, Answer> entry : answers.entrySet()) {
+                            if (booleans.get(entry.getKey()) == entry.getValue().isResult())
+                                rightAnswers++;
+                        }
+                        return rightAnswers;
                     }
                 }).delay(3, TimeUnit.SECONDS);
     }

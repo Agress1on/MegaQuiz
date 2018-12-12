@@ -18,18 +18,16 @@ import io.reactivex.functions.Function;
  * @author Alexandr Mikhalev
  */
 public class QuizStorageInteractor implements QuizStorageContract.Interactor {
-    private Map<String, List<Question>> mBankQuestions;
-    private List<QuizStorageItem> mCategoriesNames;
 
-    private BankQuestion mBank;
+    private BankQuestion mBankQuestion;
 
     public QuizStorageInteractor(BankQuestion bankQuestion) {
-        this.mBank = bankQuestion;
+        this.mBankQuestion = bankQuestion;
     }
 
     @Override
     public Single<List<QuizStorageItem>> getListOfStorageItem() {
-        return Single.just(mBank.getBankQuestion())
+        return Single.just(mBankQuestion.getBankQuestion())
                 .map(new Function<Map<String, List<Question>>, List<QuizStorageItem>>() {
                     @Override
                     public List<QuizStorageItem> apply(Map<String, List<Question>> stringListMap) throws Exception {
@@ -47,7 +45,7 @@ public class QuizStorageInteractor implements QuizStorageContract.Interactor {
 
     @Override
     public Single<List<QuizStorageItem>> getListOfStorageItemWithoutEmpty() {
-        return Single.just(mBank.getBankQuestion())
+        return Single.just(mBankQuestion.getBankQuestion())
                 .map(new Function<Map<String, List<Question>>, List<QuizStorageItem>>() {
                     @Override
                     public List<QuizStorageItem> apply(Map<String, List<Question>> stringListMap) throws Exception {
@@ -71,33 +69,4 @@ public class QuizStorageInteractor implements QuizStorageContract.Interactor {
                     }
                 });
     }
-    /*
-    private List<QuizStorageItem> initCategoriesNames() {
-        List<QuizStorageItem> list = new ArrayList<>();
-        int position = 0;
-        for (Map.Entry<String, List<Question>> entry : mBankQuestions.entrySet()) {
-            position++;
-            QuizStorageItem item = new QuizStorageItem(position, entry.getKey(), entry.getValue().size());
-            list.add(item);
-        }
-        return list;
-    }
-
-    @Override
-    public List<QuizStorageItem> getListOfStorageItem() {
-        return mCategoriesNames;
-    }
-
-    @Override
-    public List<QuizStorageItem> getListOfStorageItemWithoutEmpty() {
-        mCategoriesNames = initCategoriesNames();
-        List<QuizStorageItem> list = new ArrayList<>();
-        for (QuizStorageItem quizStorageItem : mCategoriesNames) {
-            if (quizStorageItem.getCategorySize() > 0) {
-                list.add(quizStorageItem);
-            }
-        }
-        return list;
-    }
-    */
 }
