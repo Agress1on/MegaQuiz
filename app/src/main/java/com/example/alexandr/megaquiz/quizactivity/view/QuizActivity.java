@@ -18,10 +18,10 @@ import com.example.alexandr.megaquiz.quizfragment.view.QuizFragment;
  * @author Alexandr Mikhalev
  */
 public class QuizActivity extends AppCompatActivity implements QuizActivityContract.View {
-    private String mCategoryName = "SENYAAAAA";
 
+    private String mCategoryName = "";
     private QuizFragment mQuizFragment;
-    private FragmentManager mFragmentManager = getSupportFragmentManager();
+    private FragmentManager mFragmentManager;
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -32,15 +32,19 @@ public class QuizActivity extends AppCompatActivity implements QuizActivityContr
         mCategoryName = intent.getStringExtra(Constants.EXTRAS_FOR_INTENT_QUIZ_VIEW);
 
         mQuizFragment = QuizFragment.newInstance(mCategoryName, Constants.EXTRAS_FOR_INTENT_QUIZ_VIEW);
+        mFragmentManager = getSupportFragmentManager();
+        addQuizFragment();
+    }
+
+    private void addQuizFragment() {
         mFragmentManager.beginTransaction()
                 .add(R.id.frame_for_quiz, mQuizFragment)
                 .commit();
-
     }
+
     public static Intent getIntent(Context context, String key) {
         Intent intent = new Intent(context, QuizActivity.class);
         intent.putExtra(Constants.EXTRAS_FOR_INTENT_QUIZ_VIEW, key);
         return intent;
     }
-
 }
