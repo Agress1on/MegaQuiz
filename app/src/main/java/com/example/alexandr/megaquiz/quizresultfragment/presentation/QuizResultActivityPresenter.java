@@ -1,10 +1,12 @@
 package com.example.alexandr.megaquiz.quizresultfragment.presentation;
 
 import android.util.ArrayMap;
+import android.view.View;
 
 import com.example.alexandr.megaquiz.bankquestion.Question;
 import com.example.alexandr.megaquiz.quizresultfragment.QuizResultActivityContract;
 import com.example.alexandr.megaquiz.quizresultfragment.QuizResultItem;
+import com.example.alexandr.megaquiz.quizstoragefragment.QuizStorageItem;
 
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -77,6 +79,13 @@ public class QuizResultActivityPresenter implements QuizResultActivityContract.P
         }
         String text = "Вы прошли опрос категории \"" + categoryName + "\". Вы " + level + " владеете знаниями данной в области и дали " + percent + "% верных ответов.\nЧто делать дальше?";
         return text;
+    }
+
+    @Override
+    public void onCheckBoxClick(boolean tap) {
+        String text = tap ? "Скрыть подробности" : "Показать подробности";
+        int flagRecycler = tap ? View.VISIBLE : View.INVISIBLE;
+        mView.setVisibleRecycler(flagRecycler, text);
     }
 
     @Override

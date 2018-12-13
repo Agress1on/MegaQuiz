@@ -20,6 +20,7 @@ public interface QuizResultActivityContract {
 
     interface View {
         void setResultTextView(String text);
+        void setVisibleRecycler(int state, String text);
     }
 
     interface Presenter {
@@ -28,5 +29,6 @@ public interface QuizResultActivityContract {
         void onDestroy();
         void createItemForRecycler(HashMap<Integer, Boolean> map);
         List<QuizResultItem> getList();
+        void onCheckBoxClick(boolean tap);
     }
 }

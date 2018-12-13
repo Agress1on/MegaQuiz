@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.Switch;
 import android.widget.TextView;
 
 import com.example.alexandr.megaquiz.Constants;
@@ -31,6 +32,7 @@ import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
+import butterknife.OnCheckedChanged;
 import butterknife.OnClick;
 
 /**
@@ -43,14 +45,10 @@ public class QuizResultFragment extends Fragment implements QuizResultActivityCo
 
     @BindView(R.id.result_text)
     TextView mResultTextView;
-    @BindView(R.id.restart_button)
-    Button mRestartButton;
-    @BindView(R.id.go_to_QS_button)
-    Button mGoToQuizStorageButton;
-    @BindView(R.id.go_to_start_button)
-    Button mGoToStartButton;
     @BindView(R.id.for_recycler_tv)
     TextView mTextView;
+    @BindView(R.id.result_switch)
+    Switch mSwitch;
 
     private int mQuizSize;
     private int mCorrectAnswers;
@@ -95,21 +93,15 @@ public class QuizResultFragment extends Fragment implements QuizResultActivityCo
         mResultTextView.setText(text);
     }
 
-    @OnClick({R.id.restart_button, R.id.go_to_QS_button, R.id.go_to_start_button})
-    void onClick(View view) {
-        Intent intent = null;
-        switch (view.getId()) {
-            case R.id.restart_button:
-                intent = QuizActivity.getIntent(getContext(), mNameCategory);
-                break;
-            case R.id.go_to_QS_button:
-                //   intent = QuizStorageFragment.getIntent(this);
-                break;
-            case R.id.go_to_start_button:
-                intent = StartActivity.getIntent(getContext());
-                break;
-        }
-        startActivity(intent);
+    @OnCheckedChanged({R.id.result_switch})
+    void onSelected(Switch button, boolean checked) {
+        mPresenter.onCheckBoxClick(checked);
+    }
+
+    @Override
+    public void setVisibleRecycler(int state, String text) {
+        mRecyclerView.setVisibility(state);
+        mTextView.setText(text);
     }
 
     public static QuizResultFragment newInstance(int quizSize, int correctAnswers, String nameCategory, HashMap<Integer, Boolean> map) {

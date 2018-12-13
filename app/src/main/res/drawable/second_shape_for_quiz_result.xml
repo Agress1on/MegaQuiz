@@ -13,7 +13,7 @@
         android:left="5px"
         android:right="5px">
         <shape android:shape="rectangle">
-            <solid android:color="@color/colorSaddleBrown" />
+            <solid android:color="@color/colorGreen" />
         </shape>
     </item>
 

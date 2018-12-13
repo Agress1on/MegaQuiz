@@ -23,14 +23,28 @@ import butterknife.ButterKnife;
 public class QuizResultAdapter extends RecyclerView.Adapter<QuizResultAdapter.ViewHolder> {
     private List<QuizResultItem> mQuizResultItemList;
 
+    private final static int VIEW_ITEM_FIRST = 0;
+    private final static int VIEW_ITEM_SECOND = 1;
+
     public QuizResultAdapter(List<QuizResultItem> quizResultItemList) {
         mQuizResultItemList = quizResultItemList;
+    }
+
+    @Override
+    public int getItemViewType(int position) {
+        boolean flag = mQuizResultItemList.get(position).isRealAnswer() == mQuizResultItemList.get(position).isUserAnswer();
+        return flag ? VIEW_ITEM_SECOND : VIEW_ITEM_FIRST;
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_result_item_first,parent, false);
+        View view;
+        if (viewType == VIEW_ITEM_FIRST) {
+            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_result_item_first,parent, false);
+        } else {
+            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_result_item_second,parent, false);
+        }
         ViewHolder viewHolder = new ViewHolder(view);
         return viewHolder;
     }

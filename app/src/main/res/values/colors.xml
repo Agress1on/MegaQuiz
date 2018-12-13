@@ -18,7 +18,13 @@
     <color name="colorYellowGreen">#9ACD32</color>
 
     <!--Colors for RecyclerView Background Items-->
-    <color name="colorCrimson">#DC143C</color>
-    <color name="colorSteelBlue">#4682B4</color>
+    <color name="colorSlateGray">#708090</color>
+    <color name="colorSaddleBrown">#8B4513</color>
 
+    <!--Colors for QuizResultAdapter Background Items-->
+    <color name="colorGreen">#008000</color>
+    <color name="colorFireBrick">#B22222</color>
+
+    <!--Additional colors-->
+    <color name="colorSilver">#C0C0C0</color>
 </resources>
