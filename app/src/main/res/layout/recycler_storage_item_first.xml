@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="70dp"
     android:layout_marginBottom="5dp"
-    android:background="@drawable/first_shape_for_quiz_storage">
+    android:background="@drawable/quiz_storage_shape_first">
 
     <android.support.constraint.Guideline
         android:id="@+id/guideline1"

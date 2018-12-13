@@ -5,7 +5,7 @@
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
     android:layout_marginBottom="5dp"
-    android:background="@drawable/first_shape_for_quiz_result">
+    android:background="@drawable/quiz_result_shape_first">
 
     <TextView
         android:id="@+id/question_tv"
@@ -63,11 +63,11 @@
         android:id="@+id/static_tv_for_user_answer"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        android:paddingBottom="10dp"
         android:textColor="@color/colorWhite"
         android:textSize="20sp"
-        android:paddingBottom="10dp"
-        app:layout_constraintStart_toStartOf="@id/tv_for_user_answer"
         app:layout_constraintEnd_toEndOf="@id/tv_for_user_answer"
+        app:layout_constraintStart_toStartOf="@id/tv_for_user_answer"
         app:layout_constraintTop_toBottomOf="@id/tv_for_user_answer"
         tools:text="true" />
 
@@ -78,8 +78,8 @@
         android:text="true"
         android:textColor="@color/colorWhite"
         android:textSize="20sp"
-        app:layout_constraintStart_toStartOf="@id/tv_for_real_answer"
         app:layout_constraintEnd_toEndOf="@id/tv_for_real_answer"
+        app:layout_constraintStart_toStartOf="@id/tv_for_real_answer"
         app:layout_constraintTop_toBottomOf="@id/tv_for_real_answer" />
 
     <ImageView
@@ -90,6 +90,6 @@
         android:layout_marginBottom="7dp"
         android:background="@drawable/ic_unchecked_for_first_quiz_result_item"
         app:layout_constraintBottom_toBottomOf="parent"
-        app:layout_constraintStart_toStartOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent" />
 
 </android.support.constraint.ConstraintLayout>
