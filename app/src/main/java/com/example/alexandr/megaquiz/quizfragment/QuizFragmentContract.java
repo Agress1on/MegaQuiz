@@ -29,11 +29,13 @@ public interface QuizFragmentContract {
 
         void setCorrectButtonStyle(int key);
 
-        void setProgressBar(boolean flag);
+        void showProgressBarAndSetVisibleView(int viewState, int progressBarState);
     }
 
     interface Presenter {
         HashMap<Integer, Boolean> getAnswers();
+
+        void showProgressBar(boolean flag);
 
         void initQuestionList(String keyCategory);
 

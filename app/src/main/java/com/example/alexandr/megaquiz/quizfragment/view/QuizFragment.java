@@ -62,13 +62,14 @@ public class QuizFragment extends Fragment implements QuizFragmentContract.View 
             R.id.btnFalse, R.id.btnNext, R.id.btnPrev, R.id.question_count})
     List<View> mViewList;
 
-    QuizFragmentContract.Presenter mPresenter;
-    private String mCategoryName = "SENYAAAAA";
+    private QuizFragmentContract.Presenter mPresenter;
+    private String mCategoryName = "";
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mCategoryName = getArguments().getString(Constants.EXTRAS_FOR_INTENT_QUIZ_VIEW);
+        mPresenter = new QuizFragmentPresenter(this, new QuizFragmentInteractor(new BankQuestion()));
     }
 
     @Nullable
@@ -76,15 +77,12 @@ public class QuizFragment extends Fragment implements QuizFragmentContract.View 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_quiz, null);
         ButterKnife.bind(this, view);
-        mPresenter = new QuizFragmentPresenter(this, new QuizFragmentInteractor(new BankQuestion()));
         mPresenter.initQuestionList(mCategoryName);
         return view;
     }
 
     @Override
-    public void setProgressBar(boolean flag) {
-        int progressBarState = flag ? View.VISIBLE : View.INVISIBLE;
-        int viewState = flag ? View.INVISIBLE : View.VISIBLE;
+    public void showProgressBarAndSetVisibleView(int viewState, int progressBarState) {
         for (View view : mViewList) {
             view.setVisibility(viewState);
         }
@@ -131,7 +129,8 @@ public class QuizFragment extends Fragment implements QuizFragmentContract.View 
 
     @Override
     public void startQuizResultFragment(int quizSize, int correctAnswers) {
-        QuizResultFragment quizResultFragment = QuizResultFragment.newInstance(quizSize, correctAnswers, mCategoryName, mPresenter.getAnswers());
+        QuizResultFragment quizResultFragment =
+                QuizResultFragment.newInstance(quizSize, correctAnswers, mCategoryName, mPresenter.getAnswers());
         getActivity().getSupportFragmentManager().beginTransaction()
                 .replace(R.id.frame_for_quiz, quizResultFragment)
                 .commit();

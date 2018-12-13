@@ -1,6 +1,7 @@
 package com.example.alexandr.megaquiz.quizfragment.presentation;
 
 import android.support.v4.util.ArrayMap;
+import android.view.View;
 
 import com.example.alexandr.megaquiz.Constants;
 import com.example.alexandr.megaquiz.quizfragment.Answer;
@@ -25,17 +26,39 @@ import io.reactivex.schedulers.Schedulers;
 public class QuizFragmentPresenter implements QuizFragmentContract.Presenter {
     private QuizFragmentContract.View mView;
     private QuizFragmentContract.Interactor mInteractor;
-    private List<String> mQuestions = new ArrayList<>();
+    private List<String> mQuestions;
     private int mCurrentIndex;
     private Map<Integer, Answer> mAnswers;
     private String mCategoryName;
-    private CompositeDisposable mCompositeDisposable = new CompositeDisposable();
+    private CompositeDisposable mCompositeDisposable;
 
     public QuizFragmentPresenter(QuizFragmentContract.View view, QuizFragmentContract.Interactor interactor) {
         this.mView = view;
         this.mInteractor = interactor;
+        this.mQuestions = new ArrayList<>();
+        this.mCompositeDisposable  = new CompositeDisposable();
         this.mAnswers = new ArrayMap<>(); // почитать подробнее потом
         this.mCurrentIndex = 0;
+    }
+
+    @Override
+    public void initQuestionList(String keyCategory) {
+        mCategoryName = keyCategory;
+        showProgressBar(true);
+        Disposable disposable = mInteractor.getQuestions(keyCategory)
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<List<String>>() {
+                    @Override
+                    public void accept(List<String> strings) throws Exception {
+                        for (String string : strings) {
+                            mQuestions.add(string);
+                        }
+                        showProgressBar(false);
+                        prepareViewForFirstQuestion();
+                    }
+                });
+        mCompositeDisposable.add(disposable);
     }
 
     @Override
@@ -48,23 +71,10 @@ public class QuizFragmentPresenter implements QuizFragmentContract.Presenter {
     }
 
     @Override
-    public void initQuestionList(String keyCategory) {
-        mCategoryName = keyCategory;
-        mView.setProgressBar(true);
-        Disposable disposable = mInteractor.getQuestions(keyCategory)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Consumer<List<String>>() {
-                    @Override
-                    public void accept(List<String> strings) throws Exception {
-                        for (String string : strings) {
-                            mQuestions.add(string);
-                        }
-                        mView.setProgressBar(false);
-                        prepareViewForFirstQuestion();
-                    }
-                });
-        mCompositeDisposable.add(disposable);
+    public void showProgressBar(boolean flag) {
+        int progressBarState = flag ? View.VISIBLE : View.INVISIBLE;
+        int viewState = flag ? View.INVISIBLE : View.VISIBLE;
+        mView.showProgressBarAndSetVisibleView(viewState, progressBarState);
     }
 
     @Override
@@ -119,14 +129,14 @@ public class QuizFragmentPresenter implements QuizFragmentContract.Presenter {
     private void checkFinalOfQuiz() {
         final int size = mQuestions.size();
         if (size == mAnswers.size()) {
-            mView.setProgressBar(true);
+            showProgressBar(true);
             Disposable disposable = mInteractor.checkQuestions(mCategoryName, mAnswers)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(new Consumer<Integer>() {
                         @Override
                         public void accept(Integer integer) throws Exception {
-                            mView.setProgressBar(false);
+                            showProgressBar(false);
                             mView.startQuizResultFragment(size, integer);
                         }
                     });
