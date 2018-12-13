@@ -31,15 +31,16 @@ public class StartActivity extends AppCompatActivity implements StartContract.Vi
 
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
+
     @BindView(R.id.drawer_layout)
     DrawerLayout mDrawer;
+
     @BindView(R.id.nav_view)
     NavigationView mNavigationView;
 
-    StartFragment mStartFragment;
-    InfoFragment mInfoFragment;
-    QuizStorageFragment mQuizStorageFragment = new QuizStorageFragment();
-    FragmentManager mFragmentManager = getSupportFragmentManager();
+    private StartFragment mStartFragment;
+    private InfoFragment mInfoFragment;
+    private FragmentManager mFragmentManager;
 
 
     @Override
@@ -48,7 +49,7 @@ public class StartActivity extends AppCompatActivity implements StartContract.Vi
         setContentView(R.layout.nd_activity_main_for_start_view); // для ND
         ButterKnife.bind(this);
         mPresenter = new StartActivityPresenter(this, new StartActivityInteractor());
-
+        mFragmentManager = getSupportFragmentManager();
         //ND
         setSupportActionBar(mToolbar);
         ActionBarDrawerToggle toggle =
@@ -58,11 +59,9 @@ public class StartActivity extends AppCompatActivity implements StartContract.Vi
         toggle.syncState();
         mNavigationView.setNavigationItemSelectedListener(this);
         //ND END
-
         mStartFragment = StartFragment.newInstance();
         mInfoFragment = InfoFragment.newInstance();
         addStartFragment();
-
     }
 
     private void addStartFragment() {
