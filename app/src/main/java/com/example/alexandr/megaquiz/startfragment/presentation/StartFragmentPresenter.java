@@ -13,21 +13,22 @@ import io.reactivex.schedulers.Schedulers;
  * @author Alexandr Mikhalev
  */
 public class StartFragmentPresenter implements StartFragmentContract.Presenter {
+
     private StartFragmentContract.View mView;
     private StartFragmentContract.Interactor mInteractor;
     private String mRandomCategory;
-    private CompositeDisposable mCompositeDisposable = new CompositeDisposable();
+    private CompositeDisposable mCompositeDisposable;
 
     public StartFragmentPresenter(StartFragmentContract.View view, StartFragmentContract.Interactor interactor) {
         mView = view;
         mInteractor = interactor;
+        mCompositeDisposable  = new CompositeDisposable();
         initRandomCategory();
     }
 
     private void initRandomCategory() {
         Disposable disposable = mInteractor.getStringCategoryForRandomStart()
                 .subscribeOn(Schedulers.io())
-              //  .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<String>() {
                     @Override
                     public void accept(String s) throws Exception {

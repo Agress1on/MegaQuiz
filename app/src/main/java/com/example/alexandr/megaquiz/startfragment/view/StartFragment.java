@@ -33,19 +33,20 @@ import butterknife.Unbinder;
 public class StartFragment extends Fragment implements StartFragmentContract.View {
 
     private StartFragmentContract.Presenter mPresenter;
-
     private Unbinder mUnbinder;
+    boolean mVisible = true;
 
     @BindView(R.id.btn_randomQuiz)
-    Button mRandomBtn;
-    @BindView(R.id.btn_category)
-    Button mCategoryBtn;
-    @BindView(R.id.btn_test_general_questions)
-    Button mTestGeneral;
-    @BindView(R.id.doubt_image_view)
-    ImageView mImageView;
+    Button mRandomButton;
 
-    boolean visible = true;
+    @BindView(R.id.btn_category)
+    Button mCategoryButton;
+
+    @BindView(R.id.btn_test_general_questions)
+    Button mTestButton;
+
+    @BindView(R.id.doubt_image_view)
+    ImageView mHeaderImageView;
 
     @Nullable
     @Override
@@ -57,9 +58,21 @@ public class StartFragment extends Fragment implements StartFragmentContract.Vie
     }
 
     @Override
+    public void onPause() {
+        super.onPause();
+        mPresenter.onPause();
+    }
+
+    @Override
     public void onDestroyView() {
         super.onDestroyView();
         mUnbinder.unbind();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mPresenter.onDestroy();
     }
 
     @Override
@@ -77,20 +90,14 @@ public class StartFragment extends Fragment implements StartFragmentContract.Vie
                 .commit();
     }
 
-    @Override
-    public void startTestGeneralQuestions() {
-        Intent intent = QuizActivity.getIntent(getContext(), Constants.GENERAL_QUESTIONS);
-        startActivity(intent);
-    }
-
     private void animation() {
         /*
         ViewGroup viewGroup = (ViewGroup) findViewById(R.id.start_constraint);
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
             TransitionManager.beginDelayedTransition(viewGroup, new Slide(Gravity.RIGHT));
         }
-        visible = !visible;
-        mImageView.setVisibility(visible ? View.VISIBLE : View.GONE);
+        mVisible = !mVisible;
+        mHeaderImageView.setVisibility(mVisible ? View.VISIBLE : View.GONE);
         */
     }
 
@@ -113,17 +120,5 @@ public class StartFragment extends Fragment implements StartFragmentContract.Vie
         StartFragment fragment = new StartFragment();
         fragment.setArguments(args);
         return fragment;
-    }
-
-    @Override
-    public void onPause() {
-        super.onPause();
-        mPresenter.onPause();
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        mPresenter.onDestroy();
     }
 }

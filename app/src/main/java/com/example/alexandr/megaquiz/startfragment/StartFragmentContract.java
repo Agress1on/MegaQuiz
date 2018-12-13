@@ -16,8 +16,6 @@ public interface StartFragmentContract {
         void startQuizViewWithRandom(String randomCategory);
 
         void startQuizStorage();
-
-        void startTestGeneralQuestions();
     }
 
     interface Presenter {
