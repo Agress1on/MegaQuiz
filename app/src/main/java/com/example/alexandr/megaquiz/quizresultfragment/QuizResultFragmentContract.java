@@ -4,7 +4,6 @@ import com.example.alexandr.megaquiz.bankquestion.Question;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import io.reactivex.Single;
 
@@ -15,20 +14,26 @@ import io.reactivex.Single;
  */
 public interface QuizResultFragmentContract {
     interface Interactor {
-        Single<List<Question>>  getQuestion(String key);
+        Single<List<Question>> getQuestion(String key);
     }
 
     interface View {
         void setResultTextView(String text);
+
         void setVisibleRecycler(int state, String text);
     }
 
     interface Presenter {
         String forResultTextView(int size, int correctAnswers, String categoryName);
+
         void initMapWithRealAnswers(String key);
+
         void onDestroy();
+
         void createItemForRecycler(HashMap<Integer, Boolean> map);
+
         List<QuizResultItem> getListForRecyclerView();
+
         void onCheckBoxClick(boolean tap);
     }
 }

@@ -10,46 +10,14 @@ import java.util.Map;
  */
 public interface QuizActivityContract {
     interface Interactor {
-        /*
-        List<String> getQuestions(String key);
 
-        int checkQuestions(Map<Integer, Boolean> answers);
-        */
     }
 
     interface View {
-        /*
-        void setQuestionTextView(String text);
 
-        void setButtonsEnabled(boolean result);
-
-        *//*
-        void setStaticQuizSizeTextView(String text);
-
-        void setStaticNumberOfQuestion(String text);
-        *//*
-
-        void setQuestionCounter(String text);
-
-        String sentToPresenterSelectedCategory();
-
-        void startQuizResultFragment(int quizSize, int correctAnswers);
-
-        void setCorrectButtonStyle(int key);
-        */
     }
 
     interface Presenter {
-        /*
-        void prepareViewForFirstQuestion();
 
-        void onNextButton();
-
-        void onPrevButton();
-
-        void onTrueButton();
-
-        void onFalseButton();
-        */
     }
 }

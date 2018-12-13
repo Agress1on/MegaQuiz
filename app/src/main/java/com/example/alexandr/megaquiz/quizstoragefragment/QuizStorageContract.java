@@ -20,6 +20,7 @@ public interface QuizStorageContract {
         List<QuizStorageItem> getCategoriesNamesForViewWithoutEmpty();
 
         void initListCategoryNamesWithoutEmpty();
+
         void initListCategoryNameFull();
 
         void onCheckBoxClick(boolean isChecked);
