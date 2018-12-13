@@ -5,5 +5,5 @@ package com.example.alexandr.megaquiz.quizresultfragment.inject;
  *
  * @author Alexandr Mikhalev
  */
-public interface QuizResultActivityComponent {
+public interface QuizResultFragmentComponent {
 }

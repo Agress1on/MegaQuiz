@@ -1,10 +1,8 @@
 package com.example.alexandr.megaquiz.quizresultfragment.domain;
 
-import android.util.ArrayMap;
-
 import com.example.alexandr.megaquiz.bankquestion.BankQuestion;
 import com.example.alexandr.megaquiz.bankquestion.Question;
-import com.example.alexandr.megaquiz.quizresultfragment.QuizResultActivityContract;
+import com.example.alexandr.megaquiz.quizresultfragment.QuizResultFragmentContract;
 
 import java.util.List;
 import java.util.Map;
@@ -17,7 +15,7 @@ import io.reactivex.functions.Function;
  *
  * @author Alexandr Mikhalev
  */
-public class QuizResultFragmentInteractor implements QuizResultActivityContract.Interactor {
+public class QuizResultFragmentInteractor implements QuizResultFragmentContract.Interactor {
 
     private BankQuestion mBankQuestion;
 

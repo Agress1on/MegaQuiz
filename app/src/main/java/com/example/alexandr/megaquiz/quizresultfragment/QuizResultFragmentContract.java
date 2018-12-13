@@ -13,7 +13,7 @@ import io.reactivex.Single;
  *
  * @author Alexandr Mikhalev
  */
-public interface QuizResultActivityContract {
+public interface QuizResultFragmentContract {
     interface Interactor {
         Single<List<Question>>  getQuestion(String key);
     }
@@ -28,7 +28,7 @@ public interface QuizResultActivityContract {
         void initMapWithRealAnswers(String key);
         void onDestroy();
         void createItemForRecycler(HashMap<Integer, Boolean> map);
-        List<QuizResultItem> getList();
+        List<QuizResultItem> getListForRecyclerView();
         void onCheckBoxClick(boolean tap);
     }
 }

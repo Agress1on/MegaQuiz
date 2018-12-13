@@ -1,6 +1,5 @@
 package com.example.alexandr.megaquiz.quizresultfragment.view;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -11,37 +10,31 @@ import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.Button;
 import android.widget.Switch;
 import android.widget.TextView;
 
 import com.example.alexandr.megaquiz.Constants;
 import com.example.alexandr.megaquiz.R;
 import com.example.alexandr.megaquiz.bankquestion.BankQuestion;
-import com.example.alexandr.megaquiz.quizactivity.view.QuizActivity;
-import com.example.alexandr.megaquiz.quizfragment.Answer;
-import com.example.alexandr.megaquiz.quizresultfragment.QuizResultActivityContract;
+import com.example.alexandr.megaquiz.quizresultfragment.QuizResultFragmentContract;
 import com.example.alexandr.megaquiz.quizresultfragment.QuizResultItem;
 import com.example.alexandr.megaquiz.quizresultfragment.domain.QuizResultFragmentInteractor;
-import com.example.alexandr.megaquiz.quizresultfragment.presentation.QuizResultActivityPresenter;
-import com.example.alexandr.megaquiz.startactivity.view.StartActivity;
+import com.example.alexandr.megaquiz.quizresultfragment.presentation.QuizResultFragmentPresenter;
 
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnCheckedChanged;
-import butterknife.OnClick;
 
 /**
  * Created by Alexandr Mikhalev on 11.12.2018.
  *
  * @author Alexandr Mikhalev
  */
-public class QuizResultFragment extends Fragment implements QuizResultActivityContract.View {
-    private QuizResultActivityContract.Presenter mPresenter;
+public class QuizResultFragment extends Fragment implements QuizResultFragmentContract.View {
+    private QuizResultFragmentContract.Presenter mPresenter;
 
     @BindView(R.id.result_text)
     TextView mResultTextView;
@@ -66,7 +59,7 @@ public class QuizResultFragment extends Fragment implements QuizResultActivityCo
         mCorrectAnswers = getArguments().getInt(Constants.EXTRAS_FOR_INTENT_QUIZ_RESULT_CORRECT_ANSWERS, 5);
         mNameCategory = getArguments().getString(Constants.EXTRAS_FOR_INTENT_QUIZ_RESULT_NAME_CATEGORY, "Error");
         mUserAnswersMap = (HashMap<Integer, Boolean>) getArguments().getSerializable(Constants.EXTRAS_FOR_INTENT_QUIZ_RESULT_MAP_USER_ANSWERS);
-        mPresenter = new QuizResultActivityPresenter(this, new QuizResultFragmentInteractor(new BankQuestion()));
+        mPresenter = new QuizResultFragmentPresenter(this, new QuizResultFragmentInteractor(new BankQuestion()));
         mPresenter.initMapWithRealAnswers(mNameCategory);
         mPresenter.createItemForRecycler(mUserAnswersMap);
     }
@@ -79,7 +72,7 @@ public class QuizResultFragment extends Fragment implements QuizResultActivityCo
         setResultTextView(mPresenter.forResultTextView(mQuizSize, mCorrectAnswers, mNameCategory));
 
         FragmentActivity fragmentActivity = getActivity();
-        List<QuizResultItem> mCat = mPresenter.getList();
+        List<QuizResultItem> mCat = mPresenter.getListForRecyclerView();
         mRecyclerView = view.findViewById(R.id.result_recycler);
         mLayoutManager = new LinearLayoutManager(fragmentActivity);
         mRecyclerView.setLayoutManager(mLayoutManager);

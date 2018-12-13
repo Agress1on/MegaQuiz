@@ -1,17 +1,14 @@
 package com.example.alexandr.megaquiz.quizresultfragment.presentation;
 
-import android.util.ArrayMap;
 import android.view.View;
 
 import com.example.alexandr.megaquiz.bankquestion.Question;
-import com.example.alexandr.megaquiz.quizresultfragment.QuizResultActivityContract;
+import com.example.alexandr.megaquiz.quizresultfragment.QuizResultFragmentContract;
 import com.example.alexandr.megaquiz.quizresultfragment.QuizResultItem;
-import com.example.alexandr.megaquiz.quizstoragefragment.QuizStorageItem;
 
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
@@ -23,23 +20,25 @@ import io.reactivex.schedulers.Schedulers;
  *
  * @author Alexandr Mikhalev
  */
-public class QuizResultActivityPresenter implements QuizResultActivityContract.Presenter {
-    private QuizResultActivityContract.View mView;
-    private QuizResultActivityContract.Interactor mInteractor;
+public class QuizResultFragmentPresenter implements QuizResultFragmentContract.Presenter {
+    private QuizResultFragmentContract.View mView;
+    private QuizResultFragmentContract.Interactor mInteractor;
 
-    private CompositeDisposable mCompositeDisposable = new CompositeDisposable();
-    private List<Question> mQuestions = new ArrayList<>();
-    private Map<Integer, Boolean> mRealAnswersMap = new ArrayMap<>();
-    private List<QuizResultItem> list = new ArrayList<>();
+    private CompositeDisposable mCompositeDisposable;
+    private List<Question> mQuestions;
+    private List<QuizResultItem> mListForRecyclerView;
 
-    public QuizResultActivityPresenter(QuizResultActivityContract.View view, QuizResultActivityContract.Interactor interactor) {
+    public QuizResultFragmentPresenter(QuizResultFragmentContract.View view, QuizResultFragmentContract.Interactor interactor) {
         this.mView = view;
         this.mInteractor = interactor;
+        this.mQuestions = new ArrayList<>();
+        this.mCompositeDisposable = new CompositeDisposable();
+        this.mListForRecyclerView = new ArrayList<>();
     }
 
     @Override
-    public List<QuizResultItem> getList() {
-        return list;
+    public List<QuizResultItem> getListForRecyclerView() {
+        return mListForRecyclerView;
     }
 
     @Override
@@ -61,7 +60,7 @@ public class QuizResultActivityPresenter implements QuizResultActivityContract.P
         for (HashMap.Entry<Integer, Boolean> entry : map.entrySet()) {
             QuizResultItem quizResultItem =
                     new QuizResultItem(entry.getKey(), mQuestions.get(entry.getKey()).getTextQuestion(), mQuestions.get(entry.getKey()).isTrueAnswer(), entry.getValue());
-            list.add(quizResultItem);
+            mListForRecyclerView.add(quizResultItem);
         }
     }
 
