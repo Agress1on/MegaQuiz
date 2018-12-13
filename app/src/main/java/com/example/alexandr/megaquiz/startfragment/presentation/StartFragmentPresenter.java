@@ -23,10 +23,10 @@ public class StartFragmentPresenter implements StartFragmentContract.Presenter {
         mView = view;
         mInteractor = interactor;
         mCompositeDisposable  = new CompositeDisposable();
-        initRandomCategory();
     }
 
-    private void initRandomCategory() {
+    @Override
+    public void initRandomCategory() {
         Disposable disposable = mInteractor.getStringCategoryForRandomStart()
                 .subscribeOn(Schedulers.io())
                 .subscribe(new Consumer<String>() {
@@ -46,11 +46,6 @@ public class StartFragmentPresenter implements StartFragmentContract.Presenter {
     @Override
     public void onButtonCategory() {
         mView.startQuizStorage();
-    }
-
-    @Override
-    public void onPause() {
-        initRandomCategory();
     }
 
     @Override

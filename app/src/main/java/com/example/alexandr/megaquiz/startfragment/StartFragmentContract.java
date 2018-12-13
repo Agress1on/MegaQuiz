@@ -19,12 +19,12 @@ public interface StartFragmentContract {
     }
 
     interface Presenter {
+        void initRandomCategory();
+
         void onRandomButton();
 
         void onButtonCategory();
 
         void onDestroy();
-
-        void onPause();
     }
 }

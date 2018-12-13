@@ -53,6 +53,7 @@ public class StartFragment extends Fragment implements StartFragmentContract.Vie
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_start, null);
         mPresenter = new StartFragmentPresenter(this, new StartFragmentInteractor(new BankQuestion()));
+        mPresenter.initRandomCategory();
         mUnbinder = ButterKnife.bind(this, view);
         return view;
     }
@@ -60,7 +61,7 @@ public class StartFragment extends Fragment implements StartFragmentContract.Vie
     @Override
     public void onPause() {
         super.onPause();
-        mPresenter.onPause();
+        mPresenter.initRandomCategory();
     }
 
     @Override
