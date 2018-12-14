@@ -20,6 +20,7 @@ import com.example.alexandr.megaquiz.quizfragment.domain.QuizFragmentInteractor;
 import com.example.alexandr.megaquiz.quizfragment.presentation.QuizFragmentPresenter;
 import com.example.alexandr.megaquiz.quizresultfragment.view.QuizResultFragment;
 
+import java.util.LinkedHashMap;
 import java.util.List;
 
 import butterknife.BindView;
@@ -82,7 +83,7 @@ public class QuizFragment extends Fragment implements QuizFragmentContract.View 
     }
 
     @Override
-    public void showProgressBarAndSetVisibleView(int viewState, int progressBarState) {
+    public void showProgressBarAndSetViewVisibility(int viewState, int progressBarState) {
         for (View view : mViewList) {
             view.setVisibility(viewState);
         }
@@ -128,9 +129,9 @@ public class QuizFragment extends Fragment implements QuizFragmentContract.View 
     }
 
     @Override
-    public void startQuizResultFragment(int quizSize, int correctAnswers) {
+    public void startQuizResultFragment(int quizSize, int correctAnswers, LinkedHashMap<Integer, Boolean> mapAnswers) {
         QuizResultFragment quizResultFragment =
-                QuizResultFragment.newInstance(quizSize, correctAnswers, mCategoryName, mPresenter.getAnswers());
+                QuizResultFragment.newInstance(quizSize, correctAnswers, mCategoryName, mapAnswers);
         getActivity().getSupportFragmentManager().beginTransaction()
                 .replace(R.id.frame_for_quiz, quizResultFragment)
                 .commit();

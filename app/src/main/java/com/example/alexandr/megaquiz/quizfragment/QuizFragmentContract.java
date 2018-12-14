@@ -1,6 +1,5 @@
 package com.example.alexandr.megaquiz.quizfragment;
 
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -26,18 +25,14 @@ public interface QuizFragmentContract {
 
         void setQuestionCounter(String text);
 
-        void startQuizResultFragment(int quizSize, int correctAnswers);
-
         void setCorrectButtonStyle(int key);
 
-        void showProgressBarAndSetVisibleView(int viewState, int progressBarState);
+        void showProgressBarAndSetViewVisibility(int viewState, int progressBarState);
+
+        void startQuizResultFragment(int quizSize, int correctAnswers, LinkedHashMap<Integer, Boolean> mapAnswers);
     }
 
     interface Presenter {
-        LinkedHashMap<Integer, Boolean> getAnswers();
-
-        void showProgressBar(boolean flag);
-
         void initQuestionList(String keyCategory);
 
         void prepareViewForFirstQuestion();
@@ -49,6 +44,5 @@ public interface QuizFragmentContract {
         void onAnswer(Answer answer);
 
         void onDestroy();
-
     }
 }

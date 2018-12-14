@@ -62,7 +62,7 @@ public class QuizResultFragment extends Fragment implements QuizResultFragmentCo
         mUserAnswersMap = (LinkedHashMap<Integer, Boolean>) getArguments().getSerializable(Constants.EXTRAS_FOR_INTENT_QUIZ_RESULT_MAP_USER_ANSWERS);
         mPresenter = new QuizResultFragmentPresenter(this, new QuizResultFragmentInteractor(new BankQuestion()));
         mPresenter.initMapWithRealAnswers(mNameCategory);
-        mPresenter.createItemForRecycler(mUserAnswersMap);
+        mPresenter.createItemForRecycler(mUserAnswersMap); //первое место, где иногда вылетает эксепшен
     }
 
     @Nullable

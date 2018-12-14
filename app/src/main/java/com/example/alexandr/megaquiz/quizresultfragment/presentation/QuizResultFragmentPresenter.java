@@ -60,7 +60,9 @@ public class QuizResultFragmentPresenter implements QuizResultFragmentContract.P
     public void createItemForRecycler(LinkedHashMap<Integer, Boolean> map) {
         for (LinkedHashMap.Entry<Integer, Boolean> entry : map.entrySet()) {
             QuizResultItem quizResultItem =
-                    new QuizResultItem(entry.getKey(), mQuestions.get(entry.getKey()).getTextQuestion(), mQuestions.get(entry.getKey()).isTrueAnswer(), entry.getValue());
+                    new QuizResultItem(entry.getKey(), mQuestions.get(entry.getKey()).getTextQuestion(),
+                            mQuestions.get(entry.getKey()).isTrueAnswer(), entry.getValue());
+            // второе место
             mListForRecyclerView.add(quizResultItem);
         }
     }

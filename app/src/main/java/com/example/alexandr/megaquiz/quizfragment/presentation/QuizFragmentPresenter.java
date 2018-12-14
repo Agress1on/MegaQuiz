@@ -8,7 +8,6 @@ import com.example.alexandr.megaquiz.quizfragment.Answer;
 import com.example.alexandr.megaquiz.quizfragment.QuizFragmentContract;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -27,19 +26,22 @@ import io.reactivex.schedulers.Schedulers;
 public class QuizFragmentPresenter implements QuizFragmentContract.Presenter {
     private QuizFragmentContract.View mView;
     private QuizFragmentContract.Interactor mInteractor;
+
     private List<String> mQuestions;
     private int mCurrentIndex;
     private Map<Integer, Answer> mAnswers;
     private String mCategoryName;
     private CompositeDisposable mCompositeDisposable;
+    private LinkedHashMap<Integer, Boolean> mMapAnswers;
 
     public QuizFragmentPresenter(QuizFragmentContract.View view, QuizFragmentContract.Interactor interactor) {
         this.mView = view;
         this.mInteractor = interactor;
         this.mQuestions = new ArrayList<>();
-        this.mCompositeDisposable  = new CompositeDisposable();
+        this.mCompositeDisposable = new CompositeDisposable();
         this.mAnswers = new ArrayMap<>(); // почитать подробнее потом
         this.mCurrentIndex = 0;
+        this.mMapAnswers = new LinkedHashMap<>();
     }
 
     @Override
@@ -62,20 +64,10 @@ public class QuizFragmentPresenter implements QuizFragmentContract.Presenter {
         mCompositeDisposable.add(disposable);
     }
 
-    @Override
-    public LinkedHashMap<Integer, Boolean> getAnswers() {
-        LinkedHashMap<Integer, Boolean> map = new LinkedHashMap<>();
-        for (Map.Entry<Integer, Answer> entry : mAnswers.entrySet()) {
-            map.put(entry.getKey(), entry.getValue().isResult());
-        }
-        return map;
-    }
-
-    @Override
-    public void showProgressBar(boolean flag) {
+    private void showProgressBar(boolean flag) {
         int progressBarState = flag ? View.VISIBLE : View.INVISIBLE;
         int viewState = flag ? View.INVISIBLE : View.VISIBLE;
-        mView.showProgressBarAndSetVisibleView(viewState, progressBarState);
+        mView.showProgressBarAndSetViewVisibility(viewState, progressBarState);
     }
 
     @Override
@@ -127,7 +119,14 @@ public class QuizFragmentPresenter implements QuizFragmentContract.Presenter {
         mView.setCorrectButtonStyle(flag);
     }
 
+    private void initAnswersForResultFragment() {
+        for (Map.Entry<Integer, Answer> entry : mAnswers.entrySet()) {
+            mMapAnswers.put(entry.getKey(), entry.getValue().isResult());
+        }
+    }
+
     private void checkFinalOfQuiz() {
+        initAnswersForResultFragment();
         final int size = mQuestions.size();
         if (size == mAnswers.size()) {
             showProgressBar(true);
@@ -138,7 +137,7 @@ public class QuizFragmentPresenter implements QuizFragmentContract.Presenter {
                         @Override
                         public void accept(Integer integer) throws Exception {
                             showProgressBar(false);
-                            mView.startQuizResultFragment(size, integer);
+                            mView.startQuizResultFragment(size, integer, mMapAnswers);
                         }
                     });
             mCompositeDisposable.add(disposable);
