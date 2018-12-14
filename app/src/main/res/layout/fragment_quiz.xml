@@ -160,8 +160,8 @@
 
     <net.bohush.geometricprogressview.GeometricProgressView
         android:id="@+id/progress_bar"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
         app:gp_type="kite"
         app:gp_number_of_angles="4"
         app:gp_figure_padding="2dp"
