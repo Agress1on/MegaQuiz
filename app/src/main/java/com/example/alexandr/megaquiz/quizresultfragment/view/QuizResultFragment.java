@@ -49,6 +49,7 @@ public class QuizResultFragment extends Fragment implements QuizResultFragmentCo
     private String mNameCategory;
     private LinkedHashMap<Integer, Boolean> mUserAnswersMap;
 
+    private List<QuizResultItem> mCat;
     private RecyclerView mRecyclerView;
     private QuizResultAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
@@ -56,10 +57,12 @@ public class QuizResultFragment extends Fragment implements QuizResultFragmentCo
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
         mQuizSize = getArguments().getInt(Constants.EXTRAS_FOR_INTENT_QUIZ_RESULT_QUIZ_SIZE, 10);
         mCorrectAnswers = getArguments().getInt(Constants.EXTRAS_FOR_INTENT_QUIZ_RESULT_CORRECT_ANSWERS, 5);
         mNameCategory = getArguments().getString(Constants.EXTRAS_FOR_INTENT_QUIZ_RESULT_NAME_CATEGORY, "Error");
         mUserAnswersMap = (LinkedHashMap<Integer, Boolean>) getArguments().getSerializable(Constants.EXTRAS_FOR_INTENT_QUIZ_RESULT_MAP_USER_ANSWERS);
+
         mPresenter = new QuizResultFragmentPresenter(this, new QuizResultFragmentInteractor(new BankQuestion()));
         mPresenter.initMapWithRealAnswers(mNameCategory);
         mPresenter.createItemForRecycler(mUserAnswersMap); //первое место, где иногда вылетает эксепшен
@@ -70,16 +73,22 @@ public class QuizResultFragment extends Fragment implements QuizResultFragmentCo
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_quiz_result, null);
         ButterKnife.bind(this, view);
-        setResultTextView(mPresenter.forResultTextView(mQuizSize, mCorrectAnswers, mNameCategory));
+        mPresenter.createTextForResultTextView(mQuizSize, mCorrectAnswers, mNameCategory);
 
         FragmentActivity fragmentActivity = getActivity();
-        List<QuizResultItem> mCat = mPresenter.getListForRecyclerView();
+       // List<QuizResultItem> mCat = mPresenter.getListForRecyclerView();
+
         mRecyclerView = view.findViewById(R.id.result_recycler);
         mLayoutManager = new LinearLayoutManager(fragmentActivity);
         mRecyclerView.setLayoutManager(mLayoutManager);
         mAdapter = new QuizResultAdapter(mCat);
         mRecyclerView.setAdapter(mAdapter);
         return view;
+    }
+
+    @Override
+    public void initListForRecyclerView(List<QuizResultItem> list) {
+        mCat = list;
     }
 
     @Override
@@ -93,7 +102,7 @@ public class QuizResultFragment extends Fragment implements QuizResultFragmentCo
     }
 
     @Override
-    public void setVisibleRecycler(int state, String text) {
+    public void setVisibilityOfRecycler(int state, String text) {
         mRecyclerView.setVisibility(state);
         mTextView.setText(text);
     }

@@ -19,22 +19,22 @@ public interface QuizResultFragmentContract {
     }
 
     interface View {
+        void initListForRecyclerView(List<QuizResultItem> list);
+
         void setResultTextView(String text);
 
-        void setVisibleRecycler(int state, String text);
+        void setVisibilityOfRecycler(int state, String text);
     }
 
     interface Presenter {
-        String forResultTextView(int size, int correctAnswers, String categoryName);
-
         void initMapWithRealAnswers(String key);
-
-        void onDestroy();
 
         void createItemForRecycler(LinkedHashMap<Integer, Boolean> map);
 
-        List<QuizResultItem> getListForRecyclerView();
+        void createTextForResultTextView(int size, int correctAnswers, String categoryName);
 
         void onCheckBoxClick(boolean tap);
+
+        void onDestroy();
     }
 }
