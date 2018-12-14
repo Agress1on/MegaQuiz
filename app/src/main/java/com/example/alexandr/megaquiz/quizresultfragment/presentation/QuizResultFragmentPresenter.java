@@ -8,6 +8,7 @@ import com.example.alexandr.megaquiz.quizresultfragment.QuizResultItem;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 import io.reactivex.disposables.CompositeDisposable;
@@ -56,8 +57,8 @@ public class QuizResultFragmentPresenter implements QuizResultFragmentContract.P
     }
 
     @Override
-    public void createItemForRecycler(HashMap<Integer, Boolean> map) {
-        for (HashMap.Entry<Integer, Boolean> entry : map.entrySet()) {
+    public void createItemForRecycler(LinkedHashMap<Integer, Boolean> map) {
+        for (LinkedHashMap.Entry<Integer, Boolean> entry : map.entrySet()) {
             QuizResultItem quizResultItem =
                     new QuizResultItem(entry.getKey(), mQuestions.get(entry.getKey()).getTextQuestion(), mQuestions.get(entry.getKey()).isTrueAnswer(), entry.getValue());
             mListForRecyclerView.add(quizResultItem);

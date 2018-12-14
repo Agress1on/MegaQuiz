@@ -3,6 +3,7 @@ package com.example.alexandr.megaquiz.quizresultfragment;
 import com.example.alexandr.megaquiz.bankquestion.Question;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 import io.reactivex.Single;
@@ -30,7 +31,7 @@ public interface QuizResultFragmentContract {
 
         void onDestroy();
 
-        void createItemForRecycler(HashMap<Integer, Boolean> map);
+        void createItemForRecycler(LinkedHashMap<Integer, Boolean> map);
 
         List<QuizResultItem> getListForRecyclerView();
 

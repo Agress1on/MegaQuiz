@@ -9,6 +9,7 @@ import com.example.alexandr.megaquiz.quizfragment.QuizFragmentContract;
 
 import java.util.ArrayList;
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -62,8 +63,8 @@ public class QuizFragmentPresenter implements QuizFragmentContract.Presenter {
     }
 
     @Override
-    public HashMap<Integer, Boolean> getAnswers() {
-        HashMap<Integer, Boolean> map = new HashMap<>();
+    public LinkedHashMap<Integer, Boolean> getAnswers() {
+        LinkedHashMap<Integer, Boolean> map = new LinkedHashMap<>();
         for (Map.Entry<Integer, Answer> entry : mAnswers.entrySet()) {
             map.put(entry.getKey(), entry.getValue().isResult());
         }

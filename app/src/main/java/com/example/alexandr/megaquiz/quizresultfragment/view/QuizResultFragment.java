@@ -22,6 +22,7 @@ import com.example.alexandr.megaquiz.quizresultfragment.domain.QuizResultFragmen
 import com.example.alexandr.megaquiz.quizresultfragment.presentation.QuizResultFragmentPresenter;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 
 import butterknife.BindView;
@@ -46,7 +47,7 @@ public class QuizResultFragment extends Fragment implements QuizResultFragmentCo
     private int mQuizSize;
     private int mCorrectAnswers;
     private String mNameCategory;
-    private HashMap<Integer, Boolean> mUserAnswersMap;
+    private LinkedHashMap<Integer, Boolean> mUserAnswersMap;
 
     private RecyclerView mRecyclerView;
     private QuizResultAdapter mAdapter;
@@ -58,7 +59,7 @@ public class QuizResultFragment extends Fragment implements QuizResultFragmentCo
         mQuizSize = getArguments().getInt(Constants.EXTRAS_FOR_INTENT_QUIZ_RESULT_QUIZ_SIZE, 10);
         mCorrectAnswers = getArguments().getInt(Constants.EXTRAS_FOR_INTENT_QUIZ_RESULT_CORRECT_ANSWERS, 5);
         mNameCategory = getArguments().getString(Constants.EXTRAS_FOR_INTENT_QUIZ_RESULT_NAME_CATEGORY, "Error");
-        mUserAnswersMap = (HashMap<Integer, Boolean>) getArguments().getSerializable(Constants.EXTRAS_FOR_INTENT_QUIZ_RESULT_MAP_USER_ANSWERS);
+        mUserAnswersMap = (LinkedHashMap<Integer, Boolean>) getArguments().getSerializable(Constants.EXTRAS_FOR_INTENT_QUIZ_RESULT_MAP_USER_ANSWERS);
         mPresenter = new QuizResultFragmentPresenter(this, new QuizResultFragmentInteractor(new BankQuestion()));
         mPresenter.initMapWithRealAnswers(mNameCategory);
         mPresenter.createItemForRecycler(mUserAnswersMap);

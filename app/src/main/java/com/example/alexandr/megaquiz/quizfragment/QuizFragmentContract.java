@@ -1,6 +1,7 @@
 package com.example.alexandr.megaquiz.quizfragment;
 
 import java.util.HashMap;
+import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -33,7 +34,7 @@ public interface QuizFragmentContract {
     }
 
     interface Presenter {
-        HashMap<Integer, Boolean> getAnswers();
+        LinkedHashMap<Integer, Boolean> getAnswers();
 
         void showProgressBar(boolean flag);
 
