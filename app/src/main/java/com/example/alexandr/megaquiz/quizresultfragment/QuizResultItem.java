@@ -6,6 +6,7 @@ package com.example.alexandr.megaquiz.quizresultfragment;
  * @author Alexandr Mikhalev
  */
 public class QuizResultItem {
+
     private int mNumberOfQuestion;
     private String mQuestion;
     private boolean mRealAnswer;

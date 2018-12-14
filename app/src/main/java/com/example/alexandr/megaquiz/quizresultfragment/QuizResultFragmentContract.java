@@ -2,7 +2,6 @@ package com.example.alexandr.megaquiz.quizresultfragment;
 
 import com.example.alexandr.megaquiz.bankquestion.Question;
 
-import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 
@@ -14,6 +13,7 @@ import io.reactivex.Single;
  * @author Alexandr Mikhalev
  */
 public interface QuizResultFragmentContract {
+
     interface Interactor {
         Single<List<Question>> getQuestion(String key);
     }

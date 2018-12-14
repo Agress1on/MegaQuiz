@@ -35,6 +35,8 @@ import butterknife.OnClick;
  */
 public class QuizFragment extends Fragment implements QuizFragmentContract.View {
 
+    private QuizFragmentContract.Presenter mPresenter;
+
     @BindView(R.id.static_category_name)
     TextView mCategoryNameTV;
 
@@ -63,7 +65,6 @@ public class QuizFragment extends Fragment implements QuizFragmentContract.View 
             R.id.btnFalse, R.id.btnNext, R.id.btnPrev, R.id.question_count})
     List<View> mViewList;
 
-    private QuizFragmentContract.Presenter mPresenter;
     private String mCategoryName = "";
 
     @Override

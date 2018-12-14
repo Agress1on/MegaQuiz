@@ -8,6 +8,7 @@ import com.example.alexandr.megaquiz.startactivity.StartContract;
  * @author Alexandr Mikhalev
  */
 public class StartActivityPresenter implements StartContract.Presenter {
+
     private StartContract.View mView;
     private StartContract.Interactor mInteractor;
 

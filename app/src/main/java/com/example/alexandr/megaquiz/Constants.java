@@ -6,6 +6,7 @@ package com.example.alexandr.megaquiz;
  * @author Alexandr Mikhalev
  */
 public class Constants {
+
     public static final String GENERAL_QUESTIONS = "Общие";
     public static final String HISTORY_QUESTIONS = "История";
     public static final String ECONOMIC_QUESTIONS = "Экономика";

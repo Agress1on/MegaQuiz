@@ -12,23 +12,10 @@ public interface StartContract {
     }
 
     interface View {
-                /*
-                void startQuizViewWithRandom(String randomCategory);
-
-                void startQuizStorage();
-
-                void startTestGeneralQuestions();
-                */
 
     }
 
     interface Presenter {
-                /*
-                void onRandomButton();
 
-                void onButtonCategory();
-
-                void onButtonGeneralQuestionsTest();
-                */
     }
 }

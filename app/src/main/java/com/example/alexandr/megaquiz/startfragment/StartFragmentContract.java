@@ -8,6 +8,7 @@ import io.reactivex.Single;
  * @author Alexandr Mikhalev
  */
 public interface StartFragmentContract {
+
     interface Interactor {
         Single<String> getStringCategoryForRandomStart();
     }

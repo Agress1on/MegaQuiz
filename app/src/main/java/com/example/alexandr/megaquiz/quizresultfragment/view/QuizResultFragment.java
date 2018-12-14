@@ -35,12 +35,15 @@ import butterknife.OnCheckedChanged;
  * @author Alexandr Mikhalev
  */
 public class QuizResultFragment extends Fragment implements QuizResultFragmentContract.View {
+
     private QuizResultFragmentContract.Presenter mPresenter;
 
     @BindView(R.id.result_text)
     TextView mResultTextView;
+
     @BindView(R.id.for_recycler_tv)
     TextView mTextView;
+
     @BindView(R.id.result_switch)
     Switch mSwitch;
 
@@ -57,7 +60,6 @@ public class QuizResultFragment extends Fragment implements QuizResultFragmentCo
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
         mQuizSize = getArguments().getInt(Constants.EXTRAS_FOR_INTENT_QUIZ_RESULT_QUIZ_SIZE, 10);
         mCorrectAnswers = getArguments().getInt(Constants.EXTRAS_FOR_INTENT_QUIZ_RESULT_CORRECT_ANSWERS, 5);
         mNameCategory = getArguments().getString(Constants.EXTRAS_FOR_INTENT_QUIZ_RESULT_NAME_CATEGORY, "Error");
@@ -76,8 +78,6 @@ public class QuizResultFragment extends Fragment implements QuizResultFragmentCo
         mPresenter.createTextForResultTextView(mQuizSize, mCorrectAnswers, mNameCategory);
 
         FragmentActivity fragmentActivity = getActivity();
-       // List<QuizResultItem> mCat = mPresenter.getListForRecyclerView();
-
         mRecyclerView = view.findViewById(R.id.result_recycler);
         mLayoutManager = new LinearLayoutManager(fragmentActivity);
         mRecyclerView.setLayoutManager(mLayoutManager);

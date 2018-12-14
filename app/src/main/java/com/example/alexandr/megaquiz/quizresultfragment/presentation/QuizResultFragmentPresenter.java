@@ -21,6 +21,7 @@ import io.reactivex.schedulers.Schedulers;
  * @author Alexandr Mikhalev
  */
 public class QuizResultFragmentPresenter implements QuizResultFragmentContract.Presenter {
+
     private QuizResultFragmentContract.View mView;
     private QuizResultFragmentContract.Interactor mInteractor;
 

@@ -12,6 +12,7 @@ import java.util.List;
  * @author Alexandr Mikhalev
  */
 public class RecyclerAdapterDiffUtilCallback extends DiffUtil.Callback {
+
     private List<QuizStorageItem> oldList;
     private List<QuizStorageItem> newList;
 

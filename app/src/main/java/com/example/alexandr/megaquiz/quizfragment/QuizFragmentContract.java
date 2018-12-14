@@ -12,6 +12,7 @@ import io.reactivex.Single;
  * @author Alexandr Mikhalev
  */
 public interface QuizFragmentContract {
+
     interface Interactor {
         Single<List<String>> getQuestions(String key);
 

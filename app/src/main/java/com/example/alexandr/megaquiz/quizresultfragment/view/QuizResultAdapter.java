@@ -21,6 +21,7 @@ import butterknife.ButterKnife;
  * @author Alexandr Mikhalev
  */
 public class QuizResultAdapter extends RecyclerView.Adapter<QuizResultAdapter.ViewHolder> {
+
     private List<QuizResultItem> mQuizResultItemList;
 
     private final static int VIEW_ITEM_FIRST = 0;

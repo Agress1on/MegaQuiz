@@ -9,6 +9,7 @@ import java.util.Map;
  * @author Alexandr Mikhalev
  */
 public interface QuizActivityContract {
+
     interface Interactor {
 
     }

@@ -6,6 +6,7 @@ package com.example.alexandr.megaquiz.quizstoragefragment;
  * @author Alexandr Mikhalev
  */
 public class QuizStorageItem {
+
     private int mPosition;
     private String mNameOfItem;
     private int mCategorySize;

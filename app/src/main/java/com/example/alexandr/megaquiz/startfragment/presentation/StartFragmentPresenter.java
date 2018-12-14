@@ -16,6 +16,7 @@ public class StartFragmentPresenter implements StartFragmentContract.Presenter {
 
     private StartFragmentContract.View mView;
     private StartFragmentContract.Interactor mInteractor;
+
     private String mRandomCategory;
     private CompositeDisposable mCompositeDisposable;
 

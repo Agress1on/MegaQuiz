@@ -10,6 +10,7 @@ import io.reactivex.Single;
  * @author Alexandr Mikhalev
  */
 public interface QuizStorageContract {
+
     interface Interactor {
         Single<List<QuizStorageItem>> getListOfStorageItem();
 

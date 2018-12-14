@@ -6,6 +6,7 @@ package com.example.alexandr.megaquiz.infofragment;
  * @author Alexandr Mikhalev
  */
 public interface InfoFragmentContract {
+
     interface Interactor {
 
     }

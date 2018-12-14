@@ -8,6 +8,7 @@ import com.example.alexandr.megaquiz.infofragment.InfoFragmentContract;
  * @author Alexandr Mikhalev
  */
 public class InfoFragmentPresenter {
+
     private InfoFragmentContract.View mView;
     private InfoFragmentContract.Interactor mInteractor;
 

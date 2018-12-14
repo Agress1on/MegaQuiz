@@ -40,6 +40,7 @@ public class QuizStorageFragment extends Fragment implements QuizStorageContract
 
     @BindView(R.id.list_switch)
     Switch mSwitch;
+
     @BindView(R.id.text_for_switch)
     TextView mTextView;
 

@@ -6,6 +6,7 @@ package com.example.alexandr.megaquiz.bankquestion;
  * @author Alexandr Mikhalev
  */
 public class Question {
+
     private String mQuestion;
     private boolean mTrueAnswer;
 

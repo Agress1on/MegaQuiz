@@ -17,13 +17,12 @@ import io.reactivex.schedulers.Schedulers;
  * @author Alexandr Mikhalev
  */
 public class QuizStoragePresenter implements QuizStorageContract.Presenter {
+
     private QuizStorageContract.View mView;
     private QuizStorageContract.Interactor mInteractor;
 
-
     private List<QuizStorageItem> mItemListFull = new ArrayList<>();
     private List<QuizStorageItem> mItemListWithoutEmpty = new ArrayList<>();
-
     private CompositeDisposable mCompositeDisposable = new CompositeDisposable();
 
     public QuizStoragePresenter(QuizStorageContract.View view, QuizStorageContract.Interactor interactor) {

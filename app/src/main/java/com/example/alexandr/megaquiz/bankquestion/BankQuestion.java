@@ -17,6 +17,7 @@ import io.reactivex.functions.Function;
  * @author Alexandr Mikhalev
  */
 public class BankQuestion {
+
     private Map<String, List<Question>> mBankQuestion;
 
     public BankQuestion() {

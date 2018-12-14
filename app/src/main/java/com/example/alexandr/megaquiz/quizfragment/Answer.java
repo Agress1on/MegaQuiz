@@ -6,6 +6,7 @@ package com.example.alexandr.megaquiz.quizfragment;
  * @author Alexandr Mikhalev
  */
 public enum Answer {
+
     TRUE(true),
     FALSE(false);
 

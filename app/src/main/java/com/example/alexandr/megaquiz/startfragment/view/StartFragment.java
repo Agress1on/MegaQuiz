@@ -33,8 +33,6 @@ import butterknife.Unbinder;
 public class StartFragment extends Fragment implements StartFragmentContract.View {
 
     private StartFragmentContract.Presenter mPresenter;
-    private Unbinder mUnbinder;
-    boolean mVisible = true;
 
     @BindView(R.id.btn_randomQuiz)
     Button mRandomButton;
@@ -47,6 +45,9 @@ public class StartFragment extends Fragment implements StartFragmentContract.Vie
 
     @BindView(R.id.doubt_image_view)
     ImageView mHeaderImageView;
+
+    private Unbinder mUnbinder;
+    boolean mVisible = true;
 
     @Nullable
     @Override

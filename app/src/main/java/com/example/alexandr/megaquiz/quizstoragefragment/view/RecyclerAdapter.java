@@ -22,8 +22,10 @@ import butterknife.ButterKnife;
  * @author Alexandr Mikhalev
  */
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> {
+
     private List<QuizStorageItem> mCategoriesNames;
     OnItemClickListener mOnItemClickListener;
+
     private final static int VIEW_ITEM_FIRST = 0;
     private final static int VIEW_ITEM_SECOND = 1;
 
