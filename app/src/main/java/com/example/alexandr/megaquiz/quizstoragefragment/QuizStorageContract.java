@@ -18,12 +18,6 @@ public interface QuizStorageContract {
     }
 
     interface Presenter {
-        List<QuizStorageItem> getCategoriesNamesForViewWithoutEmpty();
-
-        void initListCategoryNamesWithoutEmpty();
-
-        void initListCategoryNameFull();
-
         void onCheckBoxClick(boolean isChecked);
 
         void onClick(String key);
@@ -32,6 +26,8 @@ public interface QuizStorageContract {
     }
 
     interface View {
+        void initListForRecyclerAdapter(List<QuizStorageItem> list);
+
         void startActivityQuizView(String key);
 
         void updateUI(List<QuizStorageItem> list, String text);

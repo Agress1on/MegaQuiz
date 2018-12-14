@@ -47,23 +47,28 @@ public class QuizStorageFragment extends Fragment implements QuizStorageContract
     private RecyclerView mRecyclerView;
     private RecyclerAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
+    private List<QuizStorageItem> mCat;
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_quiz_storage, null);
-        final FragmentActivity c = getActivity();
         ButterKnife.bind(this, view);
         mPresenter = new QuizStoragePresenter(this, new QuizStorageInteractor(new BankQuestion()));
 
         FragmentActivity fragmentActivity = getActivity();
-        List<QuizStorageItem> mCat = mPresenter.getCategoriesNamesForViewWithoutEmpty();
+      //  List<QuizStorageItem> mCat = mPresenter.getCategoriesNamesForViewWithoutEmpty();
         mRecyclerView = (RecyclerView) view.findViewById(R.id.storage_recycler);
         mLayoutManager = new LinearLayoutManager(fragmentActivity); // XMMMMM
         mRecyclerView.setLayoutManager(mLayoutManager);
         mAdapter = new RecyclerAdapter(mCat, key -> mPresenter.onClick(key));
         mRecyclerView.setAdapter(mAdapter);
         return view;
+    }
+
+    @Override
+    public void initListForRecyclerAdapter(List<QuizStorageItem> list) {
+        mCat = list;
     }
 
     @Override

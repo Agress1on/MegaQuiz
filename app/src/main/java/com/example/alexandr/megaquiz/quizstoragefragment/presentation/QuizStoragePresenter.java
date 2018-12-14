@@ -32,8 +32,7 @@ public class QuizStoragePresenter implements QuizStorageContract.Presenter {
         initListCategoryNameFull();
     }
 
-    @Override
-    public void initListCategoryNamesWithoutEmpty() {
+    private void initListCategoryNamesWithoutEmpty() {
         Disposable disposable = mInteractor.getListOfStorageItemWithoutEmpty()
                 .subscribeOn(Schedulers.io())
                 //.observeOn(AndroidSchedulers.mainThread())
@@ -44,10 +43,10 @@ public class QuizStoragePresenter implements QuizStorageContract.Presenter {
                     }
                 });
         mCompositeDisposable.add(disposable);
+        mView.initListForRecyclerAdapter(mItemListWithoutEmpty);
     }
 
-    @Override
-    public void initListCategoryNameFull() {
+    private void initListCategoryNameFull() {
         Disposable disposable = mInteractor.getListOfStorageItem()
                 .subscribeOn(Schedulers.io())
                 // .observeOn(AndroidSchedulers.mainThread())
@@ -58,11 +57,6 @@ public class QuizStoragePresenter implements QuizStorageContract.Presenter {
                     }
                 });
         mCompositeDisposable.add(disposable);
-    }
-
-    @Override
-    public List<QuizStorageItem> getCategoriesNamesForViewWithoutEmpty() {
-        return mItemListWithoutEmpty;
     }
 
     @Override
