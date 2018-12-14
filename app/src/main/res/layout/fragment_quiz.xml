@@ -77,7 +77,6 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
         android:layout_marginEnd="5dp"
-        tools:text="QUESTION"
         android:textAlignment="center"
         android:textColor="@color/colorBlack"
         android:textSize="20sp"
@@ -85,7 +84,8 @@
         app:layout_constraintBottom_toBottomOf="@id/background_for_question"
         app:layout_constraintEnd_toEndOf="@id/background_for_question"
         app:layout_constraintStart_toStartOf="@id/background_for_question"
-        app:layout_constraintTop_toTopOf="@id/background_for_question" />
+        app:layout_constraintTop_toTopOf="@id/background_for_question"
+        tools:text="QUESTION" />
 
     <Button
         android:id="@+id/btnTrue"
@@ -147,10 +147,26 @@
         app:layout_constraintStart_toStartOf="@id/btnFalse"
         app:layout_constraintTop_toTopOf="@id/btnPrev" />
 
+    <!--
     <ProgressBar
         android:id="@+id/progres_bar"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+    -->
+
+    <net.bohush.geometricprogressview.GeometricProgressView
+        android:id="@+id/progress_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:gp_type="kite"
+        app:gp_number_of_angles="4"
+        app:gp_figure_padding="2dp"
+        app:gp_duration="500"
+        app:gp_color="@color/colorGreen"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         app:layout_constraintEnd_toEndOf="parent"

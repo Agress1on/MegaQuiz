@@ -8,7 +8,6 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
-import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.alexandr.megaquiz.Constants;
@@ -19,6 +18,8 @@ import com.example.alexandr.megaquiz.quizfragment.QuizFragmentContract;
 import com.example.alexandr.megaquiz.quizfragment.domain.QuizFragmentInteractor;
 import com.example.alexandr.megaquiz.quizfragment.presentation.QuizFragmentPresenter;
 import com.example.alexandr.megaquiz.quizresultfragment.view.QuizResultFragment;
+
+import net.bohush.geometricprogressview.GeometricProgressView;
 
 import java.util.LinkedHashMap;
 import java.util.List;
@@ -58,8 +59,13 @@ public class QuizFragment extends Fragment implements QuizFragmentContract.View 
     @BindView(R.id.question_count)
     TextView mQuestionCount;
 
+    /*
     @BindView(R.id.progres_bar)
     ProgressBar mProgressBar;
+    */
+
+    @BindView(R.id.progress_bar)
+    GeometricProgressView mProgressBar;
 
     @BindViews({R.id.static_category_name, R.id.question, R.id.btnTrue,
             R.id.btnFalse, R.id.btnNext, R.id.btnPrev, R.id.question_count})
