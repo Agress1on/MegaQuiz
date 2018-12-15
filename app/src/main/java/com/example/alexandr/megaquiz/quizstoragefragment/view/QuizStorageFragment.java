@@ -16,14 +16,16 @@ import android.widget.Switch;
 import android.widget.TextView;
 
 import com.example.alexandr.megaquiz.R;
-import com.example.alexandr.megaquiz.bankquestion.BankQuestion;
+import com.example.alexandr.megaquiz.app.AppModule;
+import com.example.alexandr.megaquiz.app.DaggerAppComponent;
 import com.example.alexandr.megaquiz.quizactivity.view.QuizActivity;
 import com.example.alexandr.megaquiz.quizstoragefragment.QuizStorageContract;
 import com.example.alexandr.megaquiz.quizstoragefragment.QuizStorageItem;
-import com.example.alexandr.megaquiz.quizstoragefragment.domain.QuizStorageInteractor;
-import com.example.alexandr.megaquiz.quizstoragefragment.presentation.QuizStoragePresenter;
+import com.example.alexandr.megaquiz.quizstoragefragment.inject.QuizStorageFragmentPresenterModule;
 
 import java.util.List;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -36,7 +38,9 @@ import butterknife.OnCheckedChanged;
  */
 public class QuizStorageFragment extends Fragment implements QuizStorageContract.View {
 
-    private QuizStorageContract.Presenter mPresenter;
+   // private QuizStorageContract.Presenter mPresenter;
+    @Inject
+    QuizStorageContract.Presenter mPresenter;
 
     @BindView(R.id.list_switch)
     Switch mSwitch;
@@ -54,7 +58,12 @@ public class QuizStorageFragment extends Fragment implements QuizStorageContract
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_quiz_storage, null);
         ButterKnife.bind(this, view);
-        mPresenter = new QuizStoragePresenter(this, new QuizStorageInteractor(new BankQuestion()));
+     //   mPresenter = new QuizStoragePresenter(this, new QuizStorageInteractor(new BankQuestion()));
+        DaggerAppComponent.builder()
+                .appModule(new AppModule(getActivity().getApplication()))
+                .build()
+                .createQuizStorageFragmentComponent(new QuizStorageFragmentPresenterModule(this))
+                .inject(this);
 
         FragmentActivity fragmentActivity = getActivity();
       //  List<QuizStorageItem> mCat = mPresenter.getCategoriesNamesForViewWithoutEmpty();

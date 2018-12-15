@@ -17,7 +17,6 @@ import com.example.alexandr.megaquiz.app.DaggerAppComponent;
 import com.example.alexandr.megaquiz.quizfragment.Answer;
 import com.example.alexandr.megaquiz.quizfragment.QuizFragmentContract;
 import com.example.alexandr.megaquiz.quizfragment.inject.QuizFragmentPresenterModule;
-import com.example.alexandr.megaquiz.quizfragment.presentation.QuizFragmentPresenter;
 import com.example.alexandr.megaquiz.quizresultfragment.view.QuizResultFragment;
 
 import net.bohush.geometricprogressview.GeometricProgressView;
