@@ -13,12 +13,17 @@ import android.widget.ImageView;
 
 import com.example.alexandr.megaquiz.Constants;
 import com.example.alexandr.megaquiz.R;
+import com.example.alexandr.megaquiz.app.AppModule;
+import com.example.alexandr.megaquiz.app.DaggerAppComponent;
 import com.example.alexandr.megaquiz.bankquestion.BankQuestion;
 import com.example.alexandr.megaquiz.quizactivity.view.QuizActivity;
 import com.example.alexandr.megaquiz.quizstoragefragment.view.QuizStorageFragment;
 import com.example.alexandr.megaquiz.startfragment.StartFragmentContract;
 import com.example.alexandr.megaquiz.startfragment.domain.StartFragmentInteractor;
+import com.example.alexandr.megaquiz.startfragment.inject.StartFragmentPresenterModule;
 import com.example.alexandr.megaquiz.startfragment.presentation.StartFragmentPresenter;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
@@ -32,7 +37,10 @@ import butterknife.Unbinder;
  */
 public class StartFragment extends Fragment implements StartFragmentContract.View {
 
-    private StartFragmentContract.Presenter mPresenter;
+  //  private StartFragmentContract.Presenter mPresenter;
+
+    @Inject
+    StartFragmentPresenter mPresenter;
 
     @BindView(R.id.btn_randomQuiz)
     Button mRandomButton;
@@ -53,7 +61,13 @@ public class StartFragment extends Fragment implements StartFragmentContract.Vie
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_start, null);
-        mPresenter = new StartFragmentPresenter(this, new StartFragmentInteractor(new BankQuestion()));
+      //  mPresenter = new StartFragmentPresenter(this, new StartFragmentInteractor(new BankQuestion()));
+        DaggerAppComponent.builder()
+                .appModule(new AppModule(getActivity().getApplication()))
+                .build()
+                .createStartComponent(new StartFragmentPresenterModule(this))
+                .inject(this);
+
         mPresenter.initRandomCategory();
         mUnbinder = ButterKnife.bind(this, view);
         return view;

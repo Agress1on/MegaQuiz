@@ -2,6 +2,8 @@ package com.example.alexandr.megaquiz.app;
 
 import com.example.alexandr.megaquiz.quizfragment.inject.QuizFragmentComponent;
 import com.example.alexandr.megaquiz.quizfragment.inject.QuizFragmentPresenterModule;
+import com.example.alexandr.megaquiz.startfragment.inject.StartFragmentComponent;
+import com.example.alexandr.megaquiz.startfragment.inject.StartFragmentPresenterModule;
 
 import javax.inject.Singleton;
 
@@ -19,4 +21,5 @@ import dagger.Component;
         })
 public interface AppComponent {
     QuizFragmentComponent createQuizComponent(QuizFragmentPresenterModule quizFragmentPresenterModule);
+    StartFragmentComponent createStartComponent(StartFragmentPresenterModule startFragmentPresenterModule);
 }
