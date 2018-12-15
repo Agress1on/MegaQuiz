@@ -2,11 +2,6 @@ package com.example.alexandr.megaquiz.app;
 
 import android.app.Application;
 
-import com.example.alexandr.megaquiz.quizfragment.inject.DaggerQuizFragmentComponent;
-import com.example.alexandr.megaquiz.quizfragment.inject.QuizFragmentComponent;
-import com.example.alexandr.megaquiz.quizfragment.inject.QuizFragmentPresenterModule;
-import com.example.alexandr.megaquiz.quizfragment.view.QuizFragment;
-
 
 /**
  * Created by Alexandr Mikhalev on 20.10.2018.
@@ -15,18 +10,30 @@ import com.example.alexandr.megaquiz.quizfragment.view.QuizFragment;
  */
 public class Quiz extends Application {
 
-    private static QuizFragmentComponent sComponent;
+    // private static QuizFragmentComponent sQuizFragmentComponent;
+    private static AppComponent sAppComponent;
 
     @Override
     public void onCreate() {
         super.onCreate();
+        /*
         sComponent = DaggerQuizFragmentComponent.builder()
                 .quizFragmentPresenterModule(new QuizFragmentPresenterModule(new QuizFragment())).build();
+        */
+        sAppComponent = DaggerAppComponent.builder()
+                .appModule(new AppModule(this))
+                .build();
     }
 
-    public static QuizFragmentComponent getComponent() {
-        return sComponent;
+    public static AppComponent getAppComponent() {
+        return sAppComponent;
     }
+
+    /*
+    public static QuizFragmentComponent getComponent() {
+        return sQuizFragmentComponent;
+    }
+    */
     /*
     private static QuizActivityComponent sComponent;
 

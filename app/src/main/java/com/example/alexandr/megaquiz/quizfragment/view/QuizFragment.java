@@ -12,9 +12,10 @@ import android.widget.TextView;
 
 import com.example.alexandr.megaquiz.Constants;
 import com.example.alexandr.megaquiz.R;
+import com.example.alexandr.megaquiz.app.AppModule;
+import com.example.alexandr.megaquiz.app.DaggerAppComponent;
 import com.example.alexandr.megaquiz.quizfragment.Answer;
 import com.example.alexandr.megaquiz.quizfragment.QuizFragmentContract;
-import com.example.alexandr.megaquiz.quizfragment.inject.DaggerQuizFragmentComponent;
 import com.example.alexandr.megaquiz.quizfragment.inject.QuizFragmentPresenterModule;
 import com.example.alexandr.megaquiz.quizfragment.presentation.QuizFragmentPresenter;
 import com.example.alexandr.megaquiz.quizresultfragment.view.QuizResultFragment;
@@ -84,9 +85,16 @@ public class QuizFragment extends Fragment implements QuizFragmentContract.View 
         mCategoryName = getArguments().getString(Constants.EXTRAS_FOR_INTENT_QUIZ_VIEW);
         //  mPresenter = new QuizFragmentPresenter(this, new QuizFragmentInteractor(new BankQuestion()));
 
+        /*
         DaggerQuizFragmentComponent.builder()
                 .quizFragmentPresenterModule(new QuizFragmentPresenterModule(this))
                 .build()
+                .inject(this);
+        */
+        DaggerAppComponent.builder()
+                .appModule(new AppModule(getActivity().getApplication()))
+                .build()
+                .createQuizComponent(new QuizFragmentPresenterModule(this))
                 .inject(this);
     }
 

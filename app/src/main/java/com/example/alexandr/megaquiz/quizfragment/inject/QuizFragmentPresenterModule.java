@@ -30,9 +30,4 @@ public class QuizFragmentPresenterModule {
     QuizFragmentInteractor provideInteractor(BankQuestion bankQuestion) {
         return new QuizFragmentInteractor(bankQuestion);
     }
-
-    @Provides
-    BankQuestion provideBankQuestion() {
-        return new BankQuestion();
-    }
 }
