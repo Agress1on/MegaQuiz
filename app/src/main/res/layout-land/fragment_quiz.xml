@@ -94,7 +94,11 @@
         android:layout_marginTop="20dp"
         android:layout_marginEnd="5dp"
         android:background="@drawable/shape_for_true_button"
+        android:drawableStart="@drawable/ic_for_true_button"
+        android:paddingStart="15dp"
+        android:paddingEnd="20dp"
         android:text="@string/for_true_button"
+        android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="@id/guideline3_vertical"
         app:layout_constraintStart_toStartOf="@id/guideline1_vertical"
         app:layout_constraintTop_toBottomOf="@id/background_for_question" />
@@ -105,7 +109,11 @@
         android:layout_height="wrap_content"
         android:layout_marginStart="5dp"
         android:background="@drawable/shape_for_false_button"
+        android:drawableEnd="@drawable/ic_for_false_button"
+        android:paddingStart="20dp"
+        android:paddingEnd="15dp"
         android:text="@string/for_false_button"
+        android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="@id/background_for_question"
         app:layout_constraintStart_toStartOf="@id/guideline3_vertical"
         app:layout_constraintTop_toTopOf="@id/btnTrue" />
@@ -116,7 +124,11 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="10dp"
         android:background="@drawable/selectore_for_prev_button"
+        android:drawableStart="@drawable/ic_for_prev_button"
+        android:paddingStart="15dp"
+        android:paddingEnd="20dp"
         android:text="@string/for_prev_button"
+        android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="@id/btnTrue"
         app:layout_constraintStart_toStartOf="@id/btnTrue"
         app:layout_constraintTop_toBottomOf="@id/btnTrue" />
@@ -126,10 +138,39 @@
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:background="@drawable/selector_for_next_button"
+        android:drawableEnd="@drawable/ic_for_next_button"
+        android:paddingStart="20dp"
+        android:paddingEnd="15dp"
         android:text="@string/for_next_button"
+        android:textAlignment="center"
         app:layout_constraintEnd_toEndOf="@id/btnFalse"
         app:layout_constraintStart_toStartOf="@id/btnFalse"
         app:layout_constraintTop_toTopOf="@id/btnPrev" />
+
+    <!--
+    <ProgressBar
+        android:id="@+id/progres_bar"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
+    -->
+
+    <net.bohush.geometricprogressview.GeometricProgressView
+        android:id="@+id/progress_bar"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:gp_type="kite"
+        app:gp_number_of_angles="4"
+        app:gp_figure_padding="2dp"
+        app:gp_duration="500"
+        app:gp_color="@color/colorGreen"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/background_for_question"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
     <TextView
         android:id="@+id/question_count"
