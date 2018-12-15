@@ -42,7 +42,7 @@ public class QuizFragment extends Fragment implements QuizFragmentContract.View 
     //  private QuizFragmentContract.Presenter mPresenter;
 
     @Inject
-    QuizFragmentPresenter mPresenter;
+    QuizFragmentContract.Presenter mPresenter;
 
     @BindView(R.id.static_category_name)
     TextView mCategoryNameTV;

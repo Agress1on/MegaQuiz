@@ -40,7 +40,7 @@ public class StartFragment extends Fragment implements StartFragmentContract.Vie
   //  private StartFragmentContract.Presenter mPresenter;
 
     @Inject
-    StartFragmentPresenter mPresenter;
+    StartFragmentContract.Presenter mPresenter;
 
     @BindView(R.id.btn_randomQuiz)
     Button mRandomButton;

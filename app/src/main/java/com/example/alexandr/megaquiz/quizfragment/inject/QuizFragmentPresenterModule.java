@@ -1,6 +1,7 @@
 package com.example.alexandr.megaquiz.quizfragment.inject;
 
 import com.example.alexandr.megaquiz.bankquestion.BankQuestion;
+import com.example.alexandr.megaquiz.quizfragment.QuizFragmentContract;
 import com.example.alexandr.megaquiz.quizfragment.domain.QuizFragmentInteractor;
 import com.example.alexandr.megaquiz.quizfragment.presentation.QuizFragmentPresenter;
 import com.example.alexandr.megaquiz.quizfragment.view.QuizFragment;
@@ -15,19 +16,19 @@ import dagger.Provides;
  */
 @Module
 public class QuizFragmentPresenterModule {
-    private QuizFragment mQuizFragment;
+    private QuizFragmentContract.View mView;
 
-    public QuizFragmentPresenterModule(QuizFragment quizFragment) {
-        mQuizFragment = quizFragment;
+    public QuizFragmentPresenterModule(QuizFragmentContract.View quizFragment) {
+        mView = quizFragment;
     }
 
     @Provides
-    QuizFragmentPresenter providePresenter(QuizFragmentInteractor quizFragmentInteractor) {
-        return new QuizFragmentPresenter(mQuizFragment, quizFragmentInteractor);
+    QuizFragmentContract.Presenter providePresenter(QuizFragmentContract.Interactor quizFragmentInteractor) {
+        return new QuizFragmentPresenter(mView, quizFragmentInteractor);
     }
 
     @Provides
-    QuizFragmentInteractor provideInteractor(BankQuestion bankQuestion) {
+    QuizFragmentContract.Interactor provideInteractor(BankQuestion bankQuestion) {
         return new QuizFragmentInteractor(bankQuestion);
     }
 }
