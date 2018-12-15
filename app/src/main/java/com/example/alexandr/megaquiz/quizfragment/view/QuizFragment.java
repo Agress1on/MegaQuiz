@@ -12,10 +12,10 @@ import android.widget.TextView;
 
 import com.example.alexandr.megaquiz.Constants;
 import com.example.alexandr.megaquiz.R;
-import com.example.alexandr.megaquiz.bankquestion.BankQuestion;
 import com.example.alexandr.megaquiz.quizfragment.Answer;
 import com.example.alexandr.megaquiz.quizfragment.QuizFragmentContract;
-import com.example.alexandr.megaquiz.quizfragment.domain.QuizFragmentInteractor;
+import com.example.alexandr.megaquiz.quizfragment.inject.DaggerQuizFragmentComponent;
+import com.example.alexandr.megaquiz.quizfragment.inject.QuizFragmentPresenterModule;
 import com.example.alexandr.megaquiz.quizfragment.presentation.QuizFragmentPresenter;
 import com.example.alexandr.megaquiz.quizresultfragment.view.QuizResultFragment;
 
@@ -23,6 +23,8 @@ import net.bohush.geometricprogressview.GeometricProgressView;
 
 import java.util.LinkedHashMap;
 import java.util.List;
+
+import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.BindViews;
@@ -36,7 +38,10 @@ import butterknife.OnClick;
  */
 public class QuizFragment extends Fragment implements QuizFragmentContract.View {
 
-    private QuizFragmentContract.Presenter mPresenter;
+    //  private QuizFragmentContract.Presenter mPresenter;
+
+    @Inject
+    QuizFragmentPresenter mPresenter;
 
     @BindView(R.id.static_category_name)
     TextView mCategoryNameTV;
@@ -77,7 +82,12 @@ public class QuizFragment extends Fragment implements QuizFragmentContract.View 
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mCategoryName = getArguments().getString(Constants.EXTRAS_FOR_INTENT_QUIZ_VIEW);
-        mPresenter = new QuizFragmentPresenter(this, new QuizFragmentInteractor(new BankQuestion()));
+        //  mPresenter = new QuizFragmentPresenter(this, new QuizFragmentInteractor(new BankQuestion()));
+
+        DaggerQuizFragmentComponent.builder()
+                .quizFragmentPresenterModule(new QuizFragmentPresenterModule(this))
+                .build()
+                .inject(this);
     }
 
     @Nullable

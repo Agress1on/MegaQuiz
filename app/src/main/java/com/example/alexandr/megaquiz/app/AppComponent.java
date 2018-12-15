@@ -1,11 +1,11 @@
 package com.example.alexandr.megaquiz.app;
 
 import com.example.alexandr.megaquiz.bankquestion.BankQuestion;
+import com.example.alexandr.megaquiz.quizfragment.inject.QuizFragmentComponent;
 
 import javax.inject.Singleton;
 
-import dagger.Module;
-import dagger.Provides;
+import dagger.Component;
 
 /**
  * Created by Alexandr Mikhalev on 15.12.2018.
@@ -13,6 +13,6 @@ import dagger.Provides;
  * @author Alexandr Mikhalev
  */
 
-public class AppModule {
+public interface AppComponent {
 
 }
