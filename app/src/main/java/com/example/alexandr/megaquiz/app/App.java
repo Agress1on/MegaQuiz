@@ -8,7 +8,7 @@ import android.app.Application;
  *
  * @author Alexandr Mikhalev
  */
-public class Quiz extends Application {
+public class App extends Application {
 
     // private static QuizFragmentComponent sQuizFragmentComponent;
     private static AppComponent sAppComponent;

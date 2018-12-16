@@ -60,7 +60,7 @@ public class QuizStorageFragment extends Fragment implements QuizStorageContract
         ButterKnife.bind(this, view);
      //   mPresenter = new QuizStoragePresenter(this, new QuizStorageInteractor(new BankQuestion()));
         DaggerAppComponent.builder()
-                .appModule(new AppModule(getActivity().getApplication()))
+                .appModule(new AppModule(getContext()))
                 .build()
                 .createQuizStorageFragmentComponent(new QuizStorageFragmentPresenterModule(this))
                 .inject(this);

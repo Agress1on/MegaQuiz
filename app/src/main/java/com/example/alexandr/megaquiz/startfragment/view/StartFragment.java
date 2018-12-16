@@ -59,7 +59,7 @@ public class StartFragment extends Fragment implements StartFragmentContract.Vie
         View view = inflater.inflate(R.layout.fragment_start, null);
         //  mPresenter = new StartFragmentPresenter(this, new StartFragmentInteractor(new BankQuestion()));
         DaggerAppComponent.builder()
-                .appModule(new AppModule(getActivity().getApplication()))
+                .appModule(new AppModule(getContext()))
                 .build()
                 .createStartComponent(new StartFragmentPresenterModule(this))
                 .inject(this);

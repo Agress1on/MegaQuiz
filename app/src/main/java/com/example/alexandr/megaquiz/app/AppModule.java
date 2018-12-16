@@ -1,6 +1,7 @@
 package com.example.alexandr.megaquiz.app;
 
 import android.app.Application;
+import android.content.Context;
 
 import com.example.alexandr.megaquiz.bankquestion.BankQuestion;
 import com.example.alexandr.megaquiz.quizfragment.inject.QuizFragmentPresenterModule;
@@ -18,10 +19,10 @@ import dagger.Provides;
 @Module
 public class AppModule {
 
-    private Application mApplication;
+    private final Context mContext;
 
-    public AppModule(Application application) {
-        mApplication = application;
+    public AppModule(Context context) {
+        this.mContext = context;
     }
 
     @Provides

@@ -91,7 +91,7 @@ public class QuizFragment extends Fragment implements QuizFragmentContract.View 
                 .inject(this);
         */
         DaggerAppComponent.builder()
-                .appModule(new AppModule(getActivity().getApplication()))
+                .appModule(new AppModule(getContext()))
                 .build()
                 .createQuizComponent(new QuizFragmentPresenterModule(this))
                 .inject(this);

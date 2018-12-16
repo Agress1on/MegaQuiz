@@ -71,7 +71,7 @@ public class QuizResultFragment extends Fragment implements QuizResultFragmentCo
 
       //  mPresenter = new QuizResultFragmentPresenter(this, new QuizResultFragmentInteractor(new BankQuestion()));
         DaggerAppComponent.builder()
-                .appModule(new AppModule(getActivity().getApplication()))
+                .appModule(new AppModule(getContext()))
                 .build()
                 .createQuizResultFragmentComponent(new QuizResultFragmentPresenterModule(this))
                 .inject(this);
