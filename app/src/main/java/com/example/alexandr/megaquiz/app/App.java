@@ -18,7 +18,7 @@ public class App extends Application {
         super.onCreate();
         /*
         sComponent = DaggerQuizFragmentComponent.builder()
-                .quizFragmentPresenterModule(new QuizFragmentPresenterModule(new QuizFragment())).build();
+                .quizFragmentPresenterModule(new QuizFragmentPresenterModule(new QuizFragmentScope())).build();
         */
         sAppComponent = DaggerAppComponent.builder()
                 .appModule(new AppModule(this))
