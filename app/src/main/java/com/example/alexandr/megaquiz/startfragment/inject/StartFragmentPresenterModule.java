@@ -22,11 +22,13 @@ public class StartFragmentPresenterModule {
         mView = startFragment;
     }
 
+    @StartFragmentScope
     @Provides
     StartFragmentContract.Presenter providePresenter(StartFragmentContract.Interactor startFragmentInteractor) {
         return new StartFragmentPresenter(mView, startFragmentInteractor);
     }
 
+    @StartFragmentScope
     @Provides
     StartFragmentContract.Interactor provideInteractor(BankQuestion bankQuestion) {
         return new StartFragmentInteractor(bankQuestion);

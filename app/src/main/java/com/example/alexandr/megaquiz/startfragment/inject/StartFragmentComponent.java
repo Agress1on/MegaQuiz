@@ -9,6 +9,7 @@ import dagger.Subcomponent;
  *
  * @author Alexandr Mikhalev
  */
+@StartFragmentScope
 @Subcomponent(modules = StartFragmentPresenterModule.class)
 public interface StartFragmentComponent {
     void inject(StartFragment startFragment);
