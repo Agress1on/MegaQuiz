@@ -16,6 +16,7 @@ import dagger.Provides;
  */
 @Module
 public class StartFragmentPresenterModule {
+
     private StartFragmentContract.View mView;
 
     public StartFragmentPresenterModule(StartFragmentContract.View startFragment) {
