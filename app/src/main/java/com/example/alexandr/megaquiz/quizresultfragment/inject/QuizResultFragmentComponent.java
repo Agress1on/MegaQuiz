@@ -9,6 +9,7 @@ import dagger.Subcomponent;
  *
  * @author Alexandr Mikhalev
  */
+@QuizResultFragmentScope
 @Subcomponent(modules = QuizResultFragmentPresenterModule.class)
 public interface QuizResultFragmentComponent {
     void inject(QuizResultFragment quizResultFragment);

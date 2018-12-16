@@ -22,11 +22,13 @@ public class QuizResultFragmentPresenterModule {
         mView = view;
     }
 
+    @QuizResultFragmentScope
     @Provides
     QuizResultFragmentContract.Presenter providePresenter(QuizResultFragmentContract.Interactor interactor) {
         return new QuizResultFragmentPresenter(mView, interactor);
     }
 
+    @QuizResultFragmentScope
     @Provides
     QuizResultFragmentContract.Interactor provideInteractor(BankQuestion bankQuestion) {
         return new QuizResultFragmentInteractor(bankQuestion);
