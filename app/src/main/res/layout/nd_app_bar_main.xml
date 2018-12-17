@@ -22,7 +22,7 @@
 
 
     <FrameLayout
-        android:id="@+id/linear_for_edit_for_nd"
+        android:id="@+id/container_for_fragments"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginTop="55dp">

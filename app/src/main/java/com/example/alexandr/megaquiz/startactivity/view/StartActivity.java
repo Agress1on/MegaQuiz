@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -12,11 +13,9 @@ import android.support.v7.app.ActionBarDrawerToggle;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
-import android.view.View;
 
 import com.example.alexandr.megaquiz.R;
 import com.example.alexandr.megaquiz.infofragment.view.InfoFragment;
-import com.example.alexandr.megaquiz.quizstoragefragment.view.QuizStorageFragment;
 import com.example.alexandr.megaquiz.startactivity.StartContract;
 import com.example.alexandr.megaquiz.startactivity.domain.StartActivityInteractor;
 import com.example.alexandr.megaquiz.startactivity.presentation.StartActivityPresenter;
@@ -49,7 +48,7 @@ public class StartActivity extends AppCompatActivity implements StartContract.Vi
         ButterKnife.bind(this);
         mPresenter = new StartActivityPresenter(this, new StartActivityInteractor());
         mFragmentManager = getSupportFragmentManager();
-        //ND
+        //ND START
         setSupportActionBar(mToolbar);
         ActionBarDrawerToggle toggle =
                 new ActionBarDrawerToggle(this, mDrawer, mToolbar,
@@ -60,12 +59,18 @@ public class StartActivity extends AppCompatActivity implements StartContract.Vi
         //ND END
         mStartFragment = StartFragment.newInstance();
         mInfoFragment = InfoFragment.newInstance();
-        addStartFragment();
+        addFragment(R.id.container_for_fragments, mStartFragment);
     }
 
-    private void addStartFragment() {
+    private void addFragment(int resourceId, Fragment fragment) {
         mFragmentManager.beginTransaction()
-                .add(R.id.linear_for_edit_for_nd, mStartFragment)
+                .add(resourceId, fragment)
+                .commit();
+    }
+    private void addFragmentWithBackStack(int resourceId, Fragment fragment) {
+        mFragmentManager.beginTransaction()
+                .addToBackStack(null)
+                .add(resourceId, fragment)
                 .commit();
     }
 
@@ -78,10 +83,13 @@ public class StartActivity extends AppCompatActivity implements StartContract.Vi
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.about) {
+            /*
             mFragmentManager.beginTransaction()
                     .addToBackStack(null)
-                    .replace(R.id.linear_for_edit_for_nd, mInfoFragment)
+                    .replace(R.id.container_for_fragments, mInfoFragment)
                     .commit();
+            */
+            addFragmentWithBackStack(R.id.container_for_fragments, mInfoFragment);
         }
         mDrawer.closeDrawer(GravityCompat.START);
         return true;
