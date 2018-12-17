@@ -1,5 +1,6 @@
 package com.example.alexandr.megaquiz.quizstoragefragment.view;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -16,6 +17,7 @@ import android.widget.Switch;
 import android.widget.TextView;
 
 import com.example.alexandr.megaquiz.R;
+import com.example.alexandr.megaquiz.app.App;
 import com.example.alexandr.megaquiz.app.AppModule;
 import com.example.alexandr.megaquiz.app.DaggerAppComponent;
 import com.example.alexandr.megaquiz.quizactivity.view.QuizActivity;
@@ -53,17 +55,29 @@ public class QuizStorageFragment extends Fragment implements QuizStorageContract
     private RecyclerView.LayoutManager mLayoutManager;
     private List<QuizStorageItem> mCat;
 
+    private Context mContext;
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        mContext = context;
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_quiz_storage, null);
         ButterKnife.bind(this, view);
      //   mPresenter = new QuizStoragePresenter(this, new QuizStorageInteractor(new BankQuestion()));
+
+        /*
         DaggerAppComponent.builder()
                 .appModule(new AppModule(getContext()))
                 .build()
                 .createQuizStorageFragmentComponent(new QuizStorageFragmentPresenterModule(this))
                 .inject(this);
+        */
+        App.getApp(mContext).getComponentsHolder().getQuizStorageFragmentComponent(this).inject(this);
 
         FragmentActivity fragmentActivity = getActivity();
       //  List<QuizStorageItem> mCat = mPresenter.getCategoriesNamesForViewWithoutEmpty();
@@ -73,6 +87,12 @@ public class QuizStorageFragment extends Fragment implements QuizStorageContract
         mAdapter = new RecyclerAdapter(mCat, key -> mPresenter.onClick(key));
         mRecyclerView.setAdapter(mAdapter);
         return view;
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        App.getApp(mContext).getComponentsHolder().releaseQuizStorageFragmentComponent();
     }
 
     @Override

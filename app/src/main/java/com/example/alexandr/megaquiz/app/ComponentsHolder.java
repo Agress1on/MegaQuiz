@@ -7,6 +7,8 @@ import com.example.alexandr.megaquiz.quizfragment.inject.QuizFragmentPresenterMo
 import com.example.alexandr.megaquiz.quizfragment.view.QuizFragment;
 import com.example.alexandr.megaquiz.quizresultfragment.inject.QuizResultFragmentComponent;
 import com.example.alexandr.megaquiz.quizstoragefragment.inject.QuizStorageFragmentComponent;
+import com.example.alexandr.megaquiz.quizstoragefragment.inject.QuizStorageFragmentPresenterModule;
+import com.example.alexandr.megaquiz.quizstoragefragment.view.QuizStorageFragment;
 import com.example.alexandr.megaquiz.startfragment.inject.StartFragmentComponent;
 import com.example.alexandr.megaquiz.startfragment.inject.StartFragmentPresenterModule;
 import com.example.alexandr.megaquiz.startfragment.view.StartFragment;
@@ -41,6 +43,10 @@ public class ComponentsHolder {
         return mAppComponent;
     }
 
+    /*
+    StartFragmentComponent
+    */
+
     public StartFragmentComponent getStartFragmentComponent(StartFragment startFragment) {
         if (mStartFragmentComponent == null) {
             mStartFragmentComponent = getAppComponent().createStartFragmentComponent(new StartFragmentPresenterModule(startFragment));
@@ -52,6 +58,10 @@ public class ComponentsHolder {
         mStartFragmentComponent = null;
     }
 
+    /*
+    QuizFragmentComponent
+    */
+
     public QuizFragmentComponent getQuizFragmentComponent(QuizFragment quizFragment) {
         if (mQuizFragmentComponent == null) {
             mQuizFragmentComponent = getAppComponent().createQuizFragmentComponent(new QuizFragmentPresenterModule(quizFragment));
@@ -61,5 +71,20 @@ public class ComponentsHolder {
 
     public void releaseQuizFragmentComponent() {
         mQuizFragmentComponent = null;
+    }
+
+    /*
+    QuizStorageFragmentComponent
+    */
+
+    public QuizStorageFragmentComponent getQuizStorageFragmentComponent(QuizStorageFragment quizStorageFragment) {
+        if (mQuizStorageFragmentComponent == null) {
+            mQuizStorageFragmentComponent = getAppComponent().createQuizStorageFragmentComponent(new QuizStorageFragmentPresenterModule(quizStorageFragment));
+        }
+        return mQuizStorageFragmentComponent;
+    }
+
+    public void releaseQuizStorageFragmentComponent() {
+        mQuizStorageFragmentComponent = null;
     }
 }
