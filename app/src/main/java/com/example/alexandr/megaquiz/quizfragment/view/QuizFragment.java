@@ -29,6 +29,7 @@ import butterknife.BindView;
 import butterknife.BindViews;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
+import butterknife.Unbinder;
 
 /**
  * Created by Alexandr Mikhalev on 10.12.2018.
@@ -36,8 +37,6 @@ import butterknife.OnClick;
  * @author Alexandr Mikhalev
  */
 public class QuizFragment extends Fragment implements QuizFragmentContract.View {
-
-    //  private QuizFragmentContract.Presenter mPresenter;
 
     @Inject
     QuizFragmentContract.Presenter mPresenter;
@@ -78,6 +77,7 @@ public class QuizFragment extends Fragment implements QuizFragmentContract.View 
     private String mCategoryName = "";
 
     private Context mContext;
+    private Unbinder mUnbinder;
 
     @Override
     public void onAttach(Context context) {
@@ -89,37 +89,37 @@ public class QuizFragment extends Fragment implements QuizFragmentContract.View 
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mCategoryName = getArguments().getString(Constants.EXTRAS_FOR_INTENT_QUIZ_VIEW);
-        //  mPresenter = new QuizFragmentPresenter(this, new QuizFragmentInteractor(new BankQuestion()));
-
         /*
+        mPresenter = new QuizFragmentPresenter(this, new QuizFragmentInteractor(new BankQuestion()));
         DaggerAppComponent.builder()
                 .appModule(new AppModule(getContext()))
                 .build()
                 .createQuizFragmentComponent(new QuizFragmentPresenterModule(this))
                 .inject(this);
         */
-        App.getApp(mContext).getComponentsHolder().getQuizFragmentComponent(this).inject(this);
+            App.getApp(mContext).getComponentsHolder().getQuizFragmentComponent(this).inject(this);
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_quiz, null);
-        ButterKnife.bind(this, view);
+        mUnbinder = ButterKnife.bind(this, view);
         mPresenter.initQuestionList(mCategoryName);
         return view;
     }
 
     @Override
-    public void onPause() {
-        super.onPause();
-        App.getApp(mContext).getComponentsHolder().releaseQuizFragmentComponent();
+    public void onDestroyView() {
+        super.onDestroyView();
+        mUnbinder.unbind();
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
         mPresenter.onDestroy();
+        App.getApp(mContext).getComponentsHolder().releaseQuizFragmentComponent();
     }
 
     @Override
