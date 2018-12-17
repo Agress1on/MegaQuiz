@@ -24,8 +24,8 @@ import dagger.Component;
                 AppModule.class,
         })
 public interface AppComponent {
-    QuizFragmentComponent createQuizComponent(QuizFragmentPresenterModule quizFragmentPresenterModule);
-    StartFragmentComponent createStartComponent(StartFragmentPresenterModule startFragmentPresenterModule);
+    QuizFragmentComponent createQuizFragmentComponent(QuizFragmentPresenterModule quizFragmentPresenterModule);
+    StartFragmentComponent createStartFragmentComponent(StartFragmentPresenterModule startFragmentPresenterModule);
     QuizResultFragmentComponent createQuizResultFragmentComponent(QuizResultFragmentPresenterModule quizResultFragmentPresenterModule);
     QuizStorageFragmentComponent createQuizStorageFragmentComponent(QuizStorageFragmentPresenterModule quizStorageFragmentPresenterModule);
 }

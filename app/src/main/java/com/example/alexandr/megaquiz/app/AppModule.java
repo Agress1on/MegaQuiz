@@ -25,9 +25,15 @@ public class AppModule {
         this.mContext = context;
     }
 
-    @Provides
     @AppScope
+    @Provides
     BankQuestion provideBankQuestion() {
         return new BankQuestion();
+    }
+
+    @AppScope
+    @Provides
+    Context provideContext() {
+        return mContext;
     }
 }

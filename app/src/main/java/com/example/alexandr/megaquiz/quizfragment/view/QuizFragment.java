@@ -1,5 +1,6 @@
 package com.example.alexandr.megaquiz.quizfragment.view;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -12,6 +13,7 @@ import android.widget.TextView;
 
 import com.example.alexandr.megaquiz.Constants;
 import com.example.alexandr.megaquiz.R;
+import com.example.alexandr.megaquiz.app.App;
 import com.example.alexandr.megaquiz.app.AppModule;
 import com.example.alexandr.megaquiz.app.DaggerAppComponent;
 import com.example.alexandr.megaquiz.quizfragment.Answer;
@@ -78,6 +80,14 @@ public class QuizFragment extends Fragment implements QuizFragmentContract.View 
 
     private String mCategoryName = "";
 
+    private Context mContext;
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        mContext = context;
+    }
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -90,11 +100,14 @@ public class QuizFragment extends Fragment implements QuizFragmentContract.View 
                 .build()
                 .inject(this);
         */
+        /*
         DaggerAppComponent.builder()
                 .appModule(new AppModule(getContext()))
                 .build()
-                .createQuizComponent(new QuizFragmentPresenterModule(this))
+                .createQuizFragmentComponent(new QuizFragmentPresenterModule(this))
                 .inject(this);
+        */
+        App.getApp(mContext).getComponentsHolder().getQuizFragmentComponent(this).inject(this);
     }
 
     @Nullable

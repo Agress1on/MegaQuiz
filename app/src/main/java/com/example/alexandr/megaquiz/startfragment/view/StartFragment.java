@@ -1,5 +1,6 @@
 package com.example.alexandr.megaquiz.startfragment.view;
 
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
@@ -12,6 +13,7 @@ import android.widget.Button;
 import android.widget.ImageView;
 
 import com.example.alexandr.megaquiz.R;
+import com.example.alexandr.megaquiz.app.App;
 import com.example.alexandr.megaquiz.app.AppModule;
 import com.example.alexandr.megaquiz.app.DaggerAppComponent;
 import com.example.alexandr.megaquiz.quizactivity.view.QuizActivity;
@@ -53,17 +55,32 @@ public class StartFragment extends Fragment implements StartFragmentContract.Vie
     private Unbinder mUnbinder;
     boolean mVisible = true;
 
+    private Context mContext;
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        mContext = context;
+    }
+
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        //  mPresenter = new StartFragmentPresenter(this, new StartFragmentInteractor(new BankQuestion()));
+        /*
+        DaggerAppComponent.builder()
+                .appModule(new AppModule(getContext()))
+                .build()
+                .createStartFragmentComponent(new StartFragmentPresenterModule(this))
+                .inject(this);
+        */
+        App.getApp(mContext).getComponentsHolder().getStartFragmentComponent(this).inject(this);
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_start, null);
-        //  mPresenter = new StartFragmentPresenter(this, new StartFragmentInteractor(new BankQuestion()));
-        DaggerAppComponent.builder()
-                .appModule(new AppModule(getContext()))
-                .build()
-                .createStartComponent(new StartFragmentPresenterModule(this))
-                .inject(this);
-
         mPresenter.initRandomCategory();
         mUnbinder = ButterKnife.bind(this, view);
         return view;
@@ -82,14 +99,20 @@ public class StartFragment extends Fragment implements StartFragmentContract.Vie
     }
 
     @Override
+    public void onStop() {
+        super.onStop();
+    }
+
+    @Override
     public void onDestroy() {
         super.onDestroy();
         mPresenter.onDestroy();
+        App.getApp(mContext).getComponentsHolder().releaseStartFragmentComponent();
     }
 
     @Override
     public void startQuizViewWithRandom(String randomCategory) {
-        Intent intent = QuizActivity.getIntent(getContext(), randomCategory);
+        Intent intent = QuizActivity.getIntent(mContext, randomCategory);
         startActivity(intent);
     }
 
