@@ -42,7 +42,6 @@ public class StartActivity extends AppCompatActivity implements StartContract.Vi
     private InfoFragment mInfoFragment;
     private FragmentManager mFragmentManager;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);

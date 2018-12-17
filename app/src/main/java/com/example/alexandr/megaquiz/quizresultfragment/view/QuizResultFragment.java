@@ -17,11 +17,8 @@ import android.widget.TextView;
 import com.example.alexandr.megaquiz.Constants;
 import com.example.alexandr.megaquiz.R;
 import com.example.alexandr.megaquiz.app.App;
-import com.example.alexandr.megaquiz.app.AppModule;
-import com.example.alexandr.megaquiz.app.DaggerAppComponent;
 import com.example.alexandr.megaquiz.quizresultfragment.QuizResultFragmentContract;
 import com.example.alexandr.megaquiz.quizresultfragment.QuizResultItem;
-import com.example.alexandr.megaquiz.quizresultfragment.inject.QuizResultFragmentPresenterModule;
 
 import java.util.HashMap;
 import java.util.LinkedHashMap;
@@ -40,7 +37,7 @@ import butterknife.OnCheckedChanged;
  */
 public class QuizResultFragment extends Fragment implements QuizResultFragmentContract.View {
 
-  //  private QuizResultFragmentContract.Presenter mPresenter;
+    //  private QuizResultFragmentContract.Presenter mPresenter;
     @Inject
     QuizResultFragmentContract.Presenter mPresenter;
 
@@ -79,7 +76,7 @@ public class QuizResultFragment extends Fragment implements QuizResultFragmentCo
         mNameCategory = getArguments().getString(Constants.EXTRAS_FOR_INTENT_QUIZ_RESULT_NAME_CATEGORY, "Error");
         mUserAnswersMap = (LinkedHashMap<Integer, Boolean>) getArguments().getSerializable(Constants.EXTRAS_FOR_INTENT_QUIZ_RESULT_MAP_USER_ANSWERS);
 
-      //  mPresenter = new QuizResultFragmentPresenter(this, new QuizResultFragmentInteractor(new BankQuestion()));
+        //  mPresenter = new QuizResultFragmentPresenter(this, new QuizResultFragmentInteractor(new BankQuestion()));
         /*
         DaggerAppComponent.builder()
                 .appModule(new AppModule(getContext()))

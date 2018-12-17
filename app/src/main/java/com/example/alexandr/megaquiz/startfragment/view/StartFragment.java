@@ -33,7 +33,6 @@ import butterknife.Unbinder;
 public class StartFragment extends Fragment implements StartFragmentContract.View {
 
     //  private StartFragmentContract.Presenter mPresenter;
-
     @Inject
     StartFragmentContract.Presenter mPresenter;
 

@@ -18,12 +18,9 @@ import android.widget.TextView;
 
 import com.example.alexandr.megaquiz.R;
 import com.example.alexandr.megaquiz.app.App;
-import com.example.alexandr.megaquiz.app.AppModule;
-import com.example.alexandr.megaquiz.app.DaggerAppComponent;
 import com.example.alexandr.megaquiz.quizactivity.view.QuizActivity;
 import com.example.alexandr.megaquiz.quizstoragefragment.QuizStorageContract;
 import com.example.alexandr.megaquiz.quizstoragefragment.QuizStorageItem;
-import com.example.alexandr.megaquiz.quizstoragefragment.inject.QuizStorageFragmentPresenterModule;
 
 import java.util.List;
 
@@ -40,7 +37,7 @@ import butterknife.OnCheckedChanged;
  */
 public class QuizStorageFragment extends Fragment implements QuizStorageContract.View {
 
-   // private QuizStorageContract.Presenter mPresenter;
+    // private QuizStorageContract.Presenter mPresenter;
     @Inject
     QuizStorageContract.Presenter mPresenter;
 
@@ -68,7 +65,7 @@ public class QuizStorageFragment extends Fragment implements QuizStorageContract
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_quiz_storage, null);
         ButterKnife.bind(this, view);
-     //   mPresenter = new QuizStoragePresenter(this, new QuizStorageInteractor(new BankQuestion()));
+        //   mPresenter = new QuizStoragePresenter(this, new QuizStorageInteractor(new BankQuestion()));
 
         /*
         DaggerAppComponent.builder()
@@ -80,7 +77,7 @@ public class QuizStorageFragment extends Fragment implements QuizStorageContract
         App.getApp(mContext).getComponentsHolder().getQuizStorageFragmentComponent(this).inject(this);
 
         FragmentActivity fragmentActivity = getActivity();
-      //  List<QuizStorageItem> mCat = mPresenter.getCategoriesNamesForViewWithoutEmpty();
+        //  List<QuizStorageItem> mCat = mPresenter.getCategoriesNamesForViewWithoutEmpty();
         mRecyclerView = (RecyclerView) view.findViewById(R.id.storage_recycler);
         mLayoutManager = new LinearLayoutManager(fragmentActivity); // XMMMMM
         mRecyclerView.setLayoutManager(mLayoutManager);

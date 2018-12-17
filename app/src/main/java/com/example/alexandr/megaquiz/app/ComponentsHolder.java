@@ -30,7 +30,6 @@ public class ComponentsHolder {
     private QuizResultFragmentComponent mQuizResultFragmentComponent;
     private QuizFragmentComponent mQuizFragmentComponent;
 
-
     public ComponentsHolder(Context context) {
         mContext = context;
     }

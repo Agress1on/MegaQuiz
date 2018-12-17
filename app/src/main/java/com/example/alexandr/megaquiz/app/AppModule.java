@@ -1,12 +1,8 @@
 package com.example.alexandr.megaquiz.app;
 
-import android.app.Application;
 import android.content.Context;
 
 import com.example.alexandr.megaquiz.bankquestion.BankQuestion;
-import com.example.alexandr.megaquiz.quizfragment.inject.QuizFragmentPresenterModule;
-
-import javax.inject.Singleton;
 
 import dagger.Module;
 import dagger.Provides;

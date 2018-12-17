@@ -11,10 +11,7 @@ import android.content.Context;
  */
 public class App extends Application {
 
-   // private static AppComponent sAppComponent;
-
     private ComponentsHolder mComponentsHolder;
-
 
     public static App getApp(Context context) {
         return (App) context.getApplicationContext();
@@ -23,22 +20,11 @@ public class App extends Application {
     @Override
     public void onCreate() {
         super.onCreate();
-        /*
-        sAppComponent = DaggerAppComponent.builder()
-                .appModule(new AppModule(this))
-                .build();
-        */
         mComponentsHolder = new ComponentsHolder(this);
         mComponentsHolder.init();
     }
+
     public ComponentsHolder getComponentsHolder() {
         return mComponentsHolder;
     }
-
-    /*
-    public static AppComponent getAppComponent() {
-        return sAppComponent;
-    }
-    */
-
 }

@@ -23,7 +23,7 @@ public class StartFragmentPresenter implements StartFragmentContract.Presenter {
     public StartFragmentPresenter(StartFragmentContract.View view, StartFragmentContract.Interactor interactor) {
         mView = view;
         mInteractor = interactor;
-        mCompositeDisposable  = new CompositeDisposable();
+        mCompositeDisposable = new CompositeDisposable();
     }
 
     @Override

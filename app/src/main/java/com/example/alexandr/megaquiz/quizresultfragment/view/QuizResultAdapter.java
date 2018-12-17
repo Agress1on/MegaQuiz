@@ -42,9 +42,9 @@ public class QuizResultAdapter extends RecyclerView.Adapter<QuizResultAdapter.Vi
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view;
         if (viewType == VIEW_ITEM_FIRST) {
-            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_result_item_first,parent, false);
+            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_result_item_first, parent, false);
         } else {
-            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_result_item_second,parent, false);
+            view = LayoutInflater.from(parent.getContext()).inflate(R.layout.recycler_result_item_second, parent, false);
         }
         ViewHolder viewHolder = new ViewHolder(view);
         return viewHolder;
@@ -52,9 +52,9 @@ public class QuizResultAdapter extends RecyclerView.Adapter<QuizResultAdapter.Vi
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-            holder.mQuestion.setText(mQuizResultItemList.get(position).getQuestion());
-            holder.mRealAnswer.setText(String.valueOf(mQuizResultItemList.get(position).isRealAnswer()));
-            holder.mUserAnswer.setText(String.valueOf(mQuizResultItemList.get(position).isUserAnswer()));
+        holder.mQuestion.setText(mQuizResultItemList.get(position).getQuestion());
+        holder.mRealAnswer.setText(String.valueOf(mQuizResultItemList.get(position).isRealAnswer()));
+        holder.mUserAnswer.setText(String.valueOf(mQuizResultItemList.get(position).isUserAnswer()));
     }
 
     @Override

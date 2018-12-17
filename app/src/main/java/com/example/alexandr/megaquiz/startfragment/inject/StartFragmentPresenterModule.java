@@ -4,7 +4,6 @@ import com.example.alexandr.megaquiz.bankquestion.BankQuestion;
 import com.example.alexandr.megaquiz.startfragment.StartFragmentContract;
 import com.example.alexandr.megaquiz.startfragment.domain.StartFragmentInteractor;
 import com.example.alexandr.megaquiz.startfragment.presentation.StartFragmentPresenter;
-import com.example.alexandr.megaquiz.startfragment.view.StartFragment;
 
 import dagger.Module;
 import dagger.Provides;

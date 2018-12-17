@@ -4,7 +4,6 @@ import com.example.alexandr.megaquiz.bankquestion.BankQuestion;
 import com.example.alexandr.megaquiz.quizfragment.QuizFragmentContract;
 import com.example.alexandr.megaquiz.quizfragment.domain.QuizFragmentInteractor;
 import com.example.alexandr.megaquiz.quizfragment.presentation.QuizFragmentPresenter;
-import com.example.alexandr.megaquiz.quizfragment.view.QuizFragment;
 
 import dagger.Module;
 import dagger.Provides;
@@ -16,6 +15,7 @@ import dagger.Provides;
  */
 @Module
 public class QuizFragmentPresenterModule {
+
     private QuizFragmentContract.View mView;
 
     public QuizFragmentPresenterModule(QuizFragmentContract.View quizFragment) {
