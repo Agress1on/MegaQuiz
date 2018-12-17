@@ -32,7 +32,6 @@ import butterknife.Unbinder;
  */
 public class StartFragment extends Fragment implements StartFragmentContract.View {
 
-    //  private StartFragmentContract.Presenter mPresenter;
     @Inject
     StartFragmentContract.Presenter mPresenter;
 
@@ -62,8 +61,9 @@ public class StartFragment extends Fragment implements StartFragmentContract.Vie
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        //  mPresenter = new StartFragmentPresenter(this, new StartFragmentInteractor(new BankQuestion()));
         /*
+        mPresenter = new StartFragmentPresenter(this, new StartFragmentInteractor(new BankQuestion()));
+
         DaggerAppComponent.builder()
                 .appModule(new AppModule(getContext()))
                 .build()
@@ -71,13 +71,13 @@ public class StartFragment extends Fragment implements StartFragmentContract.Vie
                 .inject(this);
         */
         App.getApp(mContext).getComponentsHolder().getStartFragmentComponent(this).inject(this);
+        mPresenter.initRandomCategory();
     }
 
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_start, null);
-        mPresenter.initRandomCategory();
         mUnbinder = ButterKnife.bind(this, view);
         return view;
     }
@@ -92,11 +92,6 @@ public class StartFragment extends Fragment implements StartFragmentContract.Vie
     public void onDestroyView() {
         super.onDestroyView();
         mUnbinder.unbind();
-    }
-
-    @Override
-    public void onStop() {
-        super.onStop();
     }
 
     @Override
