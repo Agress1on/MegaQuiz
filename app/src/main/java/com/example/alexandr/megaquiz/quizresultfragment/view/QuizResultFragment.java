@@ -29,6 +29,7 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnCheckedChanged;
+import butterknife.Unbinder;
 
 /**
  * Created by Alexandr Mikhalev on 11.12.2018.
@@ -37,7 +38,6 @@ import butterknife.OnCheckedChanged;
  */
 public class QuizResultFragment extends Fragment implements QuizResultFragmentContract.View {
 
-    //  private QuizResultFragmentContract.Presenter mPresenter;
     @Inject
     QuizResultFragmentContract.Presenter mPresenter;
 
@@ -61,6 +61,7 @@ public class QuizResultFragment extends Fragment implements QuizResultFragmentCo
     private RecyclerView.LayoutManager mLayoutManager;
 
     private Context mContext;
+    private Unbinder mUnbinder;
 
     @Override
     public void onAttach(Context context) {
@@ -75,9 +76,8 @@ public class QuizResultFragment extends Fragment implements QuizResultFragmentCo
         mCorrectAnswers = getArguments().getInt(Constants.EXTRAS_FOR_INTENT_QUIZ_RESULT_CORRECT_ANSWERS, 5);
         mNameCategory = getArguments().getString(Constants.EXTRAS_FOR_INTENT_QUIZ_RESULT_NAME_CATEGORY, "Error");
         mUserAnswersMap = (LinkedHashMap<Integer, Boolean>) getArguments().getSerializable(Constants.EXTRAS_FOR_INTENT_QUIZ_RESULT_MAP_USER_ANSWERS);
-
-        //  mPresenter = new QuizResultFragmentPresenter(this, new QuizResultFragmentInteractor(new BankQuestion()));
         /*
+        mPresenter = new QuizResultFragmentPresenter(this, new QuizResultFragmentInteractor(new BankQuestion()));
         DaggerAppComponent.builder()
                 .appModule(new AppModule(getContext()))
                 .build()
@@ -85,7 +85,6 @@ public class QuizResultFragment extends Fragment implements QuizResultFragmentCo
                 .inject(this);
         */
         App.getApp(mContext).getComponentsHolder().getQuizResultFragmentComponent(this).inject(this);
-
         mPresenter.initMapWithRealAnswers(mNameCategory);
         mPresenter.createItemForRecycler(mUserAnswersMap); //первое место, где иногда вылетает эксепшен
     }
@@ -94,7 +93,7 @@ public class QuizResultFragment extends Fragment implements QuizResultFragmentCo
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_quiz_result, null);
-        ButterKnife.bind(this, view);
+        mUnbinder = ButterKnife.bind(this, view);
         mPresenter.createTextForResultTextView(mQuizSize, mCorrectAnswers, mNameCategory);
 
         FragmentActivity fragmentActivity = getActivity();
@@ -107,9 +106,16 @@ public class QuizResultFragment extends Fragment implements QuizResultFragmentCo
     }
 
     @Override
-    public void onPause() {
-        super.onPause();
+    public void onDestroyView() {
+        super.onDestroyView();
+        mUnbinder.unbind();
         App.getApp(mContext).getComponentsHolder().releaseQuizResultFragmentComponent();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mPresenter.onDestroy();
     }
 
     @Override
@@ -142,11 +148,5 @@ public class QuizResultFragment extends Fragment implements QuizResultFragmentCo
         QuizResultFragment fragment = new QuizResultFragment();
         fragment.setArguments(args);
         return fragment;
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        mPresenter.onDestroy();
     }
 }
