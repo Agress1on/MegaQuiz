@@ -6,6 +6,8 @@ import com.example.alexandr.megaquiz.quizfragment.inject.QuizFragmentComponent;
 import com.example.alexandr.megaquiz.quizfragment.inject.QuizFragmentPresenterModule;
 import com.example.alexandr.megaquiz.quizfragment.view.QuizFragment;
 import com.example.alexandr.megaquiz.quizresultfragment.inject.QuizResultFragmentComponent;
+import com.example.alexandr.megaquiz.quizresultfragment.inject.QuizResultFragmentPresenterModule;
+import com.example.alexandr.megaquiz.quizresultfragment.view.QuizResultFragment;
 import com.example.alexandr.megaquiz.quizstoragefragment.inject.QuizStorageFragmentComponent;
 import com.example.alexandr.megaquiz.quizstoragefragment.inject.QuizStorageFragmentPresenterModule;
 import com.example.alexandr.megaquiz.quizstoragefragment.view.QuizStorageFragment;
@@ -86,5 +88,20 @@ public class ComponentsHolder {
 
     public void releaseQuizStorageFragmentComponent() {
         mQuizStorageFragmentComponent = null;
+    }
+
+    /*
+    QuizResultFragmentComponent
+    */
+
+    public QuizResultFragmentComponent getQuizResultFragmentComponent(QuizResultFragment quizResultFragment) {
+        if (mQuizResultFragmentComponent == null) {
+            mQuizResultFragmentComponent = getAppComponent().createQuizResultFragmentComponent(new QuizResultFragmentPresenterModule(quizResultFragment));
+        }
+        return mQuizResultFragmentComponent;
+    }
+
+    public void releaseQuizResultFragmentComponent() {
+        mQuizResultFragmentComponent = null;
     }
 }

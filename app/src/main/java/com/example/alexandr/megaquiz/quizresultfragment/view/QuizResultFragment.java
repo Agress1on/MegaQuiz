@@ -1,5 +1,6 @@
 package com.example.alexandr.megaquiz.quizresultfragment.view;
 
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -15,6 +16,7 @@ import android.widget.TextView;
 
 import com.example.alexandr.megaquiz.Constants;
 import com.example.alexandr.megaquiz.R;
+import com.example.alexandr.megaquiz.app.App;
 import com.example.alexandr.megaquiz.app.AppModule;
 import com.example.alexandr.megaquiz.app.DaggerAppComponent;
 import com.example.alexandr.megaquiz.quizresultfragment.QuizResultFragmentContract;
@@ -61,6 +63,14 @@ public class QuizResultFragment extends Fragment implements QuizResultFragmentCo
     private QuizResultAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
 
+    private Context mContext;
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        mContext = context;
+    }
+
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -70,12 +80,14 @@ public class QuizResultFragment extends Fragment implements QuizResultFragmentCo
         mUserAnswersMap = (LinkedHashMap<Integer, Boolean>) getArguments().getSerializable(Constants.EXTRAS_FOR_INTENT_QUIZ_RESULT_MAP_USER_ANSWERS);
 
       //  mPresenter = new QuizResultFragmentPresenter(this, new QuizResultFragmentInteractor(new BankQuestion()));
+        /*
         DaggerAppComponent.builder()
                 .appModule(new AppModule(getContext()))
                 .build()
                 .createQuizResultFragmentComponent(new QuizResultFragmentPresenterModule(this))
                 .inject(this);
-
+        */
+        App.getApp(mContext).getComponentsHolder().getQuizResultFragmentComponent(this).inject(this);
 
         mPresenter.initMapWithRealAnswers(mNameCategory);
         mPresenter.createItemForRecycler(mUserAnswersMap); //первое место, где иногда вылетает эксепшен
@@ -95,6 +107,12 @@ public class QuizResultFragment extends Fragment implements QuizResultFragmentCo
         mAdapter = new QuizResultAdapter(mCat);
         mRecyclerView.setAdapter(mAdapter);
         return view;
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        App.getApp(mContext).getComponentsHolder().releaseQuizResultFragmentComponent();
     }
 
     @Override
