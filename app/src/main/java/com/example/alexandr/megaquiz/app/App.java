@@ -10,16 +10,11 @@ import android.app.Application;
  */
 public class App extends Application {
 
-    // private static QuizFragmentComponent sQuizFragmentComponent;
     private static AppComponent sAppComponent;
 
     @Override
     public void onCreate() {
         super.onCreate();
-        /*
-        sComponent = DaggerQuizFragmentComponent.builder()
-                .quizFragmentPresenterModule(new QuizFragmentPresenterModule(new QuizFragmentScope())).build();
-        */
         sAppComponent = DaggerAppComponent.builder()
                 .appModule(new AppModule(this))
                 .build();
@@ -29,22 +24,4 @@ public class App extends Application {
         return sAppComponent;
     }
 
-    /*
-    public static QuizFragmentComponent getComponent() {
-        return sQuizFragmentComponent;
-    }
-    */
-    /*
-    private static QuizActivityComponent sComponent;
-
-    @Override
-    public void onCreate() {
-        super.onCreate();
-        sComponent = DaggerQuizActivityComponent.builder().quizActivityPresenterModule(new QuizActivityPresenterModule(new QuizActivity())).build();
-    }
-
-    public static QuizActivityComponent getComponent() {
-        return sComponent;
-    }
-    */
 }
