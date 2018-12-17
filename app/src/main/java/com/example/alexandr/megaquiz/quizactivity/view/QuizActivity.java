@@ -4,6 +4,7 @@ import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
+import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v7.app.AppCompatActivity;
 
@@ -33,12 +34,12 @@ public class QuizActivity extends AppCompatActivity implements QuizActivityContr
 
         mQuizFragment = QuizFragment.newInstance(mCategoryName, Constants.EXTRAS_FOR_INTENT_QUIZ_VIEW);
         mFragmentManager = getSupportFragmentManager();
-        addQuizFragment();
+        addQuizFragment(R.id.frame_for_quiz, mQuizFragment);
     }
 
-    private void addQuizFragment() {
+    private void addQuizFragment(int resourceId, Fragment fragment) {
         mFragmentManager.beginTransaction()
-                .add(R.id.frame_for_quiz, mQuizFragment)
+                .add(resourceId, fragment)
                 .commit();
     }
 
