@@ -34,7 +34,9 @@ public interface QuizFragmentContract {
     }
 
     interface Presenter {
-        void initQuestionList(String keyCategory);
+        void initCategory(String key);
+
+        void initQuestionList();
 
         void prepareViewForFirstQuestion();
 

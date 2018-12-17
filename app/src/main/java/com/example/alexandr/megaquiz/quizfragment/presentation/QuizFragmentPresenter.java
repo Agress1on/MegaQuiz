@@ -31,7 +31,7 @@ public class QuizFragmentPresenter implements QuizFragmentContract.Presenter {
     private List<String> mQuestions;
     private int mCurrentIndex;
     private Map<Integer, Answer> mAnswers;
-    private String mCategoryName;
+    private String mCategoryName = "";
     private CompositeDisposable mCompositeDisposable;
     private LinkedHashMap<Integer, Boolean> mMapAnswers;
 
@@ -46,10 +46,19 @@ public class QuizFragmentPresenter implements QuizFragmentContract.Presenter {
     }
 
     @Override
-    public void initQuestionList(String keyCategory) {
-        mCategoryName = keyCategory;
+    public void initCategory(String key) {
+        if (mCategoryName.equals("")) {
+            mCategoryName = key;
+            initQuestionList();
+        } else {
+            prepareViewForFirstQuestion();
+        }
+    }
+
+    @Override
+    public void initQuestionList() {
         showProgressBar(true);
-        Disposable disposable = mInteractor.getQuestions(keyCategory)
+        Disposable disposable = mInteractor.getQuestions(mCategoryName)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<List<String>>() {
