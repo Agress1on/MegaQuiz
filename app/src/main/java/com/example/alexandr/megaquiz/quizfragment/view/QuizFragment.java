@@ -14,11 +14,8 @@ import android.widget.TextView;
 import com.example.alexandr.megaquiz.Constants;
 import com.example.alexandr.megaquiz.R;
 import com.example.alexandr.megaquiz.app.App;
-import com.example.alexandr.megaquiz.app.AppModule;
-import com.example.alexandr.megaquiz.app.DaggerAppComponent;
 import com.example.alexandr.megaquiz.quizfragment.Answer;
 import com.example.alexandr.megaquiz.quizfragment.QuizFragmentContract;
-import com.example.alexandr.megaquiz.quizfragment.inject.QuizFragmentPresenterModule;
 import com.example.alexandr.megaquiz.quizresultfragment.view.QuizResultFragment;
 
 import net.bohush.geometricprogressview.GeometricProgressView;
@@ -95,12 +92,6 @@ public class QuizFragment extends Fragment implements QuizFragmentContract.View 
         //  mPresenter = new QuizFragmentPresenter(this, new QuizFragmentInteractor(new BankQuestion()));
 
         /*
-        DaggerQuizFragmentComponent.builder()
-                .quizFragmentPresenterModule(new QuizFragmentPresenterModule(this))
-                .build()
-                .inject(this);
-        */
-        /*
         DaggerAppComponent.builder()
                 .appModule(new AppModule(getContext()))
                 .build()
@@ -117,6 +108,18 @@ public class QuizFragment extends Fragment implements QuizFragmentContract.View 
         ButterKnife.bind(this, view);
         mPresenter.initQuestionList(mCategoryName);
         return view;
+    }
+
+    @Override
+    public void onPause() {
+        super.onPause();
+        App.getApp(mContext).getComponentsHolder().releaseQuizFragmentComponent();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mPresenter.onDestroy();
     }
 
     @Override
@@ -196,12 +199,6 @@ public class QuizFragment extends Fragment implements QuizFragmentContract.View 
                 mPresenter.onPrevButton();
                 break;
         }
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        mPresenter.onDestroy();
     }
 
     public static QuizFragment newInstance(String key, String extras) {

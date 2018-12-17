@@ -58,4 +58,8 @@ public class ComponentsHolder {
         }
         return mQuizFragmentComponent;
     }
+
+    public void releaseQuizFragmentComponent() {
+        mQuizFragmentComponent = null;
+    }
 }

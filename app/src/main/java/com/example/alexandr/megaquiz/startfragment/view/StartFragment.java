@@ -14,12 +14,9 @@ import android.widget.ImageView;
 
 import com.example.alexandr.megaquiz.R;
 import com.example.alexandr.megaquiz.app.App;
-import com.example.alexandr.megaquiz.app.AppModule;
-import com.example.alexandr.megaquiz.app.DaggerAppComponent;
 import com.example.alexandr.megaquiz.quizactivity.view.QuizActivity;
 import com.example.alexandr.megaquiz.quizstoragefragment.view.QuizStorageFragment;
 import com.example.alexandr.megaquiz.startfragment.StartFragmentContract;
-import com.example.alexandr.megaquiz.startfragment.inject.StartFragmentPresenterModule;
 
 import javax.inject.Inject;
 
