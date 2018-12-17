@@ -26,7 +26,7 @@ public class AppModule {
     }
 
     @Provides
-    @Singleton
+    @AppScope
     BankQuestion provideBankQuestion() {
         return new BankQuestion();
     }

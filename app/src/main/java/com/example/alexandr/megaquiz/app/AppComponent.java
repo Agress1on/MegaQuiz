@@ -18,7 +18,7 @@ import dagger.Component;
  *
  * @author Alexandr Mikhalev
  */
-@Singleton
+@AppScope
 @Component(
         modules = {
                 AppModule.class,
