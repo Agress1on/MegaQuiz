@@ -8,5 +8,12 @@ import com.example.alexandr.megaquiz.quizactivity.QuizActivityContract;
  * @author Alexandr Mikhalev
  */
 public class QuizActivityPresenter implements QuizActivityContract.Presenter {
+    private QuizActivityContract.View mView;
+    private QuizActivityContract.Interactor mInteractor;
 
+    public QuizActivityPresenter(QuizActivityContract.View view, QuizActivityContract.Interactor interactor) {
+        mView = view;
+        mInteractor = interactor;
+        mView.addQuizFragment();
+    }
 }

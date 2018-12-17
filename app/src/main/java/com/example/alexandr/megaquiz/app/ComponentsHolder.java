@@ -2,6 +2,9 @@ package com.example.alexandr.megaquiz.app;
 
 import android.content.Context;
 
+import com.example.alexandr.megaquiz.quizactivity.inject.QuizActivityComponent;
+import com.example.alexandr.megaquiz.quizactivity.inject.QuizActivityPresenterModule;
+import com.example.alexandr.megaquiz.quizactivity.view.QuizActivity;
 import com.example.alexandr.megaquiz.quizfragment.inject.QuizFragmentComponent;
 import com.example.alexandr.megaquiz.quizfragment.inject.QuizFragmentPresenterModule;
 import com.example.alexandr.megaquiz.quizfragment.view.QuizFragment;
@@ -29,6 +32,8 @@ public class ComponentsHolder {
     private QuizStorageFragmentComponent mQuizStorageFragmentComponent;
     private QuizResultFragmentComponent mQuizResultFragmentComponent;
     private QuizFragmentComponent mQuizFragmentComponent;
+
+    private QuizActivityComponent mQuizActivityComponent;
 
     public ComponentsHolder(Context context) {
         mContext = context;
@@ -102,5 +107,20 @@ public class ComponentsHolder {
 
     public void releaseQuizResultFragmentComponent() {
         mQuizResultFragmentComponent = null;
+    }
+
+    /*
+    QuizActivityComponent
+    */
+
+    public QuizActivityComponent getQuizActivityComponent(QuizActivity quizActivity) {
+        if (mQuizActivityComponent == null) {
+            mQuizActivityComponent = getAppComponent().createQuizActivityComponent(new QuizActivityPresenterModule(quizActivity));
+        }
+        return mQuizActivityComponent;
+    }
+
+    public void releaseQuizActivityComponent() {
+        mQuizActivityComponent = null;
     }
 }

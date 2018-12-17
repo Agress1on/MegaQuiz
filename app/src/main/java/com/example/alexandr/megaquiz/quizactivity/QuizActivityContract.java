@@ -1,5 +1,7 @@
 package com.example.alexandr.megaquiz.quizactivity;
 
+import android.support.v4.app.Fragment;
+
 /**
  * Created by Alexandr Mikhalev on 13.09.2018.
  *
@@ -12,7 +14,7 @@ public interface QuizActivityContract {
     }
 
     interface View {
-
+        void addQuizFragment();
     }
 
     interface Presenter {

@@ -10,8 +10,11 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.example.alexandr.megaquiz.Constants;
 import com.example.alexandr.megaquiz.R;
+import com.example.alexandr.megaquiz.app.App;
 import com.example.alexandr.megaquiz.quizactivity.QuizActivityContract;
 import com.example.alexandr.megaquiz.quizfragment.view.QuizFragment;
+
+import javax.inject.Inject;
 
 /**
  * Created by Alexandr Mikhalev on 13.09.2018.
@@ -19,6 +22,9 @@ import com.example.alexandr.megaquiz.quizfragment.view.QuizFragment;
  * @author Alexandr Mikhalev
  */
 public class QuizActivity extends AppCompatActivity implements QuizActivityContract.View {
+
+    @Inject
+    QuizActivityContract.Presenter mPresenter;
 
     private String mCategoryName = "";
     private QuizFragment mQuizFragment;
@@ -34,12 +40,13 @@ public class QuizActivity extends AppCompatActivity implements QuizActivityContr
 
         mQuizFragment = QuizFragment.newInstance(mCategoryName, Constants.EXTRAS_FOR_INTENT_QUIZ_VIEW);
         mFragmentManager = getSupportFragmentManager();
-        addQuizFragment(R.id.frame_for_quiz, mQuizFragment);
+        App.getApp(this).getComponentsHolder().getQuizActivityComponent(this).inject(this);
     }
 
-    private void addQuizFragment(int resourceId, Fragment fragment) {
+    @Override
+    public void addQuizFragment() {
         mFragmentManager.beginTransaction()
-                .add(resourceId, fragment)
+                .add(R.id.frame_for_quiz, mQuizFragment)
                 .commit();
     }
 
