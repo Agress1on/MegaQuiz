@@ -29,6 +29,7 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 import butterknife.OnCheckedChanged;
+import butterknife.Unbinder;
 
 /**
  * Created by Alexandr Mikhalev on 11.09.2018.
@@ -37,7 +38,6 @@ import butterknife.OnCheckedChanged;
  */
 public class QuizStorageFragment extends Fragment implements QuizStorageContract.View {
 
-    // private QuizStorageContract.Presenter mPresenter;
     @Inject
     QuizStorageContract.Presenter mPresenter;
 
@@ -53,6 +53,7 @@ public class QuizStorageFragment extends Fragment implements QuizStorageContract
     private List<QuizStorageItem> mCat;
 
     private Context mContext;
+    private Unbinder mUnbinder;
 
     @Override
     public void onAttach(Context context) {
@@ -60,14 +61,11 @@ public class QuizStorageFragment extends Fragment implements QuizStorageContract
         mContext = context;
     }
 
-    @Nullable
     @Override
-    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_quiz_storage, null);
-        ButterKnife.bind(this, view);
-        //   mPresenter = new QuizStoragePresenter(this, new QuizStorageInteractor(new BankQuestion()));
-
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
         /*
+        mPresenter = new QuizStoragePresenter(this, new QuizStorageInteractor(new BankQuestion()));
         DaggerAppComponent.builder()
                 .appModule(new AppModule(getContext()))
                 .build()
@@ -75,9 +73,14 @@ public class QuizStorageFragment extends Fragment implements QuizStorageContract
                 .inject(this);
         */
         App.getApp(mContext).getComponentsHolder().getQuizStorageFragmentComponent(this).inject(this);
+    }
 
+    @Nullable
+    @Override
+    public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
+        View view = inflater.inflate(R.layout.fragment_quiz_storage, null);
+        mUnbinder = ButterKnife.bind(this, view);
         FragmentActivity fragmentActivity = getActivity();
-        //  List<QuizStorageItem> mCat = mPresenter.getCategoriesNamesForViewWithoutEmpty();
         mRecyclerView = (RecyclerView) view.findViewById(R.id.storage_recycler);
         mLayoutManager = new LinearLayoutManager(fragmentActivity); // XMMMMM
         mRecyclerView.setLayoutManager(mLayoutManager);
@@ -87,9 +90,16 @@ public class QuizStorageFragment extends Fragment implements QuizStorageContract
     }
 
     @Override
-    public void onPause() {
-        super.onPause();
+    public void onDestroyView() {
+        super.onDestroyView();
+        mUnbinder.unbind();
         App.getApp(mContext).getComponentsHolder().releaseQuizStorageFragmentComponent();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        mPresenter.onDestroy();
     }
 
     @Override
@@ -116,12 +126,6 @@ public class QuizStorageFragment extends Fragment implements QuizStorageContract
     @OnCheckedChanged({R.id.list_switch})
     void onSelected(Switch button, boolean checked) {
         mPresenter.onCheckBoxClick(checked);
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        mPresenter.onDestroy();
     }
 
     public static QuizStorageFragment newInstance() {
