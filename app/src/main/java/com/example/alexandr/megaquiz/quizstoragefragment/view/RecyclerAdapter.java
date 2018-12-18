@@ -51,6 +51,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     @Override
     public RecyclerAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v;
+        /*
         if (viewType == VIEW_ITEM_FIRST) {
             v = LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.recycler_storage_item_first, parent, false);
@@ -58,6 +59,9 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
             v = LayoutInflater.from(parent.getContext())
                     .inflate(R.layout.recycler_storage_item_second, parent, false);
         }
+        */
+        v = LayoutInflater.from(parent.getContext())
+                .inflate(R.layout.recycler_storage_item_test, parent, false);
         ViewHolder viewHolder = new ViewHolder(v);
         return viewHolder;
     }

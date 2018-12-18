@@ -8,6 +8,7 @@ import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.util.DiffUtil;
+import android.support.v7.widget.GridLayoutManager;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
@@ -49,7 +50,8 @@ public class QuizStorageFragment extends Fragment implements QuizStorageContract
 
     private RecyclerView mRecyclerView;
     private RecyclerAdapter mAdapter;
-    private RecyclerView.LayoutManager mLayoutManager;
+ //   private RecyclerView.LayoutManager mLayoutManager;
+    private GridLayoutManager mLayoutManager;
     private List<QuizStorageItem> mCat;
 
     private Context mContext;
@@ -82,7 +84,9 @@ public class QuizStorageFragment extends Fragment implements QuizStorageContract
         mUnbinder = ButterKnife.bind(this, view);
         FragmentActivity fragmentActivity = getActivity();
         mRecyclerView = (RecyclerView) view.findViewById(R.id.storage_recycler);
-        mLayoutManager = new LinearLayoutManager(fragmentActivity); // XMMMMM
+
+     //   mLayoutManager = new LinearLayoutManager(fragmentActivity); // XMMMMM
+        mLayoutManager = new GridLayoutManager(fragmentActivity, 2);
         mRecyclerView.setLayoutManager(mLayoutManager);
         mAdapter = new RecyclerAdapter(mCat, key -> mPresenter.onClick(key));
         mRecyclerView.setAdapter(mAdapter);

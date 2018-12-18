@@ -1,0 +1,76 @@
+<?xml version="1.0" encoding="utf-8"?>
+<android.support.constraint.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="150dp"
+    android:layout_marginStart="3dp"
+    android:layout_marginEnd="3dp"
+    android:layout_marginTop="3dp"
+    android:layout_marginBottom="6dp"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:background="@color/colorGreen">
+
+    <ImageView
+        android:id="@+id/logo"
+        android:layout_width="50dp"
+        android:layout_height="50dp"
+        android:layout_marginTop="10dp"
+        android:background="@drawable/ic_list_for_quiz_storage"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/view_for_header"
+        android:layout_width="0dp"
+        android:layout_height="40dp"
+        android:background="@color/colorDarkGreen"
+        app:layout_constraintTop_toTopOf="@id/position_item_recycler"
+        app:layout_constraintBottom_toBottomOf="@id/position_item_recycler"/>
+
+    <TextView
+        android:id="@+id/for_quiz_size_quantity"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="Кол-во вопросов:"
+        android:textSize="15sp"
+        android:textColor="@color/colorLightGray"
+        android:layout_marginBottom="5dp"
+        android:layout_marginStart="5dp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        />
+    <TextView
+        android:id="@+id/name_item_recycler"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="EXAMPLE"
+        android:textSize="25dp"
+        android:textColor="@color/colorWhite"
+        android:layout_marginStart="10dp"
+        app:layout_constraintTop_toTopOf="@id/position_item_recycler"
+        app:layout_constraintStart_toEndOf="@id/position_item_recycler"/>
+    <TextView
+        android:id="@+id/position_item_recycler"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:textSize="25dp"
+        android:textColor="@color/colorWhite"
+        tools:text="1"
+        android:layout_marginBottom="10dp"
+        app:layout_constraintBottom_toTopOf="@id/for_quiz_size_quantity"
+        app:layout_constraintStart_toStartOf="@id/for_quiz_size_quantity"
+        />
+    <TextView
+        android:id="@+id/number_quantity_item_recycler"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        tools:text="5"
+        android:layout_marginStart="5dp"
+        android:textSize="15sp"
+        android:textColor="@color/colorLightGray"
+        app:layout_constraintTop_toTopOf="@id/for_quiz_size_quantity"
+        app:layout_constraintStart_toEndOf="@id/for_quiz_size_quantity"
+        app:layout_constraintBottom_toBottomOf="@id/for_quiz_size_quantity"/>
+
+</android.support.constraint.ConstraintLayout>
