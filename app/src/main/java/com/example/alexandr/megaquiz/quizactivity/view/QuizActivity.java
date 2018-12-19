@@ -38,7 +38,7 @@ public class QuizActivity extends AppCompatActivity implements QuizActivityContr
         Intent intent = getIntent();
         mCategoryName = intent.getStringExtra(Constants.EXTRAS_FOR_INTENT_QUIZ_VIEW);
 
-        mQuizFragment = QuizFragment.newInstance(mCategoryName, Constants.EXTRAS_FOR_INTENT_QUIZ_VIEW);
+        mQuizFragment = QuizFragment.newInstance(mCategoryName);
         mFragmentManager = getSupportFragmentManager();
         App.getApp(this).getComponentsHolder().getQuizActivityComponent(this).inject(this);
     }

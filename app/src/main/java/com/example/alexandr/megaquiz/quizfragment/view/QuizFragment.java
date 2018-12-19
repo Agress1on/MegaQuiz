@@ -202,9 +202,9 @@ public class QuizFragment extends Fragment implements QuizFragmentContract.View 
         }
     }
 
-    public static QuizFragment newInstance(String key, String extras) {
+    public static QuizFragment newInstance(String key) {
         Bundle args = new Bundle();
-        args.putString(extras, key);
+        args.putString(Constants.EXTRAS_FOR_INTENT_QUIZ_VIEW, key);
         QuizFragment fragment = new QuizFragment();
         fragment.setArguments(args);
         return fragment;
