@@ -139,7 +139,7 @@ public class ComponentsHolder {
         return mStartActivityComponent;
     }
 
-    public void releaseStartAcvitivyCoponent() {
+    public void releaseStartActivityComponent() {
         mStartActivityComponent = null;
     }
 }

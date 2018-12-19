@@ -18,8 +18,6 @@ import com.example.alexandr.megaquiz.R;
 import com.example.alexandr.megaquiz.app.App;
 import com.example.alexandr.megaquiz.infofragment.view.InfoFragment;
 import com.example.alexandr.megaquiz.startactivity.StartContract;
-import com.example.alexandr.megaquiz.startactivity.domain.StartActivityInteractor;
-import com.example.alexandr.megaquiz.startactivity.presentation.StartActivityPresenter;
 import com.example.alexandr.megaquiz.startfragment.view.StartFragment;
 
 import javax.inject.Inject;
@@ -70,6 +68,12 @@ public class StartActivity extends AppCompatActivity implements StartContract.Vi
         mStartFragment = StartFragment.newInstance();
         mInfoFragment = InfoFragment.newInstance();
         addFragment(R.id.container_for_fragments, mStartFragment);
+    }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        App.getApp(this).getComponentsHolder().releaseStartActivityComponent();
     }
 
     private void addFragment(int resourceId, Fragment fragment) {

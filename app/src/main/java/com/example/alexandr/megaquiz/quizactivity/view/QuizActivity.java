@@ -44,6 +44,12 @@ public class QuizActivity extends AppCompatActivity implements QuizActivityContr
     }
 
     @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        App.getApp(this).getComponentsHolder().releaseQuizActivityComponent();
+    }
+
+    @Override
     public void addQuizFragment() {
         mFragmentManager.beginTransaction()
                 .add(R.id.frame_for_quiz, mQuizFragment)
