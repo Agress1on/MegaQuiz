@@ -1,7 +1,6 @@
 package com.example.alexandr.megaquiz.startfragment.view;
 
 import android.content.Context;
-import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
@@ -14,8 +13,6 @@ import android.widget.ImageView;
 
 import com.example.alexandr.megaquiz.R;
 import com.example.alexandr.megaquiz.app.App;
-import com.example.alexandr.megaquiz.quizactivity.view.QuizActivity;
-import com.example.alexandr.megaquiz.quizstoragefragment.view.QuizStorageFragment;
 import com.example.alexandr.megaquiz.startfragment.StartFragmentContract;
 
 import javax.inject.Inject;
@@ -52,6 +49,8 @@ public class StartFragment extends Fragment implements StartFragmentContract.Vie
 
     private Context mContext;
 
+    StartFragmentContract.Router mRouter;
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -72,6 +71,15 @@ public class StartFragment extends Fragment implements StartFragmentContract.Vie
         */
         App.getApp(mContext).getComponentsHolder().getStartFragmentComponent(this).inject(this);
         mPresenter.initRandomCategory();
+
+
+        if (getParentFragment() instanceof StartFragmentContract.Router) {
+            mRouter = (StartFragmentContract.Router) getParentFragment();
+        } else if (getActivity() instanceof StartFragmentContract.Router) {
+            mRouter = (StartFragmentContract.Router) getActivity();
+        } else {
+            throw new IllegalStateException("Parent container must be StartFragmentContract.Router");
+        }
     }
 
     @Nullable
@@ -103,17 +111,22 @@ public class StartFragment extends Fragment implements StartFragmentContract.Vie
 
     @Override
     public void startQuizViewWithRandom(String randomCategory) {
+        /*
         Intent intent = QuizActivity.getIntent(mContext, randomCategory);
         startActivity(intent);
+        */
     }
 
     @Override
     public void startQuizStorage() {
+        mRouter.goToQuizStorage();
+        /*
         QuizStorageFragment fragment = QuizStorageFragment.newInstance();
         getActivity().getSupportFragmentManager().beginTransaction()
                 .addToBackStack(null)
                 .replace(R.id.container_for_fragments, fragment)
                 .commit();
+        */
     }
 
     private void animation() {

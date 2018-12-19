@@ -17,7 +17,9 @@ import android.view.MenuItem;
 import com.example.alexandr.megaquiz.R;
 import com.example.alexandr.megaquiz.app.App;
 import com.example.alexandr.megaquiz.infofragment.view.InfoFragment;
+import com.example.alexandr.megaquiz.quizstoragefragment.view.QuizStorageFragment;
 import com.example.alexandr.megaquiz.startactivity.StartContract;
+import com.example.alexandr.megaquiz.startfragment.StartFragmentContract;
 import com.example.alexandr.megaquiz.startfragment.view.StartFragment;
 
 import javax.inject.Inject;
@@ -25,7 +27,8 @@ import javax.inject.Inject;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class StartActivity extends AppCompatActivity implements StartContract.View, NavigationView.OnNavigationItemSelectedListener {
+public class StartActivity extends AppCompatActivity
+        implements StartContract.View, NavigationView.OnNavigationItemSelectedListener, StartFragmentContract.Router {
 
     //    private StartContract.Presenter mPresenter;
     @Inject
@@ -42,6 +45,7 @@ public class StartActivity extends AppCompatActivity implements StartContract.Vi
 
     private StartFragment mStartFragment;
     private InfoFragment mInfoFragment;
+    private QuizStorageFragment mQuizStorageFragment;
     private FragmentManager mFragmentManager;
 
     @Override
@@ -65,9 +69,23 @@ public class StartActivity extends AppCompatActivity implements StartContract.Vi
         mNavigationView.setNavigationItemSelectedListener(this);
         //ND END
 
+        mQuizStorageFragment = QuizStorageFragment.newInstance();
         mStartFragment = StartFragment.newInstance();
         mInfoFragment = InfoFragment.newInstance();
         addFragment(R.id.container_for_fragments, mStartFragment);
+    }
+
+    @Override
+    public void goToRandomQuestion() {
+
+    }
+
+    @Override
+    public void goToQuizStorage() {
+       mFragmentManager.beginTransaction()
+               .addToBackStack(null)
+               .replace(R.id.container_for_fragments, mQuizStorageFragment)
+               .commit();
     }
 
     @Override
@@ -87,11 +105,6 @@ public class StartActivity extends AppCompatActivity implements StartContract.Vi
                 .addToBackStack(null)
                 .add(resourceId, fragment)
                 .commit();
-    }
-
-    public static Intent getIntent(Context context) {
-        Intent intent = new Intent(context, StartActivity.class);
-        return intent;
     }
 
     @Override
@@ -117,5 +130,10 @@ public class StartActivity extends AppCompatActivity implements StartContract.Vi
         } else {
             super.onBackPressed();
         }
+    }
+
+    public static Intent getIntent(Context context) {
+        Intent intent = new Intent(context, StartActivity.class);
+        return intent;
     }
 }

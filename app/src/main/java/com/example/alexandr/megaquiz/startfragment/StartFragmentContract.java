@@ -28,4 +28,9 @@ public interface StartFragmentContract {
 
         void onDestroy();
     }
+
+    interface Router {
+        void goToRandomQuestion();
+        void goToQuizStorage();
+    }
 }
