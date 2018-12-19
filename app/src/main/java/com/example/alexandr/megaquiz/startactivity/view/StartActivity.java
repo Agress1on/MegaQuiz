@@ -15,18 +15,23 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import com.example.alexandr.megaquiz.R;
+import com.example.alexandr.megaquiz.app.App;
 import com.example.alexandr.megaquiz.infofragment.view.InfoFragment;
 import com.example.alexandr.megaquiz.startactivity.StartContract;
 import com.example.alexandr.megaquiz.startactivity.domain.StartActivityInteractor;
 import com.example.alexandr.megaquiz.startactivity.presentation.StartActivityPresenter;
 import com.example.alexandr.megaquiz.startfragment.view.StartFragment;
 
+import javax.inject.Inject;
+
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class StartActivity extends AppCompatActivity implements StartContract.View, NavigationView.OnNavigationItemSelectedListener {
 
-    private StartContract.Presenter mPresenter;
+    //    private StartContract.Presenter mPresenter;
+    @Inject
+    StartContract.Presenter mPresenter;
 
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
@@ -46,8 +51,12 @@ public class StartActivity extends AppCompatActivity implements StartContract.Vi
         super.onCreate(savedInstanceState);
         setContentView(R.layout.nd_activity_main_for_start_view); // для ND
         ButterKnife.bind(this);
-        mPresenter = new StartActivityPresenter(this, new StartActivityInteractor());
+
+        // mPresenter = new StartActivityPresenter(this, new StartActivityInteractor());
+        App.getApp(this).getComponentsHolder().getStartActivityComponent(this).inject(this);
+
         mFragmentManager = getSupportFragmentManager();
+
         //ND START
         setSupportActionBar(mToolbar);
         ActionBarDrawerToggle toggle =
@@ -57,6 +66,7 @@ public class StartActivity extends AppCompatActivity implements StartContract.Vi
         toggle.syncState();
         mNavigationView.setNavigationItemSelectedListener(this);
         //ND END
+
         mStartFragment = StartFragment.newInstance();
         mInfoFragment = InfoFragment.newInstance();
         addFragment(R.id.container_for_fragments, mStartFragment);
@@ -67,6 +77,7 @@ public class StartActivity extends AppCompatActivity implements StartContract.Vi
                 .add(resourceId, fragment)
                 .commit();
     }
+
     private void addFragmentWithBackStack(int resourceId, Fragment fragment) {
         mFragmentManager.beginTransaction()
                 .addToBackStack(null)
