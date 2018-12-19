@@ -30,7 +30,6 @@ import butterknife.ButterKnife;
 public class StartActivity extends AppCompatActivity
         implements StartContract.View, NavigationView.OnNavigationItemSelectedListener, StartFragmentContract.Router {
 
-    //    private StartContract.Presenter mPresenter;
     @Inject
     StartContract.Presenter mPresenter;
 
