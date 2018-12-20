@@ -49,6 +49,21 @@ public class ComponentsHolder {
                 .build();
     }
 
+    /*
+    StartActivityComponent
+    */
+
+    public StartActivityComponent getStartActivityComponent(StartActivity startActivity) {
+        if (mStartActivityComponent == null) {
+            mStartActivityComponent = getAppComponent().createStartActivityComponent(new StartActivityPresenterModule(startActivity));
+        }
+        return mStartActivityComponent;
+    }
+
+    public void releaseStartActivityComponent() {
+        mStartActivityComponent = null;
+    }
+
     public AppComponent getAppComponent() {
         return mAppComponent;
     }
@@ -69,21 +84,6 @@ public class ComponentsHolder {
     }
 
     /*
-    QuizFragmentComponent
-    */
-
-    public QuizFragmentComponent getQuizFragmentComponent(QuizFragment quizFragment) {
-        if (mQuizFragmentComponent == null) {
-            mQuizFragmentComponent = getAppComponent().createQuizFragmentComponent(new QuizFragmentPresenterModule(quizFragment));
-        }
-        return mQuizFragmentComponent;
-    }
-
-    public void releaseQuizFragmentComponent() {
-        mQuizFragmentComponent = null;
-    }
-
-    /*
     QuizStorageFragmentComponent
     */
 
@@ -96,6 +96,21 @@ public class ComponentsHolder {
 
     public void releaseQuizStorageFragmentComponent() {
         mQuizStorageFragmentComponent = null;
+    }
+
+    /*
+    QuizFragmentComponent
+    */
+
+    public QuizFragmentComponent getQuizFragmentComponent(QuizFragment quizFragment) {
+        if (mQuizFragmentComponent == null) {
+            mQuizFragmentComponent = getAppComponent().createQuizFragmentComponent(new QuizFragmentPresenterModule(quizFragment));
+        }
+        return mQuizFragmentComponent;
+    }
+
+    public void releaseQuizFragmentComponent() {
+        mQuizFragmentComponent = null;
     }
 
     /*
@@ -126,20 +141,5 @@ public class ComponentsHolder {
 
     public void releaseQuizActivityComponent() {
         mQuizActivityComponent = null;
-    }
-
-    /*
-    StartActivityComponent
-    */
-
-    public StartActivityComponent getStartActivityComponent(StartActivity startActivity) {
-        if (mStartActivityComponent == null) {
-            mStartActivityComponent = getAppComponent().createStartActivityComponent(new StartActivityPresenterModule(startActivity));
-        }
-        return mStartActivityComponent;
-    }
-
-    public void releaseStartActivityComponent() {
-        mStartActivityComponent = null;
     }
 }
