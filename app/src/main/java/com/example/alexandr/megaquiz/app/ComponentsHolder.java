@@ -14,9 +14,7 @@ import com.example.alexandr.megaquiz.quizresultfragment.view.QuizResultFragment;
 import com.example.alexandr.megaquiz.quizstoragefragment.inject.QuizStorageFragmentComponent;
 import com.example.alexandr.megaquiz.quizstoragefragment.inject.QuizStorageFragmentPresenterModule;
 import com.example.alexandr.megaquiz.quizstoragefragment.view.QuizStorageFragment;
-import com.example.alexandr.megaquiz.startactivity.inject.StartActivityComponent;
-import com.example.alexandr.megaquiz.startactivity.inject.StartActivityPresenterModule;
-import com.example.alexandr.megaquiz.startactivity.view.StartActivity;
+import com.example.alexandr.megaquiz.startfragment.StartFragmentContract;
 import com.example.alexandr.megaquiz.startfragment.inject.StartFragmentComponent;
 import com.example.alexandr.megaquiz.startfragment.inject.StartFragmentPresenterModule;
 import com.example.alexandr.megaquiz.startfragment.view.StartFragment;
@@ -37,7 +35,7 @@ public class ComponentsHolder {
     private QuizFragmentComponent mQuizFragmentComponent;
 
     private QuizActivityComponent mQuizActivityComponent;
-    private StartActivityComponent mStartActivityComponent;
+    //  private StartActivityComponent mStartActivityComponent;
 
     public ComponentsHolder(Context context) {
         mContext = context;
@@ -49,9 +47,14 @@ public class ComponentsHolder {
                 .build();
     }
 
+    public AppComponent getAppComponent() {
+        return mAppComponent;
+    }
+
     /*
+     *//*
     StartActivityComponent
-    */
+    *//*
 
     public StartActivityComponent getStartActivityComponent(StartActivity startActivity) {
         if (mStartActivityComponent == null) {
@@ -64,17 +67,15 @@ public class ComponentsHolder {
         mStartActivityComponent = null;
     }
 
-    public AppComponent getAppComponent() {
-        return mAppComponent;
-    }
+    */
 
     /*
     StartFragmentComponent
     */
 
-    public StartFragmentComponent getStartFragmentComponent(StartFragment startFragment) {
+    public StartFragmentComponent getStartFragmentComponent(StartFragment startFragment, StartFragmentContract.Router router) {
         if (mStartFragmentComponent == null) {
-            mStartFragmentComponent = getAppComponent().createStartFragmentComponent(new StartFragmentPresenterModule(startFragment));
+            mStartFragmentComponent = getAppComponent().createStartFragmentComponent(new StartFragmentPresenterModule(startFragment, router));
         }
         return mStartFragmentComponent;
     }

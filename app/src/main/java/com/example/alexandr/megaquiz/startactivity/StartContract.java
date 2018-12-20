@@ -7,6 +7,7 @@ package com.example.alexandr.megaquiz.startactivity;
  */
 public interface StartContract {
 
+    /*
     interface Interactor {
 
     }
@@ -14,6 +15,7 @@ public interface StartContract {
     interface View {
 
     }
+    */
 
     interface Presenter {
 

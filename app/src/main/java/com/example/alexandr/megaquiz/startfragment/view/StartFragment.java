@@ -49,7 +49,7 @@ public class StartFragment extends Fragment implements StartFragmentContract.Vie
 
     private Context mContext;
 
-    StartFragmentContract.Router mRouter;
+    private StartFragmentContract.Router mRouter;
 
     @Override
     public void onAttach(Context context) {
@@ -69,10 +69,6 @@ public class StartFragment extends Fragment implements StartFragmentContract.Vie
                 .createStartFragmentComponent(new StartFragmentPresenterModule(this))
                 .inject(this);
         */
-        App.getApp(mContext).getComponentsHolder().getStartFragmentComponent(this).inject(this);
-        mPresenter.initRandomCategory();
-
-
         if (getParentFragment() instanceof StartFragmentContract.Router) {
             mRouter = (StartFragmentContract.Router) getParentFragment();
         } else if (getActivity() instanceof StartFragmentContract.Router) {
@@ -80,6 +76,9 @@ public class StartFragment extends Fragment implements StartFragmentContract.Vie
         } else {
             throw new IllegalStateException("Parent container must be StartFragmentContract.Router");
         }
+
+        App.getApp(mContext).getComponentsHolder().getStartFragmentComponent(this, mRouter).inject(this);
+        mPresenter.initRandomCategory();
     }
 
     @Nullable
@@ -93,7 +92,7 @@ public class StartFragment extends Fragment implements StartFragmentContract.Vie
     @Override
     public void onPause() {
         super.onPause();
-        mPresenter.initRandomCategory();
+        //mPresenter.initRandomCategory();
     }
 
     @Override

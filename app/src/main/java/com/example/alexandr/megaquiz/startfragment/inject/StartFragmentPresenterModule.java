@@ -17,15 +17,17 @@ import dagger.Provides;
 public class StartFragmentPresenterModule {
 
     private StartFragmentContract.View mView;
+    private StartFragmentContract.Router mRouter;
 
-    public StartFragmentPresenterModule(StartFragmentContract.View startFragment) {
+    public StartFragmentPresenterModule(StartFragmentContract.View startFragment, StartFragmentContract.Router router) {
         mView = startFragment;
+        mRouter = router;
     }
 
     @StartFragmentScope
     @Provides
     StartFragmentContract.Presenter providePresenter(StartFragmentContract.Interactor startFragmentInteractor) {
-        return new StartFragmentPresenter(mView, startFragmentInteractor);
+        return new StartFragmentPresenter(mView, startFragmentInteractor, mRouter);
     }
 
     @StartFragmentScope

@@ -9,8 +9,15 @@ import dagger.Subcomponent;
  *
  * @author Alexandr Mikhalev
  */
+/*
+
 @StartActivityScope
 @Subcomponent(modules = StartActivityPresenterModule.class)
 public interface StartActivityComponent {
     void inject(StartActivity startActivity);
 }
+
+*/
+
+
+

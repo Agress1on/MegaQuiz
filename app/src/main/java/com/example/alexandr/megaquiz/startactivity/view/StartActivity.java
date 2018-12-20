@@ -5,7 +5,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
-import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentManager;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
@@ -15,23 +14,21 @@ import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 
 import com.example.alexandr.megaquiz.R;
-import com.example.alexandr.megaquiz.app.App;
 import com.example.alexandr.megaquiz.infofragment.view.InfoFragment;
 import com.example.alexandr.megaquiz.quizstoragefragment.view.QuizStorageFragment;
-import com.example.alexandr.megaquiz.startactivity.StartContract;
 import com.example.alexandr.megaquiz.startfragment.StartFragmentContract;
 import com.example.alexandr.megaquiz.startfragment.view.StartFragment;
-
-import javax.inject.Inject;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
 public class StartActivity extends AppCompatActivity
-        implements StartContract.View, NavigationView.OnNavigationItemSelectedListener, StartFragmentContract.Router {
+        implements NavigationView.OnNavigationItemSelectedListener, StartFragmentContract.Router {
 
+    /*
     @Inject
     StartContract.Presenter mPresenter;
+    */
 
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
@@ -54,9 +51,19 @@ public class StartActivity extends AppCompatActivity
         ButterKnife.bind(this);
 
         // mPresenter = new StartActivityPresenter(this, new StartActivityInteractor());
-        App.getApp(this).getComponentsHolder().getStartActivityComponent(this).inject(this);
 
+        //  App.getApp(this).getComponentsHolder().getStartActivityComponent(this).inject(this);
         mFragmentManager = getSupportFragmentManager();
+
+
+        if (mFragmentManager.getFragments().size() == 0) {
+            prepareStartScreen();
+        }
+    }
+
+    @Override
+    public void prepareStartScreen() {
+
 
         //ND START
         setSupportActionBar(mToolbar);
@@ -71,7 +78,10 @@ public class StartActivity extends AppCompatActivity
         mQuizStorageFragment = QuizStorageFragment.newInstance();
         mStartFragment = StartFragment.newInstance();
         mInfoFragment = InfoFragment.newInstance();
-        addFragment(R.id.container_for_fragments, mStartFragment);
+
+        mFragmentManager.beginTransaction()
+                .add(R.id.container_for_fragments, mStartFragment)
+                .commit();
     }
 
     @Override
@@ -81,42 +91,26 @@ public class StartActivity extends AppCompatActivity
 
     @Override
     public void goToQuizStorage() {
-       mFragmentManager.beginTransaction()
-               .addToBackStack(null)
-               .replace(R.id.container_for_fragments, mQuizStorageFragment)
-               .commit();
+        mFragmentManager.beginTransaction()
+                .addToBackStack(null)
+                .replace(R.id.container_for_fragments, mQuizStorageFragment)
+                .commit();
     }
 
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        App.getApp(this).getComponentsHolder().releaseStartActivityComponent();
-    }
-
-    private void addFragment(int resourceId, Fragment fragment) {
-        mFragmentManager.beginTransaction()
-                .add(resourceId, fragment)
-                .commit();
-    }
-
-    private void addFragmentWithBackStack(int resourceId, Fragment fragment) {
-        mFragmentManager.beginTransaction()
-                .addToBackStack(null)
-                .add(resourceId, fragment)
-                .commit();
+        // App.getApp(this).getComponentsHolder().releaseStartActivityComponent();
     }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.about) {
-            /*
             mFragmentManager.beginTransaction()
                     .addToBackStack(null)
                     .replace(R.id.container_for_fragments, mInfoFragment)
                     .commit();
-            */
-            addFragmentWithBackStack(R.id.container_for_fragments, mInfoFragment);
         }
         mDrawer.closeDrawer(GravityCompat.START);
         return true;

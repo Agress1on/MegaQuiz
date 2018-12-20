@@ -10,7 +10,12 @@ import javax.inject.Scope;
  *
  * @author Alexandr Mikhalev
  */
+
+/*
+
 @Scope
 @Retention(RetentionPolicy.RUNTIME)
 public @interface StartActivityScope {
 }
+
+*/

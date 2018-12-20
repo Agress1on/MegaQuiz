@@ -16,13 +16,15 @@ public class StartFragmentPresenter implements StartFragmentContract.Presenter {
 
     private StartFragmentContract.View mView;
     private StartFragmentContract.Interactor mInteractor;
+    private StartFragmentContract.Router mRouter;
 
     private String mRandomCategory;
     private CompositeDisposable mCompositeDisposable;
 
-    public StartFragmentPresenter(StartFragmentContract.View view, StartFragmentContract.Interactor interactor) {
+    public StartFragmentPresenter(StartFragmentContract.View view, StartFragmentContract.Interactor interactor, StartFragmentContract.Router router) {
         mView = view;
         mInteractor = interactor;
+        mRouter = router;
         mCompositeDisposable = new CompositeDisposable();
     }
 
@@ -46,7 +48,7 @@ public class StartFragmentPresenter implements StartFragmentContract.Presenter {
 
     @Override
     public void onButtonCategory() {
-        mView.startQuizStorage();
+       mRouter.goToQuizStorage();
     }
 
     @Override

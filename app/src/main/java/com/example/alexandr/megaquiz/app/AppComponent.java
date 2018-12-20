@@ -8,8 +8,6 @@ import com.example.alexandr.megaquiz.quizresultfragment.inject.QuizResultFragmen
 import com.example.alexandr.megaquiz.quizresultfragment.inject.QuizResultFragmentPresenterModule;
 import com.example.alexandr.megaquiz.quizstoragefragment.inject.QuizStorageFragmentComponent;
 import com.example.alexandr.megaquiz.quizstoragefragment.inject.QuizStorageFragmentPresenterModule;
-import com.example.alexandr.megaquiz.startactivity.inject.StartActivityComponent;
-import com.example.alexandr.megaquiz.startactivity.inject.StartActivityPresenterModule;
 import com.example.alexandr.megaquiz.startfragment.inject.StartFragmentComponent;
 import com.example.alexandr.megaquiz.startfragment.inject.StartFragmentPresenterModule;
 
@@ -36,5 +34,5 @@ public interface AppComponent {
 
     QuizActivityComponent createQuizActivityComponent(QuizActivityPresenterModule quizActivityPresenterModule);
 
-    StartActivityComponent createStartActivityComponent(StartActivityPresenterModule startActivityPresenterModule);
+  //  StartActivityComponent createStartActivityComponent(StartActivityPresenterModule startActivityPresenterModule);
 }

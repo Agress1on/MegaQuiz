@@ -30,6 +30,7 @@ public interface StartFragmentContract {
     }
 
     interface Router {
+        void prepareStartScreen();
         void goToRandomQuestion();
         void goToQuizStorage();
     }
