@@ -17,15 +17,17 @@ import dagger.Provides;
 public class QuizFragmentPresenterModule {
 
     private QuizFragmentContract.View mView;
+    private QuizFragmentContract.Router mRouter;
 
-    public QuizFragmentPresenterModule(QuizFragmentContract.View quizFragment) {
+    public QuizFragmentPresenterModule(QuizFragmentContract.View quizFragment, QuizFragmentContract.Router router) {
         mView = quizFragment;
+        mRouter = router;
     }
 
     @QuizFragmentScope
     @Provides
     QuizFragmentContract.Presenter providePresenter(QuizFragmentContract.Interactor quizFragmentInteractor) {
-        return new QuizFragmentPresenter(mView, quizFragmentInteractor);
+        return new QuizFragmentPresenter(mView, quizFragmentInteractor, mRouter);
     }
 
     @QuizFragmentScope

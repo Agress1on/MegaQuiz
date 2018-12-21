@@ -9,17 +9,23 @@ import android.support.v7.app.AppCompatActivity;
 
 import com.example.alexandr.megaquiz.Constants;
 import com.example.alexandr.megaquiz.R;
+import com.example.alexandr.megaquiz.quizfragment.QuizFragmentContract;
 import com.example.alexandr.megaquiz.quizfragment.view.QuizFragment;
+import com.example.alexandr.megaquiz.quizresultfragment.view.QuizResultFragment;
+
+import java.util.HashMap;
 
 /**
  * Created by Alexandr Mikhalev on 13.09.2018.
  *
  * @author Alexandr Mikhalev
  */
-public class QuizRouter extends AppCompatActivity {
+public class QuizRouter extends AppCompatActivity implements QuizFragmentContract.Router {
 
     private String mCategoryName = "";
+
     private QuizFragment mQuizFragment;
+    private QuizResultFragment mQuizResultFragment;
     private FragmentManager mFragmentManager;
 
     @Override
@@ -30,21 +36,26 @@ public class QuizRouter extends AppCompatActivity {
         Intent intent = getIntent();
         mCategoryName = intent.getStringExtra(Constants.EXTRAS_FOR_INTENT_QUIZ_VIEW);
 
-        mQuizFragment = QuizFragment.newInstance(mCategoryName);
         mFragmentManager = getSupportFragmentManager();
-        //  App.getApp(this).getComponentsHolder().getQuizActivityComponent(this).inject(this);
+        if (mFragmentManager.getFragments().size() == 0) {
+            setQuizFragment();
+        }
     }
 
-    public void addQuizFragment() {
+    @Override
+    public void setQuizFragment() {
+        mQuizFragment = QuizFragment.newInstance(mCategoryName);
         mFragmentManager.beginTransaction()
                 .add(R.id.frame_for_quiz, mQuizFragment)
                 .commit();
     }
 
     @Override
-    protected void onDestroy() {
-        super.onDestroy();
-        // App.getApp(this).getComponentsHolder().releaseQuizActivityComponent();
+    public void goToQuizResult(int quizSize, int correctAnswers, String categoryName, HashMap<Integer, Boolean> map) {
+        mQuizResultFragment = QuizResultFragment.newInstance(quizSize, correctAnswers, categoryName, map);
+        mFragmentManager.beginTransaction()
+                .replace(R.id.frame_for_quiz, mQuizFragment)
+                .commit();
     }
 
     public static Intent getIntent(Context context, String key) {

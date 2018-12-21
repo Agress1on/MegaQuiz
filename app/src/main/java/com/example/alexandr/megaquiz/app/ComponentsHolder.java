@@ -2,6 +2,7 @@ package com.example.alexandr.megaquiz.app;
 
 import android.content.Context;
 
+import com.example.alexandr.megaquiz.quizfragment.QuizFragmentContract;
 import com.example.alexandr.megaquiz.quizfragment.inject.QuizFragmentComponent;
 import com.example.alexandr.megaquiz.quizfragment.inject.QuizFragmentPresenterModule;
 import com.example.alexandr.megaquiz.quizfragment.view.QuizFragment;
@@ -100,9 +101,9 @@ public class ComponentsHolder {
     QuizFragmentComponent
     */
 
-    public QuizFragmentComponent getQuizFragmentComponent(QuizFragment quizFragment) {
+    public QuizFragmentComponent getQuizFragmentComponent(QuizFragment quizFragment, QuizFragmentContract.Router router) {
         if (mQuizFragmentComponent == null) {
-            mQuizFragmentComponent = getAppComponent().createQuizFragmentComponent(new QuizFragmentPresenterModule(quizFragment));
+            mQuizFragmentComponent = getAppComponent().createQuizFragmentComponent(new QuizFragmentPresenterModule(quizFragment, router));
         }
         return mQuizFragmentComponent;
     }

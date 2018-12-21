@@ -79,6 +79,8 @@ public class QuizFragment extends Fragment implements QuizFragmentContract.View 
     private Context mContext;
     private Unbinder mUnbinder;
 
+    private QuizFragmentContract.Router mRouter;
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -97,7 +99,14 @@ public class QuizFragment extends Fragment implements QuizFragmentContract.View 
                 .createQuizFragmentComponent(new QuizFragmentPresenterModule(this))
                 .inject(this);
         */
-            App.getApp(mContext).getComponentsHolder().getQuizFragmentComponent(this).inject(this);
+        if (getParentFragment() instanceof QuizFragmentContract.Router) {
+            mRouter = (QuizFragmentContract.Router) getParentFragment();
+        } else if (getActivity() instanceof QuizFragmentContract.Router) {
+            mRouter = (QuizFragmentContract.Router) getActivity();
+        } else {
+            throw new IllegalStateException("Parent container must be StartFragmentContract.Router");
+        }
+        App.getApp(mContext).getComponentsHolder().getQuizFragmentComponent(this, mRouter).inject(this);
     }
 
     @Nullable
@@ -106,7 +115,7 @@ public class QuizFragment extends Fragment implements QuizFragmentContract.View 
         View view = inflater.inflate(R.layout.fragment_quiz, null);
         mUnbinder = ButterKnife.bind(this, view);
         mPresenter.initCategory(mCategoryName);
-      //  mPresenter.initQuestionList(mCategoryName);
+        //  mPresenter.initQuestionList(mCategoryName);
         return view;
     }
 

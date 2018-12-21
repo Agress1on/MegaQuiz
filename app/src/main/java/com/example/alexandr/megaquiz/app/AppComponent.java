@@ -29,8 +29,4 @@ public interface AppComponent {
     QuizResultFragmentComponent createQuizResultFragmentComponent(QuizResultFragmentPresenterModule quizResultFragmentPresenterModule);
 
     QuizStorageFragmentComponent createQuizStorageFragmentComponent(QuizStorageFragmentPresenterModule quizStorageFragmentPresenterModule);
-
-    //  QuizActivityComponent createQuizActivityComponent(QuizActivityPresenterModule quizActivityPresenterModule);
-
-    //  StartActivityComponent createStartActivityComponent(StartActivityPresenterModule startActivityPresenterModule);
 }

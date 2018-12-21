@@ -1,5 +1,6 @@
 package com.example.alexandr.megaquiz.quizfragment;
 
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -47,5 +48,10 @@ public interface QuizFragmentContract {
         void onAnswer(Answer answer);
 
         void onDestroy();
+    }
+
+    interface Router {
+        void setQuizFragment();
+        void goToQuizResult(int quizSize, int correctAnswers, String categoryName, HashMap<Integer, Boolean> map);
     }
 }

@@ -27,6 +27,7 @@ public class QuizFragmentPresenter implements QuizFragmentContract.Presenter {
 
     private QuizFragmentContract.View mView;
     private QuizFragmentContract.Interactor mInteractor;
+    private QuizFragmentContract.Router mRouter;
 
     private List<String> mQuestions;
     private int mCurrentIndex;
@@ -35,9 +36,10 @@ public class QuizFragmentPresenter implements QuizFragmentContract.Presenter {
     private CompositeDisposable mCompositeDisposable;
     private LinkedHashMap<Integer, Boolean> mMapAnswers;
 
-    public QuizFragmentPresenter(QuizFragmentContract.View view, QuizFragmentContract.Interactor interactor) {
+    public QuizFragmentPresenter(QuizFragmentContract.View view, QuizFragmentContract.Interactor interactor, QuizFragmentContract.Router router) {
         this.mView = view;
         this.mInteractor = interactor;
+        this.mRouter = router;
         this.mQuestions = new ArrayList<>();
         this.mCompositeDisposable = new CompositeDisposable();
         this.mAnswers = new ArrayMap<>(); // почитать подробнее потом
