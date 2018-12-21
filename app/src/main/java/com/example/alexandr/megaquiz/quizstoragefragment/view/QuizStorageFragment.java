@@ -53,11 +53,11 @@ public class QuizStorageFragment extends Fragment implements QuizStorageContract
     @BindView(R.id.progress_bar_quiz_storage)
     GeometricProgressView mProgressBar;
 
-    @BindViews({R.id.list_switch, R.id.text_for_switch})
-    List<View> mViewList;
-
     @BindView(R.id.storage_recycler)
     RecyclerView mRecyclerView;
+
+    @BindViews({R.id.list_switch, R.id.text_for_switch, R.id.storage_recycler})
+    List<View> mViewList;
 
     private RecyclerAdapter mAdapter;
     private GridLayoutManager mLayoutManager;
