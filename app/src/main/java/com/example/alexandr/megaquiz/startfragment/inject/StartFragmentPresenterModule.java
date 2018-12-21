@@ -1,8 +1,6 @@
 package com.example.alexandr.megaquiz.startfragment.inject;
 
-import com.example.alexandr.megaquiz.bankquestion.BankQuestion;
 import com.example.alexandr.megaquiz.startfragment.StartFragmentContract;
-import com.example.alexandr.megaquiz.startfragment.domain.StartFragmentInteractor;
 import com.example.alexandr.megaquiz.startfragment.presentation.StartFragmentPresenter;
 
 import dagger.Module;
@@ -26,13 +24,7 @@ public class StartFragmentPresenterModule {
 
     @StartFragmentScope
     @Provides
-    StartFragmentContract.Presenter providePresenter(StartFragmentContract.Interactor startFragmentInteractor) {
-        return new StartFragmentPresenter(mView, startFragmentInteractor, mRouter);
-    }
-
-    @StartFragmentScope
-    @Provides
-    StartFragmentContract.Interactor provideInteractor(BankQuestion bankQuestion) {
-        return new StartFragmentInteractor(bankQuestion);
+    StartFragmentContract.Presenter providePresenter() {
+        return new StartFragmentPresenter(mView, mRouter);
     }
 }

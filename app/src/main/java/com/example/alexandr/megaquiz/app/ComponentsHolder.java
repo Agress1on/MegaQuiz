@@ -32,9 +32,6 @@ public class ComponentsHolder {
     private QuizResultFragmentComponent mQuizResultFragmentComponent;
     private QuizFragmentComponent mQuizFragmentComponent;
 
-  //  private QuizActivityComponent mQuizActivityComponent;
-    //  private StartActivityComponent mStartActivityComponent;
-
     public ComponentsHolder(Context context) {
         mContext = context;
     }
@@ -48,24 +45,6 @@ public class ComponentsHolder {
     public AppComponent getAppComponent() {
         return mAppComponent;
     }
-
-    /*
-     *//*
-    StartActivityComponent
-    *//*
-
-    public StartActivityComponent getStartActivityComponent(StartRouter startActivity) {
-        if (mStartActivityComponent == null) {
-            mStartActivityComponent = getAppComponent().createStartActivityComponent(new StartActivityPresenterModule(startActivity));
-        }
-        return mStartActivityComponent;
-    }
-
-    public void releaseStartActivityComponent() {
-        mStartActivityComponent = null;
-    }
-
-    */
 
     /*
     StartFragmentComponent
@@ -126,22 +105,4 @@ public class ComponentsHolder {
     public void releaseQuizResultFragmentComponent() {
         mQuizResultFragmentComponent = null;
     }
-
-    /*
-     *//*
-    QuizActivityComponent
-    *//*
-
-    public QuizActivityComponent getQuizActivityComponent(QuizRouter quizActivity) {
-        if (mQuizActivityComponent == null) {
-            mQuizActivityComponent = getAppComponent().createQuizActivityComponent(new QuizActivityPresenterModule(quizActivity));
-        }
-        return mQuizActivityComponent;
-    }
-
-    public void releaseQuizActivityComponent() {
-        mQuizActivityComponent = null;
-    }
-    */
-
 }

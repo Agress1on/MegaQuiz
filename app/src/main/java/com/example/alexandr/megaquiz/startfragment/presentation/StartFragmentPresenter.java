@@ -15,35 +15,16 @@ import io.reactivex.schedulers.Schedulers;
 public class StartFragmentPresenter implements StartFragmentContract.Presenter {
 
     private StartFragmentContract.View mView;
-    private StartFragmentContract.Interactor mInteractor;
     private StartFragmentContract.Router mRouter;
 
-    private String mRandomCategory;
-    private CompositeDisposable mCompositeDisposable;
-
-    public StartFragmentPresenter(StartFragmentContract.View view, StartFragmentContract.Interactor interactor, StartFragmentContract.Router router) {
+    public StartFragmentPresenter(StartFragmentContract.View view, StartFragmentContract.Router router) {
         mView = view;
-        mInteractor = interactor;
         mRouter = router;
-        mCompositeDisposable = new CompositeDisposable();
-    }
-
-    @Override
-    public void initRandomCategory() {
-        Disposable disposable = mInteractor.getStringCategoryForRandomStart()
-                .subscribeOn(Schedulers.io())
-                .subscribe(new Consumer<String>() {
-                    @Override
-                    public void accept(String s) throws Exception {
-                        mRandomCategory = s;
-                    }
-                });
-        mCompositeDisposable.add(disposable);
     }
 
     @Override
     public void onRandomButton() {
-        mView.startQuizViewWithRandom(mRandomCategory);
+
     }
 
     @Override
@@ -52,7 +33,7 @@ public class StartFragmentPresenter implements StartFragmentContract.Presenter {
     }
 
     @Override
-    public void onDestroy() {
-        mCompositeDisposable.clear();
+    public void onTestButton() {
+
     }
 }

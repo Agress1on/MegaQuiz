@@ -45,11 +45,10 @@ public class StartFragment extends Fragment implements StartFragmentContract.Vie
     ImageView mHeaderImageView;
 
     private Unbinder mUnbinder;
-    boolean mVisible = true;
-
     private Context mContext;
-
     private StartFragmentContract.Router mRouter;
+
+    boolean mVisible = true;
 
     @Override
     public void onAttach(Context context) {
@@ -60,15 +59,7 @@ public class StartFragment extends Fragment implements StartFragmentContract.Vie
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        /*
-        mPresenter = new StartFragmentPresenter(this, new StartFragmentInteractor(new BankQuestion()));
 
-        DaggerAppComponent.builder()
-                .appModule(new AppModule(getContext()))
-                .build()
-                .createStartFragmentComponent(new StartFragmentPresenterModule(this))
-                .inject(this);
-        */
         if (getParentFragment() instanceof StartFragmentContract.Router) {
             mRouter = (StartFragmentContract.Router) getParentFragment();
         } else if (getActivity() instanceof StartFragmentContract.Router) {
@@ -76,9 +67,7 @@ public class StartFragment extends Fragment implements StartFragmentContract.Vie
         } else {
             throw new IllegalStateException("Parent container must be StartFragmentContract.Router");
         }
-
         App.getApp(mContext).getComponentsHolder().getStartFragmentComponent(this, mRouter).inject(this);
-        mPresenter.initRandomCategory();
     }
 
     @Nullable
@@ -90,12 +79,6 @@ public class StartFragment extends Fragment implements StartFragmentContract.Vie
     }
 
     @Override
-    public void onPause() {
-        super.onPause();
-        //mPresenter.initRandomCategory();
-    }
-
-    @Override
     public void onDestroyView() {
         super.onDestroyView();
         mUnbinder.unbind();
@@ -104,39 +87,7 @@ public class StartFragment extends Fragment implements StartFragmentContract.Vie
     @Override
     public void onDestroy() {
         super.onDestroy();
-        mPresenter.onDestroy();
         App.getApp(mContext).getComponentsHolder().releaseStartFragmentComponent();
-    }
-
-    @Override
-    public void startQuizViewWithRandom(String randomCategory) {
-        /*
-        Intent intent = QuizRouter.getIntent(mContext, randomCategory);
-        startActivity(intent);
-        */
-    }
-
-    @Override
-    public void startQuizStorage() {
-        mRouter.goToQuizStorage();
-        /*
-        QuizStorageFragment fragment = QuizStorageFragment.newInstance();
-        getActivity().getSupportFragmentManager().beginTransaction()
-                .addToBackStack(null)
-                .replace(R.id.container_for_fragments, fragment)
-                .commit();
-        */
-    }
-
-    private void animation() {
-        /*
-        ViewGroup viewGroup = (ViewGroup) findViewById(R.id.start_constraint);
-        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
-            TransitionManager.beginDelayedTransition(viewGroup, new Slide(Gravity.RIGHT));
-        }
-        mVisible = !mVisible;
-        mHeaderImageView.setVisibility(mVisible ? View.VISIBLE : View.GONE);
-        */
     }
 
     @OnClick({R.id.btn_randomQuiz, R.id.btn_category, R.id.btn_test_general_questions})
@@ -149,7 +100,7 @@ public class StartFragment extends Fragment implements StartFragmentContract.Vie
                 mPresenter.onButtonCategory();
                 break;
             case R.id.btn_test_general_questions:
-                animation();
+                mPresenter.onTestButton();
         }
     }
 
@@ -158,5 +109,16 @@ public class StartFragment extends Fragment implements StartFragmentContract.Vie
         StartFragment fragment = new StartFragment();
         fragment.setArguments(args);
         return fragment;
+    }
+
+    private void animation() {
+        /*
+        ViewGroup viewGroup = (ViewGroup) findViewById(R.id.start_constraint);
+        if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.LOLLIPOP) {
+            TransitionManager.beginDelayedTransition(viewGroup, new Slide(Gravity.RIGHT));
+        }
+        mVisible = !mVisible;
+        mHeaderImageView.setVisibility(mVisible ? View.VISIBLE : View.GONE);
+        */
     }
 }
