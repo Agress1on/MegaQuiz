@@ -57,6 +57,6 @@ public class BankQuestion {
     }
 
     public Single<Map<String, List<Question>>> getBankQuestionsAndAnswers() {
-        return Single.just(mBankQuestion).delay(3, TimeUnit.SECONDS);
+        return Single.just(mBankQuestion).delay(2, TimeUnit.SECONDS);
     }
 }
