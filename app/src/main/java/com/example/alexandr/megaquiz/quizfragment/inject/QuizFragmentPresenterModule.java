@@ -5,6 +5,8 @@ import com.example.alexandr.megaquiz.quizfragment.QuizFragmentContract;
 import com.example.alexandr.megaquiz.quizfragment.domain.QuizFragmentInteractor;
 import com.example.alexandr.megaquiz.quizfragment.presentation.QuizFragmentPresenter;
 
+import javax.inject.Named;
+
 import dagger.Module;
 import dagger.Provides;
 
@@ -18,21 +20,30 @@ public class QuizFragmentPresenterModule {
 
     private QuizFragmentContract.View mView;
     private QuizFragmentContract.Router mRouter;
+    private String mCategoryName;
 
-    public QuizFragmentPresenterModule(QuizFragmentContract.View quizFragment, QuizFragmentContract.Router router) {
+    public QuizFragmentPresenterModule(QuizFragmentContract.View quizFragment, QuizFragmentContract.Router router, String categoryName) {
         mView = quizFragment;
         mRouter = router;
+        mCategoryName = categoryName;
     }
 
     @QuizFragmentScope
     @Provides
     QuizFragmentContract.Presenter providePresenter(QuizFragmentContract.Interactor quizFragmentInteractor) {
-        return new QuizFragmentPresenter(mView, quizFragmentInteractor, mRouter);
+        return new QuizFragmentPresenter(mView, quizFragmentInteractor, mRouter, mCategoryName);
     }
 
     @QuizFragmentScope
     @Provides
     QuizFragmentContract.Interactor provideInteractor(BankQuestion bankQuestion) {
         return new QuizFragmentInteractor(bankQuestion);
+    }
+
+    @QuizFragmentScope
+    @Provides
+    @Named("keyCategory")
+    String provideCategoryName() {
+        return mCategoryName;
     }
 }

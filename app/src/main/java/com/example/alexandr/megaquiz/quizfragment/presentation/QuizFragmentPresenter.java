@@ -28,18 +28,20 @@ public class QuizFragmentPresenter implements QuizFragmentContract.Presenter {
     private QuizFragmentContract.View mView;
     private QuizFragmentContract.Interactor mInteractor;
     private QuizFragmentContract.Router mRouter;
+    private String mCategoryName;
 
     private List<String> mQuestions;
     private int mCurrentIndex;
     private Map<Integer, Answer> mAnswers;
-    private String mCategoryName = "";
     private CompositeDisposable mCompositeDisposable;
     private LinkedHashMap<Integer, Boolean> mMapAnswers;
 
-    public QuizFragmentPresenter(QuizFragmentContract.View view, QuizFragmentContract.Interactor interactor, QuizFragmentContract.Router router) {
+    public QuizFragmentPresenter(QuizFragmentContract.View view, QuizFragmentContract.Interactor interactor, QuizFragmentContract.Router router, String categoryName) {
         this.mView = view;
         this.mInteractor = interactor;
         this.mRouter = router;
+        this.mCategoryName = categoryName;
+        //
         this.mQuestions = new ArrayList<>();
         this.mCompositeDisposable = new CompositeDisposable();
         this.mAnswers = new ArrayMap<>(); // почитать подробнее потом
@@ -47,6 +49,7 @@ public class QuizFragmentPresenter implements QuizFragmentContract.Presenter {
         this.mMapAnswers = new LinkedHashMap<>();
     }
 
+    /*
     @Override
     public void initCategory(String key) {
         if (mCategoryName.equals("")) {
@@ -56,6 +59,7 @@ public class QuizFragmentPresenter implements QuizFragmentContract.Presenter {
             prepareViewForFirstQuestion();
         }
     }
+    */
 
     @Override
     public void initQuestionList() {

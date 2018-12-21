@@ -71,7 +71,7 @@ public class QuizFragment extends Fragment implements QuizFragmentContract.View 
     GeometricProgressView mProgressBar;
 
     @BindViews({R.id.static_category_name, R.id.question, R.id.btnTrue,
-            R.id.btnFalse, R.id.btnNext, R.id.btnPrev, R.id.question_count})
+                R.id.btnFalse, R.id.btnNext, R.id.btnPrev, R.id.question_count})
     List<View> mViewList;
 
     private String mCategoryName = "";
@@ -91,14 +91,7 @@ public class QuizFragment extends Fragment implements QuizFragmentContract.View 
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         mCategoryName = getArguments().getString(Constants.EXTRAS_FOR_INTENT_QUIZ_VIEW);
-        /*
-        mPresenter = new QuizFragmentPresenter(this, new QuizFragmentInteractor(new BankQuestion()));
-        DaggerAppComponent.builder()
-                .appModule(new AppModule(getContext()))
-                .build()
-                .createQuizFragmentComponent(new QuizFragmentPresenterModule(this))
-                .inject(this);
-        */
+
         if (getParentFragment() instanceof QuizFragmentContract.Router) {
             mRouter = (QuizFragmentContract.Router) getParentFragment();
         } else if (getActivity() instanceof QuizFragmentContract.Router) {
@@ -106,7 +99,7 @@ public class QuizFragment extends Fragment implements QuizFragmentContract.View 
         } else {
             throw new IllegalStateException("Parent container must be StartFragmentContract.Router");
         }
-        App.getApp(mContext).getComponentsHolder().getQuizFragmentComponent(this, mRouter).inject(this);
+        App.getApp(mContext).getComponentsHolder().getQuizFragmentComponent(this, mRouter, mCategoryName).inject(this);
     }
 
     @Nullable
@@ -114,8 +107,8 @@ public class QuizFragment extends Fragment implements QuizFragmentContract.View 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_quiz, null);
         mUnbinder = ButterKnife.bind(this, view);
-        mPresenter.initCategory(mCategoryName);
-        //  mPresenter.initQuestionList(mCategoryName);
+        // mPresenter.initCategory(mCategoryName);
+             mPresenter.initQuestionList();
         return view;
     }
 
