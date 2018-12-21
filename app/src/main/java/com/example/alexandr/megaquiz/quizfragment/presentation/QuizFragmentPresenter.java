@@ -8,6 +8,7 @@ import com.example.alexandr.megaquiz.quizfragment.Answer;
 import com.example.alexandr.megaquiz.quizfragment.QuizFragmentContract;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
@@ -34,7 +35,7 @@ public class QuizFragmentPresenter implements QuizFragmentContract.Presenter {
     private int mCurrentIndex;
     private Map<Integer, Answer> mAnswers;
     private CompositeDisposable mCompositeDisposable;
-    private LinkedHashMap<Integer, Boolean> mMapAnswers;
+    private HashMap<Integer, Boolean> mMapAnswers;
 
     public QuizFragmentPresenter(QuizFragmentContract.View view, QuizFragmentContract.Interactor interactor, QuizFragmentContract.Router router, String categoryName) {
         this.mView = view;
@@ -46,7 +47,7 @@ public class QuizFragmentPresenter implements QuizFragmentContract.Presenter {
         this.mCompositeDisposable = new CompositeDisposable();
         this.mAnswers = new ArrayMap<>(); // почитать подробнее потом
         this.mCurrentIndex = 0;
-        this.mMapAnswers = new LinkedHashMap<>();
+        this.mMapAnswers = new HashMap<>();
     }
 
     @Override

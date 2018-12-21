@@ -2,6 +2,7 @@ package com.example.alexandr.megaquiz.quizresultfragment;
 
 import com.example.alexandr.megaquiz.bankquestion.Question;
 
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 
@@ -24,17 +25,25 @@ public interface QuizResultFragmentContract {
         void setResultTextView(String text);
 
         void setVisibilityOfRecycler(int state, String text);
+
+        void showLoading();
+
+        void hideLoading();
+
+        void showToast(String text);
     }
 
     interface Presenter {
-        void initMapWithRealAnswers(String key);
+        void onStartView();
 
-        void createItemForRecycler(LinkedHashMap<Integer, Boolean> map);
+        void createItemForRecycler(HashMap<Integer, Boolean> map);
 
         void createTextForResultTextView(int size, int correctAnswers, String categoryName);
 
         void onCheckBoxClick(boolean tap);
 
         void onDestroy();
+
+        int getSizeMap();
     }
 }

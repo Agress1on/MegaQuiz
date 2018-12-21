@@ -13,6 +13,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Switch;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.example.alexandr.megaquiz.Constants;
 import com.example.alexandr.megaquiz.R;
@@ -20,13 +21,15 @@ import com.example.alexandr.megaquiz.app.App;
 import com.example.alexandr.megaquiz.quizresultfragment.QuizResultFragmentContract;
 import com.example.alexandr.megaquiz.quizresultfragment.QuizResultItem;
 
+import net.bohush.geometricprogressview.GeometricProgressView;
+
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.List;
 
 import javax.inject.Inject;
 
 import butterknife.BindView;
+import butterknife.BindViews;
 import butterknife.ButterKnife;
 import butterknife.OnCheckedChanged;
 import butterknife.Unbinder;
@@ -50,13 +53,22 @@ public class QuizResultFragment extends Fragment implements QuizResultFragmentCo
     @BindView(R.id.result_switch)
     Switch mSwitch;
 
+    @BindView(R.id.result_recycler)
+    RecyclerView mRecyclerView;
+
+    @BindView(R.id.progress_bar_quiz_result)
+    GeometricProgressView mProgressBar;
+
+    @BindViews({R.id.result_text, R.id.for_recycler_tv, R.id.result_switch, R.id.result_recycler})
+    List<View> mViewList;
+
     private int mQuizSize;
     private int mCorrectAnswers;
     private String mNameCategory;
-    private LinkedHashMap<Integer, Boolean> mUserAnswersMap;
+    private HashMap<Integer, Boolean> mUserAnswersMap;
 
     private List<QuizResultItem> mCat;
-    private RecyclerView mRecyclerView;
+    //private RecyclerView mRecyclerView;
     private QuizResultAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
 
@@ -75,18 +87,7 @@ public class QuizResultFragment extends Fragment implements QuizResultFragmentCo
         mQuizSize = getArguments().getInt(Constants.EXTRAS_FOR_INTENT_QUIZ_RESULT_QUIZ_SIZE, 10);
         mCorrectAnswers = getArguments().getInt(Constants.EXTRAS_FOR_INTENT_QUIZ_RESULT_CORRECT_ANSWERS, 5);
         mNameCategory = getArguments().getString(Constants.EXTRAS_FOR_INTENT_QUIZ_RESULT_NAME_CATEGORY, "Error");
-        mUserAnswersMap = (LinkedHashMap<Integer, Boolean>) getArguments().getSerializable(Constants.EXTRAS_FOR_INTENT_QUIZ_RESULT_MAP_USER_ANSWERS);
-        /*
-        mPresenter = new QuizResultFragmentPresenter(this, new QuizResultFragmentInteractor(new BankQuestion()));
-        DaggerAppComponent.builder()
-                .appModule(new AppModule(getContext()))
-                .build()
-                .createQuizResultFragmentComponent(new QuizResultFragmentPresenterModule(this))
-                .inject(this);
-        */
-        App.getApp(mContext).getComponentsHolder().getQuizResultFragmentComponent(this).inject(this);
-        mPresenter.initMapWithRealAnswers(mNameCategory);
-        mPresenter.createItemForRecycler(mUserAnswersMap); //первое место, где иногда вылетает эксепшен
+        mUserAnswersMap = (HashMap<Integer, Boolean>) getArguments().getSerializable(Constants.EXTRAS_FOR_INTENT_QUIZ_RESULT_MAP_USER_ANSWERS);
     }
 
     @Nullable
@@ -94,10 +95,15 @@ public class QuizResultFragment extends Fragment implements QuizResultFragmentCo
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_quiz_result, null);
         mUnbinder = ButterKnife.bind(this, view);
+
+        App.getApp(mContext).getComponentsHolder()
+                .getQuizResultFragmentComponent(this, mNameCategory, mUserAnswersMap).inject(this);
+
+        mPresenter.onStartView();
+
         mPresenter.createTextForResultTextView(mQuizSize, mCorrectAnswers, mNameCategory);
 
         FragmentActivity fragmentActivity = getActivity();
-        mRecyclerView = view.findViewById(R.id.result_recycler);
         mLayoutManager = new LinearLayoutManager(fragmentActivity);
         mRecyclerView.setLayoutManager(mLayoutManager);
         mAdapter = new QuizResultAdapter(mCat);
@@ -116,6 +122,43 @@ public class QuizResultFragment extends Fragment implements QuizResultFragmentCo
     public void onDestroy() {
         super.onDestroy();
         mPresenter.onDestroy();
+    }
+
+    @Override
+    public void showToast(String text) {
+        Toast.makeText(getContext(), "text", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void showLoading() {
+        showProgressBar();
+        hideView();
+    }
+
+    @Override
+    public void hideLoading() {
+        hideProgressBar();
+        showView();
+    }
+
+    private void showProgressBar() {
+        mProgressBar.setVisibility(View.VISIBLE);
+    }
+
+    private void hideProgressBar() {
+        mProgressBar.setVisibility(View.INVISIBLE);
+    }
+
+    private void showView() {
+        for (View view : mViewList) {
+            view.setVisibility(View.VISIBLE);
+        }
+    }
+
+    private void hideView() {
+        for (View view : mViewList) {
+            view.setVisibility(View.INVISIBLE);
+        }
     }
 
     @Override

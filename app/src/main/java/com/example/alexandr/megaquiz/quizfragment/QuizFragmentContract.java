@@ -31,7 +31,7 @@ public interface QuizFragmentContract {
 
         void showProgressBarAndSetViewVisibility(int viewState, int progressBarState);
 
-        void startQuizResultFragment(int quizSize, int correctAnswers, LinkedHashMap<Integer, Boolean> mapAnswers);
+        void startQuizResultFragment(int quizSize, int correctAnswers, HashMap<Integer, Boolean> mapAnswers);
     }
 
     interface Presenter {

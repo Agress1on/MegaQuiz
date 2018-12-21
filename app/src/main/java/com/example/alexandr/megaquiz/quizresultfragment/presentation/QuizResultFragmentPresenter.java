@@ -7,9 +7,10 @@ import com.example.alexandr.megaquiz.quizresultfragment.QuizResultFragmentContra
 import com.example.alexandr.megaquiz.quizresultfragment.QuizResultItem;
 
 import java.util.ArrayList;
-import java.util.LinkedHashMap;
+import java.util.HashMap;
 import java.util.List;
 
+import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
@@ -24,43 +25,60 @@ public class QuizResultFragmentPresenter implements QuizResultFragmentContract.P
 
     private QuizResultFragmentContract.View mView;
     private QuizResultFragmentContract.Interactor mInteractor;
+    private String mCategoryName;
+    private HashMap<Integer, Boolean> mUserAnswersMap;
 
     private CompositeDisposable mCompositeDisposable;
     private List<Question> mQuestions;
     private List<QuizResultItem> mListForRecyclerView;
 
-    public QuizResultFragmentPresenter(QuizResultFragmentContract.View view, QuizResultFragmentContract.Interactor interactor) {
+    private String mTextResult;
+
+    public QuizResultFragmentPresenter(QuizResultFragmentContract.View view, QuizResultFragmentContract.Interactor interactor, String categoryName, HashMap<Integer, Boolean> userAnswersMap) {
         this.mView = view;
         this.mInteractor = interactor;
+        this.mCategoryName = categoryName;
+        this.mUserAnswersMap = userAnswersMap;
+
+        //
         this.mQuestions = new ArrayList<>();
         this.mCompositeDisposable = new CompositeDisposable();
         this.mListForRecyclerView = new ArrayList<>();
     }
 
     @Override
-    public void initMapWithRealAnswers(String key) {
-        Disposable disposable = mInteractor.getQuestion(key)
+    public int getSizeMap() {
+        return mUserAnswersMap.size();
+    }
+
+    @Override
+    public void onStartView() {
+        mView.showLoading();
+        Disposable disposable = mInteractor.getQuestion(mCategoryName)
                 .subscribeOn(Schedulers.io())
-                //.observeOn(AndroidSchedulers.mainThread())
+                .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<List<Question>>() {
                     @Override
                     public void accept(List<Question> questions) throws Exception {
                         mQuestions.addAll(questions);
+
+                        createItemForRecycler(mUserAnswersMap);
+                        mView.hideLoading();
                     }
                 });
         mCompositeDisposable.add(disposable);
+        mView.initListForRecyclerView(mListForRecyclerView);
     }
 
     @Override
-    public void createItemForRecycler(LinkedHashMap<Integer, Boolean> map) {
-        for (LinkedHashMap.Entry<Integer, Boolean> entry : map.entrySet()) {
+    public void createItemForRecycler(HashMap<Integer, Boolean> map) {
+        for (HashMap.Entry<Integer, Boolean> entry : map.entrySet()) {
             QuizResultItem quizResultItem =
                     new QuizResultItem(entry.getKey(), mQuestions.get(entry.getKey()).getTextQuestion(),
                             mQuestions.get(entry.getKey()).isTrueAnswer(), entry.getValue());
             // второе место
             mListForRecyclerView.add(quizResultItem);
         }
-        mView.initListForRecyclerView(mListForRecyclerView);
     }
 
     @Override
@@ -76,8 +94,8 @@ public class QuizResultFragmentPresenter implements QuizResultFragmentContract.P
         } else {
             level = "отлично";
         }
-        String text = "Вы прошли опрос категории \"" + categoryName + "\". Вы " + level + " владеете знаниями данной в области и дали " + percent + "% верных ответов.\nЧто делать дальше?";
-        mView.setResultTextView(text);
+        mTextResult = "Вы прошли опрос категории \"" + categoryName + "\". Вы " + level + " владеете знаниями данной в области и дали " + percent + "% верных ответов.\nЧто делать дальше?";
+        mView.setResultTextView(mTextResult);
     }
 
     @Override

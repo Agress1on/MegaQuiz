@@ -17,6 +17,8 @@ import com.example.alexandr.megaquiz.startfragment.inject.StartFragmentComponent
 import com.example.alexandr.megaquiz.startfragment.inject.StartFragmentPresenterModule;
 import com.example.alexandr.megaquiz.startfragment.view.StartFragment;
 
+import java.util.HashMap;
+
 /**
  * Created by Alexandr Mikhalev on 17.12.2018.
  *
@@ -95,9 +97,9 @@ public class ComponentsHolder {
     QuizResultFragmentComponent
     */
 
-    public QuizResultFragmentComponent getQuizResultFragmentComponent(QuizResultFragment quizResultFragment) {
+    public QuizResultFragmentComponent getQuizResultFragmentComponent(QuizResultFragment quizResultFragment, String categoryName, HashMap<Integer, Boolean> userAnswersMap) {
         if (mQuizResultFragmentComponent == null) {
-            mQuizResultFragmentComponent = getAppComponent().createQuizResultFragmentComponent(new QuizResultFragmentPresenterModule(quizResultFragment));
+            mQuizResultFragmentComponent = getAppComponent().createQuizResultFragmentComponent(new QuizResultFragmentPresenterModule(quizResultFragment, categoryName, userAnswersMap));
         }
         return mQuizResultFragmentComponent;
     }

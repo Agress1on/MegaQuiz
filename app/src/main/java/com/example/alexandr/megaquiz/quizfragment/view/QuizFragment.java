@@ -20,6 +20,7 @@ import com.example.alexandr.megaquiz.quizresultfragment.view.QuizResultFragment;
 
 import net.bohush.geometricprogressview.GeometricProgressView;
 
+import java.util.HashMap;
 import java.util.LinkedHashMap;
 import java.util.List;
 
@@ -172,7 +173,7 @@ public class QuizFragment extends Fragment implements QuizFragmentContract.View 
     }
 
     @Override
-    public void startQuizResultFragment(int quizSize, int correctAnswers, LinkedHashMap<Integer, Boolean> mapAnswers) {
+    public void startQuizResultFragment(int quizSize, int correctAnswers, HashMap<Integer, Boolean> mapAnswers) {
         QuizResultFragment quizResultFragment =
                 QuizResultFragment.newInstance(quizSize, correctAnswers, mCategoryName, mapAnswers);
         getActivity().getSupportFragmentManager().beginTransaction()
