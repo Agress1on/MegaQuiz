@@ -6,6 +6,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
 import java.util.TreeMap;
+import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Single;
 
@@ -56,6 +57,6 @@ public class BankQuestion {
     }
 
     public Single<Map<String, List<Question>>> getBankQuestionsAndAnswers() {
-        return Single.just(mBankQuestion);
+        return Single.just(mBankQuestion).delay(3, TimeUnit.SECONDS);
     }
 }

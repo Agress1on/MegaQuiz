@@ -22,11 +22,14 @@ import com.example.alexandr.megaquiz.quizrouter.QuizRouter;
 import com.example.alexandr.megaquiz.quizstoragefragment.QuizStorageContract;
 import com.example.alexandr.megaquiz.quizstoragefragment.QuizStorageItem;
 
+import net.bohush.geometricprogressview.GeometricProgressView;
+
 import java.util.List;
 
 import javax.inject.Inject;
 
 import butterknife.BindView;
+import butterknife.BindViews;
 import butterknife.ButterKnife;
 import butterknife.OnCheckedChanged;
 import butterknife.Unbinder;
@@ -47,9 +50,15 @@ public class QuizStorageFragment extends Fragment implements QuizStorageContract
     @BindView(R.id.text_for_switch)
     TextView mTextView;
 
+    @BindView(R.id.progress_bar_quiz_storage)
+    GeometricProgressView mProgressBar;
+
+    @BindViews({R.id.list_switch, R.id.text_for_switch})
+    List<View> mViewList;
+
     private RecyclerView mRecyclerView;
     private RecyclerAdapter mAdapter;
- //   private RecyclerView.LayoutManager mLayoutManager;
+    //   private RecyclerView.LayoutManager mLayoutManager;
     private GridLayoutManager mLayoutManager;
     private List<QuizStorageItem> mCat;
 
@@ -62,29 +71,17 @@ public class QuizStorageFragment extends Fragment implements QuizStorageContract
         mContext = context;
     }
 
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        /*
-        mPresenter = new QuizStoragePresenter(this, new QuizStorageInteractor(new BankQuestion()));
-        DaggerAppComponent.builder()
-                .appModule(new AppModule(getContext()))
-                .build()
-                .createQuizStorageFragmentComponent(new QuizStorageFragmentPresenterModule(this))
-                .inject(this);
-        */
-        App.getApp(mContext).getComponentsHolder().getQuizStorageFragmentComponent(this).inject(this);
-    }
-
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_quiz_storage, null);
         mUnbinder = ButterKnife.bind(this, view);
+
+        App.getApp(mContext).getComponentsHolder().getQuizStorageFragmentComponent(this).inject(this);
+
         FragmentActivity fragmentActivity = getActivity();
         mRecyclerView = (RecyclerView) view.findViewById(R.id.storage_recycler);
-
-     //   mLayoutManager = new LinearLayoutManager(fragmentActivity); // XMMMMM
+        //   mLayoutManager = new LinearLayoutManager(fragmentActivity); // XMMMMM
         mLayoutManager = new GridLayoutManager(fragmentActivity, 2);
         mRecyclerView.setLayoutManager(mLayoutManager);
         mAdapter = new RecyclerAdapter(mCat, key -> mPresenter.onClick(key));
@@ -103,6 +100,39 @@ public class QuizStorageFragment extends Fragment implements QuizStorageContract
     public void onDestroy() {
         super.onDestroy();
         mPresenter.onDestroy();
+    }
+
+
+    private void showProgressBar() {
+        mProgressBar.setVisibility(View.VISIBLE);
+    }
+
+    private void hideProgressBar() {
+        mProgressBar.setVisibility(View.INVISIBLE);
+    }
+
+    private void showAllView() {
+        for (View view : mViewList) {
+            view.setVisibility(View.VISIBLE);
+        }
+    }
+
+    private void hideAllView() {
+        for (View view : mViewList) {
+            view.setVisibility(View.INVISIBLE);
+        }
+    }
+
+    @Override
+    public void showLoading() {
+        showProgressBar();
+        hideAllView();
+    }
+
+    @Override
+    public void hideLoading() {
+        hideProgressBar();
+        showAllView();
     }
 
     @Override

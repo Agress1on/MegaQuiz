@@ -6,6 +6,7 @@ import com.example.alexandr.megaquiz.quizstoragefragment.QuizStorageItem;
 import java.util.ArrayList;
 import java.util.List;
 
+import io.reactivex.android.schedulers.AndroidSchedulers;
 import io.reactivex.disposables.CompositeDisposable;
 import io.reactivex.disposables.Disposable;
 import io.reactivex.functions.Consumer;
@@ -33,13 +34,15 @@ public class QuizStoragePresenter implements QuizStorageContract.Presenter {
     }
 
     private void initListCategoryNamesWithoutEmpty() {
+        mView.showLoading();
         Disposable disposable = mInteractor.getListOfStorageItemWithoutEmpty()
                 .subscribeOn(Schedulers.io())
-                //.observeOn(AndroidSchedulers.mainThread())
+                .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<List<QuizStorageItem>>() {
                     @Override
                     public void accept(List<QuizStorageItem> quizStorageItems) throws Exception {
                         mItemListWithoutEmpty.addAll(quizStorageItems);
+                        mView.hideLoading();
                     }
                 });
         mCompositeDisposable.add(disposable);
@@ -47,13 +50,15 @@ public class QuizStoragePresenter implements QuizStorageContract.Presenter {
     }
 
     private void initListCategoryNameFull() {
+        mView.showLoading();
         Disposable disposable = mInteractor.getListOfStorageItem()
                 .subscribeOn(Schedulers.io())
-                // .observeOn(AndroidSchedulers.mainThread())
+                .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<List<QuizStorageItem>>() {
                     @Override
                     public void accept(List<QuizStorageItem> quizStorageItems) throws Exception {
                         mItemListFull.addAll(quizStorageItems);
+                        mView.hideLoading();
                     }
                 });
         mCompositeDisposable.add(disposable);

@@ -3,7 +3,7 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorDarkSeaGreen">
+    android:background="@color/colorWhite">
 
     <Switch
         android:id="@+id/list_switch"
@@ -41,5 +41,19 @@
         app:layout_constraintTop_toBottomOf="@id/text_for_switch">
 
     </android.support.v7.widget.RecyclerView>
+
+    <net.bohush.geometricprogressview.GeometricProgressView
+        android:id="@+id/progress_bar_quiz_storage"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:gp_type="kite"
+        app:gp_number_of_angles="4"
+        app:gp_figure_padding="2dp"
+        app:gp_duration="500"
+        app:gp_color="@color/colorGreen"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
 </android.support.constraint.ConstraintLayout>

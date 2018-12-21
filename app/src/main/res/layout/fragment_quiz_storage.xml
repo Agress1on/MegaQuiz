@@ -3,38 +3,8 @@
     xmlns:app="http://schemas.android.com/apk/res-auto"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/colorDarkSeaGreen"
+    android:background="@color/colorWhite"
     >
-
-    <!--
-    <android.support.constraint.Guideline
-        android:id="@+id/guideline1"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.3" />
-
-    <android.support.constraint.Guideline
-        android:id="@+id/guideline2"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.7" />
-
-    <android.support.constraint.Guideline
-        android:id="@+id/guideline3"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="horizontal"
-        app:layout_constraintGuide_percent="0.2" />
-
-    <android.support.constraint.Guideline
-        android:id="@+id/guideline4"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:orientation="vertical"
-        app:layout_constraintGuide_percent="0.1" />
-    -->
 
     <Switch
         android:id="@+id/list_switch"
@@ -60,76 +30,6 @@
         app:layout_constraintEnd_toStartOf="@id/list_switch"
         app:layout_constraintTop_toTopOf="@id/list_switch" />
 
-    <!--
-    <TextView
-        android:id="@+id/for_number_header"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="5dp"
-        android:paddingBottom="10dp"
-        android:text="@string/for_number_header"
-        android:textAlignment="viewEnd"
-        app:layout_constraintEnd_toEndOf="@id/guideline1"
-        app:layout_constraintStart_toStartOf="@id/guideline4"
-        app:layout_constraintTop_toBottomOf="@id/separator_horizontal_1" />
-
-    <TextView
-        android:id="@+id/for_name_category_header"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/for_name_category_header"
-        android:textAlignment="center"
-        app:layout_constraintEnd_toEndOf="@id/guideline2"
-        app:layout_constraintStart_toStartOf="@id/guideline1"
-        app:layout_constraintTop_toTopOf="@id/for_number_header" />
-
-    <TextView
-        android:id="@+id/for_quiz_size_header"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="@string/for_quiz_size_header"
-        android:textAlignment="viewStart"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="@id/guideline2"
-        app:layout_constraintTop_toTopOf="@id/for_number_header" />
-    -->
-    <!--
-
-    <View
-        android:id="@+id/separator_horizontal_1"
-        android:layout_width="0dp"
-        android:layout_height="1dp"
-        android:layout_marginTop="10dp"
-        android:background="@color/colorDarkOliveGreen"
-        app:layout_constraintTop_toBottomOf="@id/list_switch" />
-
-    <View
-        android:id="@+id/separator_horizontal_2"
-        android:layout_width="0dp"
-        android:layout_height="1dp"
-        android:background="@color/colorDarkOliveGreen"
-        app:layout_constraintBottom_toBottomOf="@id/for_number_header"
-        app:layout_constraintStart_toStartOf="@id/separator_horizontal_1" />
-
-    <View
-        android:id="@+id/separator_vertical_1"
-        android:layout_width="1dp"
-        android:layout_height="0dp"
-        android:background="@color/colorDarkOliveGreen"
-        app:layout_constraintBottom_toTopOf="@id/separator_horizontal_2"
-        app:layout_constraintStart_toEndOf="@id/guideline1"
-        app:layout_constraintTop_toTopOf="@id/separator_horizontal_1" />
-
-    <View
-        android:id="@+id/separator_vertical_2"
-        android:layout_width="1dp"
-        android:layout_height="0dp"
-        android:background="@color/colorDarkOliveGreen"
-        app:layout_constraintBottom_toTopOf="@id/separator_horizontal_2"
-        app:layout_constraintStart_toEndOf="@id/guideline2"
-        app:layout_constraintTop_toTopOf="@id/separator_horizontal_1" />
-    -->
-
     <android.support.v7.widget.RecyclerView
         android:id="@+id/storage_recycler"
         android:layout_width="0dp"
@@ -141,5 +41,19 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@id/text_for_switch">
     </android.support.v7.widget.RecyclerView>
+
+    <net.bohush.geometricprogressview.GeometricProgressView
+        android:id="@+id/progress_bar_quiz_storage"
+        android:layout_width="100dp"
+        android:layout_height="100dp"
+        app:gp_type="kite"
+        app:gp_number_of_angles="4"
+        app:gp_figure_padding="2dp"
+        app:gp_duration="500"
+        app:gp_color="@color/colorGreen"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"/>
 
 </android.support.constraint.ConstraintLayout>

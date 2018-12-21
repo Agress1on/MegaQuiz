@@ -31,5 +31,9 @@ public interface QuizStorageContract {
         void startActivityQuizView(String key);
 
         void updateUI(List<QuizStorageItem> list, String text);
+
+        void showLoading();
+
+        void hideLoading();
     }
 }

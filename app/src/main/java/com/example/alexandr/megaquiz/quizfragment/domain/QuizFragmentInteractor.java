@@ -44,7 +44,7 @@ public class QuizFragmentInteractor implements QuizFragmentContract.Interactor {
                         }
                         return list;
                     }
-                }).delay(2, TimeUnit.SECONDS);
+                });
     }
 
     @Override
@@ -71,6 +71,6 @@ public class QuizFragmentInteractor implements QuizFragmentContract.Interactor {
                         }
                         return rightAnswers;
                     }
-                }).delay(2, TimeUnit.SECONDS);
+                });
     }
 }
