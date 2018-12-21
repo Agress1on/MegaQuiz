@@ -56,9 +56,10 @@ public class QuizStorageFragment extends Fragment implements QuizStorageContract
     @BindViews({R.id.list_switch, R.id.text_for_switch})
     List<View> mViewList;
 
-    private RecyclerView mRecyclerView;
+    @BindView(R.id.storage_recycler)
+    RecyclerView mRecyclerView;
+
     private RecyclerAdapter mAdapter;
-    //   private RecyclerView.LayoutManager mLayoutManager;
     private GridLayoutManager mLayoutManager;
     private List<QuizStorageItem> mCat;
 
@@ -80,8 +81,6 @@ public class QuizStorageFragment extends Fragment implements QuizStorageContract
         App.getApp(mContext).getComponentsHolder().getQuizStorageFragmentComponent(this).inject(this);
 
         FragmentActivity fragmentActivity = getActivity();
-        mRecyclerView = (RecyclerView) view.findViewById(R.id.storage_recycler);
-        //   mLayoutManager = new LinearLayoutManager(fragmentActivity); // XMMMMM
         mLayoutManager = new GridLayoutManager(fragmentActivity, 2);
         mRecyclerView.setLayoutManager(mLayoutManager);
         mAdapter = new RecyclerAdapter(mCat, key -> mPresenter.onClick(key));
