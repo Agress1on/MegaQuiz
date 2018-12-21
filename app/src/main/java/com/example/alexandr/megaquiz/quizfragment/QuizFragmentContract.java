@@ -49,6 +49,6 @@ public interface QuizFragmentContract {
     interface Router {
         void setQuizFragment();
 
-        void goToQuizResult(int quizSize, int correctAnswers, String categoryName, HashMap<Integer, Boolean> map);
+        void goToQuizResultFragment(int quizSize, int correctAnswers, String categoryName, HashMap<Integer, Boolean> map);
     }
 }
