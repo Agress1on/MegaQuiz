@@ -35,11 +35,7 @@ public interface QuizFragmentContract {
     }
 
     interface Presenter {
-      //  void initCategory(String key);
-
-        void initQuestionList();
-
-        void prepareViewForFirstQuestion();
+        void onStartView();
 
         void onNextButton();
 
@@ -52,6 +48,7 @@ public interface QuizFragmentContract {
 
     interface Router {
         void setQuizFragment();
+
         void goToQuizResult(int quizSize, int correctAnswers, String categoryName, HashMap<Integer, Boolean> map);
     }
 }

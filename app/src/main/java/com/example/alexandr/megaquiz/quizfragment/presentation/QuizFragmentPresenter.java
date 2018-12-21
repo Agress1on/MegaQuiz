@@ -49,20 +49,8 @@ public class QuizFragmentPresenter implements QuizFragmentContract.Presenter {
         this.mMapAnswers = new LinkedHashMap<>();
     }
 
-    /*
     @Override
-    public void initCategory(String key) {
-        if (mCategoryName.equals("")) {
-            mCategoryName = key;
-            initQuestionList();
-        } else {
-            prepareViewForFirstQuestion();
-        }
-    }
-    */
-
-    @Override
-    public void initQuestionList() {
+    public void onStartView() {
         showProgressBar(true);
         Disposable disposable = mInteractor.getQuestions(mCategoryName)
                 .subscribeOn(Schedulers.io())
@@ -70,9 +58,7 @@ public class QuizFragmentPresenter implements QuizFragmentContract.Presenter {
                 .subscribe(new Consumer<List<String>>() {
                     @Override
                     public void accept(List<String> strings) throws Exception {
-                        for (String string : strings) {
-                            mQuestions.add(string);
-                        }
+                        mQuestions.addAll(strings);
                         showProgressBar(false);
                         prepareViewForFirstQuestion();
                     }
@@ -86,8 +72,7 @@ public class QuizFragmentPresenter implements QuizFragmentContract.Presenter {
         mView.showProgressBarAndSetViewVisibility(viewState, progressBarState);
     }
 
-    @Override
-    public void prepareViewForFirstQuestion() {
+    private void prepareViewForFirstQuestion() {
         mView.setQuestionTextView(mQuestions.get(mCurrentIndex));
         countNumberOfQuestion();
     }

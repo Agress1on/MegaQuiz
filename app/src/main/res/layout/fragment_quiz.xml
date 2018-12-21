@@ -162,15 +162,16 @@
         android:id="@+id/progress_bar"
         android:layout_width="100dp"
         android:layout_height="100dp"
-        app:gp_type="kite"
-        app:gp_number_of_angles="4"
-        app:gp_figure_padding="2dp"
-        app:gp_duration="500"
+        android:visibility="invisible"
         app:gp_color="@color/colorGreen"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@id/background_for_question"
+        app:gp_duration="500"
+        app:gp_figure_padding="2dp"
+        app:gp_number_of_angles="4"
+        app:gp_type="kite"
+        app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintBottom_toBottomOf="parent"/>
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@id/background_for_question" />
 
     <TextView
         android:id="@+id/question_count"
