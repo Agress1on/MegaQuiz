@@ -1,4 +1,4 @@
-package com.example.alexandr.megaquiz.startactivity.view;
+package com.example.alexandr.megaquiz.startrouter;
 
 import android.content.Context;
 import android.content.Intent;
@@ -22,13 +22,8 @@ import com.example.alexandr.megaquiz.startfragment.view.StartFragment;
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class StartActivity extends AppCompatActivity
+public class StartRouter extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, StartFragmentContract.Router {
-
-    /*
-    @Inject
-    StartContract.Presenter mPresenter;
-    */
 
     @BindView(R.id.toolbar)
     Toolbar mToolbar;
@@ -50,21 +45,6 @@ public class StartActivity extends AppCompatActivity
         setContentView(R.layout.nd_activity_main_for_start_view); // для ND
         ButterKnife.bind(this);
 
-        // mPresenter = new StartActivityPresenter(this, new StartActivityInteractor());
-
-        //  App.getApp(this).getComponentsHolder().getStartActivityComponent(this).inject(this);
-        mFragmentManager = getSupportFragmentManager();
-
-
-        if (mFragmentManager.getFragments().size() == 0) {
-            prepareStartScreen();
-        }
-    }
-
-    @Override
-    public void prepareStartScreen() {
-
-
         //ND START
         setSupportActionBar(mToolbar);
         ActionBarDrawerToggle toggle =
@@ -78,7 +58,14 @@ public class StartActivity extends AppCompatActivity
         mQuizStorageFragment = QuizStorageFragment.newInstance();
         mStartFragment = StartFragment.newInstance();
         mInfoFragment = InfoFragment.newInstance();
+        mFragmentManager = getSupportFragmentManager();
+        if (mFragmentManager.getFragments().size() == 0) {
+            setStartFragment();
+        }
+    }
 
+    @Override
+    public void setStartFragment() {
         mFragmentManager.beginTransaction()
                 .add(R.id.container_for_fragments, mStartFragment)
                 .commit();
@@ -100,7 +87,6 @@ public class StartActivity extends AppCompatActivity
     @Override
     protected void onDestroy() {
         super.onDestroy();
-        // App.getApp(this).getComponentsHolder().releaseStartActivityComponent();
     }
 
     @Override
@@ -126,7 +112,7 @@ public class StartActivity extends AppCompatActivity
     }
 
     public static Intent getIntent(Context context) {
-        Intent intent = new Intent(context, StartActivity.class);
+        Intent intent = new Intent(context, StartRouter.class);
         return intent;
     }
 }

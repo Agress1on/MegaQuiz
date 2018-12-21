@@ -111,7 +111,7 @@ public class StartFragment extends Fragment implements StartFragmentContract.Vie
     @Override
     public void startQuizViewWithRandom(String randomCategory) {
         /*
-        Intent intent = QuizActivity.getIntent(mContext, randomCategory);
+        Intent intent = QuizRouter.getIntent(mContext, randomCategory);
         startActivity(intent);
         */
     }

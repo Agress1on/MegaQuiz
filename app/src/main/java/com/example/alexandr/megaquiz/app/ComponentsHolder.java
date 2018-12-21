@@ -2,9 +2,6 @@ package com.example.alexandr.megaquiz.app;
 
 import android.content.Context;
 
-import com.example.alexandr.megaquiz.quizactivity.inject.QuizActivityComponent;
-import com.example.alexandr.megaquiz.quizactivity.inject.QuizActivityPresenterModule;
-import com.example.alexandr.megaquiz.quizactivity.view.QuizActivity;
 import com.example.alexandr.megaquiz.quizfragment.inject.QuizFragmentComponent;
 import com.example.alexandr.megaquiz.quizfragment.inject.QuizFragmentPresenterModule;
 import com.example.alexandr.megaquiz.quizfragment.view.QuizFragment;
@@ -34,7 +31,7 @@ public class ComponentsHolder {
     private QuizResultFragmentComponent mQuizResultFragmentComponent;
     private QuizFragmentComponent mQuizFragmentComponent;
 
-    private QuizActivityComponent mQuizActivityComponent;
+  //  private QuizActivityComponent mQuizActivityComponent;
     //  private StartActivityComponent mStartActivityComponent;
 
     public ComponentsHolder(Context context) {
@@ -56,7 +53,7 @@ public class ComponentsHolder {
     StartActivityComponent
     *//*
 
-    public StartActivityComponent getStartActivityComponent(StartActivity startActivity) {
+    public StartActivityComponent getStartActivityComponent(StartRouter startActivity) {
         if (mStartActivityComponent == null) {
             mStartActivityComponent = getAppComponent().createStartActivityComponent(new StartActivityPresenterModule(startActivity));
         }
@@ -130,10 +127,11 @@ public class ComponentsHolder {
     }
 
     /*
+     *//*
     QuizActivityComponent
-    */
+    *//*
 
-    public QuizActivityComponent getQuizActivityComponent(QuizActivity quizActivity) {
+    public QuizActivityComponent getQuizActivityComponent(QuizRouter quizActivity) {
         if (mQuizActivityComponent == null) {
             mQuizActivityComponent = getAppComponent().createQuizActivityComponent(new QuizActivityPresenterModule(quizActivity));
         }
@@ -143,4 +141,6 @@ public class ComponentsHolder {
     public void releaseQuizActivityComponent() {
         mQuizActivityComponent = null;
     }
+    */
+
 }

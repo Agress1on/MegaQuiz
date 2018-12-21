@@ -12,7 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".startactivity.view.StartActivity"
+        <activity android:name=".startrouter.StartRouter"
             android:theme="@style/QuizViewTheme">
 
         </activity>
@@ -27,7 +27,7 @@
         </activity>
         <activity
             android:theme="@style/QuizViewTheme"
-            android:name=".quizactivity.view.QuizActivity">
+            android:name=".quizrouter.QuizRouter">
 
         </activity>
     </application>

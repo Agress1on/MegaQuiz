@@ -9,7 +9,6 @@ import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.util.DiffUtil;
 import android.support.v7.widget.GridLayoutManager;
-import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -19,7 +18,7 @@ import android.widget.TextView;
 
 import com.example.alexandr.megaquiz.R;
 import com.example.alexandr.megaquiz.app.App;
-import com.example.alexandr.megaquiz.quizactivity.view.QuizActivity;
+import com.example.alexandr.megaquiz.quizrouter.QuizRouter;
 import com.example.alexandr.megaquiz.quizstoragefragment.QuizStorageContract;
 import com.example.alexandr.megaquiz.quizstoragefragment.QuizStorageItem;
 
@@ -113,7 +112,7 @@ public class QuizStorageFragment extends Fragment implements QuizStorageContract
 
     @Override
     public void startActivityQuizView(String key) {
-        Intent intent = QuizActivity.getIntent(getContext(), key);
+        Intent intent = QuizRouter.getIntent(getContext(), key);
         startActivity(intent);
     }
 

@@ -1,7 +1,5 @@
 package com.example.alexandr.megaquiz.app;
 
-import com.example.alexandr.megaquiz.quizactivity.inject.QuizActivityComponent;
-import com.example.alexandr.megaquiz.quizactivity.inject.QuizActivityPresenterModule;
 import com.example.alexandr.megaquiz.quizfragment.inject.QuizFragmentComponent;
 import com.example.alexandr.megaquiz.quizfragment.inject.QuizFragmentPresenterModule;
 import com.example.alexandr.megaquiz.quizresultfragment.inject.QuizResultFragmentComponent;
@@ -32,7 +30,7 @@ public interface AppComponent {
 
     QuizStorageFragmentComponent createQuizStorageFragmentComponent(QuizStorageFragmentPresenterModule quizStorageFragmentPresenterModule);
 
-    QuizActivityComponent createQuizActivityComponent(QuizActivityPresenterModule quizActivityPresenterModule);
+    //  QuizActivityComponent createQuizActivityComponent(QuizActivityPresenterModule quizActivityPresenterModule);
 
-  //  StartActivityComponent createStartActivityComponent(StartActivityPresenterModule startActivityPresenterModule);
+    //  StartActivityComponent createStartActivityComponent(StartActivityPresenterModule startActivityPresenterModule);
 }
