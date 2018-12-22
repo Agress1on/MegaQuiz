@@ -51,10 +51,10 @@ public class QuizRouter extends AppCompatActivity implements QuizFragmentContrac
     }
 
     @Override
-    public void goToQuizResultFragment(int quizSize, int correctAnswers, String categoryName, HashMap<Integer, Boolean> map) {
-        mQuizResultFragment = QuizResultFragment.newInstance(quizSize, correctAnswers, categoryName, map);
+    public void goToQuizResultFragment(int correctAnswers, String categoryName, HashMap<Integer, Boolean> map) {
+        mQuizResultFragment = QuizResultFragment.newInstance(correctAnswers, categoryName, map);
         mFragmentManager.beginTransaction()
-                .replace(R.id.frame_for_quiz, mQuizFragment)
+                .replace(R.id.frame_for_quiz, mQuizResultFragment)
                 .commit();
     }
 

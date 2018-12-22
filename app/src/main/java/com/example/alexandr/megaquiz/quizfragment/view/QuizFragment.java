@@ -16,12 +16,9 @@ import com.example.alexandr.megaquiz.R;
 import com.example.alexandr.megaquiz.app.App;
 import com.example.alexandr.megaquiz.quizfragment.Answer;
 import com.example.alexandr.megaquiz.quizfragment.QuizFragmentContract;
-import com.example.alexandr.megaquiz.quizresultfragment.view.QuizResultFragment;
 
 import net.bohush.geometricprogressview.GeometricProgressView;
 
-import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.List;
 
 import javax.inject.Inject;
@@ -72,7 +69,7 @@ public class QuizFragment extends Fragment implements QuizFragmentContract.View 
     GeometricProgressView mProgressBar;
 
     @BindViews({R.id.static_category_name, R.id.question, R.id.btnTrue,
-                R.id.btnFalse, R.id.btnNext, R.id.btnPrev, R.id.question_count})
+            R.id.btnFalse, R.id.btnNext, R.id.btnPrev, R.id.question_count})
     List<View> mViewList;
 
     private String mCategoryName = "";
@@ -170,15 +167,6 @@ public class QuizFragment extends Fragment implements QuizFragmentContract.View 
     @Override
     public void setQuestionCounter(String text) {
         mQuestionCount.setText(text);
-    }
-
-    @Override
-    public void startQuizResultFragment(int quizSize, int correctAnswers, HashMap<Integer, Boolean> mapAnswers) {
-        QuizResultFragment quizResultFragment =
-                QuizResultFragment.newInstance(quizSize, correctAnswers, mCategoryName, mapAnswers);
-        getActivity().getSupportFragmentManager().beginTransaction()
-                .replace(R.id.frame_for_quiz, quizResultFragment)
-                .commit();
     }
 
     @OnClick({R.id.btnTrue, R.id.btnFalse})

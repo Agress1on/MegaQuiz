@@ -9,7 +9,6 @@ import com.example.alexandr.megaquiz.quizfragment.QuizFragmentContract;
 
 import java.util.ArrayList;
 import java.util.HashMap;
-import java.util.LinkedHashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -139,10 +138,11 @@ public class QuizFragmentPresenter implements QuizFragmentContract.Presenter {
                         @Override
                         public void accept(Integer integer) throws Exception {
                             showProgressBar(false);
-                            mView.startQuizResultFragment(size, integer, mMapAnswers);
+                            mRouter.goToQuizResultFragment(integer, mCategoryName, mMapAnswers);
                         }
                     });
             mCompositeDisposable.add(disposable);
+
         }
     }
 

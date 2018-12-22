@@ -13,7 +13,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Switch;
 import android.widget.TextView;
-import android.widget.Toast;
 
 import com.example.alexandr.megaquiz.Constants;
 import com.example.alexandr.megaquiz.R;
@@ -62,13 +61,11 @@ public class QuizResultFragment extends Fragment implements QuizResultFragmentCo
     @BindViews({R.id.result_text, R.id.for_recycler_tv, R.id.result_switch})
     List<View> mViewList;
 
-    private int mQuizSize;
     private int mCorrectAnswers;
     private String mNameCategory;
     private HashMap<Integer, Boolean> mUserAnswersMap;
 
     private List<QuizResultItem> mCat;
-    //private RecyclerView mRecyclerView;
     private QuizResultAdapter mAdapter;
     private RecyclerView.LayoutManager mLayoutManager;
 
@@ -86,7 +83,6 @@ public class QuizResultFragment extends Fragment implements QuizResultFragmentCo
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mQuizSize = getArguments().getInt(Constants.EXTRAS_FOR_INTENT_QUIZ_RESULT_QUIZ_SIZE, 10);
         mCorrectAnswers = getArguments().getInt(Constants.EXTRAS_FOR_INTENT_QUIZ_RESULT_CORRECT_ANSWERS, 5);
         mNameCategory = getArguments().getString(Constants.EXTRAS_FOR_INTENT_QUIZ_RESULT_NAME_CATEGORY, "Error");
         mUserAnswersMap = (HashMap<Integer, Boolean>) getArguments().getSerializable(Constants.EXTRAS_FOR_INTENT_QUIZ_RESULT_MAP_USER_ANSWERS);
@@ -102,8 +98,6 @@ public class QuizResultFragment extends Fragment implements QuizResultFragmentCo
                 .getQuizResultFragmentComponent(this, mNameCategory, mUserAnswersMap, mCorrectAnswers).inject(this);
 
         mPresenter.onStartView();
-
-      //  mPresenter.createTextForResultTextView(mQuizSize, mCorrectAnswers, mNameCategory);
 
         FragmentActivity fragmentActivity = getActivity();
         mLayoutManager = new LinearLayoutManager(fragmentActivity);
@@ -144,11 +138,6 @@ public class QuizResultFragment extends Fragment implements QuizResultFragmentCo
     }
 
     @Override
-    public void showToast(String text) {
-        Toast.makeText(getContext(), "text", Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
     public void showLoading() {
         showProgressBar();
         hideView();
@@ -185,11 +174,6 @@ public class QuizResultFragment extends Fragment implements QuizResultFragmentCo
         mCat = list;
     }
 
-    @Override
-    public void setResultTextView(String text) {
-        mResultTextView.setText(text);
-    }
-
     @OnCheckedChanged({R.id.result_switch})
     void onSelected(Switch button, boolean checked) {
         mPresenter.onCheckBoxClick(checked);
@@ -201,9 +185,8 @@ public class QuizResultFragment extends Fragment implements QuizResultFragmentCo
         mTextView.setText(text);
     }
 
-    public static QuizResultFragment newInstance(int quizSize, int correctAnswers, String nameCategory, HashMap<Integer, Boolean> map) {
+    public static QuizResultFragment newInstance(int correctAnswers, String nameCategory, HashMap<Integer, Boolean> map) {
         Bundle args = new Bundle();
-        args.putInt(Constants.EXTRAS_FOR_INTENT_QUIZ_RESULT_QUIZ_SIZE, quizSize);
         args.putInt(Constants.EXTRAS_FOR_INTENT_QUIZ_RESULT_CORRECT_ANSWERS, correctAnswers);
         args.putString(Constants.EXTRAS_FOR_INTENT_QUIZ_RESULT_NAME_CATEGORY, nameCategory);
         args.putSerializable(Constants.EXTRAS_FOR_INTENT_QUIZ_RESULT_MAP_USER_ANSWERS, map);
