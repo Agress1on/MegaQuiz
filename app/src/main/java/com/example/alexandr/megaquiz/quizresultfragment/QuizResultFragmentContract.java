@@ -43,7 +43,5 @@ public interface QuizResultFragmentContract {
         void onCheckBoxClick(boolean tap);
 
         void onDestroy();
-
-        int getSizeMap();
     }
 }

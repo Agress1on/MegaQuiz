@@ -47,11 +47,6 @@ public class QuizResultFragmentPresenter implements QuizResultFragmentContract.P
     }
 
     @Override
-    public int getSizeMap() {
-        return mUserAnswersMap.size();
-    }
-
-    @Override
     public void onStartView() {
         mView.showLoading();
         Disposable disposable = mInteractor.getQuestion(mCategoryName)
