@@ -16,7 +16,7 @@ import io.reactivex.Single;
 public interface QuizResultFragmentContract {
 
     interface Interactor {
-        Single<List<Question>> getQuestion(String key);
+        Single<List<QuizResultItem>> getQuizResultItems(String key, HashMap<Integer, Boolean> userAnswersMap);
     }
 
     interface View {
@@ -31,14 +31,14 @@ public interface QuizResultFragmentContract {
         void hideLoading();
 
         void showToast(String text);
+
+        void setTextOfResultTextView(int size, int correctAnswers, String categoryName);
     }
 
     interface Presenter {
         void onStartView();
 
-        void createItemForRecycler(HashMap<Integer, Boolean> map);
-
-        void createTextForResultTextView(int size, int correctAnswers, String categoryName);
+       // void createTextForResultTextView(int size, int correctAnswers, String categoryName);
 
         void onCheckBoxClick(boolean tap);
 

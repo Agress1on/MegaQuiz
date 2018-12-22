@@ -1,7 +1,6 @@
 package com.example.alexandr.megaquiz.quizresultfragment.inject;
 
 import com.example.alexandr.megaquiz.bankquestion.BankQuestion;
-import com.example.alexandr.megaquiz.quizfragment.inject.QuizFragmentScope;
 import com.example.alexandr.megaquiz.quizresultfragment.QuizResultFragmentContract;
 import com.example.alexandr.megaquiz.quizresultfragment.domain.QuizResultFragmentInteractor;
 import com.example.alexandr.megaquiz.quizresultfragment.presentation.QuizResultFragmentPresenter;
@@ -24,17 +23,19 @@ public class QuizResultFragmentPresenterModule {
     private QuizResultFragmentContract.View mView;
     private String mCategoryName;
     private HashMap<Integer, Boolean> mUserAnswersMap;
+    private int mCorrectAnswers;
 
-    public QuizResultFragmentPresenterModule(QuizResultFragmentContract.View view, String categoryName, HashMap<Integer, Boolean> userAnswersMap) {
+    public QuizResultFragmentPresenterModule(QuizResultFragmentContract.View view, String categoryName, HashMap<Integer, Boolean> userAnswersMap, int correctAnswers) {
         mView = view;
         mCategoryName = categoryName;
         mUserAnswersMap = userAnswersMap;
+        mCorrectAnswers = correctAnswers;
     }
 
     @QuizResultFragmentScope
     @Provides
     QuizResultFragmentContract.Presenter providePresenter(QuizResultFragmentContract.Interactor interactor) {
-        return new QuizResultFragmentPresenter(mView, interactor, mCategoryName, mUserAnswersMap);
+        return new QuizResultFragmentPresenter(mView, interactor, mCategoryName, mUserAnswersMap, mCorrectAnswers);
     }
 
     @QuizResultFragmentScope
@@ -55,5 +56,12 @@ public class QuizResultFragmentPresenterModule {
     @Named("keyCategoryForResult")
     String provideCategoryName() {
         return mCategoryName;
+    }
+
+    @QuizResultFragmentScope
+    @Provides
+    @Named("keyForCorrectAnswers")
+    Integer provideCorrectAnswers() {
+        return mCorrectAnswers;
     }
 }

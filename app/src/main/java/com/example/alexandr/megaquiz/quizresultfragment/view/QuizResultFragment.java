@@ -75,6 +75,8 @@ public class QuizResultFragment extends Fragment implements QuizResultFragmentCo
     private Context mContext;
     private Unbinder mUnbinder;
 
+    String mTextResult;
+
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
@@ -97,11 +99,11 @@ public class QuizResultFragment extends Fragment implements QuizResultFragmentCo
         mUnbinder = ButterKnife.bind(this, view);
 
         App.getApp(mContext).getComponentsHolder()
-                .getQuizResultFragmentComponent(this, mNameCategory, mUserAnswersMap).inject(this);
+                .getQuizResultFragmentComponent(this, mNameCategory, mUserAnswersMap, mCorrectAnswers).inject(this);
 
         mPresenter.onStartView();
 
-        mPresenter.createTextForResultTextView(mQuizSize, mCorrectAnswers, mNameCategory);
+      //  mPresenter.createTextForResultTextView(mQuizSize, mCorrectAnswers, mNameCategory);
 
         FragmentActivity fragmentActivity = getActivity();
         mLayoutManager = new LinearLayoutManager(fragmentActivity);
@@ -109,6 +111,23 @@ public class QuizResultFragment extends Fragment implements QuizResultFragmentCo
         mAdapter = new QuizResultAdapter(mCat);
         mRecyclerView.setAdapter(mAdapter);
         return view;
+    }
+
+    @Override
+    public void setTextOfResultTextView(int size, int correctAnswers, String categoryName) {
+        String level;
+        int percent = ((correctAnswers * 100) / size);
+        if (percent < 50) {
+            level = "ужасно";
+        } else if (percent < 75) {
+            level = "удовлетворительно";
+        } else if (percent <= 89) {
+            level = "хорошо";
+        } else {
+            level = "отлично";
+        }
+        mTextResult = "Вы прошли опрос категории \"" + categoryName + "\". Вы " + level + " владеете знаниями данной в области и дали " + percent + "% верных ответов.";
+        mResultTextView.setText(mTextResult);
     }
 
     @Override

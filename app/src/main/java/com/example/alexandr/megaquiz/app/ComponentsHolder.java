@@ -97,9 +97,9 @@ public class ComponentsHolder {
     QuizResultFragmentComponent
     */
 
-    public QuizResultFragmentComponent getQuizResultFragmentComponent(QuizResultFragment quizResultFragment, String categoryName, HashMap<Integer, Boolean> userAnswersMap) {
+    public QuizResultFragmentComponent getQuizResultFragmentComponent(QuizResultFragment quizResultFragment, String categoryName, HashMap<Integer, Boolean> userAnswersMap, Integer correctAnswers) {
         if (mQuizResultFragmentComponent == null) {
-            mQuizResultFragmentComponent = getAppComponent().createQuizResultFragmentComponent(new QuizResultFragmentPresenterModule(quizResultFragment, categoryName, userAnswersMap));
+            mQuizResultFragmentComponent = getAppComponent().createQuizResultFragmentComponent(new QuizResultFragmentPresenterModule(quizResultFragment, categoryName, userAnswersMap, correctAnswers));
         }
         return mQuizResultFragmentComponent;
     }
