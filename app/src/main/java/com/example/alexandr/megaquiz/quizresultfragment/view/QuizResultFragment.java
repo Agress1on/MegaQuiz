@@ -59,7 +59,7 @@ public class QuizResultFragment extends Fragment implements QuizResultFragmentCo
     @BindView(R.id.progress_bar_quiz_result)
     GeometricProgressView mProgressBar;
 
-    @BindViews({R.id.result_text, R.id.for_recycler_tv, R.id.result_switch, R.id.result_recycler})
+    @BindViews({R.id.result_text, R.id.for_recycler_tv, R.id.result_switch})
     List<View> mViewList;
 
     private int mQuizSize;
