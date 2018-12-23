@@ -34,10 +34,10 @@ public class QuizStoragePresenter implements QuizStorageContract.Presenter {
         mItemListWithoutEmpty = new ArrayList<>();
         mCompositeDisposable = new CompositeDisposable();
 
-        initListCategoryNameFull();
+        initListsCategoryName();
     }
 
-    private void initListCategoryNameFull() {
+    private void initListsCategoryName() {
         mView.showLoading();
         Disposable disposable = mInteractor.getListsOfStorageItem()
                 .subscribeOn(Schedulers.io())
