@@ -22,7 +22,7 @@ public interface StartFragmentContract {
     interface Router {
         void setStartFragment();
 
-        void goToRandomQuestion();
+        void goToQuizFragmentWithRandom();
 
         void goToQuizStorage();
     }

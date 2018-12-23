@@ -73,7 +73,7 @@ public class StartRouter extends AppCompatActivity
     }
 
     @Override
-    public void goToRandomQuestion() {
+    public void goToQuizFragmentWithRandom() {
         Intent intent = QuizRouter.getIntent(this, "");
         startActivity(intent);
     }
@@ -114,7 +114,6 @@ public class StartRouter extends AppCompatActivity
     }
 
     public static Intent getIntent(Context context) {
-        Intent intent = new Intent(context, StartRouter.class);
-        return intent;
+        return new Intent(context, StartRouter.class);
     }
 }
