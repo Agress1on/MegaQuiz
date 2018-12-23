@@ -17,7 +17,7 @@ public interface QuizResultFragmentContract {
     }
 
     interface View {
-        void initListForRecyclerView(List<QuizResultItem> list);
+        void addListQuizResultItemForRecyclerView(List<QuizResultItem> list);
 
         void setVisibilityOfRecycler(int state, String text);
 

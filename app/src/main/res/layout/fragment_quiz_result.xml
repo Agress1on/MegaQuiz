@@ -48,7 +48,7 @@
         tools:text="sjdkfsdljfjsldjlsdjgls" />
 
     <Switch
-        android:id="@+id/result_switch"
+        android:id="@+id/switch_result"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="15dp"
@@ -57,16 +57,16 @@
         app:layout_constraintEnd_toEndOf="@id/result_text"
         app:layout_constraintTop_toBottomOf="@id/result_text" />
     <TextView
-        android:id="@+id/for_recycler_tv"
+        android:id="@+id/for_switch_tv"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Показать подробности"
         android:textColor="@color/colorBlack"
         android:textSize="15dp"
         android:layout_marginEnd="10dp"
-        app:layout_constraintTop_toTopOf="@id/result_switch"
-        app:layout_constraintBottom_toBottomOf="@id/result_switch"
-        app:layout_constraintEnd_toStartOf="@id/result_switch"/>
+        app:layout_constraintTop_toTopOf="@id/switch_result"
+        app:layout_constraintBottom_toBottomOf="@id/switch_result"
+        app:layout_constraintEnd_toStartOf="@id/switch_result"/>
 
     <android.support.v7.widget.RecyclerView
         android:id="@+id/result_recycler"
@@ -80,7 +80,7 @@
         android:layout_marginEnd="5dp"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/result_switch"
+        app:layout_constraintTop_toBottomOf="@id/switch_result"
         app:layout_constraintBottom_toBottomOf="parent">
     </android.support.v7.widget.RecyclerView>
 

@@ -31,7 +31,6 @@ public class QuizResultFragmentPresenter implements QuizResultFragmentContract.P
     private CompositeDisposable mCompositeDisposable;
     private List<QuizResultItem> mListForRecyclerView;
 
- //   private String mTextResult;
 
     public QuizResultFragmentPresenter(QuizResultFragmentContract.View view, QuizResultFragmentContract.Interactor interactor,
                                        String categoryName, HashMap<Integer, Boolean> userAnswersMap, int correctAnswers) {
@@ -40,7 +39,6 @@ public class QuizResultFragmentPresenter implements QuizResultFragmentContract.P
         this.mCategoryName = categoryName;
         this.mUserAnswersMap = userAnswersMap;
         this.mCorrectAnswers = correctAnswers;
-
         //
         this.mCompositeDisposable = new CompositeDisposable();
         this.mListForRecyclerView = new ArrayList<>();
@@ -60,35 +58,13 @@ public class QuizResultFragmentPresenter implements QuizResultFragmentContract.P
                     }
                 });
         mCompositeDisposable.add(disposable);
-        mView.initListForRecyclerView(mListForRecyclerView);
-        // call createText here
+        mView.addListQuizResultItemForRecyclerView(mListForRecyclerView);
         mView.setTextOfResultTextView(mUserAnswersMap.size(), mCorrectAnswers, mCategoryName);
     }
 
-    /*
-    @Override
-    public void createTextForResultTextView(int size, int correctAnswers, String categoryName) {
-        String level;
-        int percent = ((correctAnswers * 100) / size);
-        if (percent < 50) {
-            level = "ужасно";
-        } else if (percent < 75) {
-            level = "удовлетворительно";
-        } else if (percent <= 89) {
-            level = "хорошо";
-        } else {
-            level = "отлично";
-        }
-        mTextResult = "Вы прошли опрос категории \"" + categoryName + "\". Вы " + level + " владеете знаниями данной в области и дали " + percent + "% верных ответов.\nЧто делать дальше?";
-        mView.setResultTextView(mTextResult);
-    }
-    */
-
     @Override
     public void onCheckBoxClick(boolean tap) {
-        String text = tap ? "Скрыть подробности" : "Показать подробности";
-        int flagRecycler = tap ? View.VISIBLE : View.INVISIBLE;
-        mView.setVisibilityOfRecycler(flagRecycler, text);
+
     }
 
     @Override

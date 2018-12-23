@@ -46,11 +46,11 @@ public class QuizResultFragment extends Fragment implements QuizResultFragmentCo
     @BindView(R.id.result_text)
     TextView mResultTextView;
 
-    @BindView(R.id.for_recycler_tv)
-    TextView mTextView;
+    @BindView(R.id.for_switch_tv)
+    TextView mForSwitchTextView;
 
-    @BindView(R.id.result_switch)
-    Switch mSwitch;
+    @BindView(R.id.switch_result)
+    Switch mSwitchForShowRecyclerView;
 
     @BindView(R.id.result_recycler)
     RecyclerView mRecyclerView;
@@ -58,7 +58,7 @@ public class QuizResultFragment extends Fragment implements QuizResultFragmentCo
     @BindView(R.id.progress_bar_quiz_result)
     GeometricProgressView mProgressBar;
 
-    @BindViews({R.id.result_text, R.id.for_recycler_tv, R.id.result_switch})
+    @BindViews({R.id.result_text, R.id.for_switch_tv, R.id.switch_result})
     List<View> mViewList;
 
     private int mCorrectAnswers;
@@ -66,13 +66,9 @@ public class QuizResultFragment extends Fragment implements QuizResultFragmentCo
     private HashMap<Integer, Boolean> mUserAnswersMap;
 
     private List<QuizResultItem> mCat;
-    private QuizResultAdapter mAdapter;
-    private RecyclerView.LayoutManager mLayoutManager;
 
     private Context mContext;
     private Unbinder mUnbinder;
-
-    String mTextResult;
 
     @Override
     public void onAttach(Context context) {
@@ -100,10 +96,10 @@ public class QuizResultFragment extends Fragment implements QuizResultFragmentCo
         mPresenter.onStartView();
 
         FragmentActivity fragmentActivity = getActivity();
-        mLayoutManager = new LinearLayoutManager(fragmentActivity);
-        mRecyclerView.setLayoutManager(mLayoutManager);
-        mAdapter = new QuizResultAdapter(mCat);
-        mRecyclerView.setAdapter(mAdapter);
+        RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(fragmentActivity);
+        mRecyclerView.setLayoutManager(layoutManager);
+        QuizResultAdapter adapter = new QuizResultAdapter(mCat);
+        mRecyclerView.setAdapter(adapter);
         return view;
     }
 
@@ -120,8 +116,8 @@ public class QuizResultFragment extends Fragment implements QuizResultFragmentCo
         } else {
             level = "отлично";
         }
-        mTextResult = "Вы прошли опрос категории \"" + categoryName + "\". Вы " + level + " владеете знаниями данной в области и дали " + percent + "% верных ответов.";
-        mResultTextView.setText(mTextResult);
+        String textResult = "Вы прошли опрос категории \"" + categoryName + "\". Вы " + level + " владеете знаниями данной в области и дали " + percent + "% верных ответов.";
+        mResultTextView.setText(textResult);
     }
 
     @Override
@@ -139,50 +135,36 @@ public class QuizResultFragment extends Fragment implements QuizResultFragmentCo
 
     @Override
     public void showLoading() {
-        showProgressBar();
-        hideView();
+        for (View view : mViewList) {
+            view.setVisibility(View.INVISIBLE);
+        }
+        mProgressBar.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void hideLoading() {
-        hideProgressBar();
-        showView();
-    }
-
-    private void showProgressBar() {
-        mProgressBar.setVisibility(View.VISIBLE);
-    }
-
-    private void hideProgressBar() {
         mProgressBar.setVisibility(View.INVISIBLE);
-    }
-
-    private void showView() {
         for (View view : mViewList) {
             view.setVisibility(View.VISIBLE);
         }
     }
 
-    private void hideView() {
-        for (View view : mViewList) {
-            view.setVisibility(View.INVISIBLE);
-        }
-    }
-
     @Override
-    public void initListForRecyclerView(List<QuizResultItem> list) {
+    public void addListQuizResultItemForRecyclerView(List<QuizResultItem> list) {
         mCat = list;
     }
 
-    @OnCheckedChanged({R.id.result_switch})
+    @OnCheckedChanged({R.id.switch_result})
     void onSelected(Switch button, boolean checked) {
-        mPresenter.onCheckBoxClick(checked);
+        String textForSwitchTextView = checked ? "Скрыть подробности" : "Показать подробности";
+        int stateRecycler = checked ? View.VISIBLE : View.INVISIBLE;
+        setVisibilityOfRecycler(stateRecycler, textForSwitchTextView);
     }
 
     @Override
     public void setVisibilityOfRecycler(int state, String text) {
         mRecyclerView.setVisibility(state);
-        mTextView.setText(text);
+        mForSwitchTextView.setText(text);
     }
 
     public static QuizResultFragment newInstance(int correctAnswers, String nameCategory, HashMap<Integer, Boolean> map) {
