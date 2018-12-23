@@ -46,6 +46,7 @@
         android:id="@+id/progress_bar_quiz_storage"
         android:layout_width="100dp"
         android:layout_height="100dp"
+        android:visibility="invisible"
         app:gp_type="kite"
         app:gp_number_of_angles="4"
         app:gp_figure_padding="2dp"

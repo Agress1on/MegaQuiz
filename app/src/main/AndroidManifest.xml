@@ -12,10 +12,15 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         tools:ignore="GoogleAppIndexingWarning">
-        <activity android:name=".startrouter.StartRouter"
+        <!--добавил android:configChanges="keyboardHidden|orientation|screenSize" для решения
+        пересоздания экрана при повороте, уточнить, верно ли
+        -->
+        <activity
+            android:configChanges="keyboardHidden|orientation|screenSize"
+            android:name=".startrouter.StartRouter"
             android:theme="@style/QuizViewTheme">
-
         </activity>
+
         <activity
             android:name=".SplashActivity"
             android:theme="@style/SplashTheme">
@@ -25,10 +30,11 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+
         <activity
+            android:configChanges="keyboardHidden|orientation|screenSize"
             android:theme="@style/QuizViewTheme"
             android:name=".quizrouter.QuizRouter">
-
         </activity>
     </application>
 

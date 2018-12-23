@@ -59,7 +59,7 @@ public class StartRouter extends AppCompatActivity
         mStartFragment = StartFragment.newInstance();
         mInfoFragment = InfoFragment.newInstance();
         mFragmentManager = getSupportFragmentManager();
-        if (mFragmentManager.getFragments().size() == 0) {
+        if (savedInstanceState == null) {
             setStartFragment();
         }
     }

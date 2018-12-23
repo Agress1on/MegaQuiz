@@ -98,6 +98,8 @@ public class QuizFragment extends Fragment implements QuizFragmentContract.View 
             throw new IllegalStateException("Parent container must be StartFragmentContract.Router");
         }
         App.getApp(mContext).getComponentsHolder().getQuizFragmentComponent(this, mRouter, mCategoryName).inject(this);
+
+
     }
 
     @Nullable

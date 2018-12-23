@@ -60,7 +60,6 @@ public class QuizStorageFragment extends Fragment implements QuizStorageContract
     List<View> mViewList;
 
     private RecyclerAdapter mAdapter;
-    private GridLayoutManager mLayoutManager;
     private List<QuizStorageItem> mCat;
 
     private Context mContext;
@@ -72,6 +71,12 @@ public class QuizStorageFragment extends Fragment implements QuizStorageContract
         mContext = context;
     }
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+        setRetainInstance(true);
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
@@ -81,8 +86,8 @@ public class QuizStorageFragment extends Fragment implements QuizStorageContract
         App.getApp(mContext).getComponentsHolder().getQuizStorageFragmentComponent(this).inject(this);
 
         FragmentActivity fragmentActivity = getActivity();
-        mLayoutManager = new GridLayoutManager(fragmentActivity, 2);
-        mRecyclerView.setLayoutManager(mLayoutManager);
+        GridLayoutManager layoutManager = new GridLayoutManager(fragmentActivity, 2);
+        mRecyclerView.setLayoutManager(layoutManager);
         mAdapter = new RecyclerAdapter(mCat, key -> mPresenter.onClick(key));
         mRecyclerView.setAdapter(mAdapter);
         return view;
