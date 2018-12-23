@@ -1,7 +1,6 @@
 package com.example.alexandr.megaquiz.quizfragment.presentation;
 
 import android.support.v4.util.ArrayMap;
-import android.view.View;
 
 import com.example.alexandr.megaquiz.Constants;
 import com.example.alexandr.megaquiz.quizfragment.Answer;
@@ -30,13 +29,11 @@ public class QuizFragmentPresenter implements QuizFragmentContract.Presenter {
     private QuizFragmentContract.Router mRouter;
     private String mCategoryName;
 
-    private String mNotNullCategory;
-
-    private List<String> mQuestions;
+    private List<String> mQuestionsList;
     private int mCurrentIndex;
-    private Map<Integer, Answer> mAnswers;
+    private Map<Integer, Answer> mUserAnswers;
     private CompositeDisposable mCompositeDisposable;
-    private HashMap<Integer, Boolean> mMapAnswers;
+    private HashMap<Integer, Boolean> mMapUserAnswersForResultFragment;
 
     public QuizFragmentPresenter(QuizFragmentContract.View view, QuizFragmentContract.Interactor interactor, QuizFragmentContract.Router router, String categoryName) {
         this.mView = view;
@@ -44,16 +41,16 @@ public class QuizFragmentPresenter implements QuizFragmentContract.Presenter {
         this.mRouter = router;
         this.mCategoryName = categoryName;
         //
-        this.mQuestions = new ArrayList<>();
+        this.mQuestionsList = new ArrayList<>();
         this.mCompositeDisposable = new CompositeDisposable();
-        this.mAnswers = new ArrayMap<>(); // почитать подробнее потом
+        this.mUserAnswers = new ArrayMap<>(); // почитать подробнее потом
         this.mCurrentIndex = 0;
-        this.mMapAnswers = new HashMap<>();
+        this.mMapUserAnswersForResultFragment = new HashMap<>();
     }
 
     @Override
     public void onStartView() {
-        showProgressBar(true);
+        mView.showLoading();
         if (mCategoryName.equals("")) {
             Disposable disposableForRandomCategory = mInteractor.getStringForRandom()
                     .subscribeOn(Schedulers.io())
@@ -78,87 +75,81 @@ public class QuizFragmentPresenter implements QuizFragmentContract.Presenter {
                 .subscribe(new Consumer<List<String>>() {
                     @Override
                     public void accept(List<String> strings) throws Exception {
-                        mQuestions.addAll(strings);
-                        showProgressBar(false);
+                        mQuestionsList.addAll(strings);
+                        mView.hideLoading();
                         prepareViewForFirstQuestion();
                     }
                 });
         mCompositeDisposable.add(disposable);
     }
 
-    private void showProgressBar(boolean flag) {
-        int progressBarState = flag ? View.VISIBLE : View.INVISIBLE;
-        int viewState = flag ? View.INVISIBLE : View.VISIBLE;
-        mView.showProgressBarAndSetViewVisibility(viewState, progressBarState);
-    }
-
     private void prepareViewForFirstQuestion() {
-        mView.setQuestionTextView(mQuestions.get(mCurrentIndex));
+        mView.setQuestionTextView(mQuestionsList.get(mCurrentIndex));
         countNumberOfQuestion();
     }
 
     @Override
     public void onNextButton() {
-        int newIndex = (mCurrentIndex + 1) % mQuestions.size();
+        int newIndex = (mCurrentIndex + 1) % mQuestionsList.size();
         onButtonByIndex(newIndex);
     }
 
     @Override
     public void onPrevButton() {
-        int newIndex = (mCurrentIndex - 1) % mQuestions.size();
-        if (newIndex < 0) newIndex = mQuestions.size() - 1;
+        int newIndex = (mCurrentIndex - 1) % mQuestionsList.size();
+        if (newIndex < 0) newIndex = mQuestionsList.size() - 1;
         onButtonByIndex(newIndex);
     }
 
     private void onButtonByIndex(int index) {
         mCurrentIndex = index;
-        mView.setQuestionTextView(mQuestions.get(mCurrentIndex));
+        mView.setQuestionTextView(mQuestionsList.get(mCurrentIndex));
         countNumberOfQuestion();
         checkAnswerQuestion();
     }
 
     @Override
     public void onAnswer(Answer answer) {
-        mAnswers.put(mCurrentIndex, answer);
+        mUserAnswers.put(mCurrentIndex, answer);
         checkAnswerQuestion();
         checkFinalOfQuiz();
     }
 
     private void countNumberOfQuestion() {
-        String text = mCurrentIndex + 1 + "/" + mQuestions.size();
+        String text = mCurrentIndex + 1 + "/" + mQuestionsList.size();
         mView.setQuestionCounter(text);
     }
 
     private void checkAnswerQuestion() {
-        boolean isAnswered = mAnswers.containsKey(mCurrentIndex);
+        boolean isAnswered = mUserAnswers.containsKey(mCurrentIndex);
         mView.setButtonsEnabled(!isAnswered);
         int flag = Constants.NOT_PUSH_TRUE_AND_FALSE_BUTTONS;
         if (isAnswered) {
-            boolean answer = mAnswers.get(mCurrentIndex).isResult();
+            boolean answer = mUserAnswers.get(mCurrentIndex).isResult();
             flag = answer ? Constants.PUSH_TRUE_BUTTON : Constants.PUSH_FALSE_BUTTON;
         }
         mView.setCorrectButtonStyle(flag);
     }
 
     private void initAnswersForResultFragment() {
-        for (Map.Entry<Integer, Answer> entry : mAnswers.entrySet()) {
-            mMapAnswers.put(entry.getKey(), entry.getValue().isResult());
+        for (Map.Entry<Integer, Answer> entry : mUserAnswers.entrySet()) {
+            mMapUserAnswersForResultFragment.put(entry.getKey(), entry.getValue().isResult());
         }
     }
 
     private void checkFinalOfQuiz() {
         initAnswersForResultFragment();
-        final int size = mQuestions.size();
-        if (size == mAnswers.size()) {
-            showProgressBar(true);
-            Disposable disposable = mInteractor.checkQuestions(mCategoryName, mAnswers)
+        final int size = mQuestionsList.size();
+        if (size == mUserAnswers.size()) {
+            mView.showLoading();
+            Disposable disposable = mInteractor.checkQuestions(mCategoryName, mUserAnswers)
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(new Consumer<Integer>() {
                         @Override
                         public void accept(Integer integer) throws Exception {
-                            showProgressBar(false);
-                            mRouter.goToQuizResultFragment(integer, mCategoryName, mMapAnswers);
+                            mView.hideLoading();
+                            mRouter.goToQuizResultFragment(integer, mCategoryName, mMapUserAnswersForResultFragment);
                         }
                     });
             mCompositeDisposable.add(disposable);

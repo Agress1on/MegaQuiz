@@ -39,11 +39,11 @@ public class QuizFragment extends Fragment implements QuizFragmentContract.View 
     @Inject
     QuizFragmentContract.Presenter mPresenter;
 
-    @BindView(R.id.static_category_name)
-    TextView mCategoryNameTV;
+    @BindView(R.id.category_name)
+    TextView mCategoryNameTextView;
 
     @BindView(R.id.question)
-    TextView mQuestionTV;
+    TextView mQuestionTextView;
 
     @BindView(R.id.btnTrue)
     Button mTrueButton;
@@ -58,26 +58,22 @@ public class QuizFragment extends Fragment implements QuizFragmentContract.View 
     Button mPrevButton;
 
     @BindView(R.id.question_count)
-    TextView mQuestionCount;
+    TextView mQuestionCountTextView;
 
     /*
     @BindView(R.id.progres_bar)
     ProgressBar mProgressBar;
     */
 
-    @BindView(R.id.progress_bar)
+    @BindView(R.id.progress_bar_quiz_fragment)
     GeometricProgressView mProgressBar;
 
-    @BindViews({R.id.static_category_name, R.id.question, R.id.btnTrue,
+    @BindViews({R.id.category_name, R.id.question, R.id.btnTrue,
             R.id.btnFalse, R.id.btnNext, R.id.btnPrev, R.id.question_count})
     List<View> mViewList;
 
-    private String mCategoryName = "";
-
     private Context mContext;
     private Unbinder mUnbinder;
-
-    private QuizFragmentContract.Router mRouter;
 
     @Override
     public void onAttach(Context context) {
@@ -88,18 +84,18 @@ public class QuizFragment extends Fragment implements QuizFragmentContract.View 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        mCategoryName = getArguments().getString(Constants.EXTRAS_FOR_INTENT_QUIZ_VIEW);
+        String categoryName = getArguments().getString(Constants.EXTRAS_FOR_INTENT_QUIZ_VIEW);
 
+        QuizFragmentContract.Router router;
         if (getParentFragment() instanceof QuizFragmentContract.Router) {
-            mRouter = (QuizFragmentContract.Router) getParentFragment();
+            router = (QuizFragmentContract.Router) getParentFragment();
         } else if (getActivity() instanceof QuizFragmentContract.Router) {
-            mRouter = (QuizFragmentContract.Router) getActivity();
+            router = (QuizFragmentContract.Router) getActivity();
         } else {
             throw new IllegalStateException("Parent container must be StartFragmentContract.Router");
         }
-        App.getApp(mContext).getComponentsHolder().getQuizFragmentComponent(this, mRouter, mCategoryName).inject(this);
 
-
+        App.getApp(mContext).getComponentsHolder().getQuizFragmentComponent(this, router, categoryName).inject(this);
     }
 
     @Nullable
@@ -107,7 +103,6 @@ public class QuizFragment extends Fragment implements QuizFragmentContract.View 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_quiz, null);
         mUnbinder = ButterKnife.bind(this, view);
-
         mPresenter.onStartView();
         return view;
     }
@@ -126,16 +121,24 @@ public class QuizFragment extends Fragment implements QuizFragmentContract.View 
     }
 
     @Override
-    public void showProgressBarAndSetViewVisibility(int viewState, int progressBarState) {
+    public void showLoading() {
         for (View view : mViewList) {
-            view.setVisibility(viewState);
+            view.setVisibility(View.INVISIBLE);
         }
-        mProgressBar.setVisibility(progressBarState);
+        mProgressBar.setVisibility(View.VISIBLE);
+    }
+
+    @Override
+    public void hideLoading() {
+        for (View view : mViewList) {
+            view.setVisibility(View.VISIBLE);
+        }
+        mProgressBar.setVisibility(View.INVISIBLE);
     }
 
     @Override
     public void setQuestionTextView(String text) {
-        mQuestionTV.setText(text);
+        mQuestionTextView.setText(text);
     }
 
     @Override
@@ -168,7 +171,7 @@ public class QuizFragment extends Fragment implements QuizFragmentContract.View 
 
     @Override
     public void setQuestionCounter(String text) {
-        mQuestionCount.setText(text);
+        mQuestionCountTextView.setText(text);
     }
 
     @OnClick({R.id.btnTrue, R.id.btnFalse})

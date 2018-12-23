@@ -30,7 +30,9 @@ public interface QuizFragmentContract {
 
         void setCorrectButtonStyle(int key);
 
-        void showProgressBarAndSetViewVisibility(int viewState, int progressBarState);
+        void showLoading();
+
+        void hideLoading();
     }
 
     interface Presenter {

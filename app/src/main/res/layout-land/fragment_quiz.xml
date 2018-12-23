@@ -51,7 +51,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
-        android:id="@+id/static_category_name"
+        android:id="@+id/category_name"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginBottom="30dp"
@@ -159,7 +159,7 @@
     -->
 
     <net.bohush.geometricprogressview.GeometricProgressView
-        android:id="@+id/progress_bar"
+        android:id="@+id/progress_bar_quiz_fragment"
         android:layout_width="100dp"
         android:layout_height="100dp"
         android:visibility="invisible"

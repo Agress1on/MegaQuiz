@@ -71,47 +71,6 @@ public class QuizFragmentInteractor implements QuizFragmentContract.Interactor {
                 });
     }
 
-
-    /*
-    @Override
-    public Single<List<String>> getQuestionsForRandom() {
-        return mBankQuestion.getBankQuestionsAndAnswers()
-                .map(new Function<Map<String, List<Question>>, Map<String, List<Question>>>() {
-                    @Override
-                    public Map<String, List<Question>> apply(Map<String, List<Question>> stringListMap) throws Exception {
-                        Map<String, List<Question>> map = new HashMap<>();
-                        for (Map.Entry<String, List<Question>> entry : stringListMap.entrySet()) {
-                            if (entry.getValue().size() > 0) map.put(entry.getKey(), entry.getValue());
-                        }
-                        return map;
-                    }
-                })
-                .map(new Function<Map<String, List<Question>>, List<Question>>() {
-                    @Override
-                    public List<Question> apply(Map<String, List<Question>> stringListMap) throws Exception {
-                        int first = 0;
-                        int second = stringListMap.size();
-                        int random = first + (int)(Math.random()*second);
-                        List<String> list = new ArrayList<>();
-                        for (Map.Entry<String, List<Question>> entry : stringListMap.entrySet()) {
-                            list.add(entry.getKey());
-                        }
-                        return stringListMap.get(list.get(random));
-                    }
-                })
-                .map(new Function<List<Question>, List<String>>() {
-                    @Override
-                    public List<String> apply(List<Question> questions) throws Exception {
-                        List<String> stringList = new ArrayList<>();
-                        for (Question question : questions) {
-                            stringList.add(question.getTextQuestion());
-                        }
-                        return stringList;
-                    }
-                });
-    }
-    */
-
     @Override
     public Single<Integer> checkQuestions(String key, Map<Integer, Answer> answers) {
         return mBankQuestion.getBankQuestionsAndAnswers()
