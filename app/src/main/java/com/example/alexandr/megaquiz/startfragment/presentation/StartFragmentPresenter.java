@@ -24,7 +24,7 @@ public class StartFragmentPresenter implements StartFragmentContract.Presenter {
 
     @Override
     public void onRandomButton() {
-
+        mRouter.goToRandomQuestion();
     }
 
     @Override

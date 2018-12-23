@@ -17,6 +17,8 @@ public interface QuizFragmentContract {
         Single<List<String>> getQuestions(String key);
 
         Single<Integer> checkQuestions(String key, Map<Integer, Answer> answers);
+
+        Single<String> getStringForRandom();
     }
 
     interface View {

@@ -30,6 +30,8 @@ public class QuizFragmentPresenter implements QuizFragmentContract.Presenter {
     private QuizFragmentContract.Router mRouter;
     private String mCategoryName;
 
+    private String mNotNullCategory;
+
     private List<String> mQuestions;
     private int mCurrentIndex;
     private Map<Integer, Answer> mAnswers;
@@ -52,7 +54,25 @@ public class QuizFragmentPresenter implements QuizFragmentContract.Presenter {
     @Override
     public void onStartView() {
         showProgressBar(true);
-        Disposable disposable = mInteractor.getQuestions(mCategoryName)
+        if (mCategoryName.equals("")) {
+            Disposable disposableForRandomCategory = mInteractor.getStringForRandom()
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(new Consumer<String>() {
+                        @Override
+                        public void accept(String s) throws Exception {
+                            initQuestionsList(s);
+                            mCategoryName = s;
+                        }
+                    });
+            mCompositeDisposable.add(disposableForRandomCategory);
+        } else {
+            initQuestionsList(mCategoryName);
+        }
+    }
+
+    private void initQuestionsList(String categoryName) {
+        Disposable disposable = mInteractor.getQuestions(categoryName)
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<List<String>>() {
