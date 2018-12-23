@@ -21,4 +21,6 @@ public class Constants {
     public static final int NOT_PUSH_TRUE_AND_FALSE_BUTTONS = 0;
     public static final int PUSH_TRUE_BUTTON = 1;
     public static final int PUSH_FALSE_BUTTON = 2;
+
+    public static final String TAG_FOR_DEBUG_START_ROUTER = "START_ROUTER";
 }
