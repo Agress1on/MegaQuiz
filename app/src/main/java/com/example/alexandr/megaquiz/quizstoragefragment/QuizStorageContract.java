@@ -12,9 +12,7 @@ import io.reactivex.Single;
 public interface QuizStorageContract {
 
     interface Interactor {
-        Single<List<QuizStorageItem>> getListOfStorageItem();
-
-        Single<List<QuizStorageItem>> getListOfStorageItemWithoutEmpty();
+        Single<List<QuizStorageItem>> getListsOfStorageItem();
     }
 
     interface Presenter {
@@ -26,11 +24,11 @@ public interface QuizStorageContract {
     }
 
     interface View {
-        void initListForRecyclerAdapter(List<QuizStorageItem> list);
+        void addListQuizStorageItemForRecyclerAdapter(List<QuizStorageItem> list);
 
         void startActivityQuizView(String key);
 
-        void updateUI(List<QuizStorageItem> list, String text);
+        void updateRecyclerViewList(List<QuizStorageItem> newList, String text);
 
         void showLoading();
 

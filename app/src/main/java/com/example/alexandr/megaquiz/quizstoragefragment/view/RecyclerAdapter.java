@@ -24,7 +24,7 @@ import butterknife.ButterKnife;
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> {
 
     private List<QuizStorageItem> mCategoriesNames;
-    OnItemClickListener mOnItemClickListener;
+    private OnItemClickListener mOnItemClickListener;
 
     private final static int VIEW_ITEM_FIRST = 0;
     private final static int VIEW_ITEM_SECOND = 1;
@@ -50,20 +50,9 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
     @NonNull
     @Override
     public RecyclerAdapter.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        View v;
-        /*
-        if (viewType == VIEW_ITEM_FIRST) {
-            v = LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.recycler_storage_item_first, parent, false);
-        } else {
-            v = LayoutInflater.from(parent.getContext())
-                    .inflate(R.layout.recycler_storage_item_second, parent, false);
-        }
-        */
-        v = LayoutInflater.from(parent.getContext())
+        View v = LayoutInflater.from(parent.getContext())
                 .inflate(R.layout.recycler_storage_item_test, parent, false);
-        ViewHolder viewHolder = new ViewHolder(v);
-        return viewHolder;
+        return new ViewHolder(v);
     }
 
     @Override

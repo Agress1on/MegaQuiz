@@ -106,41 +106,24 @@ public class QuizStorageFragment extends Fragment implements QuizStorageContract
         mPresenter.onDestroy();
     }
 
-
-    private void showProgressBar() {
-        mProgressBar.setVisibility(View.VISIBLE);
-    }
-
-    private void hideProgressBar() {
-        mProgressBar.setVisibility(View.INVISIBLE);
-    }
-
-    private void showAllView() {
-        for (View view : mViewList) {
-            view.setVisibility(View.VISIBLE);
-        }
-    }
-
-    private void hideAllView() {
+    @Override
+    public void showLoading() {
         for (View view : mViewList) {
             view.setVisibility(View.INVISIBLE);
         }
-    }
-
-    @Override
-    public void showLoading() {
-        showProgressBar();
-        hideAllView();
+        mProgressBar.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void hideLoading() {
-        hideProgressBar();
-        showAllView();
+        for (View view : mViewList) {
+            view.setVisibility(View.VISIBLE);
+        }
+        mProgressBar.setVisibility(View.INVISIBLE);
     }
 
     @Override
-    public void initListForRecyclerAdapter(List<QuizStorageItem> list) {
+    public void addListQuizStorageItemForRecyclerAdapter(List<QuizStorageItem> list) {
         mCat = list;
     }
 
@@ -151,11 +134,11 @@ public class QuizStorageFragment extends Fragment implements QuizStorageContract
     }
 
     @Override
-    public void updateUI(List<QuizStorageItem> list, String text) {
+    public void updateRecyclerViewList(List<QuizStorageItem> newList, String text) {
         RecyclerAdapterDiffUtilCallback recyclerAdapterDiffUtilCallback =
-                new RecyclerAdapterDiffUtilCallback(mAdapter.getData(), list);
+                new RecyclerAdapterDiffUtilCallback(mAdapter.getData(), newList);
         DiffUtil.DiffResult recyclerDiffResult = DiffUtil.calculateDiff(recyclerAdapterDiffUtilCallback);
-        mAdapter.setData(list);
+        mAdapter.setData(newList);
         recyclerDiffResult.dispatchUpdatesTo(mAdapter);
         mTextView.setText(text);
     }

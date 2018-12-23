@@ -22,57 +22,50 @@ public class QuizStoragePresenter implements QuizStorageContract.Presenter {
     private QuizStorageContract.View mView;
     private QuizStorageContract.Interactor mInteractor;
 
-    private List<QuizStorageItem> mItemListFull = new ArrayList<>();
-    private List<QuizStorageItem> mItemListWithoutEmpty = new ArrayList<>();
-    private CompositeDisposable mCompositeDisposable = new CompositeDisposable();
+    private List<QuizStorageItem> mItemListFull;
+    private List<QuizStorageItem> mItemListWithoutEmpty;
+    private CompositeDisposable mCompositeDisposable;
 
     public QuizStoragePresenter(QuizStorageContract.View view, QuizStorageContract.Interactor interactor) {
         this.mView = view;
         this.mInteractor = interactor;
-        initListCategoryNamesWithoutEmpty();
-        initListCategoryNameFull();
-    }
 
-    private void initListCategoryNamesWithoutEmpty() {
-        mView.showLoading();
-        Disposable disposable = mInteractor.getListOfStorageItemWithoutEmpty()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Consumer<List<QuizStorageItem>>() {
-                    @Override
-                    public void accept(List<QuizStorageItem> quizStorageItems) throws Exception {
-                        mItemListWithoutEmpty.addAll(quizStorageItems);
-                        mView.hideLoading();
-                    }
-                });
-        mCompositeDisposable.add(disposable);
-        mView.initListForRecyclerAdapter(mItemListWithoutEmpty);
+        mItemListFull = new ArrayList<>();
+        mItemListWithoutEmpty = new ArrayList<>();
+        mCompositeDisposable = new CompositeDisposable();
+
+        initListCategoryNameFull();
     }
 
     private void initListCategoryNameFull() {
         mView.showLoading();
-        Disposable disposable = mInteractor.getListOfStorageItem()
+        Disposable disposable = mInteractor.getListsOfStorageItem()
                 .subscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
                 .subscribe(new Consumer<List<QuizStorageItem>>() {
                     @Override
                     public void accept(List<QuizStorageItem> quizStorageItems) throws Exception {
                         mItemListFull.addAll(quizStorageItems);
+                        for (QuizStorageItem quizStorageItem : quizStorageItems) {
+                            if (quizStorageItem.getCategorySize() > 0) mItemListWithoutEmpty.add(quizStorageItem);
+                        }
                         mView.hideLoading();
                     }
                 });
         mCompositeDisposable.add(disposable);
+        mView.addListQuizStorageItemForRecyclerAdapter(mItemListWithoutEmpty);
     }
 
+    // подумать над переносом части метода во View
     @Override
     public void onCheckBoxClick(boolean isChecked) {
         String text = "Показать пустые категории";
-        List<QuizStorageItem> list = mItemListWithoutEmpty;
+        List<QuizStorageItem> newList = mItemListWithoutEmpty;
         if (isChecked) {
-            list = mItemListFull;
+            newList = mItemListFull;
             text = "Скрыть пустые категории";
         }
-        mView.updateUI(list, text);
+        mView.updateRecyclerViewList(newList, text);
     }
 
     @Override

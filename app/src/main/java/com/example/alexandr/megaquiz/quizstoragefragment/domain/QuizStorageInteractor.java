@@ -8,7 +8,6 @@ import com.example.alexandr.megaquiz.quizstoragefragment.QuizStorageItem;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
-import java.util.concurrent.TimeUnit;
 
 import io.reactivex.Single;
 import io.reactivex.functions.Function;
@@ -27,7 +26,7 @@ public class QuizStorageInteractor implements QuizStorageContract.Interactor {
     }
 
     @Override
-    public Single<List<QuizStorageItem>> getListOfStorageItem() {
+    public Single<List<QuizStorageItem>> getListsOfStorageItem() {
         return mBankQuestion.getBankQuestionsAndAnswers()
                 .map(new Function<Map<String, List<Question>>, List<QuizStorageItem>>() {
                     @Override
@@ -38,33 +37,6 @@ public class QuizStorageInteractor implements QuizStorageContract.Interactor {
                             position++;
                             QuizStorageItem item = new QuizStorageItem(position, entry.getKey(), entry.getValue().size());
                             list.add(item);
-                        }
-                        return list;
-                    }
-                });
-    }
-
-    @Override
-    public Single<List<QuizStorageItem>> getListOfStorageItemWithoutEmpty() {
-        return mBankQuestion.getBankQuestionsAndAnswers()
-                .map(new Function<Map<String, List<Question>>, List<QuizStorageItem>>() {
-                    @Override
-                    public List<QuizStorageItem> apply(Map<String, List<Question>> stringListMap) throws Exception {
-                        List<QuizStorageItem> list = new ArrayList<>();
-                        int position = 0;
-                        for (Map.Entry<String, List<Question>> entry : stringListMap.entrySet()) {
-                            position++;
-                            QuizStorageItem item = new QuizStorageItem(position, entry.getKey(), entry.getValue().size());
-                            list.add(item);
-                        }
-                        return list;
-                    }
-                }).map(new Function<List<QuizStorageItem>, List<QuizStorageItem>>() {
-                    @Override
-                    public List<QuizStorageItem> apply(List<QuizStorageItem> quizStorageItems) throws Exception {
-                        List<QuizStorageItem> list = new ArrayList<>();
-                        for (QuizStorageItem quizStorageItem : quizStorageItems) {
-                            if (quizStorageItem.getCategorySize() > 0) list.add(quizStorageItem);
                         }
                         return list;
                     }
