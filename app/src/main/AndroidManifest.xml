@@ -14,9 +14,9 @@
         tools:ignore="GoogleAppIndexingWarning">
         <!--добавил android:configChanges="keyboardHidden|orientation|screenSize" для решения
         пересоздания экрана при повороте, уточнить, верно ли
+        android:configChanges="keyboardHidden|orientation|screenSize"
         -->
         <activity
-            android:configChanges="keyboardHidden|orientation|screenSize"
             android:name=".startrouter.StartRouter"
             android:theme="@style/QuizViewTheme">
         </activity>
@@ -32,7 +32,6 @@
         </activity>
 
         <activity
-            android:configChanges="keyboardHidden|orientation|screenSize"
             android:theme="@style/QuizViewTheme"
             android:name=".quizrouter.QuizRouter">
         </activity>
