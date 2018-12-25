@@ -69,12 +69,12 @@ public class QuizStorageFragment extends Fragment implements QuizStorageContract
     public void onAttach(Context context) {
         super.onAttach(context);
         mContext = context;
+        App.getApp(mContext).getComponentsHolder().getQuizStorageFragmentComponent(this).inject(this);
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setRetainInstance(true);
     }
 
     @Nullable
@@ -83,7 +83,7 @@ public class QuizStorageFragment extends Fragment implements QuizStorageContract
         View view = inflater.inflate(R.layout.fragment_quiz_storage, null);
         mUnbinder = ButterKnife.bind(this, view);
 
-        App.getApp(mContext).getComponentsHolder().getQuizStorageFragmentComponent(this).inject(this);
+        mPresenter.onCreateView();
 
         FragmentActivity fragmentActivity = getActivity();
         GridLayoutManager layoutManager = new GridLayoutManager(fragmentActivity, 2);
@@ -116,14 +116,14 @@ public class QuizStorageFragment extends Fragment implements QuizStorageContract
 
     @Override
     public void hideLoading() {
+        mProgressBar.setVisibility(View.INVISIBLE);
         for (View view : mViewList) {
             view.setVisibility(View.VISIBLE);
         }
-        mProgressBar.setVisibility(View.INVISIBLE);
     }
 
     @Override
-    public void addListQuizStorageItemForRecyclerAdapter(List<QuizStorageItem> list) {
+    public void addQuizStorageItemListForRecyclerAdapter(List<QuizStorageItem> list) {
         mCat = list;
     }
 
@@ -134,7 +134,7 @@ public class QuizStorageFragment extends Fragment implements QuizStorageContract
     }
 
     @Override
-    public void updateRecyclerViewList(List<QuizStorageItem> newList, String text) {
+    public void updateRecyclerView(List<QuizStorageItem> newList, String text) {
         RecyclerAdapterDiffUtilCallback recyclerAdapterDiffUtilCallback =
                 new RecyclerAdapterDiffUtilCallback(mAdapter.getData(), newList);
         DiffUtil.DiffResult recyclerDiffResult = DiffUtil.calculateDiff(recyclerAdapterDiffUtilCallback);

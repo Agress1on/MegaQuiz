@@ -36,7 +36,7 @@ public interface QuizFragmentContract {
     }
 
     interface Presenter {
-        void onStartView();
+        void onCreateView();
 
         void onNextButton();
 

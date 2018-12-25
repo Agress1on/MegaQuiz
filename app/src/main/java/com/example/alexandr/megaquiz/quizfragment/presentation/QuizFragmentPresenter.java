@@ -49,7 +49,7 @@ public class QuizFragmentPresenter implements QuizFragmentContract.Presenter {
     }
 
     @Override
-    public void onStartView() {
+    public void onCreateView() {
         mView.showLoading();
         if (mCategoryName.equals("")) {
             Disposable disposableForRandomCategory = mInteractor.getStringForRandom()

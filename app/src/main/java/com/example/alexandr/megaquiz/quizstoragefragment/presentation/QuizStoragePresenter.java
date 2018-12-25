@@ -33,11 +33,10 @@ public class QuizStoragePresenter implements QuizStorageContract.Presenter {
         mItemListFull = new ArrayList<>();
         mItemListWithoutEmpty = new ArrayList<>();
         mCompositeDisposable = new CompositeDisposable();
-
-        initListsCategoryName();
     }
 
-    private void initListsCategoryName() {
+    @Override
+    public void onCreateView() {
         mView.showLoading();
         Disposable disposable = mInteractor.getListsOfStorageItem()
                 .subscribeOn(Schedulers.io())
@@ -53,7 +52,7 @@ public class QuizStoragePresenter implements QuizStorageContract.Presenter {
                     }
                 });
         mCompositeDisposable.add(disposable);
-        mView.addListQuizStorageItemForRecyclerAdapter(mItemListWithoutEmpty);
+        mView.addQuizStorageItemListForRecyclerAdapter(mItemListWithoutEmpty);
     }
 
     // подумать над переносом части метода во View
@@ -65,7 +64,7 @@ public class QuizStoragePresenter implements QuizStorageContract.Presenter {
             newList = mItemListFull;
             text = "Скрыть пустые категории";
         }
-        mView.updateRecyclerViewList(newList, text);
+        mView.updateRecyclerView(newList, text);
     }
 
     @Override

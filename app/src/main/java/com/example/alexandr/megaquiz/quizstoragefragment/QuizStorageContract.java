@@ -16,6 +16,8 @@ public interface QuizStorageContract {
     }
 
     interface Presenter {
+        void onCreateView();
+
         void onCheckBoxClick(boolean isChecked);
 
         void onClick(String key);
@@ -24,11 +26,11 @@ public interface QuizStorageContract {
     }
 
     interface View {
-        void addListQuizStorageItemForRecyclerAdapter(List<QuizStorageItem> list);
+        void addQuizStorageItemListForRecyclerAdapter(List<QuizStorageItem> list);
 
         void startActivityQuizView(String key);
 
-        void updateRecyclerViewList(List<QuizStorageItem> newList, String text);
+        void updateRecyclerView(List<QuizStorageItem> newList, String text);
 
         void showLoading();
 

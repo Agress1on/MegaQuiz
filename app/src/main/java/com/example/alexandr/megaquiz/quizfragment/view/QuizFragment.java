@@ -79,11 +79,7 @@ public class QuizFragment extends Fragment implements QuizFragmentContract.View 
     public void onAttach(Context context) {
         super.onAttach(context);
         mContext = context;
-    }
 
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         String categoryName = getArguments().getString(Constants.EXTRAS_FOR_INTENT_QUIZ_VIEW);
 
         QuizFragmentContract.Router router;
@@ -98,12 +94,17 @@ public class QuizFragment extends Fragment implements QuizFragmentContract.View 
         App.getApp(mContext).getComponentsHolder().getQuizFragmentComponent(this, router, categoryName).inject(this);
     }
 
+    @Override
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+    }
+
     @Nullable
     @Override
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_quiz, null);
         mUnbinder = ButterKnife.bind(this, view);
-        mPresenter.onStartView();
+        mPresenter.onCreateView();
         return view;
     }
 
