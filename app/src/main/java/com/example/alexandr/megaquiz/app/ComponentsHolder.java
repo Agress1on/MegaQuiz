@@ -2,6 +2,9 @@ package com.example.alexandr.megaquiz.app;
 
 import android.content.Context;
 
+import com.example.alexandr.megaquiz.app.inject.AppComponent;
+import com.example.alexandr.megaquiz.app.inject.AppModule;
+import com.example.alexandr.megaquiz.app.inject.DaggerAppComponent;
 import com.example.alexandr.megaquiz.quizfragment.QuizFragmentContract;
 import com.example.alexandr.megaquiz.quizfragment.inject.QuizFragmentComponent;
 import com.example.alexandr.megaquiz.quizfragment.inject.QuizFragmentPresenterModule;
@@ -39,6 +42,11 @@ public class ComponentsHolder {
     }
 
     void init() {
+        /*
+        mAppComponent = DaggerAppComponent.builder()
+                .appModule(new AppModule(mContext))
+                .build();
+        */
         mAppComponent = DaggerAppComponent.builder()
                 .appModule(new AppModule(mContext))
                 .build();

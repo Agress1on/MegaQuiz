@@ -1,4 +1,4 @@
-package com.example.alexandr.megaquiz.app;
+package com.example.alexandr.megaquiz.app.inject;
 
 import android.content.Context;
 

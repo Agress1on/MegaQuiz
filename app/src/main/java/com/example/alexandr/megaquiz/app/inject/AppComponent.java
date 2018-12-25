@@ -1,4 +1,4 @@
-package com.example.alexandr.megaquiz.app;
+package com.example.alexandr.megaquiz.app.inject;
 
 import com.example.alexandr.megaquiz.quizfragment.inject.QuizFragmentComponent;
 import com.example.alexandr.megaquiz.quizfragment.inject.QuizFragmentPresenterModule;
