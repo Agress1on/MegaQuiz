@@ -42,11 +42,6 @@ public class ComponentsHolder {
     }
 
     void init() {
-        /*
-        mAppComponent = DaggerAppComponent.builder()
-                .appModule(new AppModule(mContext))
-                .build();
-        */
         mAppComponent = DaggerAppComponent.builder()
                 .appModule(new AppModule(mContext))
                 .build();
