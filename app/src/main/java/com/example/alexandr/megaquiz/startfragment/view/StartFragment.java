@@ -45,16 +45,9 @@ public class StartFragment extends Fragment implements StartFragmentContract.Vie
     ImageView mHeaderImageView;
 
     private Unbinder mUnbinder;
-    private Context mContext;
     private StartFragmentContract.Router mRouter;
 
     boolean mVisible = true;
-
-    @Override
-    public void onAttach(Context context) {
-        super.onAttach(context);
-        mContext = context;
-    }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
@@ -67,7 +60,7 @@ public class StartFragment extends Fragment implements StartFragmentContract.Vie
         } else {
             throw new IllegalStateException("Parent container must be StartFragmentContract.Router");
         }
-        App.getApp(mContext).getComponentsHolder().getStartFragmentComponent(this, mRouter).inject(this);
+        App.getApp(getContext()).getComponentsHolder().getStartFragmentComponent(this, mRouter).inject(this);
     }
 
     @Nullable
@@ -82,13 +75,11 @@ public class StartFragment extends Fragment implements StartFragmentContract.Vie
     public void onDestroyView() {
         super.onDestroyView();
         mUnbinder.unbind();
+        if (!getActivity().isChangingConfigurations()) {
+            App.getApp(getContext()).getComponentsHolder().releaseStartFragmentComponent();
+        }
     }
 
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        App.getApp(mContext).getComponentsHolder().releaseStartFragmentComponent();
-    }
 
     @OnClick({R.id.btn_randomQuiz, R.id.btn_category, R.id.btn_test_general_questions})
     void onClick(View view) {

@@ -1,11 +1,11 @@
-package com.example.alexandr.megaquiz.startrouter;
+package com.example.alexandr.megaquiz.startfragment.view;
 
 import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.design.widget.NavigationView;
-import android.support.v4.app.FragmentManager;
+import android.support.v4.app.Fragment;
 import android.support.v4.view.GravityCompat;
 import android.support.v4.widget.DrawerLayout;
 import android.support.v7.app.ActionBarDrawerToggle;
@@ -18,12 +18,11 @@ import com.example.alexandr.megaquiz.infofragment.view.InfoFragment;
 import com.example.alexandr.megaquiz.quizrouter.QuizRouter;
 import com.example.alexandr.megaquiz.quizstoragefragment.view.QuizStorageFragment;
 import com.example.alexandr.megaquiz.startfragment.StartFragmentContract;
-import com.example.alexandr.megaquiz.startfragment.view.StartFragment;
 
 import butterknife.BindView;
 import butterknife.ButterKnife;
 
-public class StartRouter extends AppCompatActivity
+public class StartActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener, StartFragmentContract.Router {
 
     @BindView(R.id.toolbar)
@@ -34,11 +33,6 @@ public class StartRouter extends AppCompatActivity
 
     @BindView(R.id.nav_view)
     NavigationView mNavigationView;
-
-    private StartFragment mStartFragment;
-    private InfoFragment mInfoFragment;
-    private QuizStorageFragment mQuizStorageFragment;
-    private FragmentManager mFragmentManager;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -56,24 +50,19 @@ public class StartRouter extends AppCompatActivity
         mNavigationView.setNavigationItemSelectedListener(this);
         //ND END
 
-        mQuizStorageFragment = QuizStorageFragment.newInstance();
-        mStartFragment = StartFragment.newInstance();
-        mInfoFragment = InfoFragment.newInstance();
-        mFragmentManager = getSupportFragmentManager();
-        /*
-        if (mFragmentManager.getFragments().size() == 0) {
-            setStartFragment();
+        Fragment fragment = getSupportFragmentManager().findFragmentById(R.id.container_for_fragments);
+        if (fragment == null) {
+            getSupportFragmentManager().beginTransaction()
+                    .add(R.id.container_for_fragments, StartFragment.newInstance())
+                    .commit();
         }
-        */
-        if (savedInstanceState == null) {
-            setStartFragment();
-        }
+
     }
 
-    @Override
-    public void setStartFragment() {
-        mFragmentManager.beginTransaction()
-                .add(R.id.container_for_fragments, mStartFragment)
+    private void setFragment(Fragment fragment) {
+        getSupportFragmentManager().beginTransaction()
+                .addToBackStack(null)
+                .replace(R.id.container_for_fragments, fragment)
                 .commit();
     }
 
@@ -85,25 +74,14 @@ public class StartRouter extends AppCompatActivity
 
     @Override
     public void goToQuizStorage() {
-        mFragmentManager.beginTransaction()
-                .addToBackStack(null)
-                .replace(R.id.container_for_fragments, mQuizStorageFragment)
-                .commit();
-    }
-
-    @Override
-    protected void onDestroy() {
-        super.onDestroy();
+        setFragment(QuizStorageFragment.newInstance());
     }
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
         int id = item.getItemId();
         if (id == R.id.about) {
-            mFragmentManager.beginTransaction()
-                    .addToBackStack(null)
-                    .replace(R.id.container_for_fragments, mInfoFragment)
-                    .commit();
+            setFragment(InfoFragment.newInstance());
         }
         mDrawer.closeDrawer(GravityCompat.START);
         return true;
@@ -119,6 +97,6 @@ public class StartRouter extends AppCompatActivity
     }
 
     public static Intent getIntent(Context context) {
-        return new Intent(context, StartRouter.class);
+        return new Intent(context, StartActivity.class);
     }
 }

@@ -17,7 +17,7 @@
         android:configChanges="keyboardHidden|orientation|screenSize"
         -->
         <activity
-            android:name=".startrouter.StartRouter"
+            android:name=".startfragment.view.StartActivity"
             android:theme="@style/QuizViewTheme">
         </activity>
 
