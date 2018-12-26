@@ -11,6 +11,7 @@ import android.widget.Toast;
 import com.example.alexandr.megaquiz.R;
 import com.example.alexandr.megaquiz.quizstoragefragment.QuizStorageItem;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -23,14 +24,13 @@ import butterknife.ButterKnife;
  */
 public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHolder> {
 
-    private List<QuizStorageItem> mCategoriesNames;
+    private List<QuizStorageItem> mCategoriesNames = new ArrayList<>();
     private OnItemClickListener mOnItemClickListener;
 
     private final static int VIEW_ITEM_FIRST = 0;
     private final static int VIEW_ITEM_SECOND = 1;
 
-    public RecyclerAdapter(List<QuizStorageItem> categoriesNames, OnItemClickListener onItemClickListener) {
-        mCategoriesNames = categoriesNames;
+    public RecyclerAdapter(OnItemClickListener onItemClickListener) {
         mOnItemClickListener = onItemClickListener;
     }
 

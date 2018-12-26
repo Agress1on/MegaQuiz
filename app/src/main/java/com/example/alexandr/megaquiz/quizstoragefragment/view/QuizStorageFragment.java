@@ -48,7 +48,7 @@ public class QuizStorageFragment extends Fragment implements QuizStorageContract
     Switch mSwitch;
 
     @BindView(R.id.text_for_switch)
-    TextView mTextView;
+    TextView mSwitchStateTextView;
 
     @BindView(R.id.progress_bar_quiz_storage)
     GeometricProgressView mProgressBar;
@@ -60,21 +60,23 @@ public class QuizStorageFragment extends Fragment implements QuizStorageContract
     List<View> mViewList;
 
     private RecyclerAdapter mAdapter;
-    private List<QuizStorageItem> mCat;
 
-    private Context mContext;
     private Unbinder mUnbinder;
+    private Context mContext;
+
+    private boolean isChecked = false;
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
         mContext = context;
-        App.getApp(mContext).getComponentsHolder().getQuizStorageFragmentComponent(this).inject(this);
     }
 
     @Override
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        App.getApp(getContext()).getComponentsHolder().getQuizStorageFragmentComponent(this).inject(this);
+        mPresenter.onCreate();
     }
 
     @Nullable
@@ -83,27 +85,33 @@ public class QuizStorageFragment extends Fragment implements QuizStorageContract
         View view = inflater.inflate(R.layout.fragment_quiz_storage, null);
         mUnbinder = ButterKnife.bind(this, view);
 
-        mPresenter.onCreateView();
+
 
         FragmentActivity fragmentActivity = getActivity();
         GridLayoutManager layoutManager = new GridLayoutManager(fragmentActivity, 2);
         mRecyclerView.setLayoutManager(layoutManager);
-        mAdapter = new RecyclerAdapter(mCat, key -> mPresenter.onClick(key));
+
+        mAdapter = new RecyclerAdapter(key -> mPresenter.onClick(key));
         mRecyclerView.setAdapter(mAdapter);
+
         return view;
+    }
+
+    @Override
+    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
+        super.onViewCreated(view, savedInstanceState);
+        mPresenter.onCreateView(isChecked);
     }
 
     @Override
     public void onDestroyView() {
         super.onDestroyView();
         mUnbinder.unbind();
-        App.getApp(mContext).getComponentsHolder().releaseQuizStorageFragmentComponent();
-    }
+        if (!getActivity().isChangingConfigurations()) {
+            mPresenter.onDestroy();
+            App.getApp(getContext()).getComponentsHolder().releaseQuizStorageFragmentComponent();
+        }
 
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        mPresenter.onDestroy();
     }
 
     @Override
@@ -124,7 +132,7 @@ public class QuizStorageFragment extends Fragment implements QuizStorageContract
 
     @Override
     public void addQuizStorageItemListForRecyclerAdapter(List<QuizStorageItem> list) {
-        mCat = list;
+        mAdapter.setData(list);
     }
 
     @Override
@@ -134,17 +142,20 @@ public class QuizStorageFragment extends Fragment implements QuizStorageContract
     }
 
     @Override
-    public void updateRecyclerView(List<QuizStorageItem> newList, String text) {
+    public void updateRecyclerView(List<QuizStorageItem> newList) {
         RecyclerAdapterDiffUtilCallback recyclerAdapterDiffUtilCallback =
                 new RecyclerAdapterDiffUtilCallback(mAdapter.getData(), newList);
         DiffUtil.DiffResult recyclerDiffResult = DiffUtil.calculateDiff(recyclerAdapterDiffUtilCallback);
         mAdapter.setData(newList);
         recyclerDiffResult.dispatchUpdatesTo(mAdapter);
-        mTextView.setText(text);
     }
 
     @OnCheckedChanged({R.id.list_switch})
     void onSelected(Switch button, boolean checked) {
+        isChecked = checked;
+        String text = "Показать пустые категории";
+        if (checked) text = "Скрыть пустые категории";
+        mSwitchStateTextView.setText(text);
         mPresenter.onCheckBoxClick(checked);
     }
 
