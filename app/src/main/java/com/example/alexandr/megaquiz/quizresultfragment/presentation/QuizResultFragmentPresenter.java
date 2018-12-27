@@ -57,6 +57,7 @@ public class QuizResultFragmentPresenter implements QuizResultFragmentContract.P
     public void onStartView() {
         if (!mListForRecyclerView.isEmpty()) {
             mView.addListQuizResultItemForRecyclerView(mListForRecyclerView);
+            mView.setTextOfResultTextView(mUserAnswersMap.size(), mCorrectAnswers, mCategoryName);
             return;
         }
         mView.showLoading();
