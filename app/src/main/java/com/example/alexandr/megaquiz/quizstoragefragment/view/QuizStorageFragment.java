@@ -64,19 +64,12 @@ public class QuizStorageFragment extends Fragment implements QuizStorageContract
     private Unbinder mUnbinder;
     private Context mContext;
 
-    private boolean isChecked = false;
-
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
         mContext = context;
-    }
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-        App.getApp(getContext()).getComponentsHolder().getQuizStorageFragmentComponent(this).inject(this);
-        mPresenter.onCreate();
+        App.getApp(mContext).getComponentsHolder().getQuizStorageFragmentComponent(this).inject(this);
+        mPresenter.attachView(this);
     }
 
     @Nullable
@@ -85,22 +78,14 @@ public class QuizStorageFragment extends Fragment implements QuizStorageContract
         View view = inflater.inflate(R.layout.fragment_quiz_storage, null);
         mUnbinder = ButterKnife.bind(this, view);
 
-
-
         FragmentActivity fragmentActivity = getActivity();
         GridLayoutManager layoutManager = new GridLayoutManager(fragmentActivity, 2);
         mRecyclerView.setLayoutManager(layoutManager);
-
         mAdapter = new RecyclerAdapter(key -> mPresenter.onClick(key));
         mRecyclerView.setAdapter(mAdapter);
 
+        mPresenter.onStart();
         return view;
-    }
-
-    @Override
-    public void onViewCreated(@NonNull View view, @Nullable Bundle savedInstanceState) {
-        super.onViewCreated(view, savedInstanceState);
-        mPresenter.onCreateView(isChecked);
     }
 
     @Override
@@ -109,9 +94,14 @@ public class QuizStorageFragment extends Fragment implements QuizStorageContract
         mUnbinder.unbind();
         if (!getActivity().isChangingConfigurations()) {
             mPresenter.onDestroy();
-            App.getApp(getContext()).getComponentsHolder().releaseQuizStorageFragmentComponent();
+            App.getApp(mContext).getComponentsHolder().releaseQuizStorageFragmentComponent();
         }
+    }
 
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        mPresenter.detachView();
     }
 
     @Override
@@ -152,7 +142,6 @@ public class QuizStorageFragment extends Fragment implements QuizStorageContract
 
     @OnCheckedChanged({R.id.list_switch})
     void onSelected(Switch button, boolean checked) {
-        isChecked = checked;
         String text = "Показать пустые категории";
         if (checked) text = "Скрыть пустые категории";
         mSwitchStateTextView.setText(text);

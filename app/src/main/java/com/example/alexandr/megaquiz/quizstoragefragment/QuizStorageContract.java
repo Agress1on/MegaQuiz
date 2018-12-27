@@ -16,15 +16,18 @@ public interface QuizStorageContract {
     }
 
     interface Presenter {
-        void onCreate();
 
-        void onCreateView(boolean isChecked);
+        void onStart();
 
         void onCheckBoxClick(boolean isChecked);
 
         void onClick(String key);
 
         void onDestroy();
+
+        void attachView(QuizStorageContract.View view);
+
+        void detachView();
     }
 
     interface View {

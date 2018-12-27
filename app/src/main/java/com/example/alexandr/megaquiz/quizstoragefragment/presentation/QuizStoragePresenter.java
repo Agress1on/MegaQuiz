@@ -26,28 +26,31 @@ public class QuizStoragePresenter implements QuizStorageContract.Presenter {
     private List<QuizStorageItem> mItemListWithoutEmpty;
     private CompositeDisposable mCompositeDisposable;
 
-    private boolean isViewReady = false;
+    private boolean mIsChecked;
 
-    public QuizStoragePresenter(QuizStorageContract.View view, QuizStorageContract.Interactor interactor) {
-        this.mView = view;
+    public QuizStoragePresenter(QuizStorageContract.Interactor interactor) {
         this.mInteractor = interactor;
 
+        mIsChecked = false;
         mItemListFull = new ArrayList<>();
         mItemListWithoutEmpty = new ArrayList<>();
         mCompositeDisposable = new CompositeDisposable();
     }
 
     @Override
-    public void onCreate() {
-        isViewReady = false;
+    public void attachView(QuizStorageContract.View view) {
+        mView = view;
     }
 
     @Override
-    public void onCreateView(boolean isChecked) {
-        isViewReady = true;
+    public void detachView() {
+        mView = null;
+    }
 
+    @Override
+    public void onStart() {
         if (!mItemListFull.isEmpty()) {
-            List<QuizStorageItem> list =  isChecked ?  mItemListFull : mItemListWithoutEmpty;
+            List<QuizStorageItem> list =  mIsChecked ?  mItemListFull : mItemListWithoutEmpty;
             mView.addQuizStorageItemListForRecyclerAdapter(list);
             return;
         }
@@ -74,24 +77,9 @@ public class QuizStoragePresenter implements QuizStorageContract.Presenter {
     // подумать над переносом части метода во View
     @Override
     public void onCheckBoxClick(boolean isChecked) {
-        List<QuizStorageItem> newList = isChecked ? mItemListFull : mItemListWithoutEmpty; //true
+        mIsChecked = isChecked;
+        List<QuizStorageItem> newList = mIsChecked ? mItemListFull : mItemListWithoutEmpty; //true
         mView.updateRecyclerView(newList);
-        /*
-        List<QuizStorageItem> newList = mItemListWithoutEmpty;
-        if (isChecked) {
-            newList = mItemListFull;
-        }
-        mView.updateRecyclerView(newList);
-        */
-        /*
-        String text = "Показать пустые категории";
-        List<QuizStorageItem> newList = mItemListWithoutEmpty;
-        if (isChecked) {
-            newList = mItemListFull;
-            text = "Скрыть пустые категории";
-        }
-        mView.updateRecyclerView(newList, text);
-        */
     }
 
     @Override
@@ -102,6 +90,5 @@ public class QuizStoragePresenter implements QuizStorageContract.Presenter {
     @Override
     public void onDestroy() {
         mCompositeDisposable.clear();
-        isViewReady = false;
     }
 }

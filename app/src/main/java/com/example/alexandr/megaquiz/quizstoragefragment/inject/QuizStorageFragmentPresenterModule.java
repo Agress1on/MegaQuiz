@@ -25,7 +25,7 @@ public class QuizStorageFragmentPresenterModule {
     @QuizStorageFragmentScope
     @Provides
     QuizStorageContract.Presenter providePresenter(QuizStorageContract.Interactor interactor) {
-        return new QuizStoragePresenter(mView, interactor);
+        return new QuizStoragePresenter(interactor);
     }
 
     @QuizStorageFragmentScope
