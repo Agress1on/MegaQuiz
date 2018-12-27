@@ -1,4 +1,4 @@
-package com.example.alexandr.megaquiz.quizrouter;
+package com.example.alexandr.megaquiz.quizfragment.view;
 
 import android.content.Context;
 import android.content.Intent;
@@ -10,7 +10,6 @@ import android.support.v7.app.AppCompatActivity;
 import com.example.alexandr.megaquiz.Constants;
 import com.example.alexandr.megaquiz.R;
 import com.example.alexandr.megaquiz.quizfragment.QuizFragmentContract;
-import com.example.alexandr.megaquiz.quizfragment.view.QuizFragment;
 import com.example.alexandr.megaquiz.quizresultfragment.view.QuizResultFragment;
 
 import java.util.HashMap;
@@ -20,7 +19,7 @@ import java.util.HashMap;
  *
  * @author Alexandr Mikhalev
  */
-public class QuizRouter extends AppCompatActivity implements QuizFragmentContract.Router {
+public class QuizActivity extends AppCompatActivity implements QuizFragmentContract.Router {
 
     private String mCategoryName = "";
 
@@ -59,7 +58,7 @@ public class QuizRouter extends AppCompatActivity implements QuizFragmentContrac
     }
 
     public static Intent getIntent(Context context, String key) {
-        Intent intent = new Intent(context, QuizRouter.class);
+        Intent intent = new Intent(context, QuizActivity.class);
         intent.putExtra(Constants.EXTRAS_FOR_INTENT_QUIZ_VIEW, key);
         return intent;
     }

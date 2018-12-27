@@ -15,7 +15,7 @@ import android.view.MenuItem;
 
 import com.example.alexandr.megaquiz.R;
 import com.example.alexandr.megaquiz.infofragment.view.InfoFragment;
-import com.example.alexandr.megaquiz.quizrouter.QuizRouter;
+import com.example.alexandr.megaquiz.quizfragment.view.QuizActivity;
 import com.example.alexandr.megaquiz.quizstoragefragment.view.QuizStorageFragment;
 import com.example.alexandr.megaquiz.startfragment.StartFragmentContract;
 
@@ -68,7 +68,7 @@ public class StartActivity extends AppCompatActivity
 
     @Override
     public void goToQuizFragmentWithRandom() {
-        Intent intent = QuizRouter.getIntent(this, "");
+        Intent intent = QuizActivity.getIntent(this, "");
         startActivity(intent);
     }
 

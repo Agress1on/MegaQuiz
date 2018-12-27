@@ -33,7 +33,7 @@
 
         <activity
             android:theme="@style/QuizViewTheme"
-            android:name=".quizrouter.QuizRouter">
+            android:name=".quizfragment.view.QuizActivity">
         </activity>
     </application>
 

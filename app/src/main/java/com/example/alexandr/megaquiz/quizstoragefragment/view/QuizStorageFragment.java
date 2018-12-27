@@ -18,7 +18,7 @@ import android.widget.TextView;
 
 import com.example.alexandr.megaquiz.R;
 import com.example.alexandr.megaquiz.app.App;
-import com.example.alexandr.megaquiz.quizrouter.QuizRouter;
+import com.example.alexandr.megaquiz.quizfragment.view.QuizActivity;
 import com.example.alexandr.megaquiz.quizstoragefragment.QuizStorageContract;
 import com.example.alexandr.megaquiz.quizstoragefragment.QuizStorageItem;
 
@@ -127,7 +127,7 @@ public class QuizStorageFragment extends Fragment implements QuizStorageContract
 
     @Override
     public void startActivityQuizView(String key) {
-        Intent intent = QuizRouter.getIntent(getContext(), key);
+        Intent intent = QuizActivity.getIntent(getContext(), key);
         startActivity(intent);
     }
 
