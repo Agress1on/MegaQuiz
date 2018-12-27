@@ -1,11 +1,14 @@
 package com.example.alexandr.megaquiz.quizfragment.domain;
 
+import android.util.Pair;
+
 import com.example.alexandr.megaquiz.bankquestion.BankQuestion;
 import com.example.alexandr.megaquiz.bankquestion.Question;
 import com.example.alexandr.megaquiz.quizfragment.Answer;
 import com.example.alexandr.megaquiz.quizfragment.QuizFragmentContract;
 
 import java.util.ArrayList;
+import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -23,6 +26,47 @@ public class QuizFragmentInteractor implements QuizFragmentContract.Interactor {
 
     public QuizFragmentInteractor(BankQuestion bankQuestion) {
         this.mBankQuestion = bankQuestion;
+    }
+
+    @Override
+    public Single<Pair<String, List<String>>> getQuestionsForRandom() {
+        return mBankQuestion.getBankQuestionsAndAnswers()
+                .map(new Function<Map<String, List<Question>>, Map<String, List<Question>>>() {
+                    @Override
+                    public Map<String, List<Question>> apply(Map<String, List<Question>> stringListMap) throws Exception {
+                        Map<String, List<Question>> map = new HashMap<>();
+                        for (Map.Entry<String, List<Question>> entry : stringListMap.entrySet()) {
+                            if (entry.getValue().size() > 0)
+                                map.put(entry.getKey(), entry.getValue());
+                        }
+                        return map;
+                    }
+                })
+                .map(new Function<Map<String, List<Question>>, Pair<String, List<Question>>>() {
+                    @Override
+                    public Pair<String, List<Question>> apply(Map<String, List<Question>> stringListMap) throws Exception {
+                        List<String> list = new ArrayList<>();
+                        for (Map.Entry<String, List<Question>> entry : stringListMap.entrySet()) {
+                            list.add(entry.getKey());
+                        }
+                        int first = 0;
+                        int second = list.size();
+                        int random = first + (int) (Math.random() * second);
+                        Pair<String, List<Question>> pair = new Pair<>(list.get(random), stringListMap.get(list.get(random)));
+                        return pair;
+                    }
+                })
+                .map(new Function<Pair<String, List<Question>>, Pair<String, List<String>>>() {
+                    @Override
+                    public Pair<String, List<String>> apply(Pair<String, List<Question>> stringListPair) throws Exception {
+                        List<String> list = new ArrayList<>();
+                        for (Question question : stringListPair.second) {
+                            list.add(question.getTextQuestion());
+                        }
+                        Pair<String, List<String>> pair = new Pair<>(stringListPair.first, list);
+                        return pair;
+                    }
+                });
     }
 
     @Override

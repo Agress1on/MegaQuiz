@@ -1,6 +1,7 @@
 package com.example.alexandr.megaquiz.quizfragment.presentation;
 
 import android.support.v4.util.ArrayMap;
+import android.util.Pair;
 
 import com.example.alexandr.megaquiz.Constants;
 import com.example.alexandr.megaquiz.quizfragment.Answer;
@@ -35,8 +36,7 @@ public class QuizFragmentPresenter implements QuizFragmentContract.Presenter {
     private CompositeDisposable mCompositeDisposable;
     private HashMap<Integer, Boolean> mMapUserAnswersForResultFragment;
 
-    public QuizFragmentPresenter(QuizFragmentContract.View view, QuizFragmentContract.Interactor interactor, QuizFragmentContract.Router router, String categoryName) {
-        this.mView = view;
+    public QuizFragmentPresenter(QuizFragmentContract.Interactor interactor, QuizFragmentContract.Router router, String categoryName) {
         this.mInteractor = interactor;
         this.mRouter = router;
         this.mCategoryName = categoryName;
@@ -49,23 +49,53 @@ public class QuizFragmentPresenter implements QuizFragmentContract.Presenter {
     }
 
     @Override
+    public void attachView(QuizFragmentContract.View view) {
+        mView = view;
+    }
+
+    @Override
+    public void detachView() {
+        mView = null;
+    }
+
+    @Override
     public void onCreateView() {
+        if (!mQuestionsList.isEmpty()) {
+            prepareViewForFirstQuestion();
+            return;
+        }
         mView.showLoading();
         if (mCategoryName.equals("")) {
-            Disposable disposableForRandomCategory = mInteractor.getStringForRandom()
+            Disposable disposableForRandomCategory = mInteractor.getQuestionsForRandom()
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
-                    .subscribe(new Consumer<String>() {
+                    .subscribe(new Consumer<Pair<String, List<String>>>() {
                         @Override
-                        public void accept(String s) throws Exception {
-                            initQuestionsList(s);
-                            mCategoryName = s;
+                        public void accept(Pair<String, List<String>> stringListPair) throws Exception {
+                            mCategoryName = stringListPair.first;
+                            mQuestionsList = stringListPair.second;
+                            mView.hideLoading();
+                            prepareViewForFirstQuestion();
                         }
                     });
             mCompositeDisposable.add(disposableForRandomCategory);
         } else {
             initQuestionsList(mCategoryName);
         }
+
+        /*
+        Disposable disposableForRandomCategory = mInteractor.getStringForRandom()
+                .subscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .subscribe(new Consumer<String>() {
+                    @Override
+                    public void accept(String s) throws Exception {
+                        initQuestionsList(s);
+                        mCategoryName = s;
+                    }
+                });
+        mCompositeDisposable.add(disposableForRandomCategory);
+        */
     }
 
     private void initQuestionsList(String categoryName) {

@@ -92,6 +92,7 @@ public class QuizFragment extends Fragment implements QuizFragmentContract.View 
         }
 
         App.getApp(mContext).getComponentsHolder().getQuizFragmentComponent(this, router, categoryName).inject(this);
+        mPresenter.attachView(this);
     }
 
     @Override
@@ -112,6 +113,12 @@ public class QuizFragment extends Fragment implements QuizFragmentContract.View 
     public void onDestroyView() {
         super.onDestroyView();
         mUnbinder.unbind();
+    }
+
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        mPresenter.detachView();
     }
 
     @Override

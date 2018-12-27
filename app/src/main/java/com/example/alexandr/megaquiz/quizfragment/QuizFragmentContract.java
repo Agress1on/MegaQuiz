@@ -1,5 +1,7 @@
 package com.example.alexandr.megaquiz.quizfragment;
 
+import android.util.Pair;
+
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -19,6 +21,8 @@ public interface QuizFragmentContract {
         Single<Integer> checkQuestions(String key, Map<Integer, Answer> answers);
 
         Single<String> getStringForRandom();
+
+        Single<Pair<String, List<String>>> getQuestionsForRandom();
     }
 
     interface View {
@@ -45,6 +49,9 @@ public interface QuizFragmentContract {
         void onAnswer(Answer answer);
 
         void onDestroy();
+
+        void attachView(QuizFragmentContract.View view);
+        void detachView();
     }
 
     interface Router {
