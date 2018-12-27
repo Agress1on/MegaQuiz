@@ -35,7 +35,7 @@ public class QuizResultFragmentPresenterModule {
     @QuizResultFragmentScope
     @Provides
     QuizResultFragmentContract.Presenter providePresenter(QuizResultFragmentContract.Interactor interactor) {
-        return new QuizResultFragmentPresenter(mView, interactor, mCategoryName, mUserAnswersMap, mCorrectAnswers);
+        return new QuizResultFragmentPresenter(interactor, mCategoryName, mUserAnswersMap, mCorrectAnswers);
     }
 
     @QuizResultFragmentScope

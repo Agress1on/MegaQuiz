@@ -34,5 +34,9 @@ public interface QuizResultFragmentContract {
         void onCheckBoxClick(boolean tap);
 
         void onDestroy();
+
+        void attachView(QuizResultFragmentContract.View view);
+
+        void detachView();
     }
 }

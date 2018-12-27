@@ -32,9 +32,8 @@ public class QuizResultFragmentPresenter implements QuizResultFragmentContract.P
     private List<QuizResultItem> mListForRecyclerView;
 
 
-    public QuizResultFragmentPresenter(QuizResultFragmentContract.View view, QuizResultFragmentContract.Interactor interactor,
+    public QuizResultFragmentPresenter(QuizResultFragmentContract.Interactor interactor,
                                        String categoryName, HashMap<Integer, Boolean> userAnswersMap, int correctAnswers) {
-        this.mView = view;
         this.mInteractor = interactor;
         this.mCategoryName = categoryName;
         this.mUserAnswersMap = userAnswersMap;
@@ -45,7 +44,21 @@ public class QuizResultFragmentPresenter implements QuizResultFragmentContract.P
     }
 
     @Override
+    public void attachView(QuizResultFragmentContract.View view) {
+        mView = view;
+    }
+
+    @Override
+    public void detachView() {
+        mView = null;
+    }
+
+    @Override
     public void onStartView() {
+        if (!mListForRecyclerView.isEmpty()) {
+            mView.addListQuizResultItemForRecyclerView(mListForRecyclerView);
+            return;
+        }
         mView.showLoading();
         Disposable disposable = mInteractor.getQuizResultItems(mCategoryName, mUserAnswersMap)
                 .subscribeOn(Schedulers.io())

@@ -74,14 +74,13 @@ public class QuizResultFragment extends Fragment implements QuizResultFragmentCo
     public void onAttach(Context context) {
         super.onAttach(context);
         mContext = context;
-    }
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
         mCorrectAnswers = getArguments().getInt(Constants.EXTRAS_FOR_INTENT_QUIZ_RESULT_CORRECT_ANSWERS, 5);
         mNameCategory = getArguments().getString(Constants.EXTRAS_FOR_INTENT_QUIZ_RESULT_NAME_CATEGORY, "Error");
         mUserAnswersMap = (HashMap<Integer, Boolean>) getArguments().getSerializable(Constants.EXTRAS_FOR_INTENT_QUIZ_RESULT_MAP_USER_ANSWERS);
+
+        App.getApp(mContext).getComponentsHolder()
+                .getQuizResultFragmentComponent(this, mNameCategory, mUserAnswersMap, mCorrectAnswers).inject(this);
+        mPresenter.attachView(this);
     }
 
     @Nullable
@@ -89,9 +88,6 @@ public class QuizResultFragment extends Fragment implements QuizResultFragmentCo
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_quiz_result, null);
         mUnbinder = ButterKnife.bind(this, view);
-
-        App.getApp(mContext).getComponentsHolder()
-                .getQuizResultFragmentComponent(this, mNameCategory, mUserAnswersMap, mCorrectAnswers).inject(this);
 
         mPresenter.onStartView();
 
