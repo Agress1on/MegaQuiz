@@ -120,13 +120,17 @@ public class QuizResultFragment extends Fragment implements QuizResultFragmentCo
     public void onDestroyView() {
         super.onDestroyView();
         mUnbinder.unbind();
-        App.getApp(mContext).getComponentsHolder().releaseQuizResultFragmentComponent();
+
     }
 
     @Override
     public void onDestroy() {
         super.onDestroy();
-        mPresenter.onDestroy();
+        if (!getActivity().isChangingConfigurations()) {
+            mPresenter.onDestroy();
+            App.getApp(mContext).getComponentsHolder().releaseQuizResultFragmentComponent();
+        }
+
     }
 
     @Override

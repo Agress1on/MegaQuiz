@@ -36,6 +36,8 @@ public class QuizFragmentPresenter implements QuizFragmentContract.Presenter {
     private CompositeDisposable mCompositeDisposable;
     private HashMap<Integer, Boolean> mMapUserAnswersForResultFragment;
 
+    private String mFinalCategory;
+
     public QuizFragmentPresenter(QuizFragmentContract.Interactor interactor, QuizFragmentContract.Router router, String categoryName) {
         this.mInteractor = interactor;
         this.mRouter = router;
@@ -64,9 +66,15 @@ public class QuizFragmentPresenter implements QuizFragmentContract.Presenter {
             prepareViewForFirstQuestion();
             return;
         }
+       initQuestionList(mCategoryName);
+    }
+
+    @Override
+    public void initQuestionList(String categoryName) {
         mView.showLoading();
-        if (mCategoryName.equals("")) {
-            Disposable disposableForRandomCategory = mInteractor.getQuestionsForRandom()
+        Disposable disposable;
+        if (categoryName.equals("")) {
+            disposable = mInteractor.getQuestionsForRandom()
                     .subscribeOn(Schedulers.io())
                     .observeOn(AndroidSchedulers.mainThread())
                     .subscribe(new Consumer<Pair<String, List<String>>>() {
@@ -78,38 +86,19 @@ public class QuizFragmentPresenter implements QuizFragmentContract.Presenter {
                             prepareViewForFirstQuestion();
                         }
                     });
-            mCompositeDisposable.add(disposableForRandomCategory);
         } else {
-            initQuestionsList(mCategoryName);
+            disposable = mInteractor.getQuestions(mCategoryName)
+                    .subscribeOn(Schedulers.io())
+                    .observeOn(AndroidSchedulers.mainThread())
+                    .subscribe(new Consumer<List<String>>() {
+                        @Override
+                        public void accept(List<String> strings) throws Exception {
+                            mQuestionsList.addAll(strings);
+                            mView.hideLoading();
+                            prepareViewForFirstQuestion();
+                        }
+                    });
         }
-
-        /*
-        Disposable disposableForRandomCategory = mInteractor.getStringForRandom()
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Consumer<String>() {
-                    @Override
-                    public void accept(String s) throws Exception {
-                        initQuestionsList(s);
-                        mCategoryName = s;
-                    }
-                });
-        mCompositeDisposable.add(disposableForRandomCategory);
-        */
-    }
-
-    private void initQuestionsList(String categoryName) {
-        Disposable disposable = mInteractor.getQuestions(categoryName)
-                .subscribeOn(Schedulers.io())
-                .observeOn(AndroidSchedulers.mainThread())
-                .subscribe(new Consumer<List<String>>() {
-                    @Override
-                    public void accept(List<String> strings) throws Exception {
-                        mQuestionsList.addAll(strings);
-                        mView.hideLoading();
-                        prepareViewForFirstQuestion();
-                    }
-                });
         mCompositeDisposable.add(disposable);
     }
 

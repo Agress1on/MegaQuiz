@@ -40,6 +40,8 @@ public interface QuizFragmentContract {
     }
 
     interface Presenter {
+        void initQuestionList(String categoryName);
+
         void onCreateView();
 
         void onNextButton();
@@ -51,6 +53,7 @@ public interface QuizFragmentContract {
         void onDestroy();
 
         void attachView(QuizFragmentContract.View view);
+
         void detachView();
     }
 
