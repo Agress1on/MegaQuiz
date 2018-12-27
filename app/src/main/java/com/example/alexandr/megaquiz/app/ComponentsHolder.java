@@ -85,9 +85,9 @@ public class ComponentsHolder {
     QuizFragmentComponent
     */
 
-    public QuizFragmentComponent getQuizFragmentComponent(QuizFragment quizFragment, QuizFragmentContract.Router router, String categoryName) {
+    public QuizFragmentComponent getQuizFragmentComponent(QuizFragment quizFragment, String categoryName) {
         if (mQuizFragmentComponent == null) {
-            mQuizFragmentComponent = getAppComponent().createQuizFragmentComponent(new QuizFragmentPresenterModule(quizFragment, router, categoryName));
+            mQuizFragmentComponent = getAppComponent().createQuizFragmentComponent(new QuizFragmentPresenterModule(quizFragment, categoryName));
         }
         return mQuizFragmentComponent;
     }

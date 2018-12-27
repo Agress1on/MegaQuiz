@@ -38,9 +38,8 @@ public class QuizFragmentPresenter implements QuizFragmentContract.Presenter {
 
     private String mFinalCategory;
 
-    public QuizFragmentPresenter(QuizFragmentContract.Interactor interactor, QuizFragmentContract.Router router, String categoryName) {
+    public QuizFragmentPresenter(QuizFragmentContract.Interactor interactor, String categoryName) {
         this.mInteractor = interactor;
-        this.mRouter = router;
         this.mCategoryName = categoryName;
         //
         this.mQuestionsList = new ArrayList<>();
@@ -51,8 +50,9 @@ public class QuizFragmentPresenter implements QuizFragmentContract.Presenter {
     }
 
     @Override
-    public void attachView(QuizFragmentContract.View view) {
+    public void attachView(QuizFragmentContract.View view, QuizFragmentContract.Router router) {
         mView = view;
+        mRouter = router;
     }
 
     @Override

@@ -52,7 +52,7 @@ public interface QuizFragmentContract {
 
         void onStop();
 
-        void attachView(QuizFragmentContract.View view);
+        void attachView(QuizFragmentContract.View view, QuizFragmentContract.Router router);
 
         void detachView();
     }

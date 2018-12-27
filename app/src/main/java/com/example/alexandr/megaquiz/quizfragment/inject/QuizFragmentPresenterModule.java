@@ -22,16 +22,15 @@ public class QuizFragmentPresenterModule {
     private QuizFragmentContract.Router mRouter;
     private String mCategoryName;
 
-    public QuizFragmentPresenterModule(QuizFragmentContract.View quizFragment, QuizFragmentContract.Router router, String categoryName) {
+    public QuizFragmentPresenterModule(QuizFragmentContract.View quizFragment, String categoryName) {
         mView = quizFragment;
-        mRouter = router;
         mCategoryName = categoryName;
     }
 
     @QuizFragmentScope
     @Provides
     QuizFragmentContract.Presenter providePresenter(QuizFragmentContract.Interactor quizFragmentInteractor) {
-        return new QuizFragmentPresenter(quizFragmentInteractor, mRouter, mCategoryName);
+        return new QuizFragmentPresenter(quizFragmentInteractor, mCategoryName);
     }
 
     @QuizFragmentScope

@@ -91,8 +91,8 @@ public class QuizFragment extends Fragment implements QuizFragmentContract.View 
             throw new IllegalStateException("Parent container must be StartFragmentContract.Router");
         }
 
-        App.getApp(mContext).getComponentsHolder().getQuizFragmentComponent(this, router, categoryName).inject(this);
-        mPresenter.attachView(this);
+        App.getApp(mContext).getComponentsHolder().getQuizFragmentComponent(this, categoryName).inject(this);
+        mPresenter.attachView(this, router);
     }
 
     @Override
