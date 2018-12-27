@@ -50,9 +50,8 @@ public class StartFragment extends Fragment implements StartFragmentContract.Vie
     boolean mVisible = true;
 
     @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
-
+    public void onAttach(Context context) {
+        super.onAttach(context);
         if (getParentFragment() instanceof StartFragmentContract.Router) {
             mRouter = (StartFragmentContract.Router) getParentFragment();
         } else if (getActivity() instanceof StartFragmentContract.Router) {
@@ -61,6 +60,7 @@ public class StartFragment extends Fragment implements StartFragmentContract.Vie
             throw new IllegalStateException("Parent container must be StartFragmentContract.Router");
         }
         App.getApp(getContext()).getComponentsHolder().getStartFragmentComponent(this, mRouter).inject(this);
+        mPresenter.attachView(this);
     }
 
     @Nullable
@@ -80,6 +80,11 @@ public class StartFragment extends Fragment implements StartFragmentContract.Vie
         }
     }
 
+    @Override
+    public void onDetach() {
+        super.onDetach();
+        mPresenter.detachView();
+    }
 
     @OnClick({R.id.btn_randomQuiz, R.id.btn_category, R.id.btn_test_general_questions})
     void onClick(View view) {

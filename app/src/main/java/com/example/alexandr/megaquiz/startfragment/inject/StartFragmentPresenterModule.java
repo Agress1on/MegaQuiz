@@ -25,6 +25,6 @@ public class StartFragmentPresenterModule {
     @StartFragmentScope
     @Provides
     StartFragmentContract.Presenter providePresenter() {
-        return new StartFragmentPresenter(mView, mRouter);
+        return new StartFragmentPresenter(mRouter);
     }
 }
