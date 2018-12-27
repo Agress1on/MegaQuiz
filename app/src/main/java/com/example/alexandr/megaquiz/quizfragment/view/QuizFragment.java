@@ -125,7 +125,7 @@ public class QuizFragment extends Fragment implements QuizFragmentContract.View 
     public void onDestroy() {
         super.onDestroy();
         if (!getActivity().isChangingConfigurations()) {
-            mPresenter.onDestroy();
+            mPresenter.onStop();
             App.getApp(mContext).getComponentsHolder().releaseQuizFragmentComponent();
         }
 

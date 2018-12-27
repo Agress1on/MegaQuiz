@@ -50,7 +50,7 @@ public interface QuizFragmentContract {
 
         void onAnswer(Answer answer);
 
-        void onDestroy();
+        void onStop();
 
         void attachView(QuizFragmentContract.View view);
 
