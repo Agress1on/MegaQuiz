@@ -61,7 +61,7 @@ public class QuizResultFragment extends Fragment implements QuizResultFragmentCo
     @BindViews({R.id.result_text, R.id.for_switch_tv, R.id.switch_result})
     List<View> mViewList;
 
-    private List<QuizResultItem> mCat;
+    private QuizResultAdapter mAdapter;
 
     private Context mContext;
     private Unbinder mUnbinder;
@@ -85,14 +85,30 @@ public class QuizResultFragment extends Fragment implements QuizResultFragmentCo
         View view = inflater.inflate(R.layout.fragment_quiz_result, null);
         mUnbinder = ButterKnife.bind(this, view);
 
-        mPresenter.onStartView();
-
         FragmentActivity fragmentActivity = getActivity();
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(fragmentActivity);
         mRecyclerView.setLayoutManager(layoutManager);
-        QuizResultAdapter adapter = new QuizResultAdapter(mCat);
-        mRecyclerView.setAdapter(adapter);
+        mAdapter = new QuizResultAdapter();
+
+        mPresenter.onStartView();
+
+        mRecyclerView.setAdapter(mAdapter);
         return view;
+    }
+
+    @Override
+    public void onDestroyView() {
+        super.onDestroyView();
+        mUnbinder.unbind();
+    }
+
+    @Override
+    public void onDestroy() {
+        super.onDestroy();
+        if (!getActivity().isChangingConfigurations()) {
+            mPresenter.onDestroy();
+            App.getApp(mContext).getComponentsHolder().releaseQuizResultFragmentComponent();
+        }
     }
 
     @Override
@@ -113,21 +129,6 @@ public class QuizResultFragment extends Fragment implements QuizResultFragmentCo
     }
 
     @Override
-    public void onDestroyView() {
-        super.onDestroyView();
-        mUnbinder.unbind();
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        if (!getActivity().isChangingConfigurations()) {
-            mPresenter.onDestroy();
-            App.getApp(mContext).getComponentsHolder().releaseQuizResultFragmentComponent();
-        }
-    }
-
-    @Override
     public void showLoading() {
         for (View view : mViewList) {
             view.setVisibility(View.INVISIBLE);
@@ -145,7 +146,7 @@ public class QuizResultFragment extends Fragment implements QuizResultFragmentCo
 
     @Override
     public void addListQuizResultItemForRecyclerView(List<QuizResultItem> list) {
-        mCat = list;
+        mAdapter.setData(list);
     }
 
     @OnCheckedChanged({R.id.switch_result})

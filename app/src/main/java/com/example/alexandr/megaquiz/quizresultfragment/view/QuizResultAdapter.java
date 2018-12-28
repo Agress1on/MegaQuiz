@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.example.alexandr.megaquiz.R;
 import com.example.alexandr.megaquiz.quizresultfragment.QuizResultItem;
 
+import java.util.ArrayList;
 import java.util.List;
 
 import butterknife.BindView;
@@ -27,7 +28,11 @@ public class QuizResultAdapter extends RecyclerView.Adapter<QuizResultAdapter.Vi
     private final static int VIEW_ITEM_TYPE_FIRST = 0;
     private final static int VIEW_ITEM_TYPE_SECOND = 1;
 
-    public QuizResultAdapter(List<QuizResultItem> quizResultItemList) {
+    public QuizResultAdapter() {
+        mQuizResultItemList = new ArrayList<>();
+    }
+
+    public void setData(List<QuizResultItem> quizResultItemList) {
         mQuizResultItemList = quizResultItemList;
     }
 
