@@ -14,6 +14,7 @@ import dagger.Provides;
 @Module
 public class StartFragmentPresenterModule {
 
+    /*
     private StartFragmentContract.View mView;
     private StartFragmentContract.Router mRouter;
 
@@ -21,10 +22,11 @@ public class StartFragmentPresenterModule {
         mView = startFragment;
         mRouter = router;
     }
+    */
 
     @StartFragmentScope
     @Provides
     StartFragmentContract.Presenter providePresenter() {
-        return new StartFragmentPresenter(mRouter);
+        return new StartFragmentPresenter();
     }
 }

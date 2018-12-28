@@ -45,22 +45,22 @@ public class StartFragment extends Fragment implements StartFragmentContract.Vie
     ImageView mHeaderImageView;
 
     private Unbinder mUnbinder;
-    private StartFragmentContract.Router mRouter;
 
     boolean mVisible = true;
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
+        StartFragmentContract.Router router;
         if (getParentFragment() instanceof StartFragmentContract.Router) {
-            mRouter = (StartFragmentContract.Router) getParentFragment();
+            router = (StartFragmentContract.Router) getParentFragment();
         } else if (getActivity() instanceof StartFragmentContract.Router) {
-            mRouter = (StartFragmentContract.Router) getActivity();
+            router = (StartFragmentContract.Router) getActivity();
         } else {
             throw new IllegalStateException("Parent container must be StartFragmentContract.Router");
         }
-        App.getApp(getContext()).getComponentsHolder().getStartFragmentComponent(this, mRouter).inject(this);
-        mPresenter.attachView(this);
+        App.getApp(getContext()).getComponentsHolder().getStartFragmentComponent().inject(this);
+        mPresenter.attachView(this, router);
     }
 
     @Nullable

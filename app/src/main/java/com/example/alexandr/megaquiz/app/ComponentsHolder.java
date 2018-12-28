@@ -55,9 +55,9 @@ public class ComponentsHolder {
     StartFragmentComponent
     */
 
-    public StartFragmentComponent getStartFragmentComponent(StartFragment startFragment, StartFragmentContract.Router router) {
+    public StartFragmentComponent getStartFragmentComponent() {
         if (mStartFragmentComponent == null) {
-            mStartFragmentComponent = getAppComponent().createStartFragmentComponent(new StartFragmentPresenterModule(startFragment, router));
+            mStartFragmentComponent = getAppComponent().createStartFragmentComponent(new StartFragmentPresenterModule());
         }
         return mStartFragmentComponent;
     }

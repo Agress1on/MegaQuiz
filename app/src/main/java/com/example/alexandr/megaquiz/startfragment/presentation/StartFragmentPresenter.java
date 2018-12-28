@@ -12,18 +12,16 @@ public class StartFragmentPresenter implements StartFragmentContract.Presenter {
     private StartFragmentContract.View mView;
     private StartFragmentContract.Router mRouter;
 
-    public StartFragmentPresenter(StartFragmentContract.Router router) {
-        mRouter = router;
-    }
-
     @Override
-    public void attachView(StartFragmentContract.View view) {
+    public void attachView(StartFragmentContract.View view, StartFragmentContract.Router router) {
         mView = view;
+        mRouter = router;
     }
 
     @Override
     public void detachView() {
         mView = null;
+        mRouter = null;
     }
 
     @Override

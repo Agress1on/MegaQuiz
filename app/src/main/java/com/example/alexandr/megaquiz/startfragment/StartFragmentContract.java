@@ -18,7 +18,7 @@ public interface StartFragmentContract {
 
         void onTestButton();
 
-        void attachView(StartFragmentContract.View view);
+        void attachView(StartFragmentContract.View view, StartFragmentContract.Router router);
 
         void detachView();
     }
