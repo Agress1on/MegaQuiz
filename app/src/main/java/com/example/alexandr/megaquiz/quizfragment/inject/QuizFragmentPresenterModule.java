@@ -18,12 +18,9 @@ import dagger.Provides;
 @Module
 public class QuizFragmentPresenterModule {
 
-    private QuizFragmentContract.View mView;
-    private QuizFragmentContract.Router mRouter;
     private String mCategoryName;
 
-    public QuizFragmentPresenterModule(QuizFragmentContract.View quizFragment, String categoryName) {
-        mView = quizFragment;
+    public QuizFragmentPresenterModule(String categoryName) {
         mCategoryName = categoryName;
     }
 

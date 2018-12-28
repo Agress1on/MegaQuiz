@@ -36,8 +36,6 @@ public class QuizFragmentPresenter implements QuizFragmentContract.Presenter {
     private CompositeDisposable mCompositeDisposable;
     private HashMap<Integer, Boolean> mMapUserAnswersForResultFragment;
 
-    private String mFinalCategory;
-
     public QuizFragmentPresenter(QuizFragmentContract.Interactor interactor, String categoryName) {
         this.mInteractor = interactor;
         this.mCategoryName = categoryName;
@@ -173,7 +171,6 @@ public class QuizFragmentPresenter implements QuizFragmentContract.Presenter {
                         }
                     });
             mCompositeDisposable.add(disposable);
-
         }
     }
 

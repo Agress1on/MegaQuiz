@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.constraint.Group;
 import android.support.v4.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -60,17 +61,22 @@ public class QuizFragment extends Fragment implements QuizFragmentContract.View 
     @BindView(R.id.question_count)
     TextView mQuestionCountTextView;
 
+    @BindView(R.id.progress_bar_quiz_fragment)
+    GeometricProgressView mProgressBar;
+
+    @BindView(R.id.static_group_quiz)
+    Group mStaticGroup;
+
+    /*
+    @BindViews({R.id.category_name, R.id.question, R.id.btnTrue,
+            R.id.btnFalse, R.id.btnNext, R.id.btnPrev, R.id.question_count})
+    List<View> mViewList;
+    */
+
     /*
     @BindView(R.id.progres_bar)
     ProgressBar mProgressBar;
     */
-
-    @BindView(R.id.progress_bar_quiz_fragment)
-    GeometricProgressView mProgressBar;
-
-    @BindViews({R.id.category_name, R.id.question, R.id.btnTrue,
-            R.id.btnFalse, R.id.btnNext, R.id.btnPrev, R.id.question_count})
-    List<View> mViewList;
 
     private Context mContext;
     private Unbinder mUnbinder;
@@ -81,6 +87,7 @@ public class QuizFragment extends Fragment implements QuizFragmentContract.View 
         mContext = context;
 
         String categoryName = getArguments().getString(Constants.EXTRAS_FOR_INTENT_QUIZ_VIEW);
+        App.getApp(mContext).getComponentsHolder().getQuizFragmentComponent(categoryName).inject(this);
 
         QuizFragmentContract.Router router;
         if (getParentFragment() instanceof QuizFragmentContract.Router) {
@@ -90,8 +97,6 @@ public class QuizFragment extends Fragment implements QuizFragmentContract.View 
         } else {
             throw new IllegalStateException("Parent container must be StartFragmentContract.Router");
         }
-
-        App.getApp(mContext).getComponentsHolder().getQuizFragmentComponent(this, categoryName).inject(this);
         mPresenter.attachView(this, router);
     }
 
@@ -128,22 +133,17 @@ public class QuizFragment extends Fragment implements QuizFragmentContract.View 
             mPresenter.onStop();
             App.getApp(mContext).getComponentsHolder().releaseQuizFragmentComponent();
         }
-
     }
 
     @Override
     public void showLoading() {
-        for (View view : mViewList) {
-            view.setVisibility(View.INVISIBLE);
-        }
+        mStaticGroup.setVisibility(View.INVISIBLE);
         mProgressBar.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void hideLoading() {
-        for (View view : mViewList) {
-            view.setVisibility(View.VISIBLE);
-        }
+        mStaticGroup.setVisibility(View.VISIBLE);
         mProgressBar.setVisibility(View.INVISIBLE);
     }
 

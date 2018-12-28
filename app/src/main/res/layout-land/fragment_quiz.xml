@@ -185,4 +185,10 @@
         app:layout_constraintTop_toTopOf="@id/background_for_question"
         tools:text="3/6" />
 
+    <android.support.constraint.Group
+        android:id="@+id/static_group_quiz"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:constraint_referenced_ids="category_name, question, btnTrue, btnFalse, btnNext, btnPrev, question_count"/>
+
 </android.support.constraint.ConstraintLayout>
