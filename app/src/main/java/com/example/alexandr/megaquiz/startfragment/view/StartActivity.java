@@ -67,7 +67,7 @@ public class StartActivity extends AppCompatActivity
     }
 
     @Override
-    public void goToQuizFragmentWithRandom() {
+    public void goToRandomQuiz() {
         Intent intent = QuizActivity.getIntent(this, "");
         startActivity(intent);
     }

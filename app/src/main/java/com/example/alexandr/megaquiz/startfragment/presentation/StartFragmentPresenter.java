@@ -26,12 +26,12 @@ public class StartFragmentPresenter implements StartFragmentContract.Presenter {
 
     @Override
     public void onRandomButton() {
-        mRouter.goToQuizFragmentWithRandom();
+        mRouter.goToRandomQuiz();
     }
 
     @Override
     public void onButtonCategory() {
-       mRouter.goToQuizStorage();
+        mRouter.goToQuizStorage();
     }
 
     @Override

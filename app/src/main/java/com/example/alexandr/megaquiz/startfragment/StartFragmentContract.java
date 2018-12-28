@@ -24,7 +24,7 @@ public interface StartFragmentContract {
     }
 
     interface Router {
-        void goToQuizFragmentWithRandom();
+        void goToRandomQuiz();
 
         void goToQuizStorage();
     }
