@@ -49,7 +49,7 @@ public class QuizStoragePresenter implements QuizStorageContract.Presenter {
     @Override
     public void onStart() {
         if (!mItemListFull.isEmpty()) {
-            List<QuizStorageItem> list =  mIsChecked ?  mItemListFull : mItemListWithoutEmpty;
+            List<QuizStorageItem> list = mIsChecked ? mItemListFull : mItemListWithoutEmpty;
             mView.addQuizStorageItemListForRecyclerAdapter(list);
             return;
         }

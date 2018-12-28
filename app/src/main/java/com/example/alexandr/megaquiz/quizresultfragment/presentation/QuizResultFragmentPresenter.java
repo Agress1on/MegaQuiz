@@ -1,7 +1,5 @@
 package com.example.alexandr.megaquiz.quizresultfragment.presentation;
 
-import android.view.View;
-
 import com.example.alexandr.megaquiz.quizresultfragment.QuizResultFragmentContract;
 import com.example.alexandr.megaquiz.quizresultfragment.QuizResultItem;
 

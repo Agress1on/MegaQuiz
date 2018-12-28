@@ -65,7 +65,7 @@ public class QuizFragmentPresenter implements QuizFragmentContract.Presenter {
             checkAnswerQuestion();
             return;
         }
-       initQuestionList(mCategoryName);
+        initQuestionList(mCategoryName);
     }
 
     @Override

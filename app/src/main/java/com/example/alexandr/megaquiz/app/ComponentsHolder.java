@@ -5,20 +5,14 @@ import android.content.Context;
 import com.example.alexandr.megaquiz.app.inject.AppComponent;
 import com.example.alexandr.megaquiz.app.inject.AppModule;
 import com.example.alexandr.megaquiz.app.inject.DaggerAppComponent;
-import com.example.alexandr.megaquiz.quizfragment.QuizFragmentContract;
 import com.example.alexandr.megaquiz.quizfragment.inject.QuizFragmentComponent;
 import com.example.alexandr.megaquiz.quizfragment.inject.QuizFragmentPresenterModule;
-import com.example.alexandr.megaquiz.quizfragment.view.QuizFragment;
 import com.example.alexandr.megaquiz.quizresultfragment.inject.QuizResultFragmentComponent;
 import com.example.alexandr.megaquiz.quizresultfragment.inject.QuizResultFragmentPresenterModule;
-import com.example.alexandr.megaquiz.quizresultfragment.view.QuizResultFragment;
 import com.example.alexandr.megaquiz.quizstoragefragment.inject.QuizStorageFragmentComponent;
 import com.example.alexandr.megaquiz.quizstoragefragment.inject.QuizStorageFragmentPresenterModule;
-import com.example.alexandr.megaquiz.quizstoragefragment.view.QuizStorageFragment;
-import com.example.alexandr.megaquiz.startfragment.StartFragmentContract;
 import com.example.alexandr.megaquiz.startfragment.inject.StartFragmentComponent;
 import com.example.alexandr.megaquiz.startfragment.inject.StartFragmentPresenterModule;
-import com.example.alexandr.megaquiz.startfragment.view.StartFragment;
 
 import java.util.HashMap;
 

@@ -20,12 +20,9 @@ import com.example.alexandr.megaquiz.quizfragment.QuizFragmentContract;
 
 import net.bohush.geometricprogressview.GeometricProgressView;
 
-import java.util.List;
-
 import javax.inject.Inject;
 
 import butterknife.BindView;
-import butterknife.BindViews;
 import butterknife.ButterKnife;
 import butterknife.OnClick;
 import butterknife.Unbinder;
@@ -98,11 +95,6 @@ public class QuizFragment extends Fragment implements QuizFragmentContract.View 
             throw new IllegalStateException("Parent container must be StartFragmentContract.Router");
         }
         mPresenter.attachView(this, router);
-    }
-
-    @Override
-    public void onCreate(@Nullable Bundle savedInstanceState) {
-        super.onCreate(savedInstanceState);
     }
 
     @Nullable
