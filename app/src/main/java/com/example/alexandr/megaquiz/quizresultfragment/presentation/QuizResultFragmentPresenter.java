@@ -31,7 +31,6 @@ public class QuizResultFragmentPresenter implements QuizResultFragmentContract.P
     private CompositeDisposable mCompositeDisposable;
     private List<QuizResultItem> mListForRecyclerView;
 
-
     public QuizResultFragmentPresenter(QuizResultFragmentContract.Interactor interactor,
                                        String categoryName, HashMap<Integer, Boolean> userAnswersMap, int correctAnswers) {
         this.mInteractor = interactor;

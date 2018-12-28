@@ -61,10 +61,6 @@ public class QuizResultFragment extends Fragment implements QuizResultFragmentCo
     @BindViews({R.id.result_text, R.id.for_switch_tv, R.id.switch_result})
     List<View> mViewList;
 
-    private int mCorrectAnswers;
-    private String mNameCategory;
-    private HashMap<Integer, Boolean> mUserAnswersMap;
-
     private List<QuizResultItem> mCat;
 
     private Context mContext;
@@ -74,12 +70,12 @@ public class QuizResultFragment extends Fragment implements QuizResultFragmentCo
     public void onAttach(Context context) {
         super.onAttach(context);
         mContext = context;
-        mCorrectAnswers = getArguments().getInt(Constants.EXTRAS_FOR_INTENT_QUIZ_RESULT_CORRECT_ANSWERS, 5);
-        mNameCategory = getArguments().getString(Constants.EXTRAS_FOR_INTENT_QUIZ_RESULT_NAME_CATEGORY, "Error");
-        mUserAnswersMap = (HashMap<Integer, Boolean>) getArguments().getSerializable(Constants.EXTRAS_FOR_INTENT_QUIZ_RESULT_MAP_USER_ANSWERS);
+        int correctAnswers = getArguments().getInt(Constants.EXTRAS_FOR_INTENT_QUIZ_RESULT_CORRECT_ANSWERS, 5);
+        String nameCategory = getArguments().getString(Constants.EXTRAS_FOR_INTENT_QUIZ_RESULT_NAME_CATEGORY, "Error");
+        HashMap<Integer, Boolean> userAnswersMap = (HashMap<Integer, Boolean>) getArguments().getSerializable(Constants.EXTRAS_FOR_INTENT_QUIZ_RESULT_MAP_USER_ANSWERS);
 
         App.getApp(mContext).getComponentsHolder()
-                .getQuizResultFragmentComponent(this, mNameCategory, mUserAnswersMap, mCorrectAnswers).inject(this);
+                .getQuizResultFragmentComponent(nameCategory, userAnswersMap, correctAnswers).inject(this);
         mPresenter.attachView(this);
     }
 
@@ -120,7 +116,6 @@ public class QuizResultFragment extends Fragment implements QuizResultFragmentCo
     public void onDestroyView() {
         super.onDestroyView();
         mUnbinder.unbind();
-
     }
 
     @Override
@@ -130,7 +125,6 @@ public class QuizResultFragment extends Fragment implements QuizResultFragmentCo
             mPresenter.onDestroy();
             App.getApp(mContext).getComponentsHolder().releaseQuizResultFragmentComponent();
         }
-
     }
 
     @Override

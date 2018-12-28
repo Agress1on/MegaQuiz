@@ -20,13 +20,11 @@ import dagger.Provides;
 @Module
 public class QuizResultFragmentPresenterModule {
 
-    private QuizResultFragmentContract.View mView;
     private String mCategoryName;
     private HashMap<Integer, Boolean> mUserAnswersMap;
     private int mCorrectAnswers;
 
-    public QuizResultFragmentPresenterModule(QuizResultFragmentContract.View view, String categoryName, HashMap<Integer, Boolean> userAnswersMap, int correctAnswers) {
-        mView = view;
+    public QuizResultFragmentPresenterModule(String categoryName, HashMap<Integer, Boolean> userAnswersMap, int correctAnswers) {
         mCategoryName = categoryName;
         mUserAnswersMap = userAnswersMap;
         mCorrectAnswers = correctAnswers;
