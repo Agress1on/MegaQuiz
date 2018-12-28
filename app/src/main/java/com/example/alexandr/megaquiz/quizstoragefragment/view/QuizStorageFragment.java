@@ -5,6 +5,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.constraint.Group;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.util.DiffUtil;
@@ -56,8 +57,8 @@ public class QuizStorageFragment extends Fragment implements QuizStorageContract
     @BindView(R.id.storage_recycler)
     RecyclerView mRecyclerView;
 
-    @BindViews({R.id.list_switch, R.id.text_for_switch, R.id.storage_recycler})
-    List<View> mViewList;
+    @BindView(R.id.static_group)
+    Group mStaticGroup;
 
     private RecyclerAdapter mAdapter;
 
@@ -68,7 +69,7 @@ public class QuizStorageFragment extends Fragment implements QuizStorageContract
     public void onAttach(Context context) {
         super.onAttach(context);
         mContext = context;
-        App.getApp(mContext).getComponentsHolder().getQuizStorageFragmentComponent(this).inject(this);
+        App.getApp(mContext).getComponentsHolder().getQuizStorageFragmentComponent().inject(this);
         mPresenter.attachView(this);
     }
 
@@ -82,9 +83,10 @@ public class QuizStorageFragment extends Fragment implements QuizStorageContract
         GridLayoutManager layoutManager = new GridLayoutManager(fragmentActivity, 2);
         mRecyclerView.setLayoutManager(layoutManager);
         mAdapter = new RecyclerAdapter(key -> mPresenter.onClick(key));
-        mRecyclerView.setAdapter(mAdapter);
 
         mPresenter.onStart();
+
+        mRecyclerView.setAdapter(mAdapter);
         return view;
     }
 
@@ -106,18 +108,14 @@ public class QuizStorageFragment extends Fragment implements QuizStorageContract
 
     @Override
     public void showLoading() {
-        for (View view : mViewList) {
-            view.setVisibility(View.INVISIBLE);
-        }
+        mStaticGroup.setVisibility(View.INVISIBLE);
         mProgressBar.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void hideLoading() {
+        mStaticGroup.setVisibility(View.VISIBLE);
         mProgressBar.setVisibility(View.INVISIBLE);
-        for (View view : mViewList) {
-            view.setVisibility(View.VISIBLE);
-        }
     }
 
     @Override

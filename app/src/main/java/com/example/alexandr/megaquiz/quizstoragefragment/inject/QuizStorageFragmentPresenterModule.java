@@ -16,12 +16,6 @@ import dagger.Provides;
 @Module
 public class QuizStorageFragmentPresenterModule {
 
-    private QuizStorageContract.View mView;
-
-    public QuizStorageFragmentPresenterModule(QuizStorageContract.View view) {
-        mView = view;
-    }
-
     @QuizStorageFragmentScope
     @Provides
     QuizStorageContract.Presenter providePresenter(QuizStorageContract.Interactor interactor) {

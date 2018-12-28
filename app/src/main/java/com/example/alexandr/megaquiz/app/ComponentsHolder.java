@@ -70,9 +70,9 @@ public class ComponentsHolder {
     QuizStorageFragmentComponent
     */
 
-    public QuizStorageFragmentComponent getQuizStorageFragmentComponent(QuizStorageFragment quizStorageFragment) {
+    public QuizStorageFragmentComponent getQuizStorageFragmentComponent() {
         if (mQuizStorageFragmentComponent == null) {
-            mQuizStorageFragmentComponent = getAppComponent().createQuizStorageFragmentComponent(new QuizStorageFragmentPresenterModule(quizStorageFragment));
+            mQuizStorageFragmentComponent = getAppComponent().createQuizStorageFragmentComponent(new QuizStorageFragmentPresenterModule());
         }
         return mQuizStorageFragmentComponent;
     }

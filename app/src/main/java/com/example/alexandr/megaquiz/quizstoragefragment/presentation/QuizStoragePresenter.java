@@ -30,7 +30,6 @@ public class QuizStoragePresenter implements QuizStorageContract.Presenter {
 
     public QuizStoragePresenter(QuizStorageContract.Interactor interactor) {
         this.mInteractor = interactor;
-
         mIsChecked = false;
         mItemListFull = new ArrayList<>();
         mItemListWithoutEmpty = new ArrayList<>();
@@ -54,7 +53,6 @@ public class QuizStoragePresenter implements QuizStorageContract.Presenter {
             mView.addQuizStorageItemListForRecyclerAdapter(list);
             return;
         }
-
         mView.showLoading();
         Disposable disposable = mInteractor.getListsOfStorageItem()
                 .subscribeOn(Schedulers.io())
@@ -67,8 +65,8 @@ public class QuizStoragePresenter implements QuizStorageContract.Presenter {
                             if (quizStorageItem.getCategorySize() > 0)
                                 mItemListWithoutEmpty.add(quizStorageItem);
                         }
-                        mView.hideLoading();
                         mView.addQuizStorageItemListForRecyclerAdapter(mItemListWithoutEmpty);
+                        mView.hideLoading();
                     }
                 });
         mCompositeDisposable.add(disposable);
