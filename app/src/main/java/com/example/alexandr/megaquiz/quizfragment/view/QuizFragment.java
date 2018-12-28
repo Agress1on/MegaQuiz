@@ -129,7 +129,7 @@ public class QuizFragment extends Fragment implements QuizFragmentContract.View 
 
     @Override
     public void showLoading() {
-        mStaticGroup.setVisibility(View.INVISIBLE);
+        mStaticGroup.setVisibility(View.GONE);
         mProgressBar.setVisibility(View.VISIBLE);
     }
 
