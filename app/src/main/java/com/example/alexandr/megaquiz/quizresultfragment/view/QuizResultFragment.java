@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.NonNull;
 import android.support.annotation.Nullable;
+import android.support.constraint.Group;
 import android.support.v4.app.Fragment;
 import android.support.v4.app.FragmentActivity;
 import android.support.v7.widget.LinearLayoutManager;
@@ -58,11 +59,15 @@ public class QuizResultFragment extends Fragment implements QuizResultFragmentCo
     @BindView(R.id.progress_bar_quiz_result)
     GeometricProgressView mProgressBar;
 
+    @BindView(R.id.static_group_quiz_result)
+    Group mStaticGroup;
+
+    /*
     @BindViews({R.id.result_text, R.id.for_switch_tv, R.id.switch_result})
     List<View> mViewList;
+    */
 
     private QuizResultAdapter mAdapter;
-
     private Context mContext;
     private Unbinder mUnbinder;
 
@@ -130,18 +135,14 @@ public class QuizResultFragment extends Fragment implements QuizResultFragmentCo
 
     @Override
     public void showLoading() {
-        for (View view : mViewList) {
-            view.setVisibility(View.INVISIBLE);
-        }
+        mStaticGroup.setVisibility(View.INVISIBLE);
         mProgressBar.setVisibility(View.VISIBLE);
     }
 
     @Override
     public void hideLoading() {
         mProgressBar.setVisibility(View.INVISIBLE);
-        for (View view : mViewList) {
-            view.setVisibility(View.VISIBLE);
-        }
+        mStaticGroup.setVisibility(View.VISIBLE);
     }
 
     @Override
