@@ -66,11 +66,11 @@ public class QuizResultFragmentPresenter implements QuizResultFragmentContract.P
                     public void accept(List<QuizResultItem> list) throws Exception {
                         mListForRecyclerView.addAll(list);
                         mView.hideLoading();
+                        mView.addListQuizResultItemForRecyclerView(mListForRecyclerView);
+                        mView.setTextOfResultTextView(mUserAnswersMap.size(), mCorrectAnswers, mCategoryName);
                     }
                 });
         mCompositeDisposable.add(disposable);
-        mView.addListQuizResultItemForRecyclerView(mListForRecyclerView);
-        mView.setTextOfResultTextView(mUserAnswersMap.size(), mCorrectAnswers, mCategoryName);
     }
 
     @Override

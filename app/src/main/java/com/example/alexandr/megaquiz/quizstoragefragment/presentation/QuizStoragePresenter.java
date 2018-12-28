@@ -67,8 +67,10 @@ public class QuizStoragePresenter implements QuizStorageContract.Presenter {
                         }
                         mView.addQuizStorageItemListForRecyclerAdapter(mItemListWithoutEmpty);
                         mView.hideLoading();
+
                     }
                 });
+
         mCompositeDisposable.add(disposable);
     }
 

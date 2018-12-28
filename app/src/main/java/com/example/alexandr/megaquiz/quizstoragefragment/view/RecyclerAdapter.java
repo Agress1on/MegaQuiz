@@ -40,6 +40,7 @@ public class RecyclerAdapter extends RecyclerView.Adapter<RecyclerAdapter.ViewHo
 
     public void setData(List<QuizStorageItem> categoriesNames) {
         mCategoriesNames = categoriesNames;
+        notifyDataSetChanged();
     }
 
     @Override

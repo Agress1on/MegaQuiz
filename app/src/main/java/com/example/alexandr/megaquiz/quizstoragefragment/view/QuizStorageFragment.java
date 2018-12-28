@@ -82,10 +82,9 @@ public class QuizStorageFragment extends Fragment implements QuizStorageContract
         GridLayoutManager layoutManager = new GridLayoutManager(fragmentActivity, 2);
         mRecyclerView.setLayoutManager(layoutManager);
         mAdapter = new RecyclerAdapter(key -> mPresenter.onClick(key));
-
         mPresenter.onStart();
-
         mRecyclerView.setAdapter(mAdapter);
+
         return view;
     }
 

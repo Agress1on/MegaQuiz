@@ -23,17 +23,17 @@ import butterknife.ButterKnife;
  */
 public class QuizResultAdapter extends RecyclerView.Adapter<QuizResultAdapter.ViewHolder> {
 
-    private List<QuizResultItem> mQuizResultItemList;
+    private List<QuizResultItem> mQuizResultItemList = new ArrayList<>();
 
     private final static int VIEW_ITEM_TYPE_FIRST = 0;
     private final static int VIEW_ITEM_TYPE_SECOND = 1;
 
     public QuizResultAdapter() {
-        mQuizResultItemList = new ArrayList<>();
     }
 
     public void setData(List<QuizResultItem> quizResultItemList) {
         mQuizResultItemList = quizResultItemList;
+        notifyDataSetChanged();
     }
 
     @Override
