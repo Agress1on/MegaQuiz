@@ -16,7 +16,6 @@ public interface QuizStorageContract {
     }
 
     interface Presenter {
-
         void onStart();
 
         void onCheckBoxClick(boolean isChecked);

@@ -41,8 +41,7 @@ public class QuizActivity extends AppCompatActivity implements QuizFragmentContr
         }
     }
 
-    @Override
-    public void setQuizFragment() {
+    private void setQuizFragment() {
         mQuizFragment = QuizFragment.newInstance(mCategoryName);
         mFragmentManager.beginTransaction()
                 .add(R.id.frame_for_quiz, mQuizFragment)

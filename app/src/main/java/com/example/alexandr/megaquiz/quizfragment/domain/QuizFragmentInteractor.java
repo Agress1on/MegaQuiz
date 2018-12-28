@@ -91,31 +91,6 @@ public class QuizFragmentInteractor implements QuizFragmentContract.Interactor {
     }
 
     @Override
-    public Single<String> getStringForRandom() {
-        return mBankQuestion.getBankQuestionsAndAnswers()
-                .map(new Function<Map<String, List<Question>>, List<String>>() {
-                    @Override
-                    public List<String> apply(Map<String, List<Question>> stringListMap) throws Exception {
-                        List<String> listWithoutEmpty = new ArrayList<>();
-                        for (Map.Entry<String, List<Question>> entry : stringListMap.entrySet()) {
-                            if (entry.getValue().size() > 0)
-                                listWithoutEmpty.add(entry.getKey());
-                        }
-                        return listWithoutEmpty;
-                    }
-                })
-                .map(new Function<List<String>, String>() {
-                    @Override
-                    public String apply(List<String> stringList) throws Exception {
-                        int first = 0;
-                        int second = stringList.size();
-                        int random = first + (int) (Math.random() * second);
-                        return stringList.get(random);
-                    }
-                });
-    }
-
-    @Override
     public Single<Integer> checkQuestions(String key, Map<Integer, Answer> answers) {
         return mBankQuestion.getBankQuestionsAndAnswers()
                 .map(new Function<Map<String, List<Question>>, List<Boolean>>() {

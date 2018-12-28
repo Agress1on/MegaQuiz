@@ -102,7 +102,7 @@ public class QuizFragment extends Fragment implements QuizFragmentContract.View 
     public View onCreateView(@NonNull LayoutInflater inflater, @Nullable ViewGroup container, @Nullable Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_quiz, null);
         mUnbinder = ButterKnife.bind(this, view);
-        mPresenter.onCreateView();
+        mPresenter.onStart();
         return view;
     }
 

@@ -59,7 +59,7 @@ public class QuizFragmentPresenter implements QuizFragmentContract.Presenter {
     }
 
     @Override
-    public void onCreateView() {
+    public void onStart() {
         if (!mQuestionsList.isEmpty()) {
             prepareViewForFirstQuestion();
             checkAnswerQuestion();
@@ -68,8 +68,7 @@ public class QuizFragmentPresenter implements QuizFragmentContract.Presenter {
         initQuestionList(mCategoryName);
     }
 
-    @Override
-    public void initQuestionList(String categoryName) {
+    private void initQuestionList(String categoryName) {
         mView.showLoading();
         Disposable disposable;
         if (categoryName.equals("")) {

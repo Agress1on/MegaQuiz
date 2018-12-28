@@ -20,8 +20,6 @@ public interface QuizFragmentContract {
 
         Single<Integer> checkQuestions(String key, Map<Integer, Answer> answers);
 
-        Single<String> getStringForRandom();
-
         Single<Pair<String, List<String>>> getQuestionsForRandom();
     }
 
@@ -40,9 +38,11 @@ public interface QuizFragmentContract {
     }
 
     interface Presenter {
-        void initQuestionList(String categoryName);
+        void attachView(QuizFragmentContract.View view, QuizFragmentContract.Router router);
 
-        void onCreateView();
+        void detachView();
+
+        void onStart();
 
         void onNextButton();
 
@@ -51,15 +51,9 @@ public interface QuizFragmentContract {
         void onAnswer(Answer answer);
 
         void onStop();
-
-        void attachView(QuizFragmentContract.View view, QuizFragmentContract.Router router);
-
-        void detachView();
     }
 
     interface Router {
-        void setQuizFragment();
-
         void goToQuizResultFragment(int correctAnswers, String categoryName, HashMap<Integer, Boolean> map);
     }
 }
