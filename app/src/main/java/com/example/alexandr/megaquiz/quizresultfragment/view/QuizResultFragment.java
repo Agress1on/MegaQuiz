@@ -20,6 +20,8 @@ import com.example.alexandr.megaquiz.R;
 import com.example.alexandr.megaquiz.app.App;
 import com.example.alexandr.megaquiz.quizresultfragment.QuizResultFragmentContract;
 import com.example.alexandr.megaquiz.quizresultfragment.QuizResultItem;
+import com.example.alexandr.megaquiz.quizresultfragment.inject.QuizResultFragmentComponent;
+import com.example.alexandr.megaquiz.quizresultfragment.inject.QuizResultFragmentPresenterModule;
 
 import net.bohush.geometricprogressview.GeometricProgressView;
 
@@ -78,8 +80,9 @@ public class QuizResultFragment extends Fragment implements QuizResultFragmentCo
         String nameCategory = getArguments().getString(Constants.EXTRAS_FOR_INTENT_QUIZ_RESULT_NAME_CATEGORY, "Error");
         HashMap<Integer, Boolean> userAnswersMap = (HashMap<Integer, Boolean>) getArguments().getSerializable(Constants.EXTRAS_FOR_INTENT_QUIZ_RESULT_MAP_USER_ANSWERS);
 
-        App.getApp(mContext).getComponentsHolder()
-                .getQuizResultFragmentComponent(nameCategory, userAnswersMap, correctAnswers).inject(this);
+        //App.getApp(mContext).getComponentsHolder().getQuizResultFragmentComponent(nameCategory, userAnswersMap, correctAnswers).inject(this);
+        QuizResultFragmentComponent component = (QuizResultFragmentComponent) App.getApp(getContext()).getComponentsHolder().getFragmentComponent(getClass(), new QuizResultFragmentPresenterModule(nameCategory, userAnswersMap,correctAnswers));
+        component.inject(this);
         mPresenter.attachView(this);
     }
 
@@ -111,7 +114,7 @@ public class QuizResultFragment extends Fragment implements QuizResultFragmentCo
         super.onDestroy();
         if (!getActivity().isChangingConfigurations()) {
             mPresenter.onDestroy();
-            App.getApp(mContext).getComponentsHolder().releaseQuizResultFragmentComponent();
+            App.getApp(mContext).getComponentsHolder().releaseFragmentComponent(getClass());
         }
     }
 
