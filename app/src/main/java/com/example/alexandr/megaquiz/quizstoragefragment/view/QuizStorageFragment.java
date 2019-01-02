@@ -22,6 +22,8 @@ import com.example.alexandr.megaquiz.app.App;
 import com.example.alexandr.megaquiz.quizfragment.view.QuizActivity;
 import com.example.alexandr.megaquiz.quizstoragefragment.QuizStorageContract;
 import com.example.alexandr.megaquiz.quizstoragefragment.QuizStorageItem;
+import com.example.alexandr.megaquiz.quizstoragefragment.inject.QuizStorageFragmentComponent;
+import com.example.alexandr.megaquiz.quizstoragefragment.inject.QuizStorageFragmentPresenterModule;
 
 import net.bohush.geometricprogressview.GeometricProgressView;
 
@@ -68,7 +70,8 @@ public class QuizStorageFragment extends Fragment implements QuizStorageContract
     public void onAttach(Context context) {
         super.onAttach(context);
         mContext = context;
-        App.getApp(mContext).getComponentsHolder().getQuizStorageFragmentComponent().inject(this);
+        QuizStorageFragmentComponent component = (QuizStorageFragmentComponent) App.getApp(getContext()).getComponentsHolder().getFragmentComponent(getClass(), new QuizStorageFragmentPresenterModule());
+        component.inject(this);
         mPresenter.attachView(this);
     }
 
@@ -94,7 +97,7 @@ public class QuizStorageFragment extends Fragment implements QuizStorageContract
         mUnbinder.unbind();
         if (!getActivity().isChangingConfigurations()) {
             mPresenter.onDestroy();
-            App.getApp(mContext).getComponentsHolder().releaseQuizStorageFragmentComponent();
+            App.getApp(mContext).getComponentsHolder().releaseFragmentComponent(getClass());
         }
     }
 
