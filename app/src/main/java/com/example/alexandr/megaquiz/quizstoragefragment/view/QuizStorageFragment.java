@@ -62,14 +62,11 @@ public class QuizStorageFragment extends Fragment implements QuizStorageContract
     Group mStaticGroup;
 
     private RecyclerAdapter mAdapter;
-
     private Unbinder mUnbinder;
-    private Context mContext;
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        mContext = context;
         QuizStorageFragmentComponent component = (QuizStorageFragmentComponent) App.getApp(getContext()).getComponentsHolder().getFragmentComponent(getClass(), new QuizStorageFragmentPresenterModule());
         component.inject(this);
         mPresenter.attachView(this);
@@ -87,7 +84,6 @@ public class QuizStorageFragment extends Fragment implements QuizStorageContract
         mAdapter = new RecyclerAdapter(key -> mPresenter.onClick(key));
         mPresenter.onStart();
         mRecyclerView.setAdapter(mAdapter);
-
         return view;
     }
 
@@ -97,7 +93,7 @@ public class QuizStorageFragment extends Fragment implements QuizStorageContract
         mUnbinder.unbind();
         if (!getActivity().isChangingConfigurations()) {
             mPresenter.onDestroy();
-            App.getApp(mContext).getComponentsHolder().releaseFragmentComponent(getClass());
+            App.getApp(getContext()).getComponentsHolder().releaseFragmentComponent(getClass());
         }
     }
 
