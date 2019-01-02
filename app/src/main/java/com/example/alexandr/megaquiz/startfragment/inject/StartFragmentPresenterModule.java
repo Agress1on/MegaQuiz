@@ -1,5 +1,6 @@
 package com.example.alexandr.megaquiz.startfragment.inject;
 
+import com.example.alexandr.megaquiz.base.FragmentModule;
 import com.example.alexandr.megaquiz.startfragment.StartFragmentContract;
 import com.example.alexandr.megaquiz.startfragment.presentation.StartFragmentPresenter;
 
@@ -12,7 +13,7 @@ import dagger.Provides;
  * @author Alexandr Mikhalev
  */
 @Module
-public class StartFragmentPresenterModule {
+public class StartFragmentPresenterModule implements FragmentModule {
 
     @StartFragmentScope
     @Provides

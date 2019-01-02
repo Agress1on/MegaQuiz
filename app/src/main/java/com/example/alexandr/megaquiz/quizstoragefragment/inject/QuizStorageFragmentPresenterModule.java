@@ -1,6 +1,7 @@
 package com.example.alexandr.megaquiz.quizstoragefragment.inject;
 
 import com.example.alexandr.megaquiz.bankquestion.BankQuestion;
+import com.example.alexandr.megaquiz.base.FragmentModule;
 import com.example.alexandr.megaquiz.quizstoragefragment.QuizStorageContract;
 import com.example.alexandr.megaquiz.quizstoragefragment.domain.QuizStorageInteractor;
 import com.example.alexandr.megaquiz.quizstoragefragment.presentation.QuizStoragePresenter;
@@ -14,7 +15,7 @@ import dagger.Provides;
  * @author Alexandr Mikhalev
  */
 @Module
-public class QuizStorageFragmentPresenterModule {
+public class QuizStorageFragmentPresenterModule implements FragmentModule {
 
     @QuizStorageFragmentScope
     @Provides

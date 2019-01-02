@@ -1,6 +1,7 @@
 package com.example.alexandr.megaquiz.quizfragment.inject;
 
 import com.example.alexandr.megaquiz.bankquestion.BankQuestion;
+import com.example.alexandr.megaquiz.base.FragmentModule;
 import com.example.alexandr.megaquiz.quizfragment.QuizFragmentContract;
 import com.example.alexandr.megaquiz.quizfragment.domain.QuizFragmentInteractor;
 import com.example.alexandr.megaquiz.quizfragment.presentation.QuizFragmentPresenter;
@@ -16,7 +17,7 @@ import dagger.Provides;
  * @author Alexandr Mikhalev
  */
 @Module
-public class QuizFragmentPresenterModule {
+public class QuizFragmentPresenterModule implements FragmentModule {
 
     private String mCategoryName;
 

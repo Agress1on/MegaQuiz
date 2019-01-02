@@ -1,5 +1,7 @@
 package com.example.alexandr.megaquiz.startfragment.inject;
 
+import com.example.alexandr.megaquiz.base.FragmentComponent;
+import com.example.alexandr.megaquiz.base.FragmentComponentBuilder;
 import com.example.alexandr.megaquiz.startfragment.view.StartFragment;
 
 import dagger.Subcomponent;
@@ -11,6 +13,10 @@ import dagger.Subcomponent;
  */
 @StartFragmentScope
 @Subcomponent(modules = StartFragmentPresenterModule.class)
-public interface StartFragmentComponent {
-    void inject(StartFragment startFragment);
+public interface StartFragmentComponent extends FragmentComponent<StartFragment> {
+    //void inject(StartFragment startFragment);
+    @Subcomponent.Builder
+    interface Builder extends FragmentComponentBuilder<StartFragmentComponent, StartFragmentPresenterModule> {
+
+    }
 }
