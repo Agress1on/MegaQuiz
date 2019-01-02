@@ -17,6 +17,8 @@ import com.example.alexandr.megaquiz.R;
 import com.example.alexandr.megaquiz.app.App;
 import com.example.alexandr.megaquiz.quizfragment.Answer;
 import com.example.alexandr.megaquiz.quizfragment.QuizFragmentContract;
+import com.example.alexandr.megaquiz.quizfragment.inject.QuizFragmentComponent;
+import com.example.alexandr.megaquiz.quizfragment.inject.QuizFragmentPresenterModule;
 
 import net.bohush.geometricprogressview.GeometricProgressView;
 
@@ -84,7 +86,9 @@ public class QuizFragment extends Fragment implements QuizFragmentContract.View 
         mContext = context;
 
         String categoryName = getArguments().getString(Constants.EXTRAS_FOR_INTENT_QUIZ_VIEW);
-        App.getApp(mContext).getComponentsHolder().getQuizFragmentComponent(categoryName).inject(this);
+        //App.getApp(mContext).getComponentsHolder().getQuizFragmentComponent(categoryName).inject(this);
+        QuizFragmentComponent component = (QuizFragmentComponent) App.getApp(getContext()).getComponentsHolder().getFragmentComponent(getClass(), new QuizFragmentPresenterModule(categoryName));
+        component.inject(this);
 
         QuizFragmentContract.Router router;
         if (getParentFragment() instanceof QuizFragmentContract.Router) {
@@ -123,7 +127,7 @@ public class QuizFragment extends Fragment implements QuizFragmentContract.View 
         super.onDestroy();
         if (!getActivity().isChangingConfigurations()) {
             mPresenter.onStop();
-            App.getApp(mContext).getComponentsHolder().releaseQuizFragmentComponent();
+            App.getApp(mContext).getComponentsHolder().releaseFragmentComponent(getClass());
         }
     }
 
