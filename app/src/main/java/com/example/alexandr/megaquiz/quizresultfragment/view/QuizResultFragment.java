@@ -69,19 +69,17 @@ public class QuizResultFragment extends Fragment implements QuizResultFragmentCo
     */
 
     private QuizResultAdapter mAdapter;
-    private Context mContext;
     private Unbinder mUnbinder;
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        mContext = context;
         int correctAnswers = getArguments().getInt(Constants.EXTRAS_FOR_INTENT_QUIZ_RESULT_CORRECT_ANSWERS, 5);
         String nameCategory = getArguments().getString(Constants.EXTRAS_FOR_INTENT_QUIZ_RESULT_NAME_CATEGORY, "Error");
         HashMap<Integer, Boolean> userAnswersMap = (HashMap<Integer, Boolean>) getArguments().getSerializable(Constants.EXTRAS_FOR_INTENT_QUIZ_RESULT_MAP_USER_ANSWERS);
-
         //App.getApp(mContext).getComponentsHolder().getQuizResultFragmentComponent(nameCategory, userAnswersMap, correctAnswers).inject(this);
-        QuizResultFragmentComponent component = (QuizResultFragmentComponent) App.getApp(getContext()).getComponentsHolder().getFragmentComponent(getClass(), new QuizResultFragmentPresenterModule(nameCategory, userAnswersMap,correctAnswers));
+        QuizResultFragmentComponent component = (QuizResultFragmentComponent) App.getApp(getContext()).getComponentsHolder()
+                .getFragmentComponent(getClass(), new QuizResultFragmentPresenterModule(nameCategory, userAnswersMap,correctAnswers));
         component.inject(this);
         mPresenter.attachView(this);
     }
@@ -96,9 +94,7 @@ public class QuizResultFragment extends Fragment implements QuizResultFragmentCo
         RecyclerView.LayoutManager layoutManager = new LinearLayoutManager(fragmentActivity);
         mRecyclerView.setLayoutManager(layoutManager);
         mAdapter = new QuizResultAdapter();
-
         mPresenter.onStartView();
-
         mRecyclerView.setAdapter(mAdapter);
         return view;
     }
@@ -107,14 +103,9 @@ public class QuizResultFragment extends Fragment implements QuizResultFragmentCo
     public void onDestroyView() {
         super.onDestroyView();
         mUnbinder.unbind();
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
         if (!getActivity().isChangingConfigurations()) {
             mPresenter.onDestroy();
-            App.getApp(mContext).getComponentsHolder().releaseFragmentComponent(getClass());
+            App.getApp(getContext()).getComponentsHolder().releaseFragmentComponent(getClass());
         }
     }
 

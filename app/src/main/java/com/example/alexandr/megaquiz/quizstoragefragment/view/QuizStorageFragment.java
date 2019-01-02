@@ -67,7 +67,8 @@ public class QuizStorageFragment extends Fragment implements QuizStorageContract
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        QuizStorageFragmentComponent component = (QuizStorageFragmentComponent) App.getApp(getContext()).getComponentsHolder().getFragmentComponent(getClass(), new QuizStorageFragmentPresenterModule());
+        QuizStorageFragmentComponent component = (QuizStorageFragmentComponent) App.getApp(getContext()).getComponentsHolder()
+                .getFragmentComponent(getClass(), new QuizStorageFragmentPresenterModule());
         component.inject(this);
         mPresenter.attachView(this);
     }

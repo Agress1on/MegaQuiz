@@ -61,7 +61,8 @@ public class StartFragment extends Fragment implements StartFragmentContract.Vie
             throw new IllegalStateException("Parent container must be StartFragmentContract.Router");
         }
         //App.getApp(getContext()).getComponentsHolder().getStartFragmentComponent().inject(this);
-        StartFragmentComponent component = (StartFragmentComponent) App.getApp(getContext()).getComponentsHolder().getFragmentComponent(getClass(), new StartFragmentPresenterModule());
+        StartFragmentComponent component = (StartFragmentComponent) App.getApp(getContext()).getComponentsHolder()
+                .getFragmentComponent(getClass(), new StartFragmentPresenterModule());
         component.inject(this);
         mPresenter.attachView(this, router);
     }
