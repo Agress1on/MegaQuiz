@@ -47,7 +47,6 @@ public class StartFragment extends Fragment implements StartFragmentContract.Vie
     ImageView mHeaderImageView;
 
     private Unbinder mUnbinder;
-
     boolean mVisible = true;
 
     @Override
