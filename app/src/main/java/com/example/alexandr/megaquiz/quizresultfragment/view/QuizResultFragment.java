@@ -63,11 +63,6 @@ public class QuizResultFragment extends Fragment implements QuizResultFragmentCo
     @BindView(R.id.static_group_quiz_result)
     Group mStaticGroup;
 
-    /*
-    @BindViews({R.id.result_text, R.id.for_switch_tv, R.id.switch_result})
-    List<View> mViewList;
-    */
-
     private QuizResultAdapter mAdapter;
     private Unbinder mUnbinder;
 

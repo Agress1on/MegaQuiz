@@ -66,30 +66,16 @@ public class QuizFragment extends Fragment implements QuizFragmentContract.View 
     @BindView(R.id.static_group_quiz)
     Group mStaticGroup;
 
-    /*
-    @BindViews({R.id.category_name, R.id.question, R.id.btnTrue,
-            R.id.btnFalse, R.id.btnNext, R.id.btnPrev, R.id.question_count})
-    List<View> mViewList;
-    */
-
-    /*
-    @BindView(R.id.progres_bar)
-    ProgressBar mProgressBar;
-    */
-
-    private Context mContext;
     private Unbinder mUnbinder;
 
     @Override
     public void onAttach(Context context) {
         super.onAttach(context);
-        mContext = context;
-
         String categoryName = getArguments().getString(Constants.EXTRAS_FOR_INTENT_QUIZ_VIEW);
         //App.getApp(mContext).getComponentsHolder().getQuizFragmentComponent(categoryName).inject(this);
-        QuizFragmentComponent component = (QuizFragmentComponent) App.getApp(getContext()).getComponentsHolder().getFragmentComponent(getClass(), new QuizFragmentPresenterModule(categoryName));
+        QuizFragmentComponent component = (QuizFragmentComponent) App.getApp(getContext()).getComponentsHolder()
+                .getFragmentComponent(getClass(), new QuizFragmentPresenterModule(categoryName));
         component.inject(this);
-
         QuizFragmentContract.Router router;
         if (getParentFragment() instanceof QuizFragmentContract.Router) {
             router = (QuizFragmentContract.Router) getParentFragment();
@@ -114,21 +100,16 @@ public class QuizFragment extends Fragment implements QuizFragmentContract.View 
     public void onDestroyView() {
         super.onDestroyView();
         mUnbinder.unbind();
+        if (!getActivity().isChangingConfigurations()) {
+            mPresenter.onStop();
+            App.getApp(getContext()).getComponentsHolder().releaseFragmentComponent(getClass());
+        }
     }
 
     @Override
     public void onDetach() {
         super.onDetach();
         mPresenter.detachView();
-    }
-
-    @Override
-    public void onDestroy() {
-        super.onDestroy();
-        if (!getActivity().isChangingConfigurations()) {
-            mPresenter.onStop();
-            App.getApp(mContext).getComponentsHolder().releaseFragmentComponent(getClass());
-        }
     }
 
     @Override
