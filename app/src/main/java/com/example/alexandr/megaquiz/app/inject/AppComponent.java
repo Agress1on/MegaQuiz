@@ -1,13 +1,6 @@
 package com.example.alexandr.megaquiz.app.inject;
 
-import com.example.alexandr.megaquiz.quizfragment.inject.QuizFragmentComponent;
-import com.example.alexandr.megaquiz.quizfragment.inject.QuizFragmentPresenterModule;
-import com.example.alexandr.megaquiz.quizresultfragment.inject.QuizResultFragmentComponent;
-import com.example.alexandr.megaquiz.quizresultfragment.inject.QuizResultFragmentPresenterModule;
-import com.example.alexandr.megaquiz.quizstoragefragment.inject.QuizStorageFragmentComponent;
-import com.example.alexandr.megaquiz.quizstoragefragment.inject.QuizStorageFragmentPresenterModule;
-import com.example.alexandr.megaquiz.startfragment.inject.StartFragmentComponent;
-import com.example.alexandr.megaquiz.startfragment.inject.StartFragmentPresenterModule;
+import com.example.alexandr.megaquiz.app.ComponentsHolder;
 
 import dagger.Component;
 
@@ -22,6 +15,7 @@ import dagger.Component;
                 AppModule.class,
         })
 public interface AppComponent {
+    /*
     QuizFragmentComponent createQuizFragmentComponent(QuizFragmentPresenterModule quizFragmentPresenterModule);
 
     StartFragmentComponent createStartFragmentComponent(StartFragmentPresenterModule startFragmentPresenterModule);
@@ -29,4 +23,6 @@ public interface AppComponent {
     QuizResultFragmentComponent createQuizResultFragmentComponent(QuizResultFragmentPresenterModule quizResultFragmentPresenterModule);
 
     QuizStorageFragmentComponent createQuizStorageFragmentComponent(QuizStorageFragmentPresenterModule quizStorageFragmentPresenterModule);
+    */
+    void injectComponentsHolder(ComponentsHolder componentsHolder);
 }
