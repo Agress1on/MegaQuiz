@@ -14,6 +14,8 @@ import android.widget.ImageView;
 import com.example.alexandr.megaquiz.R;
 import com.example.alexandr.megaquiz.app.App;
 import com.example.alexandr.megaquiz.startfragment.StartFragmentContract;
+import com.example.alexandr.megaquiz.startfragment.inject.StartFragmentComponent;
+import com.example.alexandr.megaquiz.startfragment.inject.StartFragmentPresenterModule;
 
 import javax.inject.Inject;
 
@@ -59,7 +61,9 @@ public class StartFragment extends Fragment implements StartFragmentContract.Vie
         } else {
             throw new IllegalStateException("Parent container must be StartFragmentContract.Router");
         }
-        App.getApp(getContext()).getComponentsHolder().getStartFragmentComponent().inject(this);
+        //App.getApp(getContext()).getComponentsHolder().getStartFragmentComponent().inject(this);
+        StartFragmentComponent component = (StartFragmentComponent) App.getApp(getContext()).getComponentsHolder().getFragmentComponent(getClass(), new StartFragmentPresenterModule());
+        component.inject(this);
         mPresenter.attachView(this, router);
     }
 
@@ -76,7 +80,7 @@ public class StartFragment extends Fragment implements StartFragmentContract.Vie
         super.onDestroyView();
         mUnbinder.unbind();
         if (!getActivity().isChangingConfigurations()) {
-            App.getApp(getContext()).getComponentsHolder().releaseStartFragmentComponent();
+            App.getApp(getContext()).getComponentsHolder().releaseFragmentComponent(getClass());
         }
     }
 
