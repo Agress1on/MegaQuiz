@@ -42,7 +42,7 @@ public class QuizFragmentPresenter implements QuizFragmentContract.Presenter {
         //
         this.mQuestionsList = new ArrayList<>();
         this.mCompositeDisposable = new CompositeDisposable();
-        this.mUserAnswers = new ArrayMap<>(); // почитать подробнее потом
+        this.mUserAnswers = new ArrayMap<>();
         this.mCurrentIndex = 0;
         this.mMapUserAnswersForResultFragment = new HashMap<>();
     }
