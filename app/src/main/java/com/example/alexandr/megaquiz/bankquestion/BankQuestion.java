@@ -27,12 +27,12 @@ public class BankQuestion {
         List<Question> economicQuestions = new ArrayList<>();
         List<Question> natureQuestions = new ArrayList<>();
 
-        generalQuestions.add(new Question("Андроид - лучшая платформа", true));
-        generalQuestions.add(new Question("Manchester is blue", false));
-        generalQuestions.add(new Question("Спартак Москва - лучший клуб", true));
-        generalQuestions.add(new Question("Земля имеет форму конуса", false));
-        generalQuestions.add(new Question("На Марсе есть жизнь", true));
-        generalQuestions.add(new Question("Алкоголь безвредный", false));
+        generalQuestions.add(new Question("У человека есть среднее ухо", true));
+        generalQuestions.add(new Question("Ближайшая к Солнцу планета – Марс", false));
+        generalQuestions.add(new Question("Если смешать красный и зеленый, то получится коричневый", true));
+        generalQuestions.add(new Question("Если самолет будет разгоняться по ветру, он взлетит быстрее", false));
+        generalQuestions.add(new Question("В производстве динамита используют арахис", true));
+        generalQuestions.add(new Question("Древние Римляне носили брюки", false));
 
         hardGeneralQuestions.add(new Question("Электрон больше, чем атом", false));
         hardGeneralQuestions.add(new Question("Килиманджаро - самая высокая гора в мире", false));
